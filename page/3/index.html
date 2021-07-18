@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Spring/12.16 MODEL MAP MODELMAP之间的关系" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.16%20MODEL%20MAP%20MODELMAP%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.660Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-16-MODEL-MAP-MODELMAP之间的关系"><a href="#12-16-MODEL-MAP-MODELMAP之间的关系" class="headerlink" title="12.16 MODEL MAP MODELMAP之间的关系"></a>12.16 MODEL MAP MODELMAP之间的关系</h1><p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191216155414285.png" alt="image-20191216155414285"></p>
+<p>一般来说 model这些东西 最经常是放在request域中</p>
+<p>我们也可以放在其他域中</p>
+<p>返回值是ModelAndView 可以为页面携带数据 但是也是默认在request中</p>
+<h3 id="如果想要在Session中保存的话"><a href="#如果想要在Session中保存的话" class="headerlink" title="如果想要在Session中保存的话"></a>如果想要在Session中保存的话</h3><p>可以在类上加上一个注解: @SessionAttributes()</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.16%20MODEL%20MAP%20MODELMAP%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" data-id="ckr97y8ax002gzch3dxsn2h83" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.16 DispatcherServlet流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.16%20DispatcherServlet%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.653Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-16-DispatcherServlet流程"><a href="#12-16-DispatcherServlet流程" class="headerlink" title="12.16 DispatcherServlet流程"></a>12.16 DispatcherServlet流程</h1><p><img src="image-20191216163546229.png" alt="image-20191216163546229"></p>
+<p>在每一个关键步骤都调用一个方法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.16%20DispatcherServlet%E6%B5%81%E7%A8%8B/" data-id="ckr97y8aw002dzch37t3q38wh" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.16 @ModelAttribute()注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.16%20@ModelAttribute()%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.645Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-16-ModelAttribute-“”-注解"><a href="#12-16-ModelAttribute-“”-注解" class="headerlink" title="12.16 @ModelAttribute(“”)注解"></a>12.16 @ModelAttribute(“”)注解</h1><p>该注解告诉Spring ，这个数据是从数据库里面查到的，不是在开始的时候就由容器创建好的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/book01&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addBook1</span><span class="params">(<span class="meta">@ModelAttribute(&quot;book&quot;)</span> Book book, Map&lt;String,Object&gt; map)</span></span>&#123;</span><br><span class="line">    Book book=<span class="keyword">new</span> Book(<span class="string">&quot;.....&quot;</span>);<span class="comment">//假设是从数据库里查到的</span></span><br><span class="line">    map.put(<span class="string">&quot;book&quot;</span>,book);</span><br><span class="line">    System.out.println(book);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;addSuccess&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个注解的作用是防止在数据库UPDATE操作的时候，有的变量不应该重新赋值的时候，一些没有赋值的数据是null</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.16%20@ModelAttribute()%E6%B3%A8%E8%A7%A3/" data-id="ckr97y8av002azch340223fd2" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.13 REST思想" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.13%20REST%E6%80%9D%E6%83%B3/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.636Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-13-REST思想"><a href="#12-13-REST思想" class="headerlink" title="12.13 REST思想"></a>12.13 REST思想</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.springmvc.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RESTControlTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 万物皆资源 网站 上的资源无非就增删改查</span></span><br><span class="line"><span class="comment">     * 发送请求 无非就是实现对资源的四种操作：增删改查</span></span><br><span class="line"><span class="comment">     * HTTP协议里 有四个用来操作的请求方式</span></span><br><span class="line"><span class="comment">     * GET      获取资源</span></span><br><span class="line"><span class="comment">     * POST     新建资源</span></span><br><span class="line"><span class="comment">     * PUT      更新</span></span><br><span class="line"><span class="comment">     * DELETE   删除</span></span><br><span class="line"><span class="comment">     * 我们希望的是 用一个URL  然后使用不同的请求方式 对应完成增删改查操作</span></span><br><span class="line"><span class="comment">     * 这就是REST思想</span></span><br><span class="line"><span class="comment">     * 系统希望以非常简洁的URL发请求</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/&#123;id&#125;&quot;,method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">queryEmp</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>String id, Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;GET:queryEmp,id=&quot;</span>+id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/&#123;id&#125;&quot;,method = RequestMethod.POST)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">addEmp</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>String id, Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;POST:addEmp,id=&quot;</span>+id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>/book/1    GET  –      获取1号图书</p>
+<p>/book/1    PUT  –      更新1号图书</p>
+<p>/book/1    DELETE – 删除1号图书</p>
+<p>/book        POST    添加图书</p>
+<hr>
+<h4 id="不幸的是-页面上只能发起GET和POST两种请求，其他的请求方式，没办法使用"><a href="#不幸的是-页面上只能发起GET和POST两种请求，其他的请求方式，没办法使用" class="headerlink" title="不幸的是 页面上只能发起GET和POST两种请求，其他的请求方式，没办法使用"></a>不幸的是 页面上只能发起GET和POST两种请求，其他的请求方式，没办法使用</h4><p>那我们怎么办呢？</p>
+<p>SPRING配置了一个hidden http method FILTER 可以弥补jsp页面不能发这两种请求的缺陷</p>
+<ol>
+<li>web.xml 拦截所有请求  首先配置hidden http method filter</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.HiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>hiddenHttpMethodFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>然后模拟增删改查操作 对于put和delete的 增加一个_method表单项 value 就是put method</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 模拟增删改查操作--%&gt;</span><br><span class="line"> <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/emp/1&quot;</span> <span class="attr">method</span>=<span class="string">&quot;get&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交GET&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/emp/1&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;添加1号员工（POST）&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">form</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">&lt;%-- 要一个_method的项--%&gt;</span><br><span class="line"> <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/emp/1&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;put&quot;</span> &gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;修改1号员工（PUT）&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">form</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/emp/1&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;_method&quot;</span> <span class="attr">value</span>=<span class="string">&quot;delete&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;删除1号员工（DELETE）&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>然后正常写PUT 和delete的控制层代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 想要接受POST GET以外的其他请求，首先要创建一个filter</span></span><br><span class="line"><span class="comment"> * 然后要发起其他形式请求？</span></span><br><span class="line"><span class="comment"> *      1. 在页面创建一个POST类型的表单</span></span><br><span class="line"><span class="comment"> *      2. 表单项中携带一个_method参数</span></span><br><span class="line"><span class="comment"> *      3. _method的值就是DELETE 或PUT</span></span><br><span class="line"><span class="comment"> * 如果是高版本TOMCAT （8+）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> model</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/&#123;id&#125;&quot;,method = RequestMethod.PUT)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateEmp</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>String id, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;PUT:updateEmp,id=&quot;</span>+id);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/&#123;id&#125;&quot;,method = RequestMethod.DELETE)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">delEmp</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>String id, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;DELETE:delEmp,id=&quot;</span>+id);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>最后，对于TOMCAT 8以上的服务器 会限制只能发出GET和POST 请求 发出其他请求会报错，修改的方法：在success.jsp头上加isErrorPage=”true”</p>
+</li>
+</ol>
+<p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191216102827830.png" alt="image-20191216102827830"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; isErrorPage=&quot;true&quot; %&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.13%20REST%E6%80%9D%E6%83%B3/" data-id="ckr97y8at0026zch3dngmgh45" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.13 @RequestMapping用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.13%20@RequestMapping%E7%94%A8%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.626Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-13-RequestMapping用法"><a href="#12-13-RequestMapping用法" class="headerlink" title="12.13 @RequestMapping用法"></a>12.13 @RequestMapping用法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.springmvc.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.View;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestMappingControllerTester</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 必须不包含username</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/handle01&quot; ,params = &#123;&quot;!username&quot;&#125;,method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;RequestMappingControllerTester..handle01&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 必须是火狐浏览器才能访问：把请求头复制过来</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/onlyFirefox&quot; ,headers = &#123;&quot;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  String <span class="title">onlyFirefox</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;firefox...&quot;</span>);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;firefox&quot;</span>);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模糊匹配功能：ANT风格</span></span><br><span class="line"><span class="comment">     * 模糊和精确都匹配的情况下 精确优先！</span></span><br><span class="line"><span class="comment">     * ?匹配 单个字符 优先级 high</span></span><br><span class="line"><span class="comment">     * *匹配 一层路径下的多个字符 优先级 mid</span></span><br><span class="line"><span class="comment">     * ** 匹配 多层路径下的多个字符 比如/a** /aaa 这样的话访问/aa/bb/cc/aaa也可以访问的到 优先级最低</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/AntStyleURL?&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">AntStyleUrl01</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;AntStyleUrl&quot;</span>);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;AntStyleURL&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/AntStyleURL*&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">AntStyleUrl02</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;AntStyleUrl2&quot;</span>);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;AntStyleURL2&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 路径上可以有占位符</span></span><br><span class="line"><span class="comment">     * 占位符只能占用一层路径</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">pathVariableTest</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span>String id,Model model)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;占位符的值：&quot;</span>+id);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>,id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.13%20@RequestMapping%E7%94%A8%E6%B3%95/" data-id="ckr97y8as0023zch3g0h2f73y" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.12 SPRING MVC入门及一些坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.616Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-12-SPRING-MVC入门及一些坑"><a href="#12-12-SPRING-MVC入门及一些坑" class="headerlink" title="12.12 SPRING MVC入门及一些坑"></a>12.12 SPRING MVC入门及一些坑</h1><p>•<strong>Spring</strong> <strong>为展现层****提供的基于</strong> <strong>MVC</strong> <strong>设计理念</strong>的优秀的 Web 框架，是<strong>目前<strong><strong>最主流</strong></strong>的</strong> <strong>MVC</strong> <strong>框架****之一</strong></p>
+<p>•Spring3.0 后全面超越 Struts2，成为<strong>最优秀的</strong> <strong>MVC</strong> <strong>框架</strong></p>
+<p>•<strong>Spring MVC</strong> <strong>通过一套</strong> <strong>MVC</strong> <strong>注解</strong>，让 POJO 成为处理请求的控制器，而无须实现任何接口。</p>
+<p>•<strong>支持</strong> <strong>REST</strong> <strong>风格****的</strong> <strong>URL</strong> <strong>请求</strong></p>
+<p>•采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性</p>
+<h4 id="IDEA建立Spring-MVC-Hello-World-详细入门教程"><a href="#IDEA建立Spring-MVC-Hello-World-详细入门教程" class="headerlink" title="IDEA建立Spring MVC Hello World 详细入门教程"></a>IDEA建立Spring MVC Hello World 详细入门教程</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wormday/p/8435617.html">https://www.cnblogs.com/wormday/p/8435617.html</a></p>
+<hr>
+<h2 id="Spring-MVC的HELLOWORLD当中的一些坑"><a href="#Spring-MVC的HELLOWORLD当中的一些坑" class="headerlink" title="Spring MVC的HELLOWORLD当中的一些坑"></a>Spring MVC的HELLOWORLD当中的一些坑</h2><p>用IDEA创建HELLOWORLD 的时候</p>
+<p><img src="image-20191212174152755.png" alt="image-20191212174152755"></p>
+<p>要手动添加这两个包到lib下，不然怎么运行都开不起来 同时WEB-INF底下会有报错！</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span></span><br></pre></td></tr></table></figure>
+
+<p>的作用：告诉 SPRINGMVC 这个方法 用什么方法来处理这个请求 </p>
+<p>这个/helloworld中的/可以省略 习惯了比较好</p>
+<p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191212192601259.png" alt="image-20191212192601259"></p>
+<hr>
+<p>如果不指定配置文件位置，默认会找一个/WEB-INF/XXX-servlet.xml</p>
+<p>这里的xxx是前端控制器的名字</p>
+<p><img src="image-20191212192942937.png" alt="image-20191212192942937"></p>
+<hr>
+<h4 id="URL-PATTERN"><a href="#URL-PATTERN" class="headerlink" title="URL-PATTERN"></a>URL-PATTERN</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>/拦截所有请求 不拦截jsp页面</p>
+<p>/* 拦截所有请求 （相当于完全覆盖了所有的资源 所以我们写/就可以了）</p>
+<p>写/* 的话访问jsp会出现这个效果：（控制台报错）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping found for HTTP request with URI [/index.jsp] in DispatcherServlet with name &#x27;dispatcher&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20191212194607304.png" alt="image-20191212194607304"></p>
+<hr>
+<p>处理*.jsp是tomcat做的事 这是因为DefaultServlet是Tomcat中用来处理静态资源了</p>
+<p>除了JSP 和servlet外剩下的都是静态资源</p>
+<p>index.html：静态资源：tomcat会在服务器下找到这个资源并返回</p>
+<p><url-pattern>/</url-pattern></p>
+<p>重写了大web.xml中的资源</p>
+<p>为什么jsp能访问？因为我们没有覆盖JspServlet的资源</p>
+<ol>
+<li>服务器的web.xml中有一个DefaultServlet是url-pattern=/</li>
+<li>我们配置中前端控制器url-pattern=/</li>
+<li>项目中小web.xml都是继承于服务器中大web.xml</li>
+<li>小web.xml 相当于子类 重写了父类的方法</li>
+</ol>
+<hr>
+<p>一个方法只能处理一个请求</p>
+<hr>
+<p>RequestMapping的属性：</p>
+<ul>
+<li><p>method：限定请求方式 RequestMethod.GET/ POST/…….</p>
+</li>
+<li><p>params</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/handle01&quot; ,params = &#123;&quot;username&quot;&#125;,method = RequestMethod.GET)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;RequestMappingControllerTester..handle01&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>url中必须有username，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01?username=111">http://localhost:8080/haha/handle01?username=111</a></p>
+<p>才可以</p>
+<p>  @RequestMapping(value = “/handle01” ,params = {“!username”},method = RequestMethod.GET)</p>
+<p>url中必须<strong>不包含username</strong>，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01">http://localhost:8080/haha/handle01</a></p>
+<p>才可以,不然会报错</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handleNoSuchRequestHandlingMethod No matching handler method found for servlet request: path &#x27;/haha/handle01&#x27;, method &#x27;GET&#x27;, parameters map[&#x27;username&#x27; -&gt; array<span class="tag">&lt;<span class="name">String</span>&gt;</span>[&#x27;111&#x27;]]</span><br></pre></td></tr></table></figure></li>
+<li><p>headers</p>
+</li>
+<li><p>consumes</p>
+</li>
+<li><p>produces</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" data-id="ckr97y8ar001zzch3fbroh56f" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.11 声明事务" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.605Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-11-声明事务"><a href="#12-11-声明事务" class="headerlink" title="12.11 声明事务"></a>12.11 声明事务</h1><h2 id="Spring提供JdbcTemplate能快捷操作数据库"><a href="#Spring提供JdbcTemplate能快捷操作数据库" class="headerlink" title="Spring提供JdbcTemplate能快捷操作数据库"></a>Spring提供JdbcTemplate能快捷操作数据库</h2><ol>
+<li>```<br>使用JDBC 回顾一下：<ol>
+<li>getDataSource</li>
+<li>getConnection</li>
+<li>getStatement 或preparedStatement</li>
+<li>statement.setInt</li>
+<li>stament.executeQuery()<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">然后配置一下</span><br><span class="line">然后执行想执行的语句</span><br><span class="line"></span><br><span class="line">```xml</span><br><span class="line">&lt;!--1. 配置事务管理器让其进行事务控制:一定要导入面向切面编程的几个包，基本版aspect+增强版三个--&gt;</span><br><span class="line">    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</span><br><span class="line">&lt;!--        控制住数据源--&gt;</span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;!--2.  开启基于注解的事务控制模式：依赖tx名称空间--&gt;</span><br><span class="line">    &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;</span><br><span class="line">&lt;!--   3. 给事务方法加注解 --&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">JdbcTemplate jdbcTemplate;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>引入外部配置文件</p>
+</li>
+<li><p>扫描包</p>
+</li>
+<li><p>配置数据源</p>
+</li>
+<li><p>配置JDBCTEMPLATE，给JDBCTEMPLATE一个id，配置dataSource</p>
+</li>
+<li><p>配置声明式事务（上面的三步代码）</p>
+</li>
+<li><pre><code class="java">@Transactional 
+是注解在要事务的方法上，不是执行在test上!
+    @Transactional
+    public void checkout(String username,String isbn) throws SQLException &#123;
+        bookDao.updateStock(isbn);
+        int price = bookDao.getPrice(isbn);
+        bookDao.updateBalance(username,price);
+        int i=10/0;
+    &#125;//正确
+
+
+    @Test
+    @Transactional //错误 不应该注解在这
+    public void test04() throws SQLException &#123;
+        BookService bookService=ioc.getBean(&quot;bookService&quot;,BookService.class);
+//        BookService bookService=new BookService();
+
+        bookService.checkout(&quot;Tom&quot;,&quot;ISBN-001&quot;);
+        System.out.println(&quot;结账完成&quot;);
+    &#125;
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" data-id="ckr97y8aq001wzch37oujh2id" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.11 基于配置的AOP步骤" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.11%20%E5%9F%BA%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84AOP%E6%AD%A5%E9%AA%A4/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.597Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-11-基于配置的AOP步骤"><a href="#12-11-基于配置的AOP步骤" class="headerlink" title="12.11 基于配置的AOP步骤"></a>12.11 基于配置的AOP步骤</h1><p>（基于注解的AOP）</p>
+<ol>
+<li>将目标类和切面类都加入到ioc容器中，搞定@Component</li>
+<li>告诉Spring哪个是切面类 搞定@Aspect</li>
+<li>在切面类中使用五个通知注解来配置切面中的通知方法何时何地运行</li>
+<li>开启AOP功能</li>
+</ol>
+<p>基于配置的也是同样的步骤 不过是在xml里配置</p>
+<h4 id="注解的优点：快速方便"><a href="#注解的优点：快速方便" class="headerlink" title="注解的优点：快速方便"></a>注解的优点：快速方便</h4><h4 id="xml配置优点：功能完善-（重要的东西用配置，不重要的可以用注解）"><a href="#xml配置优点：功能完善-（重要的东西用配置，不重要的可以用注解）" class="headerlink" title="xml配置优点：功能完善 （重要的东西用配置，不重要的可以用注解）"></a>xml配置优点：功能完善 （重要的东西用配置，不重要的可以用注解）</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.11%20%E5%9F%BA%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84AOP%E6%AD%A5%E9%AA%A4/" data-id="ckr97y8ap001tzch37i0mejro" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.11 AOP使用场景" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.589Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-11-AOP使用场景"><a href="#12-11-AOP使用场景" class="headerlink" title="12/11 AOP使用场景"></a>12/11 AOP使用场景</h1><ol>
+<li>日志，记录在数据库中，保存</li>
+<li>AOP做权限验证</li>
+<li>AOP做安全检查</li>
+<li>AOP做事务控制 通过检查就通过，通不过就回滚，结束就释放资源</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" data-id="ckr97y8ak001qzch3e76ga3i2" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring/12.11 AOP 的一些术语" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.11%20AOP%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.581Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-11-AOP-的一些术语、简单配置"><a href="#12-11-AOP-的一些术语、简单配置" class="headerlink" title="12.11 AOP 的一些术语、简单配置"></a>12.11 AOP 的一些术语、简单配置</h1><p>需要加日志的地方：<strong>方法开始、方法返回、方法异常、方法结束</strong> 每个方法都是4个位置。</p>
+<p><img src="image-20191211113246680.png" alt="image-20191211113246680"></p>
+<p>横切关注点：把方法横向来看</p>
+<p>切面类：存放横切关注点、通知方法的类，也就是LogUtils</p>
+<p>连接点：每一个方法的每一个位置都是一个连接点，一共是16个连接点。</p>
+<h1 id="切入点：真正需要执行日志记录的地方，切入点是从众多连接点中选出我们感兴趣的地方"><a href="#切入点：真正需要执行日志记录的地方，切入点是从众多连接点中选出我们感兴趣的地方" class="headerlink" title="切入点：真正需要执行日志记录的地方，切入点是从众多连接点中选出我们感兴趣的地方"></a>切入点：真正需要执行日志记录的地方，切入点是从众多连接点中选出我们感兴趣的地方</h1><p>切入点表达式：在众多连接点中选出我们感兴趣的地方</p>
+<p>弹幕说，AOP=切入点+通知</p>
+<h2 id="AOP使用步骤"><a href="#AOP使用步骤" class="headerlink" title="AOP使用步骤"></a>AOP使用步骤</h2><ol>
+<li><p>导包</p>
+<ul>
+<li>aspect包（基础 版）</li>
+<li>cglib aopalliance aspectj（加强版）</li>
+</ul>
+</li>
+<li><p>配置</p>
+<ul>
+<li>将目标类添加到容器中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span><span class="comment">//一定要有这个 告诉Spring是一个目标</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorImpl</span> <span class="keyword">implements</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j )</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i+j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i-j;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context-3.0.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/aop/spring-aop-3.1.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.runsstudio&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    开启基于注解的AOP空间：aop名称空间--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:aspectj-autoproxy</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>xml里面 aop context 命名空间都得添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//LogUtils</span></span><br><span class="line"><span class="keyword">package</span> com.runsstudio;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.Signature;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span><span class="comment">//告诉Spring这个类是切面类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogUtils</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 告诉Spring每个方法都什么时候运行</span></span><br><span class="line"><span class="comment">     * try&#123;</span></span><br><span class="line"><span class="comment">     *     <span class="doctag">@Before</span></span></span><br><span class="line"><span class="comment">     *     Method.invoke(obj,args)</span></span><br><span class="line"><span class="comment">     *      <span class="doctag">@AfterReturning</span></span></span><br><span class="line"><span class="comment">     * &#125;catch(e)&#123;</span></span><br><span class="line"><span class="comment">     *     <span class="doctag">@AfterThrowing</span></span></span><br><span class="line"><span class="comment">     * &#125;finally&#123;</span></span><br><span class="line"><span class="comment">     *     <span class="doctag">@After</span></span></span><br><span class="line"><span class="comment">     * &#125;</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 通知注解：</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Before</span> 前置通知</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@After</span>  后置通知</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@AfterReturning</span> 在目标方法正常返回之后      返回通知</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@AfterThrowing</span> 在目标方法抛出异常之后运行    异常通知</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@Around</span>: 环绕通知</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//想在执行目标方法之前，需要表达式写清楚执行哪个类</span></span><br><span class="line">    <span class="comment">//execution(权限修饰符 返回值 方法签名) 告诉Spring 何时何地运行</span></span><br><span class="line">    <span class="meta">@Before(value=&quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot;)</span><span class="comment">//在目标方法运行之前运行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">logBeforeMethod</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        Object[] args = joinPoint.getArgs();<span class="comment">//获取目标方法运行参数</span></span><br><span class="line">        System.out.println(<span class="string">&quot;args:&quot;</span>+ Arrays.toString(args));</span><br><span class="line">        Signature signature = joinPoint.getSignature();<span class="comment">//获取方法签名</span></span><br><span class="line">        String name = signature.getName();</span><br><span class="line">        System.out.println(name+<span class="string">&quot;:beforeMethodLog....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@After(&quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot;)</span><span class="comment">//在目标方法运行结束之后运行</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">logAfterMethod</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        Object[] args = joinPoint.getArgs();<span class="comment">//获取目标方法运行参数</span></span><br><span class="line">        System.out.println(<span class="string">&quot;args:&quot;</span>+ Arrays.toString(args));</span><br><span class="line">        Signature signature = joinPoint.getSignature();<span class="comment">//获取方法签名</span></span><br><span class="line">        String name = signature.getName();</span><br><span class="line">        System.out.println(name+<span class="string">&quot;afterMethodLog....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//    @Around(&quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot;)</span></span><br><span class="line"><span class="comment">//    public static void logSurroundMethod()&#123;</span></span><br><span class="line"><span class="comment">//        System.out.println(&quot;logSurroundMethodLog....&quot;);</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot;,throwing = &quot;exception&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">logExceptionMethod</span><span class="params">(JoinPoint joinPoint, Exception exception)</span></span>&#123;</span><br><span class="line">        System.out.println(exception.getMessage());</span><br><span class="line">        System.out.println(<span class="string">&quot;发生异常啦....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot; ,returning = &quot;result&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">logAfterReturningMethod</span><span class="params">(JoinPoint joinPoint,Object result)</span></span>&#123;</span><br><span class="line">        Object[] args = joinPoint.getArgs();<span class="comment">//获取目标方法运行参数</span></span><br><span class="line">        System.out.println(<span class="string">&quot;args:&quot;</span>+ Arrays.toString(args));</span><br><span class="line">        Signature signature = joinPoint.getSignature();<span class="comment">//获取方法签名</span></span><br><span class="line">        String name = signature.getName();</span><br><span class="line">        System.out.println(name+<span class="string">&quot;,result=&quot;</span>+result.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>使用</p>
+</li>
+<li><p>开启基于注解的AOP功能</p>
+</li>
+</ol>
+<p>使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.Bean.Calculator;</span><br><span class="line"><span class="keyword">import</span> com.runsstudio.impl.CalculatorImpl;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AOPTest</span> </span>&#123;</span><br><span class="line">    ApplicationContext  ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;conf/applicationContext.xml&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">/*// 这个是JUNIT自带的 应该从ioc容器中拿目标对象</span></span><br><span class="line"><span class="comment">        Calculator calculator=new Calculator();</span></span><br><span class="line"><span class="comment">        calculator.add(2,3);*/</span></span><br><span class="line"><span class="comment">//        STEP1&quot;:从ioc容器中拿到目标对象，注意：如果要用类型，一定要用接口类，不要用本类</span></span><br><span class="line"><span class="comment">//        CalculatorImpl bean = ioc.getBean(CalculatorImpl.class); 不能用接口类，因为是用的代理对象</span></span><br><span class="line">        Calculator bean2 = ioc.getBean(Calculator.class);</span><br><span class="line"><span class="comment">//        bean.add(2,1);</span></span><br><span class="line"><span class="comment">//        bean.sub(2,3);</span></span><br><span class="line">        bean2.add(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(bean2.getClass());<span class="comment">//class com.sun.proxy.$Proxy22</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="IOC容器中保存的都是代理对象"><a href="#IOC容器中保存的都是代理对象" class="headerlink" title="IOC容器中保存的都是代理对象"></a>IOC容器中保存的都是代理对象</h3><h4 id="CGLIB的作用：为没有接口的类创建代理对象，有接口的类用JDK创建"><a href="#CGLIB的作用：为没有接口的类创建代理对象，有接口的类用JDK创建" class="headerlink" title="CGLIB的作用：为没有接口的类创建代理对象，有接口的类用JDK创建"></a>CGLIB的作用：为没有接口的类创建代理对象，有接口的类用JDK创建</h4><h3 id="一些细节："><a href="#一些细节：" class="headerlink" title="一些细节："></a>一些细节：</h3><ol>
+<li>切入点表达式（访问权限符 返回值  方法全类名（参数列表））<ul>
+<li>*匹配一个或多个字符 比如</li>
+<li>.星号还可以匹配任意一个参数(int,*) 第一个是int类型，第二个是任意的 double或int都可以</li>
+<li>.. 任意多个参数和任意多个类型参数 (..) 任意多个参数</li>
+<li>全类名写com.runsstudio.* 可以匹配任意包</li>
+<li> public 是想写也行 不想写也行</li>
+</ul>
+记住： <ul>
+<li>最精确的：execution(public int com.runsstudio.impl.CalculatorImpl.add(int,int))</li>
+<li>最模糊的：execution(* *.  *()) 任意包、任意类、任意方法 （千万别写）</li>
+</ul>
+表达式之间可以用&amp;&amp; ||  ！表达当两个表达式同时满足、或满足一个、或不满足等条件</li>
+</ol>
+<h3 id="执行顺序："><a href="#执行顺序：" class="headerlink" title="执行顺序："></a>执行顺序：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* <span class="keyword">try</span>&#123;</span><br><span class="line">*     <span class="meta">@Before</span></span><br><span class="line">*     Method.invoke(obj,args)</span><br><span class="line">*      <span class="meta">@AfterReturning</span></span><br><span class="line">* &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">*     <span class="meta">@AfterThrowing</span></span><br><span class="line">* &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">*     <span class="meta">@After</span></span><br><span class="line">* &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="各个方法-对权限修饰符没有要求，但是-每个参数的意义都得告诉Spring-比如上面after-returning-的Object-result-顺便一说-如果写String-result-也是可以的-但是这样的话返回int就接受不到了"><a href="#各个方法-对权限修饰符没有要求，但是-每个参数的意义都得告诉Spring-比如上面after-returning-的Object-result-顺便一说-如果写String-result-也是可以的-但是这样的话返回int就接受不到了" class="headerlink" title="各个方法 对权限修饰符没有要求，但是 每个参数的意义都得告诉Spring 比如上面after returning 的Object result 顺便一说 如果写String result 也是可以的 但是这样的话返回int就接受不到了"></a>各个方法 对权限修饰符没有要求，但是 每个参数的意义都得告诉Spring 比如上面after returning 的Object result 顺便一说 如果写String result 也是可以的 但是这样的话返回int就接受不到了</h3><h5 id="细节7-可以将Execution-抽取出来（抽取可重用Execution）"><a href="#细节7-可以将Execution-抽取出来（抽取可重用Execution）" class="headerlink" title="细节7 可以将Execution 抽取出来（抽取可重用Execution）"></a>细节7 可以将Execution 抽取出来（抽取可重用Execution）</h5><ol>
+<li>随便声明一个没有实现返回的空方法</li>
+<li>在这个方法上 写一个注解@PointCut</li>
+<li>然后抽取，案例如下</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Pointcut(&quot;execution(public int com.runsstudio.impl.CalculatorImpl.*(int,int))&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointCut1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//想在执行目标方法之前，需要表达式写清楚执行哪个类</span></span><br><span class="line"><span class="comment">//execution(权限修饰符 返回值 方法签名) 告诉Spring 何时何地运行</span></span><br><span class="line"><span class="meta">@Before(value=&quot;pointCut1()&quot;)</span><span class="comment">//在目标方法运行之前运行</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">logBeforeMethod</span><span class="params">(JoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">    Object[] args = joinPoint.getArgs();<span class="comment">//获取目标方法运行参数</span></span><br><span class="line">    System.out.println(<span class="string">&quot;args:&quot;</span>+ Arrays.toString(args));</span><br><span class="line">    Signature signature = joinPoint.getSignature();<span class="comment">//获取方法签名</span></span><br><span class="line">    String name = signature.getName();</span><br><span class="line">    System.out.println(name+<span class="string">&quot;:beforeMethodLog....&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="细节8-环绕通知"><a href="#细节8-环绕通知" class="headerlink" title="细节8 环绕通知"></a>细节8 环绕通知</h5><p>相当于四合一</p>
+<p>环绕通知在普通通知前面执行 环绕的代码是优先的</p>
+<h5 id="细节9-多个切面同时切入"><a href="#细节9-多个切面同时切入" class="headerlink" title="细节9 多个切面同时切入"></a>细节9 多个切面同时切入</h5><p>先切入的先切出，后切入的后切出，用@Order(1) 数字小的在前面，如果不指定的话就是第一个字母 在前面的先执行</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.11%20AOP%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD/" data-id="ckr97y8aj001nzch3073k38o5" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

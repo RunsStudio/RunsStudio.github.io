@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Spring MVC REVIEW本项目是对SPRING的复习，配合B站雷神视频https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1uE411C7CW?from&#x3D;search&amp;seid&#x3D;344005634667549772">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring MVC REVIEW本项目是对SPRING的复习，配合B站雷神视频https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1uE411C7CW?from&#x3D;search&amp;seid&#x3D;344005634667549772">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_1.png">
+<meta property="og:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_2.png">
+<meta property="og:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_5.png">
+<meta property="og:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_6.png">
+<meta property="og:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_7.png">
+<meta property="article:published_time" content="2021-07-18T13:12:26.425Z">
+<meta property="article:modified_time" content="2021-03-11T09:38:35.413Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/img_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-IOC复习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.425Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring-MVC-REVIEW"><a href="#Spring-MVC-REVIEW" class="headerlink" title="Spring MVC REVIEW"></a>Spring MVC REVIEW</h1><p>本项目是对SPRING的复习，配合B站雷神视频<code>https://www.bilibili.com/video/BV1uE411C7CW?from=search&amp;seid=344005634667549772</code></p>
+<span id="more"></span>
+
+<h2 id="day01-hello-world"><a href="#day01-hello-world" class="headerlink" title="day01 hello world"></a>day01 hello world</h2><h3 id="需要注意的事项"><a href="#需要注意的事项" class="headerlink" title="需要注意的事项"></a>需要注意的事项</h3><ol>
+<li>把一个普通JAVA项目变成WEB项目：<br><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/08b6a591681e5414a8092212.html">https://jingyan.baidu.com/article/08b6a591681e5414a8092212.html</a></li>
+<li>把一个普通WEB项目变成Spring项目：<br> File → Project structure → Modules<br>点加号 添加Spring 然后版本选4.3.18<br>然后他会让选择导到哪个文件夹下，选lib<br>这一步也可以自己拷贝包到lib目录下</li>
+<li>然后到WEB-INF文件夹底下查看创建的applicationContext.xml<br> 往beans标签下添加bean</li>
+<li>然后新建一个JUnit test 方法是：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/dongzhensong/article/details/89450823">https://blog.csdn.net/dongzhensong/article/details/89450823</a></li>
+<li>创建细节：iocTest.xml要放在src文件夹下，然后<br><code>ApplicationContext ioc=new ClassPathXmlApplicationContext(&quot;iocTest.xml&quot;);</code><br>不然会找不到类路径报错 这是因为src（源码包开始的路径）也被称为类路径的开始<br>如果不想放在src文件夹下，需要在  File → Project structure 里面 把WEB-INF文件夹作为资源目录，这样的话，打开项目文件夹，比如<br>E:\IdeaProjects\Spring-MVC-review\out\production\Spring-MVC-review（这个文件路径等同类路径开始）<br>在这个文件夹地下可以看到WEB-INF 表示编译的文件，然后里面就可以找到applicationContext.xml 这样的话 我们也可以写成<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.创建IOC容器对象</span></span><br><span class="line">ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;/WEB-INF/applicationContext.xml&quot;</span>);</span><br><span class="line"><span class="comment">//2.根据id值获取bean实例对象</span></span><br><span class="line">Person person01 =(Person) ioc.getBean(<span class="string">&quot;person01&quot;</span>);</span><br><span class="line"><span class="comment">//3.打印bean</span></span><br><span class="line">System.out.println(person01);</span><br></pre></td></tr></table></figure>
+这样也是可以的 和上面效果也是一样的</li>
+<li>最后 如果不用类路径，而是想用绝对路径的话 可以这么写：<br><code>        ApplicationContext ioc=new FileSystemXmlApplicationContext(&quot;E:\\IdeaProjects\\Spring-MVC-review\\web\\WEB-INF\\applicationContext.xml&quot;);</code></li>
+<li>对象是什么时候创建的呢？答案是创建IOC容器对象的时候就已经创建好了。并且是先创建好所有对象，再启动容器</li>
+<li>容器启动之前 就创建好单实例的（默认是单实例） 也就是说如果让p1=ioc.getBean(“person01”); p2=ioc.getBean(“person01”); 则p1==p2 true </li>
+<li>ioc容器创建对象的时候，会调用set方法给属性赋值。setter决定了对象的属性名，千万还是要自动生成 不要自己改 不然会报错</li>
+</ol>
+<h2 id="day-02-实验"><a href="#day-02-实验" class="headerlink" title="day 02 实验"></a>day 02 实验</h2><h4 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/*实验2：根据bean的类型从IOC容器中获取bean的实例</span></span><br><span class="line"><span class="comment">    如果IOC容器中，一个类型的bean有多个，则查找会报错NoUniqueBeanDefinitionException！</span></span><br><span class="line"><span class="comment">    ★*/</span></span><br><span class="line">    <span class="comment">//org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type &#x27;com.runsstudio.ioc_review.bean.Person&#x27; available: expected single matching bean but found 2: person02,person03</span></span><br><span class="line"><span class="meta">@org</span>.junit.<span class="function">Test</span></span><br><span class="line"><span class="function">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Person bean = ioc.getBean(Person.class);<span class="comment">//单对象调用没问题 多对象报错</span></span><br><span class="line">        System.out.println(bean);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//换用        Person bean = ioc.getBean(&quot;person02&quot;,Person.class);即可查找多实例的情况</span></span><br></pre></td></tr></table></figure>
+<h4 id="实验3-调用有参构造器："><a href="#实验3-调用有参构造器：" class="headerlink" title="实验3 调用有参构造器："></a>实验3 调用有参构造器：</h4><p>在iocTest.xml里bean标签下用<constructor-arg name="gender" value="男"/><br>写几个就是调用几个的构造器<br><img src="img_1.png" alt="img_1"><br>可以省略name属性 如果省略的话 就是按照顺序制定的<br><img src="img_2.png" alt="img_2"></p>
+<p>使用p名称空间命名:需要在xml开头加上：xmlns:p=”<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/p&quot;">http://www.springframework.org/schema/p&quot;</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span></span></span><br><span class="line"><span class="tag">        <span class="attr">id</span>=<span class="string">&quot;person06&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.ioc_review.bean.Person&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">p:email</span>=<span class="string">&quot;2002&quot;</span> <span class="attr">p:lastName</span>=<span class="string">&quot;Jerry2016&quot;</span> <span class="attr">p:age</span>=<span class="string">&quot;18&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Spring允许继承bean的配置，被继承的bean称为父bean。继承这个父bean的bean称为子bean<br>子bean从父bean中继承配置，包括bean的属性配置<br>子bean也可以覆盖从父bean继承过来的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 以emp01作为父bean，继承后可以省略公共属性值的配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;emp02&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;emp01&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;empId&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1002&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;empName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Jerry&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> <span class="attr">value</span>=<span class="string">&quot;25&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="实验6-7-通过继承实现bean配置信息的重用-通过abstract属性创建一个模板bean"><a href="#实验6-7-通过继承实现bean配置信息的重用-通过abstract属性创建一个模板bean" class="headerlink" title="实验6/7 通过继承实现bean配置信息的重用 通过abstract属性创建一个模板bean"></a>实验6/7 通过继承实现bean配置信息的重用 通过abstract属性创建一个模板bean</h4><p>Spring允许继承bean的配置，被继承的bean称为父bean。继承这个父bean的bean称为子bean<br>子bean从父bean中继承配置，包括bean的属性配置<br>子bean也可以覆盖从父bean继承过来的配置</p>
+<p>父bean可以作为配置模板，也可以作为bean实例。若只想把父bean作为模板，可以设置<bean>的abstract 属性为true，这样Spring将不会实例化这个bean<br>如果一个bean的class属性没有指定，则必须是抽象bean<br>并不是<bean>元素里的所有属性都会被继承。比如：autowire，abstract等。<br>也可以忽略父bean的class属性，让子bean指定自己的类，而共享相同的属性配置。但此时abstract必须设为true。<br>**如果调用了抽象bean 会报 bean is abstract **</p>
+<h4 id="实验9-bean作用域-用scope-”…“指定"><a href="#实验9-bean作用域-用scope-”…“指定" class="headerlink" title="实验9 bean作用域 用scope=”…“指定"></a>实验9 bean作用域 用scope=”…“指定</h4><p>一共有四个：prototype 、 singleton 、 request、session<br>后两个没啥用 就前两个比较有用<br>当bean的作用域为单例时，Spring会在IOC容器对象创建时就创建bean的对象实例。而当bean的作用域为prototype时，IOC容器在获取bean的实例时创建bean的实例对象。</p>
+<h4 id="实验5-工厂模式"><a href="#实验5-工厂模式" class="headerlink" title="实验5 工厂模式"></a>实验5 工厂模式</h4><p>什么是工厂模式？有一个专门创建对象的类 就叫工厂类<br>工厂类有两种 静态工厂和实例工厂。</p>
+<ul>
+<li>静态工厂：（静态方法调用）调用静态工厂方法创建bean是将对象创建的过程封装到静态方法中。当客户端需要对象时，只需要简单地调用静态方法，而不用关心创建对象的细节。</li>
+<li>实例工厂：（需要new一个工厂）将对象的创建过程封装到另外一个对象实例的方法里。当客户端需要请求对象时，只需要简单的调用该实例方法而不需要关心对象的创建细节。</li>
+</ul>
+<h3 id="Day03"><a href="#Day03" class="headerlink" title="Day03"></a>Day03</h3><h4 id="试验12-外部配置文件链接据库连接池"><a href="#试验12-外部配置文件链接据库连接池" class="headerlink" title="试验12 外部配置文件链接据库连接池"></a>试验12 外部配置文件链接据库连接池</h4><p>首先xml里面配置数据源，首先导入命名空间</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd&quot; &gt;</span><br></pre></td></tr></table></figure>
+<p>然后用<code>context:property-placeholder</code> 来引入外部的配置文件<br>这里的配置文件可以是绝对路径 也可以是classpath:开始的路径<br>然后就可以用${}来引用配置文件（这里使用的conf/dbconfig.properties）的数据了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--实验12 引用外部属性文件:需要依赖context名称空间--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--数据库连接池作为单实例是最好的，一个项目里面有很多链接，链接直接从连接池中拿--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--可以让Spring帮我们创建连接池对象，管理连接池--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--加载外部配置文件，固定写法classpath--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">&quot;classpath:dbconfig.properties&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--这里用了一个测试类TestDataSource 实际上这里应该换成数据库连接池对应的包--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.ioc_review.bean.TestDataSource&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;jdbcUrl&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClass&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driverClass&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意：<br>** 引入context命名空间的时候 报错 **</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">信息: Loading XML bean definitions from class path resource [iocDatabaseProperties.xml]</span><br><span class="line">org.springframework.beans.factory.xml.XmlBeanDefinitionStoreException: Line 11 in XML document from class path resource [iocDatabaseProperties.xml] is invalid; nested exception is org.xml.sax.SAXParseException; lineNumber: 11; columnNumber: 77; cvc-complex-type.2.4.c: 通配符的匹配很全面, 但无法找到元素 &#x27;context:property-placeholder&#x27; 的声明。</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ttflove/p/6351345.html">https://www.cnblogs.com/ttflove/p/6351345.html</a></p>
+<h4 id="补充-源码文件夹（Source）和普通文件夹的区别"><a href="#补充-源码文件夹（Source）和普通文件夹的区别" class="headerlink" title="补充 源码文件夹（Source）和普通文件夹的区别"></a>补充 源码文件夹（Source）和普通文件夹的区别</h4><p>源码文件夹不会在项目的bin目录（就是classpath）下编译 也就是说如果文件夹不是源码文件夹 就找不到普通文件夹<br>注意  lib文件夹 不要设为源码文件夹 不然会把jar包全编译了</p>
+<h3 id="试验15-通过注解创建Model-View-Controller"><a href="#试验15-通过注解创建Model-View-Controller" class="headerlink" title="试验15 通过注解创建Model View Controller"></a>试验15 通过注解创建Model View Controller</h3><h4 id="三句话-简略讲讲MVC"><a href="#三句话-简略讲讲MVC" class="headerlink" title="三句话 简略讲讲MVC"></a>三句话 简略讲讲MVC</h4><ul>
+<li>Model就是模型 就是bean </li>
+<li>View 就是视图 表示的是jsp页面</li>
+<li>Controller 就是控制器，就是页面之间的跳转逻辑<br>Spring里面提供了四个注解 用来标注的<br>@Controller @Service @Repository @Component<br>在bean上标注注解 可以把bean加入容器</li>
+<li>@Controller — 对应servlet</li>
+<li>@Service —业务逻辑，</li>
+<li>@Repository === 仓库的意思 一般给持久层 dao层添加</li>
+<li>@Component —组件的意思 给不确定的层添加 一般给utils添加 给不属于以上几层的添加</li>
+</ul>
+<p><strong>注意 加了注解之后还要在context名称空间里面扫描组件 让spring自动扫描组件</strong><br><code>&lt;context:component-scan base-package=&quot;com.runsstudio.ioc_review&quot;/&gt;</code><br>要想使用这个注解的功能 一定要加入spring的aop包</p>
+<p>Autowired原理：按照类型在容器里查找 找到就赋值 ，没找到就抛出异常，如果找到多个，则装配上<br>找到多个的话找的方法如下：<br>    1. 按照变量名id匹配<br>    2. 如果根据变量名id匹配不上的话 可以使用@Qualifier注解明确指定目标bean的id<br>默认情况下，当IOC容器里存在多个类型兼容的bean时，Spring会尝试匹配bean的id值是否与变量名相同，如果相同则进行装配。如果bean的id值不相同，通过类型的自动装配将无法工作。此时可以在@Qualifier注解里提供bean的名称。Spring甚至允许在方法的形参上标注@Qualifiter注解以指定注入bean的名称。</p>
+<p><img src="img_5.png" alt="img_5"></p>
+<p>默认容器是一定要找到 找不到就抛出异常 可以用<code>@Autowired(require=false)</code></p>
+<h4 id="自动装配的注解"><a href="#自动装配的注解" class="headerlink" title="自动装配的注解"></a>自动装配的注解</h4><p>自动装配的注解可以写很多 比如@Autowired @Resource @Inject<br>区别：只有@Autowired最强大 他是Spring自己的注解<br>@Resource是java的标准，功能一般<br>区别：@Resource 可以用在非spring项目中 扩展性更强<br>@Autowired最强大仅限spring框架</p>
+<h3 id="spring单元测试"><a href="#spring单元测试" class="headerlink" title="spring单元测试"></a>spring单元测试</h3><p>请参考SpringTest.java</p>
+<h3 id="实验23-泛型依赖注入☆"><a href="#实验23-泛型依赖注入☆" class="headerlink" title="实验23 泛型依赖注入☆"></a>实验23 泛型依赖注入☆</h3><p>这个主要是存在泛型的时候用的<br>比如说存在一个BaseDao<T> 然后底下BookDao extends BaseDao<Book><br>这个时候也可以自动注入<br>自动装配可以找到泛型的对象</p>
+<p><img src="img_6.png" alt="img_6"><br>这是因为泛型创建的时候就已经创建了<code>BaseDao&lt;Book&gt;</code> 或者 <code>BaseDao&lt;User&gt;</code><br>** 泛型依赖注入指的是(注入组件的时候，他的泛型也是参考的标准) **</p>
+<h3 id="IOC总结"><a href="#IOC总结" class="headerlink" title="IOC总结"></a>IOC总结</h3><ul>
+<li>容器中包括了所有的bean</li>
+<li></li>
+<li>容器到底是什么？答案：容器就是一个map<h3 id="IOC的创建过程-源码讲解："><a href="#IOC的创建过程-源码讲解：" class="headerlink" title="IOC的创建过程 源码讲解："></a>IOC的创建过程 源码讲解：</h3>首先是从<code>ApplicationContext ioc=new ClassPathXmlApplicationContext(&quot;iocDatabaseProperties.xml&quot;);</code> 这一句开始<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String[] configLocations, <span class="keyword">boolean</span> refresh, ApplicationContext parent)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(parent);</span><br><span class="line">    <span class="keyword">this</span>.setConfigLocations(configLocations);</span><br><span class="line">    <span class="keyword">if</span> (refresh) &#123;<span class="comment">//在这里创建所有单实例的bean</span></span><br><span class="line">        <span class="keyword">this</span>.refresh();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+点开refresh()：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span> <span class="keyword">throws</span> BeansException, IllegalStateException </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>.startupShutdownMonitor)<span class="comment">/*同步锁 保证容器只创建一次*/</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.prepareRefresh();</span><br><span class="line">        </span><br><span class="line">        ConfigurableListableBeanFactory beanFactory = <span class="keyword">this</span>.obtainFreshBeanFactory();<span class="comment">//spring解析xml，这步之后xml就没啥用了，把xml解析过来 然后准备创建</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">this</span>.prepareBeanFactory(beanFactory);<span class="comment">//创建一个bean工厂，会报Loading XML bean definitions from class path resource[XXX.xml]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.postProcessBeanFactory(beanFactory);</span><br><span class="line">            <span class="keyword">this</span>.invokeBeanFactoryPostProcessors(beanFactory);<span class="comment">//执行bean工厂后置处理器</span></span><br><span class="line">            <span class="comment">/*        // 注册 BeanPostProcessor 的实现类，注意看和 BeanFactoryPostProcessor 的区别</span></span><br><span class="line"><span class="comment">     // 此接口两个方法: postProcessBeforeInitialization 和 postProcessAfterInitialization</span></span><br><span class="line"><span class="comment">     // 两个方法分别在 Bean 初始化之前和初始化之后得到执行。注意，到这里 Bean 还没初始化*/</span></span><br><span class="line">            <span class="keyword">this</span>.registerBeanPostProcessors(beanFactory);</span><br><span class="line">            <span class="keyword">this</span>.initMessageSource();<span class="comment">//支持国际化功能的</span></span><br><span class="line">            <span class="keyword">this</span>.initApplicationEventMulticaster();<span class="comment">//初始化事件转化器 处理创建过程中的事件</span></span><br><span class="line">            <span class="keyword">this</span>.onRefresh(); <span class="comment">// 专门留给子类继承的，是一个孔方法</span></span><br><span class="line">            <span class="keyword">this</span>.registerListeners(); <span class="comment">// 注册一些内部监听器</span></span><br><span class="line">            <span class="keyword">this</span>.finishBeanFactoryInitialization(beanFactory); <span class="comment">//完成bean工厂的初始化，在这一步创建所有bean</span></span><br><span class="line">            <span class="keyword">this</span>.finishRefresh();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (BeansException var9) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.logger.isWarnEnabled()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.logger.warn(<span class="string">&quot;Exception encountered during context initialization - cancelling refresh attempt: &quot;</span> + var9);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">this</span>.destroyBeans();</span><br><span class="line">            <span class="keyword">this</span>.cancelRefresh(var9);</span><br><span class="line">            <span class="keyword">throw</span> var9;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.resetCommonCaches();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+进一步的 我们观察<code>this.finishBeanFactoryInitialization(beanFactory);</code>方法，点击跳进去他的方法，会进入<code>AbstractApplicationContext.class</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finishBeanFactoryInitialization</span><span class="params">(ConfigurableListableBeanFactory beanFactory)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*初始化类型转化*/</span></span><br><span class="line">    <span class="keyword">if</span> (beanFactory.containsBean(<span class="string">&quot;conversionService&quot;</span>) &amp;&amp; beanFactory.isTypeMatch(<span class="string">&quot;conversionService&quot;</span>, ConversionService.class)) &#123;</span><br><span class="line">        beanFactory.setConversionService((ConversionService)beanFactory.getBean(<span class="string">&quot;conversionService&quot;</span>, ConversionService.class));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*初始化加载时的自动注入的*/</span></span><br><span class="line">    <span class="keyword">if</span> (!beanFactory.hasEmbeddedValueResolver()) &#123;</span><br><span class="line">        beanFactory.addEmbeddedValueResolver(<span class="keyword">new</span> StringValueResolver() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">resolveStringValue</span><span class="params">(String strVal)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> AbstractApplicationContext.<span class="keyword">this</span>.getEnvironment().resolvePlaceholders(strVal);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, <span class="keyword">false</span>, <span class="keyword">false</span>);</span><br><span class="line">    String[] var3 = weaverAwareNames;</span><br><span class="line">    <span class="keyword">int</span> var4 = weaverAwareNames.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> var5 = <span class="number">0</span>; var5 &lt; var4; ++var5) &#123;</span><br><span class="line">        String weaverAwareName = var3[var5];</span><br><span class="line">        <span class="keyword">this</span>.getBean(weaverAwareName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    beanFactory.setTempClassLoader((ClassLoader)<span class="keyword">null</span>);</span><br><span class="line">    beanFactory.freezeConfiguration();</span><br><span class="line">    <span class="comment">/*真正初始化单实例bean 是下面这个方法*/</span></span><br><span class="line">    beanFactory.preInstantiateSingletons();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+再进入 <code>beanFactory.preInstantiateSingletons();</code> 位于<code>DefaultListableBeanFactory.class</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preInstantiateSingletons</span><span class="params">()</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.logger.isDebugEnabled()) &#123;</span><br><span class="line">        <span class="keyword">this</span>.logger.debug(<span class="string">&quot;Pre-instantiating singletons in &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*首先拿到bean的名字*/</span></span><br><span class="line">    List&lt;String&gt; beanNames = <span class="keyword">new</span> ArrayList(<span class="keyword">this</span>.beanDefinitionNames);</span><br><span class="line">    Iterator var2 = beanNames.iterator();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            String beanName;</span><br><span class="line">            RootBeanDefinition bd;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">do</span> &#123;</span><br><span class="line">                    <span class="keyword">do</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (!var2.hasNext()) &#123;</span><br><span class="line">                            var2 = beanNames.iterator();</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">while</span>(var2.hasNext()) &#123;</span><br><span class="line">                                beanName = (String)var2.next();</span><br><span class="line">                                Object singletonInstance = <span class="keyword">this</span>.getSingleton(beanName);</span><br><span class="line">                                <span class="keyword">if</span> (singletonInstance <span class="keyword">instanceof</span> SmartInitializingSingleton) &#123;</span><br><span class="line">                                    <span class="keyword">final</span> SmartInitializingSingleton smartSingleton = (SmartInitializingSingleton)singletonInstance;</span><br><span class="line">                                    <span class="keyword">if</span> (System.getSecurityManager() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                        AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Object&gt;() &#123;</span><br><span class="line">                                            <span class="function"><span class="keyword">public</span> Object <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                                                smartSingleton.afterSingletonsInstantiated();</span><br><span class="line">                                                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                                            &#125;</span><br><span class="line">                                        &#125;, <span class="keyword">this</span>.getAccessControlContext());</span><br><span class="line">                                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                        smartSingleton.afterSingletonsInstantiated();</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        beanName = (String)var2.next();</span><br><span class="line">                        bd = <span class="keyword">this</span>.getMergedLocalBeanDefinition(beanName);</span><br><span class="line">                    &#125; <span class="keyword">while</span>(bd.isAbstract());</span><br><span class="line">                &#125; <span class="keyword">while</span>(!bd.isSingleton());</span><br><span class="line">            &#125; <span class="keyword">while</span>(bd.isLazyInit());<span class="comment">/*不是抽象的、不是单例的、不是懒加载的*/</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.isFactoryBean(beanName)) &#123;<span class="comment">/*如果是工厂bean*/</span></span><br><span class="line">                <span class="keyword">final</span> FactoryBean&lt;?&gt; factory = (FactoryBean)<span class="keyword">this</span>.getBean(<span class="string">&quot;&amp;&quot;</span> + beanName);</span><br><span class="line">                <span class="keyword">boolean</span> isEagerInit;</span><br><span class="line">                <span class="keyword">if</span> (System.getSecurityManager() != <span class="keyword">null</span> &amp;&amp; factory <span class="keyword">instanceof</span> SmartFactoryBean) &#123;</span><br><span class="line">                    isEagerInit = (Boolean)AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Boolean&gt;() &#123;</span><br><span class="line">                        <span class="function"><span class="keyword">public</span> Boolean <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                            <span class="keyword">return</span> ((SmartFactoryBean)factory).isEagerInit();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;, <span class="keyword">this</span>.getAccessControlContext());</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    isEagerInit = factory <span class="keyword">instanceof</span> SmartFactoryBean &amp;&amp; ((SmartFactoryBean)factory).isEagerInit();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (isEagerInit) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.getBean(beanName);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.getBean(beanName);<span class="comment">/*所有bean的创建，这个方法就有点长了，大概含义是 先检查缓存，缓存里有从缓存里拿bean 创建之后标记bean被创建防止bean被创建多次*/</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+总之 最后创建出来的对象，保存在一个map（beanFactory-&gt;beanDefinitionMap）里<br><img src="img_7.png" alt="img_7"><h3 id="面试题：BeanFactory和ApplicationContext的区别"><a href="#面试题：BeanFactory和ApplicationContext的区别" class="headerlink" title="面试题：BeanFactory和ApplicationContext的区别"></a>面试题：BeanFactory和ApplicationContext的区别</h3></li>
+<li>beanFactory最底层的接口（bean工厂接口），负责创建bean实例，这个接口里面保存了各种各样的bean，保存的单例bean实际上是保存在map中</li>
+<li>applicationContext是容器接口，更多的负责容器功能的实现，applicationContext创建的对象里包含了beanFactory，applicationContext还是先了AOP DI</li>
+</ul>
+<h4 id="spring里面最大的模式是什么？"><a href="#spring里面最大的模式是什么？" class="headerlink" title="spring里面最大的模式是什么？"></a>spring里面最大的模式是什么？</h4><p>工厂模式：帮用户创建bean</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/IOC%E5%A4%8D%E4%B9%A0/" data-id="ckr97y8bl003vzch3euz1e6p2" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/18/SPRING%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/AOP%E5%A4%8D%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

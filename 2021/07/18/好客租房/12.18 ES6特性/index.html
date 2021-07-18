@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="12.18 ES6特性两个新关键字 let 限制变量作用范围 const 限制是常量  字符串的属性 str.includes(“”)   返回boolean 判断字符串里包含了 str.startswith(“xx”) boolean 是否以xx开头 str.endswith(“xx”) boolean 是否以xx结尾  字符串模板用&#96;标记：str &#x3D;&#96; hello  world &#96; 解构（从数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="12.18 ES6特性两个新关键字 let 限制变量作用范围 const 限制是常量  字符串的属性 str.includes(“”)   返回boolean 判断字符串里包含了 str.startswith(“xx”) boolean 是否以xx开头 str.endswith(“xx”) boolean 是否以xx结尾  字符串模板用&#96;标记：str &#x3D;&#96; hello  world &#96; 解构（从数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-18T13:12:27.412Z">
+<meta property="article:modified_time" content="2019-12-18T09:50:46.809Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-好客租房/12.18 ES6特性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:27.412Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-18-ES6特性"><a href="#12-18-ES6特性" class="headerlink" title="12.18 ES6特性"></a>12.18 ES6特性</h1><h3 id="两个新关键字"><a href="#两个新关键字" class="headerlink" title="两个新关键字"></a>两个新关键字</h3><ul>
+<li>let 限制变量作用范围</li>
+<li>const 限制是常量</li>
+</ul>
+<h3 id="字符串的属性"><a href="#字符串的属性" class="headerlink" title="字符串的属性"></a>字符串的属性</h3><ul>
+<li>str.includes(“”)   返回boolean 判断字符串里包含了</li>
+<li>str.startswith(“xx”) boolean 是否以xx开头</li>
+<li>str.endswith(“xx”) boolean 是否以xx结尾</li>
+</ul>
+<h3 id="字符串模板用-标记："><a href="#字符串模板用-标记：" class="headerlink" title="字符串模板用`标记："></a>字符串模板用`标记：</h3><p>str =`</p>
+<p>hello </p>
+<p>world</p>
+<p>`</p>
+<h3 id="解构（从数组中提取值）"><a href="#解构（从数组中提取值）" class="headerlink" title="解构（从数组中提取值）"></a>解构（从数组中提取值）</h3><p>let arr=[1,2,3]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> [x , y ,z]=arr</span><br><span class="line"><span class="built_in">console</span>.log(x,y,z)</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> person=&#123;</span><br><span class="line">          <span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,</span><br><span class="line">          <span class="attr">age</span>:<span class="number">21</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> &#123;name,age&#125;=person<span class="comment">//必须变量和属性是一样的</span></span><br><span class="line">      <span class="built_in">console</span>.log(name,age)</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">let</span>&#123;<span class="attr">name</span>:n,<span class="attr">age</span>:a&#125;=person</span><br><span class="line">      <span class="built_in">console</span>.log(n,a)</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数优化"><a href="#函数优化" class="headerlink" title="函数优化"></a>函数优化</h3><h4 id="参数默认值的优化"><a href="#参数默认值的优化" class="headerlink" title="参数默认值的优化"></a>参数默认值的优化</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      <span class="function"><span class="keyword">function</span>  <span class="title">add</span>(<span class="params">a,b=<span class="number">2</span></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//旧方法： b=b||1;</span></span><br><span class="line">          <span class="keyword">return</span> a+b;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(add(<span class="number">10</span>))<span class="comment">//12</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">10</span>,<span class="number">5</span>))<span class="comment">//15</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> print2=<span class="function"><span class="params">a</span> =&gt;</span> <span class="built_in">console</span>.log(a);<span class="comment">//1参数</span></span><br><span class="line">print2(<span class="number">123456</span>);</span><br><span class="line"><span class="keyword">let</span> sum=<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b;<span class="comment">//2参数</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line"><span class="keyword">let</span> logging= <span class="function">() =&gt;</span>&#123;<span class="built_in">console</span>.log(<span class="string">&quot;logging....&quot;</span>);&#125;<span class="comment">//无参</span></span><br><span class="line">logging();</span><br></pre></td></tr></table></figure>
+<h3 id="函数书写优化"><a href="#函数书写优化" class="headerlink" title="函数书写优化"></a>函数书写优化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,</span><br><span class="line">    <span class="attr">eat</span>:<span class="function"><span class="keyword">function</span> (<span class="params">food</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">eat2</span>:<span class="function"><span class="params">food</span>=&gt;</span><span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>+food),</span><br><span class="line">    <span class="function"><span class="title">eat3</span>(<span class="params">food</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>+food)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">person.eat(<span class="string">&quot;西瓜&quot;</span>)</span><br><span class="line">person.eat2(<span class="string">&quot;西瓜&quot;</span>)</span><br><span class="line">person.eat3(<span class="string">&quot;西瓜&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">&quot;11&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="keyword">let</span> numbers = arr.map(<span class="function"><span class="params">s</span>=&gt;</span><span class="built_in">parseInt</span>(s));</span><br><span class="line"><span class="built_in">console</span>.log(numbers)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/" data-id="ckr97y8bk003tzch39hdshn9b" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

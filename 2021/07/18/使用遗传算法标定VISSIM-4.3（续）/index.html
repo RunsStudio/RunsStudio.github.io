@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="使用遗传算法标定VISSIM-4.3（续）上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用遗传算法标定VISSIM-4.3（续）上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/result.png">
+<meta property="article:published_time" content="2021-07-18T13:12:26.477Z">
+<meta property="article:modified_time" content="2020-01-12T03:05:09.027Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="VISSIM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-使用遗传算法标定VISSIM-4.3（续）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.477Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="使用遗传算法标定VISSIM-4-3（续）"><a href="#使用遗传算法标定VISSIM-4-3（续）" class="headerlink" title="使用遗传算法标定VISSIM-4.3（续）"></a>使用遗传算法标定VISSIM-4.3（续）</h1><p>上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。</p>
+<p>观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度数据得到的。（为了加快遗传算法效率我决定数据用60组而不是90组）</p>
+<span id="more"></span>
+
+<p><img src="%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用60组数据得到的速度累积频率"></p>
+<p><strong>使用60组数据得到的速度累积频率</strong></p>
+<p><img src="%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用自由流数据得到的速度累积频率"></p>
+<p><strong>使用自由流数据得到的速度累积频率</strong></p>
+<p>可以看到，两组数据形成的累积频率曲线差异还是挺大的，我们在VISSIM中重新绘制期望速度分布曲线，只用<strong>速度误差作为目标函数</strong>重新进行仿真，控制台打印误差为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">第 0 组参数： CC0= 1.6133525742071577 ,CC1= 2.579484627183955 ,CC2= 3.048217724522928</span><br><span class="line">误差为： 10.736255019064515</span><br><span class="line">第 1 组参数： CC0= 1.630496245956501 ,CC1= 0.939933568656533 ,CC2= 2.119093017543728</span><br><span class="line">误差为： 3.0226755068816686</span><br><span class="line">第 2 组参数： CC0= 1.416860830987368 ,CC1= 2.3135730993770327 ,CC2= 4.0672493706846256</span><br><span class="line">误差为： 8.127507039224755</span><br><span class="line">第 3 组参数： CC0= 1.3607793973691868 ,CC1= 1.8972921210234326 ,CC2= 2.4298498491291585</span><br><span class="line">误差为： 4.043634741465164</span><br><span class="line">第 4 组参数： CC0= 1.6212346529011652 ,CC1= 2.449189064157547 ,CC2= 3.6051459280147946</span><br><span class="line">误差为： 9.11592195513011</span><br><span class="line">第 5 组参数： CC0= 1.4005526732042284 ,CC1= 1.1773221130955975 ,CC2= 6.135465834624824</span><br><span class="line">误差为： 2.988166178479488</span><br><span class="line">第 6 组参数： CC0= 1.5344927280384584 ,CC1= 1.0105229323343183 ,CC2= 6.549979511566051</span><br><span class="line">误差为： 2.983192209746833</span><br><span class="line">第 7 组参数： CC0= 1.5935577666812208 ,CC1= 2.4997559277874197 ,CC2= 3.7182450130484757</span><br><span class="line">误差为： 9.49742740430594</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
+
+
+
+<p>从控制台输出可以看出，这一回CC0、CC1、CC2参数的变化对总误差的影响敏感了许多，表明期望速度分布曲线对于<strong>标定结果的准确性具有关键性影响</strong> 消除由于期望速度分布曲线设置不准确造成的速度误差后，使用遗传算法寻找最优的参数效果才比较好，解释得比较清楚。</p>
+<p><img src="result.png" alt="result"></p>
+<p>这一回，随着遗传代数增长，目标函数值收敛得比较快，在一个<strong>小区域</strong>内变化仿真参数对目标函数值影响不是特别大。</p>
+<p>最优参数：</p>
+<table>
+<thead>
+<tr>
+<th>CC0</th>
+<th>CC1</th>
+<th>CC2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.232534</td>
+<td>1.476736</td>
+<td>2.466359</td>
+</tr>
+</tbody></table>
+<p>最后仿真大约跑了8小时多点，最优代是第6代，最优目标函数值是2.92553318956994，效果拔群。</p>
+<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><ol>
+<li>期望速度分布曲线对于标定结果准确性影响很大，准确拟合速度曲线有利于消除系统误差。</li>
+<li>最后得到的仿真参数的组合可能不是单个最优解，而是形成一片解空间。（不是单个山峰，而是一片高原）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/" data-id="ckr97y8ad0017zch350xf9h9t" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/18/ajax%E5%9D%91%E7%88%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

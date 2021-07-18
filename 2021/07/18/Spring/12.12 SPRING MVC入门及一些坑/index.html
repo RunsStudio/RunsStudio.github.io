@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="12.12 SPRING MVC入门及一些坑•Spring 为展现层****提供的基于 MVC 设计理念的优秀的 Web 框架，是目前最主流的 MVC 框架****之一 •Spring3.0 后全面超越 Struts2，成为最优秀的 MVC 框架 •Spring MVC 通过一套 MVC 注解，让 POJO 成为处理请求的控制器，而无须实现任何接口。 •支持 REST 风格****的 URL 请求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="12.12 SPRING MVC入门及一些坑•Spring 为展现层****提供的基于 MVC 设计理念的优秀的 Web 框架，是目前最主流的 MVC 框架****之一 •Spring3.0 后全面超越 Struts2，成为最优秀的 MVC 框架 •Spring MVC 通过一套 MVC 注解，让 POJO 成为处理请求的控制器，而无须实现任何接口。 •支持 REST 风格****的 URL 请求">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/image-20191212174152755.png">
+<meta property="og:image" content="c:/Users/Run/AppData/Roaming/Typora/typora-user-images/image-20191212192601259.png">
+<meta property="og:image" content="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/image-20191212192942937.png">
+<meta property="og:image" content="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/image-20191212194607304.png">
+<meta property="article:published_time" content="2021-07-18T13:12:26.616Z">
+<meta property="article:modified_time" content="2020-01-06T05:59:30.809Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/image-20191212174152755.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Spring/12.12 SPRING MVC入门及一些坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.616Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="12-12-SPRING-MVC入门及一些坑"><a href="#12-12-SPRING-MVC入门及一些坑" class="headerlink" title="12.12 SPRING MVC入门及一些坑"></a>12.12 SPRING MVC入门及一些坑</h1><p>•<strong>Spring</strong> <strong>为展现层****提供的基于</strong> <strong>MVC</strong> <strong>设计理念</strong>的优秀的 Web 框架，是<strong>目前<strong><strong>最主流</strong></strong>的</strong> <strong>MVC</strong> <strong>框架****之一</strong></p>
+<p>•Spring3.0 后全面超越 Struts2，成为<strong>最优秀的</strong> <strong>MVC</strong> <strong>框架</strong></p>
+<p>•<strong>Spring MVC</strong> <strong>通过一套</strong> <strong>MVC</strong> <strong>注解</strong>，让 POJO 成为处理请求的控制器，而无须实现任何接口。</p>
+<p>•<strong>支持</strong> <strong>REST</strong> <strong>风格****的</strong> <strong>URL</strong> <strong>请求</strong></p>
+<p>•采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性</p>
+<h4 id="IDEA建立Spring-MVC-Hello-World-详细入门教程"><a href="#IDEA建立Spring-MVC-Hello-World-详细入门教程" class="headerlink" title="IDEA建立Spring MVC Hello World 详细入门教程"></a>IDEA建立Spring MVC Hello World 详细入门教程</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wormday/p/8435617.html">https://www.cnblogs.com/wormday/p/8435617.html</a></p>
+<hr>
+<h2 id="Spring-MVC的HELLOWORLD当中的一些坑"><a href="#Spring-MVC的HELLOWORLD当中的一些坑" class="headerlink" title="Spring MVC的HELLOWORLD当中的一些坑"></a>Spring MVC的HELLOWORLD当中的一些坑</h2><p>用IDEA创建HELLOWORLD 的时候</p>
+<p><img src="image-20191212174152755.png" alt="image-20191212174152755"></p>
+<p>要手动添加这两个包到lib下，不然怎么运行都开不起来 同时WEB-INF底下会有报错！</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span></span><br></pre></td></tr></table></figure>
+
+<p>的作用：告诉 SPRINGMVC 这个方法 用什么方法来处理这个请求 </p>
+<p>这个/helloworld中的/可以省略 习惯了比较好</p>
+<p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191212192601259.png" alt="image-20191212192601259"></p>
+<hr>
+<p>如果不指定配置文件位置，默认会找一个/WEB-INF/XXX-servlet.xml</p>
+<p>这里的xxx是前端控制器的名字</p>
+<p><img src="image-20191212192942937.png" alt="image-20191212192942937"></p>
+<hr>
+<h4 id="URL-PATTERN"><a href="#URL-PATTERN" class="headerlink" title="URL-PATTERN"></a>URL-PATTERN</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>/拦截所有请求 不拦截jsp页面</p>
+<p>/* 拦截所有请求 （相当于完全覆盖了所有的资源 所以我们写/就可以了）</p>
+<p>写/* 的话访问jsp会出现这个效果：（控制台报错）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping found for HTTP request with URI [/index.jsp] in DispatcherServlet with name &#x27;dispatcher&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20191212194607304.png" alt="image-20191212194607304"></p>
+<hr>
+<p>处理*.jsp是tomcat做的事 这是因为DefaultServlet是Tomcat中用来处理静态资源了</p>
+<p>除了JSP 和servlet外剩下的都是静态资源</p>
+<p>index.html：静态资源：tomcat会在服务器下找到这个资源并返回</p>
+<p><url-pattern>/</url-pattern></p>
+<p>重写了大web.xml中的资源</p>
+<p>为什么jsp能访问？因为我们没有覆盖JspServlet的资源</p>
+<ol>
+<li>服务器的web.xml中有一个DefaultServlet是url-pattern=/</li>
+<li>我们配置中前端控制器url-pattern=/</li>
+<li>项目中小web.xml都是继承于服务器中大web.xml</li>
+<li>小web.xml 相当于子类 重写了父类的方法</li>
+</ol>
+<hr>
+<p>一个方法只能处理一个请求</p>
+<hr>
+<p>RequestMapping的属性：</p>
+<ul>
+<li><p>method：限定请求方式 RequestMethod.GET/ POST/…….</p>
+</li>
+<li><p>params</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/handle01&quot; ,params = &#123;&quot;username&quot;&#125;,method = RequestMethod.GET)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;RequestMappingControllerTester..handle01&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>url中必须有username，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01?username=111">http://localhost:8080/haha/handle01?username=111</a></p>
+<p>才可以</p>
+<p>  @RequestMapping(value = “/handle01” ,params = {“!username”},method = RequestMethod.GET)</p>
+<p>url中必须<strong>不包含username</strong>，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01">http://localhost:8080/haha/handle01</a></p>
+<p>才可以,不然会报错</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handleNoSuchRequestHandlingMethod No matching handler method found for servlet request: path &#x27;/haha/handle01&#x27;, method &#x27;GET&#x27;, parameters map[&#x27;username&#x27; -&gt; array<span class="tag">&lt;<span class="name">String</span>&gt;</span>[&#x27;111&#x27;]]</span><br></pre></td></tr></table></figure></li>
+<li><p>headers</p>
+</li>
+<li><p>consumes</p>
+</li>
+<li><p>produces</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" data-id="ckr97y8ar001zzch3fbroh56f" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/18/Spring/12.13%20@RequestMapping%E7%94%A8%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

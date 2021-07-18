@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="使用遗传算法标定VISSIM 4.3GITHUB真是个好东西，最近在GITHUB的帮助下，我第一次接触了使用Python调用VISSIM 4.3 COM接口的方法，尽管在其官方文档中没有对此进行详细说明，不过还是可以通过AttValue()和SetAttValue()函数调用API里边的函数。 环境准备首先准备环境  VISSIM 4.30 Pycharm 2019.03 Python 3.5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用遗传算法标定VISSIM 4.3GITHUB真是个好东西，最近在GITHUB的帮助下，我第一次接触了使用Python调用VISSIM 4.3 COM接口的方法，尽管在其官方文档中没有对此进行详细说明，不过还是可以通过AttValue()和SetAttValue()函数调用API里边的函数。 环境准备首先准备环境  VISSIM 4.30 Pycharm 2019.03 Python 3.5">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/averageSpd.jpg">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/CulSpd.png">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E8%AE%BE%E7%BD%AELINK%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E8%BD%A6%E9%81%93%E9%99%90%E5%88%B6.png">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E6%A3%80%E6%B5%8B%E5%99%A8%E8%AE%BE%E7%BD%AE.png">
+<meta property="og:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/result.png">
+<meta property="article:published_time" content="2021-07-18T13:12:26.469Z">
+<meta property="article:modified_time" content="2020-11-15T09:02:30.226Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="VISSIM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/averageSpd.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-使用遗传算法标定VISSIM-4.3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/" class="article-date">
+  <time class="dt-published" datetime="2021-07-18T13:12:26.469Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="使用遗传算法标定VISSIM-4-3"><a href="#使用遗传算法标定VISSIM-4-3" class="headerlink" title="使用遗传算法标定VISSIM 4.3"></a>使用遗传算法标定VISSIM 4.3</h1><p>GITHUB真是个好东西，最近在GITHUB的帮助下，我第一次接触了使用Python调用VISSIM 4.3 COM接口的方法，尽管在其官方文档中没有对此进行详细说明，不过还是可以通过AttValue()和SetAttValue()函数调用API里边的函数。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>首先准备环境</p>
+<ul>
+<li>VISSIM 4.30</li>
+<li>Pycharm 2019.03</li>
+<li>Python 3.5</li>
+</ul>
+<p>需要的包（学到一招，Pycharm里可以在File-&gt;Setting里搜索想要的包并导入）</p>
+<ul>
+<li>geatpy 2.2.3    用来调用遗传算法</li>
+<li>win32com  用来调用com接口</li>
+<li>numpy   是该遗传算法包的依赖</li>
+<li>xlrd 用来读Excel表的</li>
+</ul>
+<h2 id="标定方式概述"><a href="#标定方式概述" class="headerlink" title="标定方式概述"></a>标定方式概述</h2><p>目前针对传统微观交通跟驰模型的标定方法主要有两种： 一种是宏观标定，即根据道路中的固定检测器，包括微波、线圈等统计的流量、速度、行程时间等信息，另一种是微观（轨迹）标定，根据航拍（最近几年一般用无人机）得到车辆的轨迹，通过车辆的轨迹数据进行标定。很显然，轨迹标定方法更为精确，不仅可以标定出跟驰的特征，也可以包含换道的信息。但是无人机也有缺陷，一次只能拍一个地点，而且续航时间有限。具体而言，选取哪一种标定方法还是由<strong>手头的数据</strong>决定的。</p>
+<span id="more"></span>
+
+
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="小时交通量处理"><a href="#小时交通量处理" class="headerlink" title="小时交通量处理"></a>小时交通量处理</h3><p>我手头有一个检测器1日的数据，原始数据是每5分钟统计各条车道的车速、以及通过车辆数。首先对该数据进行集计，统计成15分钟车速、车道通过的车辆数数据、大车比例，再通过集合各车道通过车辆数数据，加以扩样得到每15分钟统计一次的 <strong>断面小时交通量</strong> 这里不再是15分钟流量，是由于VISSIM中设置车辆输入都是以小时交通量为单位。</p>
+<h3 id="车道速度处理"><a href="#车道速度处理" class="headerlink" title="车道速度处理"></a>车道速度处理</h3><p>随后对车辆车速分车道进行集合统计，得到分车道的速度频率分布累计曲线，这个曲线还是蛮重要的 ，决定了自由流状态下，车辆运行的期望车速分布。查看原始数据，我们可以发现原始数据不仅包含了自由流状态，还包含了拥堵状态，显然拥堵状态是不能作为期望车速输入的。</p>
+<h4 id="将拥堵状态和自由流状态分开"><a href="#将拥堵状态和自由流状态分开" class="headerlink" title="将拥堵状态和自由流状态分开"></a>将拥堵状态和自由流状态分开</h4><p>首先使用车道流量Q、速度V计算该车道的车辆密度k，利用的是交通流基本关系Q=KV</p>
+<p>在Excel中直接选中所有车道速度，绘制K-V散点图，绘制之后可以用直线拟合趋势线，拟合后我们可以发现用直线拟合程度就比较好，各个车道K-V关系拟合R²都在0.85以上。于是我们可以拍一拍脑袋，认为该路段各车道交通流服从<strong>格林希尔德模型</strong>。拟合出来的直线显示截距，截距就是自由流车速vf（K=0时的速度），vf/2就是拥堵和自由流的临界。</p>
+<p><img src="averageSpd.jpg" alt="averageSpd"></p>
+<h4 id="统计速度在各区间内的频数"><a href="#统计速度在各区间内的频数" class="headerlink" title="统计速度在各区间内的频数"></a>统计速度在各区间内的频数</h4><p>使用vf/2为临界，筛选出大于vf/2的速度数据，放到另一张表中，进行分段统计，分段长度可以采用10，如果你比较细心也可以用5。</p>
+<p>这里有一个小技巧，分段需要用到EXCEL中的FREQUENCY函数，首先选中一列，然后输入函数公式后按ctrl+shift+enter可以填充该列。</p>
+<p>最后计算各个区间内的比例，并进行累加，就可以得到速度频率分布曲线，我们在VISSIM中新建4个期望速度分布曲线，把我们得到的4个数据按图索骥画进去。</p>
+<p><img src="CulSpd.png" alt="CulSpd"></p>
+<h3 id="VISSIM-设置"><a href="#VISSIM-设置" class="headerlink" title="VISSIM 设置"></a>VISSIM 设置</h3><h4 id="设置不同车道的期望车速曲线"><a href="#设置不同车道的期望车速曲线" class="headerlink" title="设置不同车道的期望车速曲线"></a>设置不同车道的期望车速曲线</h4><p>这里又有需要注意的地方，在VISSIM中，车辆输入的时候是不能输入车道级的期望车速分布，那么问题就来了，我的车辆在一条4车道高速上，怎么样保证他在不同的车道上有不同的期望车速分布呢？我们可以通过设置期望速度决策点来修改不同车道的期望车速。然而，由于路网中的车辆会进行选择性换道，进行选择性变道后，车辆通过上一个期望速度决策点的期望车速会保留到换道后，这就和我们期望的不一样。想要解决也很简单，一个期望速度决策点不够，就来几个。</p>
+<h4 id="设置LINK的类型"><a href="#设置LINK的类型" class="headerlink" title="设置LINK的类型"></a>设置LINK的类型</h4><p>这个要特别拿出来说一下，天坑！！原来通过一番设置之后代码都跑起来了，可是发现程序每次变换随机参数跑出来的结果都一样（不管调成啥都没用），整整想了一个晚上挠掉N多头发才发现是我LINK的类型选成了城市道路！！！也就是说我调了一晚上高速路的模型参数，压根就没在路网中生效，还我头发啊啊啊啊！！！！</p>
+<p><img src="VISSIM%E8%AE%BE%E7%BD%AELINK%E5%B1%9E%E6%80%A7.png" alt="VISSIM设置LINK属性"></p>
+<p>就是这个，要选成3 Freeway 才有用</p>
+<h4 id="设置LINK车道限行"><a href="#设置LINK车道限行" class="headerlink" title="设置LINK车道限行"></a>设置LINK车道限行</h4><p>这个还是要和实际相符，国内大部分多车道高速都禁止大货车在最内侧车道通行，如果是4车道高速，一般会只让大货车在最外侧两条车道运行。在VISSIM里上面那个界面点Lane Closure 然后把Lane3 和lane4 对HGV关闭（VISSIM最右边车道是1 所以应该关闭lane3 和lane 4）</p>
+<p><img src="VISSIM%E8%BD%A6%E9%81%93%E9%99%90%E5%88%B6.png" alt="VISSIM车道限制"></p>
+<h4 id="设置评价"><a href="#设置评价" class="headerlink" title="设置评价"></a>设置评价</h4><p>评价也是一个大坑，在4.30版本的VISSIM中，如果你不打开评价，仿真他也不会报错，而是会输出0.00这样令人摸不着头脑的数据，掉无数头发后，才能想到 哦是评价没打开。由于需要检测车辆数和速度，这里要点选上两个数据。同时要注意时间是从900s开始统计，集计间隔也是900s。</p>
+<p><img src="VISSIM%E6%A3%80%E6%B5%8B%E5%99%A8%E8%AE%BE%E7%BD%AE.png" alt="VISSIM检测器设置"></p>
+<p>这里为了演示只搞了1个检测器，实际上检测器个数肯定不止一个，VISSIM里一个检测器只能看一条车道的数据</p>
+<h2 id="遗传算法准备"><a href="#遗传算法准备" class="headerlink" title="遗传算法准备"></a>遗传算法准备</h2><p>首先要介绍下遗传算法，有一段解释特别有趣形象：</p>
+<p><em>从前，有一大群袋鼠，它们被莫名其妙的零散地遗弃于喜马拉雅山脉。于是只好在那里艰苦的生活。海拔低的地方弥漫着一种无色无味的毒气，海拔越高毒气越稀薄。可是可怜的袋鼠们对此全然不觉，还是习惯于活蹦乱跳。于是，不断有袋鼠死于海拔较低的地方，而越是在海拔高的袋鼠越是能活得更久，也越有机会生儿育女。就这样经过许多年，这些袋鼠们竟然都不自觉地聚拢到了一个个的山峰上，可是在所有的袋鼠中，只有聚拢到珠穆朗玛峰的袋鼠被带回了美丽的澳洲。</em></p>
+<p>这里的山峰就是优化问题的最大化问题，当然问题也可以是找一个低谷（最小化问题）</p>
+<p>我们使用遗传算法，目的是使我们的输入（模型中不同的参数）得到的形成速度、通过车辆数的仿真结果与真实结果差异最小，用数学公式表达，可以写成<br>$$<br>min z=sum(|v_s-v_t|/v_t+|Nveh_s-Nveh_t|/Nveh_t)<br>$$<br>这里我们是使用了geatpy上的一个模板，仅对编码方式从’BG’ 改为’RI’ （三个参数都是实数范围求解），其他改动不大</p>
+<p>直接贴代码：</p>
+<p><code>main.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> geatpy <span class="keyword">as</span> ea <span class="comment"># import geatpy</span></span><br><span class="line"><span class="keyword">from</span> MyProblem <span class="keyword">import</span> MyProblem <span class="comment"># 导入自定义问题接口</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;===============================实例化问题对象===========================&quot;&quot;&quot;</span></span><br><span class="line">problem = MyProblem() <span class="comment"># 生成问题对象</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;=================================种群设置===============================&quot;&quot;&quot;</span></span><br><span class="line">Encoding = <span class="string">&#x27;RI&#x27;</span>       <span class="comment"># 编码方式</span></span><br><span class="line">NIND = <span class="number">30</span>             <span class="comment"># 种群规模</span></span><br><span class="line">Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) <span class="comment"># 创建区域描述器</span></span><br><span class="line">population = ea.Population(Encoding, Field, NIND) <span class="comment"># 实例化种群对象（此时种群还没被初始化，仅仅是完成种群对象的实例化）</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;===============================算法参数设置=============================&quot;&quot;&quot;</span></span><br><span class="line">myAlgorithm = ea.soea_SEGA_templet(problem, population) <span class="comment"># 实例化一个算法模板对象</span></span><br><span class="line">myAlgorithm.MAXGEN = <span class="number">25</span> <span class="comment"># 最大进化代数</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;==========================调用算法模板进行种群进化=======================&quot;&quot;&quot;</span></span><br><span class="line">[population, obj_trace, var_trace] = myAlgorithm.run() <span class="comment"># 执行算法模板</span></span><br><span class="line">population.save() <span class="comment"># 把最后一代种群的信息保存到文件中</span></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">best_gen = np.argmin(problem.maxormins * obj_trace[:, <span class="number">1</span>]) <span class="comment"># 记录最优种群个体是在哪一代</span></span><br><span class="line">best_ObjV = obj_trace[best_gen, <span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;最优的目标函数值为：%s&#x27;</span>%(best_ObjV))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;最优的控制变量值为：&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(var_trace.shape[<span class="number">1</span>]):</span><br><span class="line">    <span class="built_in">print</span>(var_trace[best_gen, i])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;有效进化代数：%s&#x27;</span>%(obj_trace.shape[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;最优的一代是第 %s 代&#x27;</span>%(best_gen + <span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;评价次数：%s&#x27;</span>%(myAlgorithm.evalsNum))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;时间已过 %s 秒&#x27;</span>%(myAlgorithm.passTime))</span><br></pre></td></tr></table></figure>
+
+
+
+<p> <code>MyProblem.py</code> ：用来描述问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> geatpy <span class="keyword">as</span> ea</span><br><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"><span class="keyword">import</span> win32com.client <span class="keyword">as</span> com  <span class="comment"># VISSIM COM</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyProblem</span>(<span class="params">ea.Problem</span>):</span>  <span class="comment"># 继承Problem父类</span></span><br><span class="line">    flag = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        name = <span class="string">&#x27;MyProblem&#x27;</span>  <span class="comment"># 初始化name（函数名称，可以随意设置）</span></span><br><span class="line">        M = <span class="number">1</span>  <span class="comment"># 初始化M（目标维数）</span></span><br><span class="line">        maxormins = [<span class="number">1</span>]  <span class="comment"># 初始化maxormins（目标最小最大化标记列表，1：最小化该目标；-1：最大化该目标）</span></span><br><span class="line">        Dim = <span class="number">3</span>  <span class="comment"># 初始化Dim（决策变量维数）</span></span><br><span class="line">        varTypes = [<span class="number">0</span>] * Dim  <span class="comment"># 初始化varTypes（决策变量的类型，元素为0表示对应的变量是连续的；1表示是离散的）</span></span><br><span class="line">        lb = [<span class="number">1.2</span>, <span class="number">0.9</span>, <span class="number">2</span>]  <span class="comment"># 决策变量下界 CC0推荐：1.2-1.7 cc1推荐：0.9-3.0 CC2推荐：2-7</span></span><br><span class="line">        ub = [<span class="number">1.7</span>, <span class="number">3.0</span>, <span class="number">7</span>]  <span class="comment"># 决策变量上界</span></span><br><span class="line">        lbin = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]  <span class="comment"># 决策变量下边界</span></span><br><span class="line">        ubin = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]  <span class="comment"># 决策变量上边界</span></span><br><span class="line">        <span class="comment"># 调用父类构造方法完成实例化</span></span><br><span class="line">        ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aimFunc</span>(<span class="params">self, pop</span>):</span>  <span class="comment"># 目标函数</span></span><br><span class="line">        x = pop.Phen  <span class="comment"># 得到决策变量矩阵 x=30</span></span><br><span class="line">        x0 = x[:, [<span class="number">0</span>]]</span><br><span class="line">        x1 = x[:, [<span class="number">1</span>]]</span><br><span class="line">        x2 = x[:, [<span class="number">2</span>]]</span><br><span class="line">        <span class="comment"># x1 = x[:, 1]</span></span><br><span class="line">        <span class="comment"># x2 = x[:, 2]</span></span><br><span class="line">        <span class="comment"># print(x)</span></span><br><span class="line">        <span class="keyword">if</span> self.flag == <span class="literal">False</span>:</span><br><span class="line">            self.Data = xlrd.open_workbook(<span class="string">&#x27;resultToCali2.xlsx&#x27;</span>)</span><br><span class="line">            self.Table = self.Data.sheet_by_name(<span class="string">u&#x27;Sheet1&#x27;</span>)</span><br><span class="line">            self.flag = <span class="literal">True</span></span><br><span class="line">            self.V1 = self.Table.col_values(<span class="number">0</span>)  <span class="comment"># spd for segment 1</span></span><br><span class="line">            self.V2 = self.Table.col_values(<span class="number">1</span>)  <span class="comment"># spd for segment 2</span></span><br><span class="line">            self.V3 = self.Table.col_values(<span class="number">2</span>)  <span class="comment"># spd for segment 3</span></span><br><span class="line">            self.V4 = self.Table.col_values(<span class="number">3</span>)  <span class="comment"># spd for segment 4</span></span><br><span class="line">            self.V5 = self.Table.col_values(<span class="number">6</span>)  <span class="comment"># spd for segment 5</span></span><br><span class="line">            self.V6 = self.Table.col_values(<span class="number">7</span>)  <span class="comment"># spd for segment 6</span></span><br><span class="line">            self.V7 = self.Table.col_values(<span class="number">8</span>)  <span class="comment"># spd for segment 7</span></span><br><span class="line">            self.V8 = self.Table.col_values(<span class="number">9</span>)  <span class="comment"># spd for segment 8</span></span><br><span class="line">            self.relativeFlow = self.Table.col_values(<span class="number">4</span>)  <span class="comment"># relative flow</span></span><br><span class="line">            self.volume = self.Table.col_values(<span class="number">5</span>)  <span class="comment"># 流量</span></span><br><span class="line">        totalResult = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">30</span>):</span><br><span class="line">            <span class="comment"># # =================================================================================</span></span><br><span class="line">            <span class="comment"># # VISSIM Configurations</span></span><br><span class="line">            <span class="comment"># # Load VISSIM Network</span></span><br><span class="line">            self.Vissim = com.Dispatch(<span class="string">&quot;Vissim.Vissim&quot;</span>);</span><br><span class="line">            <span class="built_in">dir</span> = <span class="string">&quot;E:\\PycharmProjects\\GA-calibration\\test.inp&quot;</span></span><br><span class="line">            self.Vissim.LoadNet(<span class="built_in">dir</span>)</span><br><span class="line">            <span class="comment"># Define Simulation Configurations</span></span><br><span class="line">            graphics = self.Vissim.Graphics</span><br><span class="line">            graphics.SetAttValue(<span class="string">&quot;VISUALIZATION&quot;</span>, <span class="literal">False</span>)  <span class="comment">## 设为 不可见 提高效率</span></span><br><span class="line">            self.Sim = self.Vissim.Simulation</span><br><span class="line">            self.Net = self.Vissim.Net</span><br><span class="line"></span><br><span class="line">            <span class="comment"># G = self.Vissim.Graphics</span></span><br><span class="line">            dbpss = self.Net.DrivingBehaviorParSets  <span class="comment"># Driving behavior module</span></span><br><span class="line">            dbps = dbpss(<span class="number">3</span>)</span><br><span class="line">            <span class="comment"># # Set Simulation Parameters</span></span><br><span class="line">            TotalPeriod = <span class="number">55802</span>  <span class="comment"># Define total simulation period</span></span><br><span class="line">            WarmPeriod = <span class="number">900</span>  <span class="comment"># Define warm period 10 minutes</span></span><br><span class="line">            Random_Seed = k  <span class="comment"># Define random seed</span></span><br><span class="line">            step_time = <span class="number">1</span>  <span class="comment"># Define Step Time</span></span><br><span class="line">            self.Sim.Period = TotalPeriod</span><br><span class="line">            self.Sim.RandomSeed = <span class="number">42</span></span><br><span class="line">            <span class="comment"># self.Sim.RunIndex= 1</span></span><br><span class="line">            self.Sim.Resolution = step_time</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Each scenario run 5 times</span></span><br><span class="line">            <span class="comment"># =================================================================================</span></span><br><span class="line">            <span class="comment"># Data Collection Variables</span></span><br><span class="line">            t1 = []</span><br><span class="line">            t2 = []</span><br><span class="line">            t3 = []</span><br><span class="line">            t4 = []</span><br><span class="line">            t5 = []</span><br><span class="line">            t6 = []</span><br><span class="line">            t7 = []</span><br><span class="line">            t8 = []</span><br><span class="line">            nVeh = []</span><br><span class="line">            dbps.SetAttValue(<span class="string">&#x27;CC0&#x27;</span>, x0[k][<span class="number">0</span>])  <span class="comment">## 天坑！ 不能写x0[k]！！！！！！</span></span><br><span class="line">            dbps.SetAttValue(<span class="string">&#x27;CC1&#x27;</span>, x1[k][<span class="number">0</span>])</span><br><span class="line">            dbps.SetAttValue(<span class="string">&#x27;CC2&#x27;</span>, x2[k][<span class="number">0</span>])</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;第&quot;</span>, k, <span class="string">&quot;组参数： CC0=&quot;</span>, x0[k][<span class="number">0</span>], <span class="string">&quot;,CC1=&quot;</span>, x1[k][<span class="number">0</span>], <span class="string">&quot;,CC2=&quot;</span>, x2[k][<span class="number">0</span>])</span><br><span class="line">            <span class="built_in">eval</span> = self.Vissim.Evaluation</span><br><span class="line">            <span class="built_in">eval</span>.SetAttValue(<span class="string">&quot;TRAVELTIME&quot;</span>, <span class="literal">True</span>)</span><br><span class="line">            <span class="built_in">eval</span>.SetAttValue(<span class="string">&quot;DATACOLLECTION&quot;</span>, <span class="literal">True</span>) <span class="comment">#打开检测器评价，不然获得的结果是0.00</span></span><br><span class="line">            TT1 = self.Net.TravelTimes(<span class="number">1</span>)</span><br><span class="line">            TT2 = self.Net.TravelTimes(<span class="number">2</span>)</span><br><span class="line">            dataCollections = self.Vissim.Net.DataCollections</span><br><span class="line">            dt1 = dataCollections(<span class="number">1</span>)   <span class="comment">#设置在K0+530断面</span></span><br><span class="line">            dt2 = dataCollections(<span class="number">2</span>)</span><br><span class="line">            dt3 = dataCollections(<span class="number">3</span>)</span><br><span class="line">            dt4 = dataCollections(<span class="number">4</span>)</span><br><span class="line">            dt5 = dataCollections(<span class="number">5</span>)   <span class="comment">#设置在K4+600断面</span></span><br><span class="line">            dt6 = dataCollections(<span class="number">6</span>)</span><br><span class="line">            dt7 = dataCollections(<span class="number">7</span>)</span><br><span class="line">            dt8 = dataCollections(<span class="number">8</span>)</span><br><span class="line">            composition = self.Net.TrafficCompositions(<span class="number">1</span>)</span><br><span class="line">            vehicleInput = self.Net.VehicleInputs(<span class="number">1</span>)</span><br><span class="line">            <span class="comment"># self.Sim.RunContinuous()</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, TotalPeriod):</span><br><span class="line">                <span class="keyword">if</span> (j % <span class="number">900</span> == <span class="number">0</span>) <span class="keyword">and</span> (j &gt;= <span class="number">1801</span>):</span><br><span class="line">                    composition.SetAttValue1(<span class="string">&quot;RELATIVEFLOW&quot;</span>, <span class="number">100</span>, <span class="number">1</span> - self.relativeFlow[<span class="built_in">int</span>(j / <span class="number">900</span> - <span class="number">3</span>)])</span><br><span class="line">                    composition.SetAttValue1(<span class="string">&quot;RELATIVEFLOW&quot;</span>, <span class="number">200</span>, self.relativeFlow[<span class="built_in">int</span>(j / <span class="number">900</span> - <span class="number">3</span>)])</span><br><span class="line">                    vehicleInput.SetAttValue(<span class="string">&quot;VOLUME&quot;</span>, self.volume[<span class="built_in">int</span>(j / <span class="number">900</span> - <span class="number">3</span>)])</span><br><span class="line">                    t1.append(dt1.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道1</span></span><br><span class="line">                    t2.append(dt2.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道2</span></span><br><span class="line">                    t3.append(dt3.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道3</span></span><br><span class="line">                    t4.append(dt4.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道4</span></span><br><span class="line">                    t5.append(dt5.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道1</span></span><br><span class="line">                    t6.append(dt6.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道2</span></span><br><span class="line">                    t7.append(dt7.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道3</span></span><br><span class="line">                    t8.append(dt8.GetResult(<span class="string">&quot;speed&quot;</span>, <span class="string">&quot;mean&quot;</span>, <span class="number">0</span>))  <span class="comment"># 车道4  检测器5-8是后来新增的</span></span><br><span class="line">                    nVeh.append(<span class="number">4</span> * (dt1.GetResult(<span class="string">&quot;NVEHICLES&quot;</span>, <span class="string">&quot;sum&quot;</span>, <span class="number">0</span>)</span><br><span class="line">                                     + dt2.GetResult(<span class="string">&quot;NVEHICLES&quot;</span>, <span class="string">&quot;sum&quot;</span>, <span class="number">0</span>)</span><br><span class="line">                                     + dt3.GetResult(<span class="string">&quot;NVEHICLES&quot;</span>, <span class="string">&quot;sum&quot;</span>, <span class="number">0</span>)  </span><br><span class="line">                                     + dt4.GetResult(<span class="string">&quot;NVEHICLES&quot;</span>, <span class="string">&quot;sum&quot;</span>, <span class="number">0</span>))) <span class="comment">## 车辆数的检测</span></span><br><span class="line">                self.Sim.RunSingleStep()</span><br><span class="line">            spdTotal = np.array(<span class="number">0.125</span> * <span class="built_in">sum</span>(<span class="built_in">abs</span>(np.array(t1) - np.array(self.V1)) / np.array(self.V1)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t2) - np.array(self.V2)) / np.array(self.V2)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t3) - np.array(self.V3)) / np.array(self.V3)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t4) - np.array(self.V4)) / np.array(self.V4)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t5) - np.array(self.V5)) / np.array(self.V5)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t6) - np.array(self.V6)) / np.array(self.V6)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t7) - np.array(self.V7)) / np.array(self.V7)</span><br><span class="line">                                            + <span class="built_in">abs</span>(np.array(t8) - np.array(self.V8)) / np.array(self.V8)))  </span><br><span class="line">            <span class="comment"># NVehTotal = np.array(sum(abs(np.array(nVeh) - np.array(self.volume)) / np.array(self.volume)))  ##</span></span><br><span class="line">            totalResult.append(spdTotal)  <span class="comment"># +NVehTotal)</span></span><br><span class="line">            <span class="comment"># print(&quot;spd误差：&quot;, spdTotal)</span></span><br><span class="line">            <span class="comment"># print(&quot;NVeh误差：&quot;, NVehTotal)</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;误差为：&quot;</span>, totalResult[k])</span><br><span class="line">            self.Sim.Stop()</span><br><span class="line">        pop.ObjV = np.vstack(totalResult)  <span class="comment"># 计算目标函数值，赋值给pop种群对象的ObjV属性</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对于VISSIM 来说，一般Weidemann99跟驰模型，可调整的参数一共有9个CC0-CC9，不过一般调<strong>CC0 CC1 CC2</strong>三个参数即可，通过定性分析（pai nao dai），我们认为其他参数不太敏感。</p>
+<p>对于6.0+版本，还可以调整<strong>换道参数</strong>，按理说换道参数有一些也是需要调整的，不过在4.3中没有开放换道参数的接口，这里简化起见，我们采用默认参数，仅对“同时观测的车辆数”进行调整，从2调整为4</p>
+<p>上述代码常见错误会有： 输入的数组应该是n行1列的numpy array 矩阵，看着就令人头大，处理方法是不能用原来python的数组，应该用np.array系列的数组，经过一段时间的试验后发现还是numpy里的vstack函数靠谱</p>
+<p>最终结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">种群信息导出完毕。</span><br><span class="line">最优的目标函数值为：17.6446518217351</span><br><span class="line">最优的控制变量值为：</span><br><span class="line">1.6210104341403664</span><br><span class="line">1.0379648617231827</span><br><span class="line">2.258785180700528</span><br><span class="line">有效进化代数：25</span><br><span class="line">最优的一代是第 17 代</span><br><span class="line">评价次数：1250</span><br><span class="line">时间已过 71968.43456172943 秒</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<p><strong>CC0=1.6210104341403664 CC1=1.0379648617231827 CC2=2.258785180700528</strong></p>
+<p><img src="result.png" alt="result"></p>
+<p>TO DO: </p>
+<ul>
+<li>后续可能会出个6.0+版本，4.3和6的调用还是有很多不一样的地方，很多函数名都变了</li>
+<li>最优化的函数一般用的是均方根相对误差</li>
+<li>应该随机5次比较合理，但是耗时太长，可以通过缩小种群规模提高效率</li>
+<li>总体来说效率还是低了些 不过并非不能接受吧</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>Geatpy官方文档 （<a target="_blank" rel="noopener" href="https://github.com/geatpy-dev/geatpy%EF%BC%89">https://github.com/geatpy-dev/geatpy）</a></li>
+<li>VISSIM 4.30 API 文档</li>
+<li>杨神写的代码，使用遗传算法标定VISSIM9，学（膜）到了思想 （<a target="_blank" rel="noopener" href="https://github.com/TransUMD/VISSIM-Calibration-via-LHD-GA%EF%BC%89">https://github.com/TransUMD/VISSIM-Calibration-via-LHD-GA）</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/" data-id="ckr97y8bo003yzch3b6x8eva4" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/18/%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2VISSIM6.0%E8%B7%AF%E7%BD%91%E6%96%87%E4%BB%B6%E5%85%83%E7%B4%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/">交通工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VISSIM/" rel="tag">VISSIM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/" rel="tag">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-ioc/" rel="tag">spring ioc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-mvc/" rel="tag">spring mvc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-web/" rel="tag">spring web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" rel="tag">交通工程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/VISSIM/" style="font-size: 16.67px;">VISSIM</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/mybatis/" style="font-size: 13.33px;">mybatis</a> <a href="/tags/paper/" style="font-size: 10px;">paper</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-ioc/" style="font-size: 16.67px;">spring ioc</a> <a href="/tags/spring-mvc/" style="font-size: 13.33px;">spring mvc</a> <a href="/tags/spring-web/" style="font-size: 10px;">spring web</a> <a href="/tags/%E4%BA%A4%E9%80%9A%E5%B7%A5%E7%A8%8B/" style="font-size: 13.33px;">交通工程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/SUMO/cpython27python/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/18/Spring/%E5%9C%A8Spring%E4%B8%AD%E9%85%8D%E7%BD%AEJDBC%20%E5%9D%91%E7%88%B9%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
