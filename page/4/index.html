@@ -130,12 +130,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,128 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 13:59:21" itemprop="dateModified" datetime="2020-01-06T13:59:21+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-11-声明事务"><a href="#12-11-声明事务" class="headerlink" title="12.11 声明事务"></a>12.11 声明事务</h1><h2 id="Spring提供JdbcTemplate能快捷操作数据库"><a href="#Spring提供JdbcTemplate能快捷操作数据库" class="headerlink" title="Spring提供JdbcTemplate能快捷操作数据库"></a>Spring提供JdbcTemplate能快捷操作数据库</h2><ol>
+<li>```<br>使用JDBC 回顾一下：<ol>
+<li>getDataSource</li>
+<li>getConnection</li>
+<li>getStatement 或preparedStatement</li>
+<li>statement.setInt</li>
+<li>stament.executeQuery()<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">然后配置一下</span><br><span class="line">然后执行想执行的语句</span><br><span class="line"></span><br><span class="line">```xml</span><br><span class="line">&lt;!--1. 配置事务管理器让其进行事务控制:一定要导入面向切面编程的几个包，基本版aspect+增强版三个--&gt;</span><br><span class="line">    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</span><br><span class="line">&lt;!--        控制住数据源--&gt;</span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;!--2.  开启基于注解的事务控制模式：依赖tx名称空间--&gt;</span><br><span class="line">    &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;</span><br><span class="line">&lt;!--   3. 给事务方法加注解 --&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">JdbcTemplate jdbcTemplate;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>引入外部配置文件</p>
+</li>
+<li><p>扫描包</p>
+</li>
+<li><p>配置数据源</p>
+</li>
+<li><p>配置JDBCTEMPLATE，给JDBCTEMPLATE一个id，配置dataSource</p>
+</li>
+<li><p>配置声明式事务（上面的三步代码）</p>
+</li>
+<li><pre><code class="java">@Transactional 
+是注解在要事务的方法上，不是执行在test上!
+    @Transactional
+    public void checkout(String username,String isbn) throws SQLException &#123;
+        bookDao.updateStock(isbn);
+        int price = bookDao.getPrice(isbn);
+        bookDao.updateBalance(username,price);
+        int i=10/0;
+    &#125;//正确
+
+
+    @Test
+    @Transactional //错误 不应该注解在这
+    public void test04() throws SQLException &#123;
+        BookService bookService=ioc.getBean(&quot;bookService&quot;,BookService.class);
+//        BookService bookService=new BookService();
+
+        bookService.checkout(&quot;Tom&quot;,&quot;ISBN-001&quot;);
+        System.out.println(&quot;结账完成&quot;);
+    &#125;
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1004,106 +1126,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/IOC%20%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/IOC%20%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 14:08:20" itemprop="dateModified" datetime="2020-01-06T14:08:20+08:00">2020-01-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="IOC-总结"><a href="#IOC-总结" class="headerlink" title="IOC 总结"></a>IOC 总结</h1><h3 id="IOC是什么？IOC是一个容器，帮我们管理所有的-组件。他能够完成以下功能："><a href="#IOC是什么？IOC是一个容器，帮我们管理所有的-组件。他能够完成以下功能：" class="headerlink" title="IOC是什么？IOC是一个容器，帮我们管理所有的 组件。他能够完成以下功能："></a>IOC是什么？IOC是一个容器，帮我们管理所有的 组件。他能够完成以下功能：</h3><ol>
-<li>依赖注入：@Autowired：自动赋值</li>
-<li>要使用某个组件提供的功能，必须把IOC AOP等功能添加到容器中</li>
-</ol>
-<h4 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h4><ol>
-<li>容器启动创建所有单实例bean</li>
-<li>autowired自动装配的时候，，是从容器中找符合要求的bean</li>
-<li>ioc.getBean () 也是从容器找到bean</li>
-<li>所以容器中包括了所有的 bean</li>
-<li>调试spring的源码 ，看看容器到底是什么？答案：容器就是MAP </li>
-<li>这个MAP保存了所有创建好的bean 提供外界获取的功能</li>
-<li>可以探索一下单实例的bean都保存到哪个map中了？</li>
-<li>调试：怎么知道哪个方法是干嘛的？<ol>
-<li>翻译一下这个方法是干嘛</li>
-<li>放行这个方法 debug一下看每个的变化</li>
-</ol>
-</li>
-</ol>
-<p>finishBeanFactoryInitialization</p>
-<ul>
-<li>规范注释</li>
-<li>规范方法名和类名</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1175,14 +1197,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

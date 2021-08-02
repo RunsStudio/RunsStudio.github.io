@@ -130,12 +130,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,84 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/Spring%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/Spring%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 14:03:14" itemprop="dateModified" datetime="2020-01-06T14:03:14+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Spring单元测试"><a href="#Spring单元测试" class="headerlink" title="Spring单元测试"></a>Spring单元测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.Servlet.BookServlet;</span><br><span class="line"><span class="comment">//import org.junit.Test;</span></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Spring单元测试</span></span><br><span class="line"><span class="comment">* 1.    导入包</span></span><br><span class="line"><span class="comment">* 2.    @ContextConfiguration 指定配置文件位置</span></span><br><span class="line"><span class="comment">* 3.    @RunWith指定用哪驱动进行单元测试，默认是JUnit</span></span><br><span class="line"><span class="comment">*           @RunWith(SpringJUnit4ClassRunner.class) 使用Spring单元模块执行测试方法</span></span><br><span class="line"><span class="comment">*           以前@Test注解只是由JUnit执行的，现在是由Spring单元驱动的JUnit来测试的*/</span></span><br><span class="line"><span class="meta">@ContextConfiguration(locations = &quot;classpath:com/runsstudio/conf/BeanAdd.xml&quot;)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookTest</span> </span>&#123;</span><br><span class="line"><span class="comment">//    ApplicationContext ioc=new ClassPathXmlApplicationContext(&quot;com/runsstudio/conf/BeanAdd.xml&quot;);</span></span><br><span class="line">    ApplicationContext ioc=<span class="keyword">null</span>;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    BookServlet bookServlet;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        bookServlet.saveBook();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1067,96 +1145,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-16 14:54:59" itemprop="dateModified" datetime="2019-12-16T14:54:59+08:00">2019-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-接受请求参数的值"><a href="#12-16-接受请求参数的值" class="headerlink" title="12.16 接受请求参数的值"></a>12.16 接受请求参数的值</h1><h3 id="默认方式"><a href="#默认方式" class="headerlink" title="默认方式"></a>默认方式</h3><p>直接给方法入参上写一个和请求参数名相同的变量，这个接收请求参数：有值就是有值/ 没值 就是null</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle</span> <span class="params">(String username, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle01&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle01</span> <span class="params">(<span class="meta">@RequestParam(value = &quot;user&quot;,required = false,defaultValue = &quot;未指定默认值&quot;)</span>String username, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@RequestParam(“user”)有三个参数：</p>
-<ul>
-<li><p>value 指定要获取的参数key</p>
-</li>
-<li><p>required 这个参数是否是必须的</p>
-</li>
-<li><p>defaultValue 默认值</p>
-</li>
-</ul>
-<p>@RequestHeader：获取请求头中的值</p>
-<pre><code>- 想获取哪个请求头就获取哪一个 当然是必须存在的，如果不存在的话会报500
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle02&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle02</span> <span class="params">(<span class="meta">@RequestHeader(value = &quot;User-agent&quot;)</span> String userAgent, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(userAgent);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,userAgent);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@CookieValue：获取某个Cookie的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle03&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle03</span> <span class="params">(<span class="meta">@CookieValue(value = &quot;JSESSIONID&quot;)</span> String jid, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(jid);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,jid);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3B0ACA55D0E6F5B9E98C79133A8E2DB0</p>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1228,14 +1216,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

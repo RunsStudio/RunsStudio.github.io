@@ -2135,7 +2135,7 @@ a)    执行下面流程
 </ul>
 ]]></content>
       <categories>
-        <category>Mybatis</category>
+        <category>Spring</category>
       </categories>
       <tags>
         <tag>学习</tag>
@@ -2174,6 +2174,83 @@ a)    执行下面流程
 ]]></content>
       <categories>
         <category>Mybatis</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud学习之Eureka集群配置</title>
+    <url>/2021/08/02/SpringCloud%E5%AD%A6%E4%B9%A0%E4%B9%8B%E3%80%90Eureka%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E3%80%91/</url>
+    <content><![CDATA[<h2 id="Eureka是一种服务注册中心"><a href="#Eureka是一种服务注册中心" class="headerlink" title="Eureka是一种服务注册中心"></a>Eureka是一种服务注册中心</h2><p>Spirng Cloud Eureka使用Netflix Eureka来实现服务注册与发现。它既包含了服务端组件，也包含了客户端组件，并且服务端与客户端均采用java编写，所以Eureka主要适用于通过java实现的分布式系统，或是JVM兼容语言构建的系统。Eureka的服务端提供了较为完善的REST API，所以Eureka也支持将非java语言实现的服务纳入到Eureka服务治理体系中来，只需要其他语言平台自己实现Eureka的客户端程序。目前.Net平台的Steeltoe、Node.js的eureka-js-client等都已经实现了各自平台的Ereka客户端组件。</p>
+<span id="more"></span>
+
+<p>打个比方，就好像是医院的分诊台，我们到医院看病，就找这个分诊台，然后调用对应的服务。</p>
+<p>eureka 有两个组件</p>
+<ul>
+<li>eureka server</li>
+<li>eureka client</li>
+</ul>
+<p>eureka的作用？<br>提供接口地址<br>服务保持到eureka的心跳链接 如果30s没有连接到，就把服务T出去</p>
+<p><img src="image-20210802202912352.png" alt="image-20210802202912352"></p>
+<p>eureka 应该有集群 因为集群才能高可用，试想如果eureka注册中心是单实例的<br>那么服务挂了  后果很严重</p>
+<p>为了提高可用性，应该将eureka变成高可用集群，就像上面图中Eureka是多个堆叠一样<br>集群的功能应该是：<strong>互相注册，相互守望</strong></p>
+<h3 id="配置Eureka集群："><a href="#配置Eureka集群：" class="headerlink" title="配置Eureka集群："></a>配置Eureka集群：</h3><p>依然是5个步骤，</p>
+<ol>
+<li>建MODE</li>
+<li>改POM</li>
+<li>改yml</li>
+<li>主启动</li>
+<li>业务类（对于注册中心不需要）</li>
+</ol>
+<p>POM：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--20210802更新：eureka-client--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span><span class="comment">&lt;!--这个是2020以后的新版 旧版分不清哪个是client--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>yml：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">7002</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka7002.com</span> <span class="comment"># eureka 服务端的实例名称</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="comment">#false 表示不向服务端注册自己</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 表示自己就是注册中心</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka7001.com:7001/eureka/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>建两个项目，一个7001，一个7002，他们相互注册对面的地址（在eureka.client.service-url.defaultZone里面填写对方的地址）</p>
+<p><img src="image-20210802201442168.png" alt="image-20210802201442168"></p>
+<p>然后编写主启动类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaMain7002</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaMain7002.class,args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>只有最上面的注解@EnableEurekaServer不一样，其他都是默认</p>
+<h3 id="配置服务提供者"><a href="#配置服务提供者" class="headerlink" title="配置服务提供者"></a>配置服务提供者</h3><p>把单服务提供者改成多个服务提供者，有利于将来分布式服务，均衡负载。</p>
+<p>具体的改法就基本是直接把单机时候的provider拷贝一份，但是服务器占用不同的端口（8001、8002）</p>
+<p>改POM：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--20210802更新：eureka-client--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span><span class="comment">&lt;!--这个是2020以后的新版 旧版分不清哪个是client--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>改yml：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">true</span> <span class="comment"># 是否把自己入驻到eureka</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">true</span> <span class="comment"># 是否抓取已经注册的信息</span></span><br><span class="line">    <span class="attr">service-url:</span> <span class="comment">#注册地址在哪</span></span><br><span class="line"><span class="comment">#      defaultZone: http://localhost:7001/eureka  单机版</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka</span> <span class="comment">#集群版</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">instance-id:</span> <span class="string">payment8001</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>主启动：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PaymentMain8001</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(PaymentMain8001.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>@EnableEurekaClient这里要注意</p>
+<h3 id="配置消费者"><a href="#配置消费者" class="headerlink" title="配置消费者"></a>配置消费者</h3><p>基本的POM、YML和生产者类似</p>
+<p>然后在客户端对应的配置yml等：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">true</span> <span class="comment"># 是否把自己入驻到eureka</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">true</span> <span class="comment"># 是否抓取已经注册的信息</span></span><br><span class="line">    <span class="attr">service-url:</span> <span class="comment">#注册地址在哪</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderMain80</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(OrderMain80.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20210802201836118.png" alt="image-20210802201836118"></p>
+<h4 id="开启负载均衡：新建一个ApplicationContextConfig"><a href="#开启负载均衡：新建一个ApplicationContextConfig" class="headerlink" title="开启负载均衡：新建一个ApplicationContextConfig"></a>开启负载均衡：新建一个ApplicationContextConfig</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span>  <span class="comment">// 开启负载均衡</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">getRestTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//    &lt;等同于applicationContext.xml &lt;bean id=&quot;&quot; class=&quot;&quot; &gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一步等于在容器里面配置了一个bean，在RestTemplate上面加一个@LoadBalanced实现负载均衡，从而，我们再地址栏访问<code>http://localhost/consumer/payment/get/1</code> 就可以均衡负载地访问不同服务提供地址（默认是<strong>轮询</strong>）</p>
+<p><img src="image-20210802202434631.png" alt="image-20210802202434631"></p>
+<p>再访问一次，就变成serverport:8002</p>
+<p>注意：</p>
+<ul>
+<li><a href="http://eureka7001.com:7001/eureka">http://eureka7001.com:7001/eureka</a> 使用之前需要在HOSTS里面添加 <code>127.0.0.1 eureka7001.com</code></li>
+<li>地址默认是服务的名称</li>
+<li>服务的消费者，配置80端口，这个端口是对外的，因此只用提供一个</li>
+<li>服务的提供者，可以配置多个，这样的话好处不少</li>
+</ul>
+]]></content>
+      <categories>
+        <category>SpringCloud</category>
       </categories>
       <tags>
         <tag>学习</tag>
