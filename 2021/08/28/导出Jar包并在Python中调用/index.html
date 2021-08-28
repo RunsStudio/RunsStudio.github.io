@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"runsstudio.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="导出含第三方Jar的Jar包并在Python中调用​    最近工作需要，导出含第三方Jar的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="导出含第三方Jar的Jar包并在Python中调用">
+<meta property="og:url" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/index.html">
+<meta property="og:site_name" content="Run&#39;s Studio">
+<meta property="og:description" content="导出含第三方Jar的Jar包并在Python中调用​    最近工作需要，导出含第三方Jar的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160241035.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160335182.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160853376.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161140538.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161403960.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161546528.png">
+<meta property="article:published_time" content="2021-08-28T07:59:00.000Z">
+<meta property="article:modified_time" content="2021-08-28T09:14:35.924Z">
+<meta property="article:author" content="藏龙御景">
+<meta property="article:tag" content="交通工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160241035.png">
+
+<link rel="canonical" href="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>导出含第三方Jar的Jar包并在Python中调用 | Run's Studio</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Run's Studio</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">©2012-2021</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">59</span></a>
+
+  </li>
+        <li class="menu-item menu-item-胖虎">
+
+    <a href="/fat-tiger/" rel="section"><i class="heartbeat fa-fw"></i>胖虎</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/RunsStudio" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          导出含第三方Jar的Jar包并在Python中调用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-28 15:59:00 / 修改时间：17:14:35" itemprop="dateCreated datePublished" datetime="2021-08-28T15:59:00+08:00">2021-08-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="导出含第三方Jar的Jar包并在Python中调用"><a href="#导出含第三方Jar的Jar包并在Python中调用" class="headerlink" title="导出含第三方Jar的Jar包并在Python中调用"></a>导出含第三方Jar的Jar包并在Python中调用</h2><p>​    最近工作需要，导出含第三方Jar的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点</p>
+<span id="more"></span>
+
+<p>​    默认情况下，使用MAVEN打包，打包出的Jar包是不包含第三方包的，如果想正常运行第三方包，需要把第三方包放在和本包同目录下或对应的目录下。</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160241035.png" alt="image-20210828160241035"></p>
+<p>导出的Jar包位置可以直接看到</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160335182.png" alt="image-20210828160335182"></p>
+<p>用WINRAR等软件打开jar包，底下<code>META-INF\MANIFEST.MF</code>里面会存需要的Jar的class-path位置。</p>
+<p>非MAVEN项目，需要在Project→Structure里编辑这个<code>MANIFEST.MF</code>的class-path，并且指定主类。</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160853376.png" alt="image-20210828160853376"></p>
+<p>还可以设置打入哪些包。</p>
+<p>MAVEN项目，可以在POM中更改，需要引入打包插件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--这部分可有可无,加上的话则直接生成可在CMD中运行jar包--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.runsstudio.SpringBootTest<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">addClasspath</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addClasspath</span>&gt;</span>                 <span class="comment">&lt;!-- 是否要把第三方jar放到manifest的classpath中 --&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--                        &lt;classpathPrefix&gt;.&lt;/classpathPrefix&gt;          &amp;lt;!&amp;ndash; 生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/ &amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                    &lt;manifestEntries&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                        &lt;Class-Path&gt;.&lt;/Class-Path&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                    &lt;/manifestEntries&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span> </span><br><span class="line">                <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>jar-with-dependencies</code>表示包含依赖。导入插件后，点<strong>assembly:assembly</strong></p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161140538.png" alt="image-20210828161140538"></p>
+<p>就可以打出带依赖的JAR</p>
+<p>网上传的方法需要改打包的Jar中的参数，实际测试发现不用改，如果改了的话，导出的Jar里面会包含Jar，而这样的Jar 是无法被识别的。</p>
+<h4 id="正确打法：依赖变成Class了"><a href="#正确打法：依赖变成Class了" class="headerlink" title="正确打法：依赖变成Class了"></a>正确打法：依赖变成Class了</h4><p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161403960.png" alt="image-20210828161403960"></p>
+<h4 id="错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类"><a href="#错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类" class="headerlink" title="错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类"></a>错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类</h4><p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161546528.png" alt="image-20210828161546528"></p>
+<p><strong>P.S： 仔细思考，Jar（罐子）中应该有Bean（豆子）呀，怎么能有Jar呢？</strong></p>
+<p>另外，如果不把第三方包打入Jar，就把这些外部jar放和这个jar同目录下，并且修改MANIFEST.MF 就可以了。</p>
+<h3 id="在Python中调用打好的Jar"><a href="#在Python中调用打好的Jar" class="headerlink" title="在Python中调用打好的Jar"></a>在Python中调用打好的Jar</h3><p>使用Jpype即可.</p>
+<p>开启一个JVM实例，并且打开Jar</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jvmPath = jpype.getDefaultJVMPath()</span><br><span class="line"><span class="built_in">print</span>(jvmPath)</span><br><span class="line"><span class="comment"># 加载刚才打包的jar文件</span></span><br><span class="line">jarpath = os.path.join(os.path.abspath(<span class="string">&quot;.&quot;</span>),</span><br><span class="line">                       <span class="string">&quot;&#x27;your dir&#x27;\\xxx.jar&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(jarpath)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是Jpype没有自动装箱拆箱功能，所以调用jar 略显僵硬。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xxxClass = jpype.JClass(<span class="string">&quot;***.conf.***Config&quot;</span>)</span><br><span class="line">xxxConf = xxxClass(java.lang.Integer(<span class="number">5</span>), java.lang.Integer(<span class="number">3</span>), java.lang.Integer(<span class="number">1</span>),</span><br><span class="line">                                  java.lang.Integer(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+<p>像数组，如果是Integer [] 的 就得写成</p>
+<p><code>[java.lang.Integer(0), java.lang.Integer(1)]</code></p>
+<p>使用枚举类，先声明一下即可。</p>
+<p><code>arrowClass = jpype.JClass(&quot;***.enums.ArrowType&quot;)</code></p>
+<p><code>arrowClass.s</code></p>
+<h4 id="PS-hexo-识别图片："><a href="#PS-hexo-识别图片：" class="headerlink" title="PS: hexo 识别图片："></a>PS: hexo 识别图片：</h4><p>需要安装插件，请参考<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">https://www.jianshu.com/p/f72aaad7b852</a></p>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------文章已结束~<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+        <div class="reward-container">
+  <div>穷且益坚，不堕青云之志。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="藏龙御景 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="藏龙御景 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>藏龙御景
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://runsstudio.github.io/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/" title="导出含第三方Jar的Jar包并在Python中调用">http://runsstudio.github.io/2021/08/28/导出Jar包并在Python中调用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/02/SpringCloud%E5%AD%A6%E4%B9%A0%E4%B9%8B%E3%80%90Eureka%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE%E3%80%91/" rel="prev" title="SpringCloud学习之Eureka集群配置">
+      <i class="fa fa-chevron-left"></i> SpringCloud学习之Eureka集群配置
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80ODE2Ny8yNDY2Mw=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E5%90%AB%E7%AC%AC%E4%B8%89%E6%96%B9Jar%E7%9A%84Jar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">导出含第三方Jar的Jar包并在Python中调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E6%89%93%E6%B3%95%EF%BC%9A%E4%BE%9D%E8%B5%96%E5%8F%98%E6%88%90Class%E4%BA%86"><span class="nav-number">1.0.1.</span> <span class="nav-text">正确打法：依赖变成Class了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%89%93%E6%B3%95%EF%BC%9AJar%E4%B8%AD%E6%9C%89Jar%EF%BC%8C%E4%B8%8D%E7%AE%A1%E6%94%BE%E5%9C%A8%E5%93%AA%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%83%BD%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0%E4%BE%9D%E8%B5%96%E9%87%8C%E9%9D%A2%E7%9A%84%E7%B1%BB"><span class="nav-number">1.0.2.</span> <span class="nav-text">错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8%E6%89%93%E5%A5%BD%E7%9A%84Jar"><span class="nav-number">1.1.</span> <span class="nav-text">在Python中调用打好的Jar</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PS-hexo-%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">PS: hexo 识别图片：</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="藏龙御景"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">藏龙御景</p>
+  <div class="site-description" itemprop="description">Traffic Engineer</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/RunsStudio" title="github → https:&#x2F;&#x2F;github.com&#x2F;RunsStudio" rel="noopener" target="_blank"><i class="github fa-fw"></i>github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kunrunwu@qq.com" title="E-Mail → mailto:kunrunwu@qq.com" rel="noopener" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.acfun.cn/u/484073.aspx" title="Acfun → https:&#x2F;&#x2F;www.acfun.cn&#x2F;u&#x2F;484073.aspx" rel="noopener" target="_blank"><i class="youtube-play fa-fw"></i>Acfun</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://acfun.cn/" title="http:&#x2F;&#x2F;acfun.cn" rel="noopener" target="_blank">Acfun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://bilibili.com/" title="http:&#x2F;&#x2F;bilibili.com" rel="noopener" target="_blank">bilibili</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://tc.seu.edu.cn/" title="http:&#x2F;&#x2F;tc.seu.edu.cn" rel="noopener" target="_blank">东南大学交通学院</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://iitraffic.com/" title="http:&#x2F;&#x2F;iitraffic.com" rel="noopener" target="_blank">东南大学物联网交通应用研究中心</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2012 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">藏龙御景</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

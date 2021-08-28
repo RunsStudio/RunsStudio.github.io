@@ -2256,4 +2256,44 @@ a)    执行下面流程
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>导出含第三方Jar的Jar包并在Python中调用</title>
+    <url>/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="导出含第三方Jar的Jar包并在Python中调用"><a href="#导出含第三方Jar的Jar包并在Python中调用" class="headerlink" title="导出含第三方Jar的Jar包并在Python中调用"></a>导出含第三方Jar的Jar包并在Python中调用</h2><p>​    最近工作需要，导出含第三方Jar的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点</p>
+<span id="more"></span>
+
+<p>​    默认情况下，使用MAVEN打包，打包出的Jar包是不包含第三方包的，如果想正常运行第三方包，需要把第三方包放在和本包同目录下或对应的目录下。</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160241035.png" alt="image-20210828160241035"></p>
+<p>导出的Jar包位置可以直接看到</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160335182.png" alt="image-20210828160335182"></p>
+<p>用WINRAR等软件打开jar包，底下<code>META-INF\MANIFEST.MF</code>里面会存需要的Jar的class-path位置。</p>
+<p>非MAVEN项目，需要在Project→Structure里编辑这个<code>MANIFEST.MF</code>的class-path，并且指定主类。</p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160853376.png" alt="image-20210828160853376"></p>
+<p>还可以设置打入哪些包。</p>
+<p>MAVEN项目，可以在POM中更改，需要引入打包插件。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--这部分可有可无,加上的话则直接生成可在CMD中运行jar包--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.runsstudio.SpringBootTest<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">addClasspath</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addClasspath</span>&gt;</span>                 <span class="comment">&lt;!-- 是否要把第三方jar放到manifest的classpath中 --&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--                        &lt;classpathPrefix&gt;.&lt;/classpathPrefix&gt;          &amp;lt;!&amp;ndash; 生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/ &amp;ndash;&amp;gt;--&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                    &lt;manifestEntries&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                        &lt;Class-Path&gt;.&lt;/Class-Path&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--                    &lt;/manifestEntries&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span> </span><br><span class="line">                <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>jar-with-dependencies</code>表示包含依赖。导入插件后，点<strong>assembly:assembly</strong></p>
+<p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161140538.png" alt="image-20210828161140538"></p>
+<p>就可以打出带依赖的JAR</p>
+<p>网上传的方法需要改打包的Jar中的参数，实际测试发现不用改，如果改了的话，导出的Jar里面会包含Jar，而这样的Jar 是无法被识别的。</p>
+<h4 id="正确打法：依赖变成Class了"><a href="#正确打法：依赖变成Class了" class="headerlink" title="正确打法：依赖变成Class了"></a>正确打法：依赖变成Class了</h4><p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161403960.png" alt="image-20210828161403960"></p>
+<h4 id="错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类"><a href="#错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类" class="headerlink" title="错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类"></a>错误打法：Jar中有Jar，不管放在哪个目录下都提示找不到依赖里面的类</h4><p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828161546528.png" alt="image-20210828161546528"></p>
+<p><strong>P.S： 仔细思考，Jar（罐子）中应该有Bean（豆子）呀，怎么能有Jar呢？</strong></p>
+<p>另外，如果不把第三方包打入Jar，就把这些外部jar放和这个jar同目录下，并且修改MANIFEST.MF 就可以了。</p>
+<h3 id="在Python中调用打好的Jar"><a href="#在Python中调用打好的Jar" class="headerlink" title="在Python中调用打好的Jar"></a>在Python中调用打好的Jar</h3><p>使用Jpype即可.</p>
+<p>开启一个JVM实例，并且打开Jar</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">jvmPath = jpype.getDefaultJVMPath()</span><br><span class="line"><span class="built_in">print</span>(jvmPath)</span><br><span class="line"><span class="comment"># 加载刚才打包的jar文件</span></span><br><span class="line">jarpath = os.path.join(os.path.abspath(<span class="string">&quot;.&quot;</span>),</span><br><span class="line">                       <span class="string">&quot;&#x27;your dir&#x27;\\xxx.jar&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(jarpath)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是Jpype没有自动装箱拆箱功能，所以调用jar 略显僵硬。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">xxxClass = jpype.JClass(<span class="string">&quot;***.conf.***Config&quot;</span>)</span><br><span class="line">xxxConf = xxxClass(java.lang.Integer(<span class="number">5</span>), java.lang.Integer(<span class="number">3</span>), java.lang.Integer(<span class="number">1</span>),</span><br><span class="line">                                  java.lang.Integer(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+<p>像数组，如果是Integer [] 的 就得写成</p>
+<p><code>[java.lang.Integer(0), java.lang.Integer(1)]</code></p>
+<p>使用枚举类，先声明一下即可。</p>
+<p><code>arrowClass = jpype.JClass(&quot;***.enums.ArrowType&quot;)</code></p>
+<p><code>arrowClass.s</code></p>
+<h4 id="PS-hexo-识别图片："><a href="#PS-hexo-识别图片：" class="headerlink" title="PS: hexo 识别图片："></a>PS: hexo 识别图片：</h4><p>需要安装插件，请参考<a href="https://www.jianshu.com/p/f72aaad7b852">https://www.jianshu.com/p/f72aaad7b852</a></p>
+]]></content>
+  </entry>
 </search>

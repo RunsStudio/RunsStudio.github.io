@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">58</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">59</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,69 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.16%20%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-18 21:12:26 / 修改时间：00:17:46" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-16-视图解析器"><a href="#12-16-视图解析器" class="headerlink" title="12.16 视图解析器"></a>12.16 视图解析器</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewResolver</span> </span>&#123;</span><br><span class="line">    <span class="comment">//方法1 相对路径法</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;../../hello&quot;</span>;<span class="comment">//相对路径的形式访问hello.jsp</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法2</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello01&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;forward:/hello.jsp&quot;</span>;<span class="comment">//相对路径的形式访问hello.jsp</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法3 把请求转发到handle01</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello02&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;forward:/Hello01&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//forward：前缀的转发 不会由视图解析器品串</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//重定向redirect:+重定向的路径</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello03&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello03</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:/hello.jsp&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -940,149 +1003,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 13:59:30" itemprop="dateModified" datetime="2020-01-06T13:59:30+08:00">2020-01-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-12-SPRING-MVC入门及一些坑"><a href="#12-12-SPRING-MVC入门及一些坑" class="headerlink" title="12.12 SPRING MVC入门及一些坑"></a>12.12 SPRING MVC入门及一些坑</h1><p>•<strong>Spring</strong> <strong>为展现层****提供的基于</strong> <strong>MVC</strong> <strong>设计理念</strong>的优秀的 Web 框架，是<strong>目前<strong><strong>最主流</strong></strong>的</strong> <strong>MVC</strong> <strong>框架****之一</strong></p>
-<p>•Spring3.0 后全面超越 Struts2，成为<strong>最优秀的</strong> <strong>MVC</strong> <strong>框架</strong></p>
-<p>•<strong>Spring MVC</strong> <strong>通过一套</strong> <strong>MVC</strong> <strong>注解</strong>，让 POJO 成为处理请求的控制器，而无须实现任何接口。</p>
-<p>•<strong>支持</strong> <strong>REST</strong> <strong>风格****的</strong> <strong>URL</strong> <strong>请求</strong></p>
-<p>•采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性</p>
-<h4 id="IDEA建立Spring-MVC-Hello-World-详细入门教程"><a href="#IDEA建立Spring-MVC-Hello-World-详细入门教程" class="headerlink" title="IDEA建立Spring MVC Hello World 详细入门教程"></a>IDEA建立Spring MVC Hello World 详细入门教程</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wormday/p/8435617.html">https://www.cnblogs.com/wormday/p/8435617.html</a></p>
-<hr>
-<h2 id="Spring-MVC的HELLOWORLD当中的一些坑"><a href="#Spring-MVC的HELLOWORLD当中的一些坑" class="headerlink" title="Spring MVC的HELLOWORLD当中的一些坑"></a>Spring MVC的HELLOWORLD当中的一些坑</h2><p>用IDEA创建HELLOWORLD 的时候</p>
-<p><img src="image-20191212174152755.png" alt="image-20191212174152755"></p>
-<p>要手动添加这两个包到lib下，不然怎么运行都开不起来 同时WEB-INF底下会有报错！</p>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span></span><br></pre></td></tr></table></figure>
-
-<p>的作用：告诉 SPRINGMVC 这个方法 用什么方法来处理这个请求 </p>
-<p>这个/helloworld中的/可以省略 习惯了比较好</p>
-<p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191212192601259.png" alt="image-20191212192601259"></p>
-<hr>
-<p>如果不指定配置文件位置，默认会找一个/WEB-INF/XXX-servlet.xml</p>
-<p>这里的xxx是前端控制器的名字</p>
-<p><img src="image-20191212192942937.png" alt="image-20191212192942937"></p>
-<hr>
-<h4 id="URL-PATTERN"><a href="#URL-PATTERN" class="headerlink" title="URL-PATTERN"></a>URL-PATTERN</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>/拦截所有请求 不拦截jsp页面</p>
-<p>/* 拦截所有请求 （相当于完全覆盖了所有的资源 所以我们写/就可以了）</p>
-<p>写/* 的话访问jsp会出现这个效果：（控制台报错）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping found for HTTP request with URI [/index.jsp] in DispatcherServlet with name &#x27;dispatcher&#x27;</span><br></pre></td></tr></table></figure>
-
-<p><img src="image-20191212194607304.png" alt="image-20191212194607304"></p>
-<hr>
-<p>处理*.jsp是tomcat做的事 这是因为DefaultServlet是Tomcat中用来处理静态资源了</p>
-<p>除了JSP 和servlet外剩下的都是静态资源</p>
-<p>index.html：静态资源：tomcat会在服务器下找到这个资源并返回</p>
-<p><url-pattern>/</url-pattern></p>
-<p>重写了大web.xml中的资源</p>
-<p>为什么jsp能访问？因为我们没有覆盖JspServlet的资源</p>
-<ol>
-<li>服务器的web.xml中有一个DefaultServlet是url-pattern=/</li>
-<li>我们配置中前端控制器url-pattern=/</li>
-<li>项目中小web.xml都是继承于服务器中大web.xml</li>
-<li>小web.xml 相当于子类 重写了父类的方法</li>
-</ol>
-<hr>
-<p>一个方法只能处理一个请求</p>
-<hr>
-<p>RequestMapping的属性：</p>
-<ul>
-<li><p>method：限定请求方式 RequestMethod.GET/ POST/…….</p>
-</li>
-<li><p>params</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/handle01&quot; ,params = &#123;&quot;username&quot;&#125;,method = RequestMethod.GET)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;RequestMappingControllerTester..handle01&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>url中必须有username，比如</p>
-<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01?username=111">http://localhost:8080/haha/handle01?username=111</a></p>
-<p>才可以</p>
-<p>  @RequestMapping(value = “/handle01” ,params = {“!username”},method = RequestMethod.GET)</p>
-<p>url中必须<strong>不包含username</strong>，比如</p>
-<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01">http://localhost:8080/haha/handle01</a></p>
-<p>才可以,不然会报错</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handleNoSuchRequestHandlingMethod No matching handler method found for servlet request: path &#x27;/haha/handle01&#x27;, method &#x27;GET&#x27;, parameters map[&#x27;username&#x27; -&gt; array<span class="tag">&lt;<span class="name">String</span>&gt;</span>[&#x27;111&#x27;]]</span><br></pre></td></tr></table></figure></li>
-<li><p>headers</p>
-</li>
-<li><p>consumes</p>
-</li>
-<li><p>produces</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1154,7 +1074,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
