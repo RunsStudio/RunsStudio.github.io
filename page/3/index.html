@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">59</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">55</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,303 +193,6 @@
 
           <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-07-18 21:12:26 / 修改时间：00:17:46" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-视图解析器"><a href="#12-16-视图解析器" class="headerlink" title="12.16 视图解析器"></a>12.16 视图解析器</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewResolver</span> </span>&#123;</span><br><span class="line">    <span class="comment">//方法1 相对路径法</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;../../hello&quot;</span>;<span class="comment">//相对路径的形式访问hello.jsp</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法2</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello01&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;forward:/hello.jsp&quot;</span>;<span class="comment">//相对路径的形式访问hello.jsp</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//方法3 把请求转发到handle01</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/Hello02&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;forward:/Hello01&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//forward：前缀的转发 不会由视图解析器品串</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//重定向redirect:+重定向的路径</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello03&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello03</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;redirect:/hello.jsp&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E7%9A%84%E5%80%BC/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-16 14:54:59" itemprop="dateModified" datetime="2019-12-16T14:54:59+08:00">2019-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-接受请求参数的值"><a href="#12-16-接受请求参数的值" class="headerlink" title="12.16 接受请求参数的值"></a>12.16 接受请求参数的值</h1><h3 id="默认方式"><a href="#默认方式" class="headerlink" title="默认方式"></a>默认方式</h3><p>直接给方法入参上写一个和请求参数名相同的变量，这个接收请求参数：有值就是有值/ 没值 就是null</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle</span> <span class="params">(String username, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle01&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle01</span> <span class="params">(<span class="meta">@RequestParam(value = &quot;user&quot;,required = false,defaultValue = &quot;未指定默认值&quot;)</span>String username, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,username);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@RequestParam(“user”)有三个参数：</p>
-<ul>
-<li><p>value 指定要获取的参数key</p>
-</li>
-<li><p>required 这个参数是否是必须的</p>
-</li>
-<li><p>defaultValue 默认值</p>
-</li>
-</ul>
-<p>@RequestHeader：获取请求头中的值</p>
-<pre><code>- 想获取哪个请求头就获取哪一个 当然是必须存在的，如果不存在的话会报500
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle02&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle02</span> <span class="params">(<span class="meta">@RequestHeader(value = &quot;User-agent&quot;)</span> String userAgent, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(userAgent);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,userAgent);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>@CookieValue：获取某个Cookie的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/handle03&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">handle03</span> <span class="params">(<span class="meta">@CookieValue(value = &quot;JSESSIONID&quot;)</span> String jid, Model model)</span></span>&#123;</span><br><span class="line">    System.out.println(jid);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;name&quot;</span>,jid);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;time&quot;</span>,System.currentTimeMillis());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3B0ACA55D0E6F5B9E98C79133A8E2DB0</p>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-16 15:26:44" itemprop="dateModified" datetime="2019-12-16T15:26:44+08:00">2019-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-中文乱码-字符编码转换"><a href="#12-16-中文乱码-字符编码转换" class="headerlink" title="12.16 中文乱码 字符编码转换"></a>12.16 中文乱码 字符编码转换</h1><h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><p>jsp下web和java前后端交互会产生乱码，需要用CharacterEncodingFilter解决</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--    这个顺序会影响转换结果，放在最后约等于没用！ 所以字符转换必须放在所有servlet等的最前面！--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">async-supported</span>&gt;</span>true<span class="tag">&lt;/<span class="name">async-supported</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>jsp页面上写点东西</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/book&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">    书名&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;bookName&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    作者&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;author&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    价格&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;price&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    库存&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;stock&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    销量&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;sales&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交图书&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><p>在server.xml下找到</p>
-<p>&lt;</p>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20sessionAttribute%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20sessionAttribute%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E7%94%A8/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-05 16:27:10" itemprop="dateModified" datetime="2020-01-05T16:27:10+08:00">2020-01-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-sessionAttribute为什么不要用"><a href="#12-16-sessionAttribute为什么不要用" class="headerlink" title="12.16 sessionAttribute为什么不要用"></a>12.16 sessionAttribute为什么不要用</h1><p><img src="image-20191216171013985.png" alt="image-20191216171013985"></p>
-<p>这个等于向Spring承诺了，我的模型中会存在msg这个属性，那么如果没有的话 会报500错误的！</p>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
   
   
@@ -1003,6 +706,439 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 13:59:30" itemprop="dateModified" datetime="2020-01-06T13:59:30+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-12-SPRING-MVC入门及一些坑"><a href="#12-12-SPRING-MVC入门及一些坑" class="headerlink" title="12.12 SPRING MVC入门及一些坑"></a>12.12 SPRING MVC入门及一些坑</h1><p>•<strong>Spring</strong> <strong>为展现层****提供的基于</strong> <strong>MVC</strong> <strong>设计理念</strong>的优秀的 Web 框架，是<strong>目前<strong><strong>最主流</strong></strong>的</strong> <strong>MVC</strong> <strong>框架****之一</strong></p>
+<p>•Spring3.0 后全面超越 Struts2，成为<strong>最优秀的</strong> <strong>MVC</strong> <strong>框架</strong></p>
+<p>•<strong>Spring MVC</strong> <strong>通过一套</strong> <strong>MVC</strong> <strong>注解</strong>，让 POJO 成为处理请求的控制器，而无须实现任何接口。</p>
+<p>•<strong>支持</strong> <strong>REST</strong> <strong>风格****的</strong> <strong>URL</strong> <strong>请求</strong></p>
+<p>•采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性</p>
+<h4 id="IDEA建立Spring-MVC-Hello-World-详细入门教程"><a href="#IDEA建立Spring-MVC-Hello-World-详细入门教程" class="headerlink" title="IDEA建立Spring MVC Hello World 详细入门教程"></a>IDEA建立Spring MVC Hello World 详细入门教程</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wormday/p/8435617.html">https://www.cnblogs.com/wormday/p/8435617.html</a></p>
+<hr>
+<h2 id="Spring-MVC的HELLOWORLD当中的一些坑"><a href="#Spring-MVC的HELLOWORLD当中的一些坑" class="headerlink" title="Spring MVC的HELLOWORLD当中的一些坑"></a>Spring MVC的HELLOWORLD当中的一些坑</h2><p>用IDEA创建HELLOWORLD 的时候</p>
+<p><img src="image-20191212174152755.png" alt="image-20191212174152755"></p>
+<p>要手动添加这两个包到lib下，不然怎么运行都开不起来 同时WEB-INF底下会有报错！</p>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span></span><br></pre></td></tr></table></figure>
+
+<p>的作用：告诉 SPRINGMVC 这个方法 用什么方法来处理这个请求 </p>
+<p>这个/helloworld中的/可以省略 习惯了比较好</p>
+<p><img src="C:\Users\Run\AppData\Roaming\Typora\typora-user-images\image-20191212192601259.png" alt="image-20191212192601259"></p>
+<hr>
+<p>如果不指定配置文件位置，默认会找一个/WEB-INF/XXX-servlet.xml</p>
+<p>这里的xxx是前端控制器的名字</p>
+<p><img src="image-20191212192942937.png" alt="image-20191212192942937"></p>
+<hr>
+<h4 id="URL-PATTERN"><a href="#URL-PATTERN" class="headerlink" title="URL-PATTERN"></a>URL-PATTERN</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>/拦截所有请求 不拦截jsp页面</p>
+<p>/* 拦截所有请求 （相当于完全覆盖了所有的资源 所以我们写/就可以了）</p>
+<p>写/* 的话访问jsp会出现这个效果：（控制台报错）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapping found for HTTP request with URI [/index.jsp] in DispatcherServlet with name &#x27;dispatcher&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="image-20191212194607304.png" alt="image-20191212194607304"></p>
+<hr>
+<p>处理*.jsp是tomcat做的事 这是因为DefaultServlet是Tomcat中用来处理静态资源了</p>
+<p>除了JSP 和servlet外剩下的都是静态资源</p>
+<p>index.html：静态资源：tomcat会在服务器下找到这个资源并返回</p>
+<p><url-pattern>/</url-pattern></p>
+<p>重写了大web.xml中的资源</p>
+<p>为什么jsp能访问？因为我们没有覆盖JspServlet的资源</p>
+<ol>
+<li>服务器的web.xml中有一个DefaultServlet是url-pattern=/</li>
+<li>我们配置中前端控制器url-pattern=/</li>
+<li>项目中小web.xml都是继承于服务器中大web.xml</li>
+<li>小web.xml 相当于子类 重写了父类的方法</li>
+</ol>
+<hr>
+<p>一个方法只能处理一个请求</p>
+<hr>
+<p>RequestMapping的属性：</p>
+<ul>
+<li><p>method：限定请求方式 RequestMethod.GET/ POST/…….</p>
+</li>
+<li><p>params</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/handle01&quot; ,params = &#123;&quot;username&quot;&#125;,method = RequestMethod.GET)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">handle01</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;RequestMappingControllerTester..handle01&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>url中必须有username，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01?username=111">http://localhost:8080/haha/handle01?username=111</a></p>
+<p>才可以</p>
+<p>  @RequestMapping(value = “/handle01” ,params = {“!username”},method = RequestMethod.GET)</p>
+<p>url中必须<strong>不包含username</strong>，比如</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/haha/handle01">http://localhost:8080/haha/handle01</a></p>
+<p>才可以,不然会报错</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handleNoSuchRequestHandlingMethod No matching handler method found for servlet request: path &#x27;/haha/handle01&#x27;, method &#x27;GET&#x27;, parameters map[&#x27;username&#x27; -&gt; array<span class="tag">&lt;<span class="name">String</span>&gt;</span>[&#x27;111&#x27;]]</span><br></pre></td></tr></table></figure></li>
+<li><p>headers</p>
+</li>
+<li><p>consumes</p>
+</li>
+<li><p>produces</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 13:59:21" itemprop="dateModified" datetime="2020-01-06T13:59:21+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-11-声明事务"><a href="#12-11-声明事务" class="headerlink" title="12.11 声明事务"></a>12.11 声明事务</h1><h2 id="Spring提供JdbcTemplate能快捷操作数据库"><a href="#Spring提供JdbcTemplate能快捷操作数据库" class="headerlink" title="Spring提供JdbcTemplate能快捷操作数据库"></a>Spring提供JdbcTemplate能快捷操作数据库</h2><ol>
+<li>```<br>使用JDBC 回顾一下：<ol>
+<li>getDataSource</li>
+<li>getConnection</li>
+<li>getStatement 或preparedStatement</li>
+<li>statement.setInt</li>
+<li>stament.executeQuery()<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">然后配置一下</span><br><span class="line">然后执行想执行的语句</span><br><span class="line"></span><br><span class="line">```xml</span><br><span class="line">&lt;!--1. 配置事务管理器让其进行事务控制:一定要导入面向切面编程的几个包，基本版aspect+增强版三个--&gt;</span><br><span class="line">    &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;</span><br><span class="line">&lt;!--        控制住数据源--&gt;</span><br><span class="line">        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;!--2.  开启基于注解的事务控制模式：依赖tx名称空间--&gt;</span><br><span class="line">    &lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot;/&gt;</span><br><span class="line">&lt;!--   3. 给事务方法加注解 --&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">JdbcTemplate jdbcTemplate;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>引入外部配置文件</p>
+</li>
+<li><p>扫描包</p>
+</li>
+<li><p>配置数据源</p>
+</li>
+<li><p>配置JDBCTEMPLATE，给JDBCTEMPLATE一个id，配置dataSource</p>
+</li>
+<li><p>配置声明式事务（上面的三步代码）</p>
+</li>
+<li><pre><code class="java">@Transactional 
+是注解在要事务的方法上，不是执行在test上!
+    @Transactional
+    public void checkout(String username,String isbn) throws SQLException &#123;
+        bookDao.updateStock(isbn);
+        int price = bookDao.getPrice(isbn);
+        bookDao.updateBalance(username,price);
+        int i=10/0;
+    &#125;//正确
+
+
+    @Test
+    @Transactional //错误 不应该注解在这
+    public void test04() throws SQLException &#123;
+        BookService bookService=ioc.getBean(&quot;bookService&quot;,BookService.class);
+//        BookService bookService=new BookService();
+
+        bookService.checkout(&quot;Tom&quot;,&quot;ISBN-001&quot;);
+        System.out.println(&quot;结账完成&quot;);
+    &#125;
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.11%20%E5%9F%BA%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84AOP%E6%AD%A5%E9%AA%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.11%20%E5%9F%BA%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84AOP%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 13:59:16" itemprop="dateModified" datetime="2020-01-06T13:59:16+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-11-基于配置的AOP步骤"><a href="#12-11-基于配置的AOP步骤" class="headerlink" title="12.11 基于配置的AOP步骤"></a>12.11 基于配置的AOP步骤</h1><p>（基于注解的AOP）</p>
+<ol>
+<li>将目标类和切面类都加入到ioc容器中，搞定@Component</li>
+<li>告诉Spring哪个是切面类 搞定@Aspect</li>
+<li>在切面类中使用五个通知注解来配置切面中的通知方法何时何地运行</li>
+<li>开启AOP功能</li>
+</ol>
+<p>基于配置的也是同样的步骤 不过是在xml里配置</p>
+<h4 id="注解的优点：快速方便"><a href="#注解的优点：快速方便" class="headerlink" title="注解的优点：快速方便"></a>注解的优点：快速方便</h4><h4 id="xml配置优点：功能完善-（重要的东西用配置，不重要的可以用注解）"><a href="#xml配置优点：功能完善-（重要的东西用配置，不重要的可以用注解）" class="headerlink" title="xml配置优点：功能完善 （重要的东西用配置，不重要的可以用注解）"></a>xml配置优点：功能完善 （重要的东西用配置，不重要的可以用注解）</h4>
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-28 17:27:32" itemprop="dateModified" datetime="2021-08-28T17:27:32+08:00">2021-08-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="12-11-AOP使用场景"><a href="#12-11-AOP使用场景" class="headerlink" title="12/11 AOP使用场景"></a>12/11 AOP使用场景</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1074,7 +1210,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

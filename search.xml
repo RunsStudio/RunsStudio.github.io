@@ -23,12 +23,14 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>12.25 Mybatis Hello World</title>
     <url>/2021/07/18/12.25%20Mybatis%20Hello%20World/</url>
     <content><![CDATA[<hr>
 <h1 id="12-25-Mybatis-Hello-World"><a href="#12-25-Mybatis-Hello-World" class="headerlink" title="12.25 Mybatis Hello World"></a>12.25 Mybatis Hello World</h1><p>第一步： 创建一个普通project</p>
 <p>第二部：创建一个bean，对应数据表</p>
 <p>第三步：导包</p>
+<span id="more"></span>
+
 <pre><code>        - mybatis-3.4.1.jar
         - log4j-1.2.17.jar
         - mysql-connector-java-5.1.37-bin.jar
@@ -49,7 +51,7 @@
 
 
 
-<h2 id="导入dtd，写xml有提示："><a href="#导入dtd，写xml有提示：" class="headerlink" title="导入dtd，写xml有提示："></a>导入dtd，写xml有提示：</h2><p><img src="image-20191225162257503.png" alt="image-20191225162257503"></p>
+<h2 id="导入dtd，写xml有提示："><a href="#导入dtd，写xml有提示：" class="headerlink" title="导入dtd，写xml有提示："></a>导入dtd，写xml有提示：</h2><p><img src="/2021/07/18/12.25%20Mybatis%20Hello%20World/image-20191225162257503.png" alt="image-20191225162257503"></p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -261,7 +263,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>spring框架简介</title>
     <url>/2021/07/18/SPRING%E6%A1%86%E6%9E%B6/</url>
     <content><![CDATA[<h1 id="SPRING框架"><a href="#SPRING框架" class="headerlink" title="SPRING框架"></a>SPRING框架</h1><h3 id="什么是框架？"><a href="#什么是框架？" class="headerlink" title="什么是框架？"></a>什么是框架？</h3><p>框架是一种高度抽取可重用代码的一种设计</p>
 <p>框架一定具有高度的通用性。</p>
@@ -282,7 +284,7 @@
 <li>一站式</li>
 </ol>
 <h4 id="AOP-和IOC"><a href="#AOP-和IOC" class="headerlink" title="AOP 和IOC"></a>AOP 和IOC</h4><p>​    SPRING有很多个jar包，分成几个模块。</p>
-<p><img src="image-20210305143921200.png" alt="image-20210305143921200"></p>
+<p><img src="/2021/07/18/SPRING%E6%A1%86%E6%9E%B6/image-20210305143921200.png" alt="image-20210305143921200"></p>
 <p>从下往上看，依次是：</p>
 <ul>
 <li>TEST 单元测试模块</li>
@@ -302,7 +304,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>（转）MVC，SSM与三层架构的构成及相互关系</title>
     <url>/2021/07/18/SSM%E4%B8%8EMVC%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
     <content><![CDATA[<h1 id="MVC，SSM与三层架构的构成及相互关系"><a href="#MVC，SSM与三层架构的构成及相互关系" class="headerlink" title="# MVC，SSM与三层架构的构成及相互关系"></a># <a href="https://www.cnblogs.com/fjjchina/p/7099713.html">MVC，SSM与三层架构的构成及相互关系</a></h1><p>本文主要想谈的内容有：</p>
 <ol>
@@ -313,6 +315,8 @@
 <li>MVC框架的工作流程？</li>
 <li>SSM框架和三层架构的关系？</li>
 </ol>
+<span id="more"></span>
+
 <h2 id="为什么要有架构？"><a href="#为什么要有架构？" class="headerlink" title="为什么要有架构？"></a>为什么要有架构？</h2><p><strong>这是为了满足“低耦合，高内聚”，实现代码的健壮性和可扩展性</strong>。比如为了更好的降低各层间的耦合度，在三层架构程序设计中，采用面向抽象编程。即上层对下层的调用，是通过接口实现的。而下层对上层的真正服务提供者，是下层接口的实现类。服务标准（接口）是相同的，服务提供者（实现类）可以更换。</p>
 <p><strong>三层架构是什么？</strong></p>
 <p>三层架构由用户界面层/表示层（User Interface），业务逻辑层（Business Logic Layer）和数据访问层（Data Acess Layer）构成。</p>
@@ -440,7 +444,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>专利检索网站</title>
     <url>/2021/07/18/%E4%B8%93%E5%88%A9%E6%A3%80%E7%B4%A2/</url>
     <content><![CDATA[<h1 id="专利检索网站"><a href="#专利检索网站" class="headerlink" title="专利检索网站"></a>专利检索网站</h1><p>专利检索文本到专利局网站：<br><a href="http://pss-system.cnipa.gov.cn/sipopublicsearch/portal/uiIndex.shtml">http://pss-system.cnipa.gov.cn/sipopublicsearch/portal/uiIndex.shtml</a></p>
 <p>back-up</p>
@@ -453,9 +457,9 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>交工常用的图标设计器</title>
     <url>/2021/07/18/%E4%BA%A4%E5%B7%A5%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="交工常用的图标设计器"><a href="#交工常用的图标设计器" class="headerlink" title="交工常用的图标设计器"></a>交工常用的图标设计器</h1><p><a href="https://icograms.com/icograms-designer.php">https://icograms.com/icograms-designer.php</a></p>
+    <content><![CDATA[<p><a href="https://icograms.com/icograms-designer.php">https://icograms.com/icograms-designer.php</a></p>
 ]]></content>
       <categories>
         <category>交通工程</category>
@@ -572,24 +576,12 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/07/18/SUMO/cpython27python/</url>
-    <content><![CDATA[<p>c:\python27\python.exe e:\sumo-0.19.0\tools\trip\randomTrips.py -n e:\map-with-tls.net.xml -l -e 600 -o e:\map.trips.xml</p>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/07/18/SUMO/%E7%94%A8OSM%E5%88%9B%E5%BB%BASUMO%E8%B7%AF%E7%BD%91/</url>
-    <content><![CDATA[<h1 id="一、利用OpenStreetMap得到osm文件"><a href="#一、利用OpenStreetMap得到osm文件" class="headerlink" title="一、利用OpenStreetMap得到osm文件"></a>一、利用OpenStreetMap得到osm文件</h1><p>直接来到OpenStreetMap的官网：<a href="http://www.openstreetmap.org/#map=13/37.7526/-122.4027">OpenStreetMap</a></p>
-<p>手动选择一个区域，输出osm文件。</p>
-<h1 id="二、利用JOSM软件，根据自身需要进行微调"><a href="#二、利用JOSM软件，根据自身需要进行微调" class="headerlink" title="二、利用JOSM软件，根据自身需要进行微调"></a>二、利用JOSM软件，根据自身需要进行微调</h1><p>JOSM官网：<a href="http://josm.openstreetmap.de/">http://josm.openstreetmap.de/</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
+    <title>12.11 AOP 的一些术语、简单配置</title>
     <url>/2021/07/18/Spring/12.11%20AOP%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD/</url>
-    <content><![CDATA[<h1 id="12-11-AOP-的一些术语、简单配置"><a href="#12-11-AOP-的一些术语、简单配置" class="headerlink" title="12.11 AOP 的一些术语、简单配置"></a>12.11 AOP 的一些术语、简单配置</h1><p>需要加日志的地方：<strong>方法开始、方法返回、方法异常、方法结束</strong> 每个方法都是4个位置。</p>
-<p><img src="image-20191211113246680.png" alt="image-20191211113246680"></p>
+    <content><![CDATA[<h1 id="12-11-AOP-的一些术语、简单配置"><a href="#12-11-AOP-的一些术语、简单配置" class="headerlink" title="12.11 AOP 的一些术语、简单配置"></a>12.11 AOP 的一些术语、简单配置</h1><span id="more"></span>
+
+<p>需要加日志的地方：<strong>方法开始、方法返回、方法异常、方法结束</strong> 每个方法都是4个位置。</p>
+<p><img src="/2021/07/18/Spring/12.11%20AOP%20%E7%9A%84%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD/image-20191211113246680.png" alt="image-20191211113246680"></p>
 <p>横切关注点：把方法横向来看</p>
 <p>切面类：存放横切关注点、通知方法的类，也就是LogUtils</p>
 <p>连接点：每一个方法的每一个位置都是一个连接点，一共是16个连接点。</p>
@@ -658,7 +650,9 @@
   <entry>
     <title></title>
     <url>/2021/07/18/Spring/12.11%20AOP%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</url>
-    <content><![CDATA[<h1 id="12-11-AOP使用场景"><a href="#12-11-AOP使用场景" class="headerlink" title="12/11 AOP使用场景"></a>12/11 AOP使用场景</h1><ol>
+    <content><![CDATA[<h1 id="12-11-AOP使用场景"><a href="#12-11-AOP使用场景" class="headerlink" title="12/11 AOP使用场景"></a>12/11 AOP使用场景</h1><span id="more"></span>
+
+<ol>
 <li>日志，记录在数据库中，保存</li>
 <li>AOP做权限验证</li>
 <li>AOP做安全检查</li>
@@ -1187,17 +1181,19 @@
 <h1 id="注入组件的时候，泛型是参考的标准！"><a href="#注入组件的时候，泛型是参考的标准！" class="headerlink" title="注入组件的时候，泛型是参考的标准！"></a>注入组件的时候，泛型是参考的标准！</h1>]]></content>
   </entry>
   <entry>
-    <title></title>
+    <title>SPRING初探</title>
     <url>/2021/07/18/Spring/SPRING/</url>
     <content><![CDATA[<h1 id="SPRING"><a href="#SPRING" class="headerlink" title="SPRING"></a>SPRING</h1><h2 id="SPRING发展"><a href="#SPRING发展" class="headerlink" title="SPRING发展"></a>SPRING发展</h2><p>最新方法：使用JAVA配置取代XML</p>
 <p>最核心的注解：</p>
 <ul>
 <li><p><code>@Configuration</code>，作用在类上，相当于一个xml配置文件</p>
 </li>
-<li><p><code>@Bean</code> 作用在方法上，相当于xml配置中的<bean></p>
+<li><p><code>@Bean</code> 作用在方法上，相当于xml配置中的<bean></bean></p>
 </li>
 </ul>
 <p>使用注解配置spring 实现IOC功能</p>
+<span id="more"></span>
+
 <p>初始User类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.springboot.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name, String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, password=&#x27;&quot;</span> + password + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -1315,9 +1311,11 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>spring配置数据库连接池druid</title>
     <url>/2021/07/18/Spring/spring%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0druid/</url>
     <content><![CDATA[<h1 id="spring配置数据库连接池druid"><a href="#spring配置数据库连接池druid" class="headerlink" title="spring配置数据库连接池druid"></a>spring配置数据库连接池druid</h1><h2 id="连接池原理"><a href="#连接池原理" class="headerlink" title="连接池原理"></a><strong>连接池原理</strong></h2><p>连接池基本的思想是在系统初始化的时候，将数据库连接作为对象存储在内存中，当用户需要访问数据库时，并非建立一个新的连接，而是从连接池中取出一个已建立的空闲连接对象。使用完毕后，用户也并非将连接关闭，而是将连接放回连接池中，以供下一个请求访问使用。而连接的建立、断开都由连接池自身来管理。同时，还可以通过设置连接池的参数来控制连接池中的初始连接数、连接的上下限数以及每个连接的最大使用次数、最大空闲时间等等，也可以通过其自身的管理机制来监视数据库连接的数量、使用情况等。</p>
+ <span id="more"></span>
+
 <h2 id="常用数据库连接池及特点"><a href="#常用数据库连接池及特点" class="headerlink" title="常用数据库连接池及特点"></a><strong>常用数据库连接池及特点</strong></h2><ul>
 <li><p>dbcp：DBCP是一个依赖Jakarta commons-pool对象池机制的数据库连接池.DBCP可以直接的在应用程序中使用，Tomcat的数据源使用的就是DBCP。</p>
 </li>
@@ -1515,50 +1513,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;com/runsstudio/conf/applicationContext.xml&quot;</span>);</span><br><span class="line">JdbcTemplate jdbcTemplate=ioc.getBean(<span class="string">&quot;JdbcTemplate&quot;</span>,JdbcTemplate.class)</span><br></pre></td></tr></table></figure>
 
 <p>会造成重复扫包</p>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.18%20ES6%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[<h1 id="12-18-ES6特性"><a href="#12-18-ES6特性" class="headerlink" title="12.18 ES6特性"></a>12.18 ES6特性</h1><h3 id="两个新关键字"><a href="#两个新关键字" class="headerlink" title="两个新关键字"></a>两个新关键字</h3><ul>
-<li>let 限制变量作用范围</li>
-<li>const 限制是常量</li>
-</ul>
-<h3 id="字符串的属性"><a href="#字符串的属性" class="headerlink" title="字符串的属性"></a>字符串的属性</h3><ul>
-<li>str.includes(“”)   返回boolean 判断字符串里包含了</li>
-<li>str.startswith(“xx”) boolean 是否以xx开头</li>
-<li>str.endswith(“xx”) boolean 是否以xx结尾</li>
-</ul>
-<h3 id="字符串模板用-标记："><a href="#字符串模板用-标记：" class="headerlink" title="字符串模板用`标记："></a>字符串模板用`标记：</h3><p>str =`</p>
-<p>hello </p>
-<p>world</p>
-<p>`</p>
-<h3 id="解构（从数组中提取值）"><a href="#解构（从数组中提取值）" class="headerlink" title="解构（从数组中提取值）"></a>解构（从数组中提取值）</h3><p>let arr=[1,2,3]</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> [x , y ,z]=arr</span><br><span class="line"><span class="built_in">console</span>.log(x,y,z)</span><br></pre></td></tr></table></figure>
-
-<h3 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">      <span class="keyword">const</span> person=&#123;</span><br><span class="line">          <span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,</span><br><span class="line">          <span class="attr">age</span>:<span class="number">21</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> &#123;name,age&#125;=person<span class="comment">//必须变量和属性是一样的</span></span><br><span class="line">      <span class="built_in">console</span>.log(name,age)</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">let</span>&#123;<span class="attr">name</span>:n,<span class="attr">age</span>:a&#125;=person</span><br><span class="line">      <span class="built_in">console</span>.log(n,a)</span><br></pre></td></tr></table></figure>
-
-<h3 id="函数优化"><a href="#函数优化" class="headerlink" title="函数优化"></a>函数优化</h3><h4 id="参数默认值的优化"><a href="#参数默认值的优化" class="headerlink" title="参数默认值的优化"></a>参数默认值的优化</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">      <span class="function"><span class="keyword">function</span>  <span class="title">add</span>(<span class="params">a,b=<span class="number">2</span></span>) </span>&#123;</span><br><span class="line">          <span class="comment">//旧方法： b=b||1;</span></span><br><span class="line">          <span class="keyword">return</span> a+b;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(add(<span class="number">10</span>))<span class="comment">//12</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">10</span>,<span class="number">5</span>))<span class="comment">//15</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> print2=<span class="function"><span class="params">a</span> =&gt;</span> <span class="built_in">console</span>.log(a);<span class="comment">//1参数</span></span><br><span class="line">print2(<span class="number">123456</span>);</span><br><span class="line"><span class="keyword">let</span> sum=<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b;<span class="comment">//2参数</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line"><span class="keyword">let</span> logging= <span class="function">() =&gt;</span>&#123;<span class="built_in">console</span>.log(<span class="string">&quot;logging....&quot;</span>);&#125;<span class="comment">//无参</span></span><br><span class="line">logging();</span><br></pre></td></tr></table></figure>
-<h3 id="函数书写优化"><a href="#函数书写优化" class="headerlink" title="函数书写优化"></a>函数书写优化</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> person=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,</span><br><span class="line">    <span class="attr">eat</span>:<span class="function"><span class="keyword">function</span> (<span class="params">food</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">eat2</span>:<span class="function"><span class="params">food</span>=&gt;</span><span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>+food),</span><br><span class="line">    <span class="function"><span class="title">eat3</span>(<span class="params">food</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name+<span class="string">&quot; iseating..&quot;</span>+food)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">person.eat(<span class="string">&quot;西瓜&quot;</span>)</span><br><span class="line">person.eat2(<span class="string">&quot;西瓜&quot;</span>)</span><br><span class="line">person.eat3(<span class="string">&quot;西瓜&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="string">&quot;11&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="keyword">let</span> numbers = arr.map(<span class="function"><span class="params">s</span>=&gt;</span><span class="built_in">parseInt</span>(s));</span><br><span class="line"><span class="built_in">console</span>.log(numbers)</span><br></pre></td></tr></table></figure>
-
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2021/07/18/%E5%A5%BD%E5%AE%A2%E7%A7%9F%E6%88%BF/12.25%20Hello%20World%20%E5%A2%9E%E5%88%A0%E6%94%B9/</url>
-    <content><![CDATA[<h1 id="12-25-Hello-World-增删改"><a href="#12-25-Hello-World-增删改" class="headerlink" title="12.25 Hello World 增删改"></a>12.25 Hello World 增删改</h1><p>test 一定要记得测试完要提交（commit）！</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.bean.Employee;</span><br><span class="line"><span class="keyword">import</span> com.runsstudio.dao.EmployeeDao;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1. 从XML中构建SqlSessionFactory</span></span><br><span class="line"><span class="comment">//        Sql会话：代表和数据库的一次会话</span></span><br><span class="line">        String resource=<span class="string">&quot;com/runsstudio/conf/MybatisConf.xml&quot;</span>;</span><br><span class="line">        InputStream inputStream= Resources.getResourceAsStream(resource);</span><br><span class="line">        SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        SqlSession session = sqlSessionFactory.openSession();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//2. 开启会话 使用SqlSession操作数据库</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//3. 使用SqlSession操作数据库，获取dao接口的实现</span></span><br><span class="line">            EmployeeDao employeeDao=session.getMapper(EmployeeDao.class);</span><br><span class="line">            <span class="comment">//4. 直接调用函数查询</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//            employeeDao.updateSalaryById(1001,2000.00);</span></span><br><span class="line"></span><br><span class="line">            employeeDao.updateSalaryById(<span class="number">2000.00</span>,<span class="number">1001</span>);</span><br><span class="line">            employeeDao.deleteEmpById(<span class="number">1001</span>);</span><br><span class="line">            employeeDao.addEmp(<span class="keyword">new</span> Employee(<span class="number">1001</span>,<span class="string">&quot;菜龙&quot;</span>,<span class="number">4</span>,<span class="number">1004</span>,<span class="keyword">new</span> Date(),<span class="number">8000.00</span>,<span class="number">1000.00</span>,<span class="number">20</span>));</span><br><span class="line">            Employee employee=employeeDao.getEmpById(<span class="number">1001</span>);</span><br><span class="line">            System.out.println(employee);</span><br><span class="line">        &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">            session.commit();</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>DAO</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.bean.Employee;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Employee <span class="title">getEmpById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateSalaryById</span><span class="params">(Double salary,Integer id)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteEmpById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmp</span><span class="params">(Employee emp)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>XML</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--namespace:名称空间，接口类的全类名--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.runsstudio.dao.EmployeeDao&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    resultType: 指定返回类型--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getEmpById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.runsstudio.bean.Employee&quot;</span>&gt;</span></span><br><span class="line">    select * from emp where id=#&#123;id&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateSalaryById&quot;</span> &gt;</span></span><br><span class="line">    update emp set salary=#&#123;0&#125; where id=#&#123;1&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteEmpById&quot;</span>&gt;</span></span><br><span class="line">        delete from emp where id=#&#123;0&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;addEmp&quot;</span>&gt;</span></span><br><span class="line">        insert into emp (id,ename,job_id,mgr,joindate,salary,bonus,dept_id)values(#&#123;id&#125;,#&#123;ename&#125;,#&#123;job_id&#125;,#&#123;mgr&#125;,#&#123;joindate&#125;,#&#123;salary&#125;,#&#123;bonus&#125;,#&#123;dept_id&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 ]]></content>
   </entry>
   <entry>
@@ -1818,7 +1772,7 @@
 <h3 id="yml文件上对于纯数字类型的密码需要加引号，如果是包含字母的就不需要。"><a href="#yml文件上对于纯数字类型的密码需要加引号，如果是包含字母的就不需要。" class="headerlink" title="yml文件上对于纯数字类型的密码需要加引号，如果是包含字母的就不需要。"></a>yml文件上对于纯数字类型的密码需要加引号，如果是包含字母的就不需要。</h3>]]></content>
   </entry>
   <entry>
-    <title></title>
+    <title>Filter和Interceptor区别</title>
     <url>/2021/07/18/Filter%E5%92%8CInterceptor%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h1 id="Filter和Interceptor区别"><a href="#Filter和Interceptor区别" class="headerlink" title="Filter和Interceptor区别"></a>Filter和Interceptor区别</h1><ul>
 <li>Filter是Servlet定义的原生组件，脱离Spring应用也能使用</li>
@@ -2257,12 +2211,12 @@ a)    执行下面流程
       </tags>
   </entry>
   <entry>
-    <title>导出含第三方Jar的Jar包并在Python中调用</title>
+    <title>导出含第三方依赖的Jar包并在Python中调用</title>
     <url>/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="导出含第三方Jar的Jar包并在Python中调用"><a href="#导出含第三方Jar的Jar包并在Python中调用" class="headerlink" title="导出含第三方Jar的Jar包并在Python中调用"></a>导出含第三方Jar的Jar包并在Python中调用</h2><p>​    最近工作需要，导出含第三方Jar的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点</p>
+    <content><![CDATA[<h2 id="导出含第三方依赖的Jar包并在Python中调用"><a href="#导出含第三方依赖的Jar包并在Python中调用" class="headerlink" title="导出含第三方依赖的Jar包并在Python中调用"></a>导出含第三方依赖的Jar包并在Python中调用</h2><p>​    最近工作需要，导出含第三方依赖的Jar包，并在Python中调用。网上有的帖子误导人，特地写一篇blog记录一下坑点</p>
 <span id="more"></span>
 
-<p>​    默认情况下，使用MAVEN打包，打包出的Jar包是不包含第三方包的，如果想正常运行第三方包，需要把第三方包放在和本包同目录下或对应的目录下。</p>
+<p>​    默认情况下，使用MAVEN打包，打包出的Jar包是不包含第三方依赖的，如果想正常运行第三方依赖，需要把第三方包放在和本包同目录下或对应的目录下。</p>
 <p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160241035.png" alt="image-20210828160241035"></p>
 <p>导出的Jar包位置可以直接看到</p>
 <p><img src="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/image-20210828160335182.png" alt="image-20210828160335182"></p>
