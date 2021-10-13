@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"runsstudio.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="使用遗传算法标定VISSIM-4.3（续）上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度">
+  <meta name="description" content="上一篇通过尝试基本款代码，我们发现整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度数据得到的。（为了加快遗传算法效率我决定数据用60">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Run&#39;s Studio">
+<meta property="og:title" content="使用遗传算法标定VISSIM-4.3（续）">
 <meta property="og:url" content="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="使用遗传算法标定VISSIM-4.3（续）上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度">
+<meta property="og:description" content="上一篇通过尝试基本款代码，我们发现整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。 观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度数据得到的。（为了加快遗传算法效率我决定数据用60">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg">
 <meta property="og:image" content="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg">
 <meta property="og:image" content="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/result.png">
 <meta property="article:published_time" content="2021-07-18T13:12:26.477Z">
-<meta property="article:modified_time" content="2020-01-12T03:05:09.027Z">
+<meta property="article:modified_time" content="2021-10-13T14:25:41.908Z">
 <meta property="article:author" content="藏龙御景">
 <meta property="article:tag" content="VISSIM">
 <meta name="twitter:card" content="summary">
@@ -50,7 +50,7 @@
   };
 </script>
 
-  <title> | Run's Studio</title>
+  <title>使用遗传算法标定VISSIM-4.3（续） | Run's Studio</title>
   
 
 
@@ -136,12 +136,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">6</span></a>
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">55</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          使用遗传算法标定VISSIM-4.3（续）
         </h1>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-12 11:05:09" itemprop="dateModified" datetime="2020-01-12T11:05:09+08:00">2020-01-12</time>
+                <time title="修改时间：2021-10-13 22:25:41" itemprop="dateModified" datetime="2021-10-13T22:25:41+08:00">2021-10-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,13 +257,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="使用遗传算法标定VISSIM-4-3（续）"><a href="#使用遗传算法标定VISSIM-4-3（续）" class="headerlink" title="使用遗传算法标定VISSIM-4.3（续）"></a>使用遗传算法标定VISSIM-4.3（续）</h1><p>上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。</p>
+        <p>上一篇通过尝试基本款代码，我们发现整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。</p>
 <p>观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度数据得到的。（为了加快遗传算法效率我决定数据用60组而不是90组）</p>
 <span id="more"></span>
 
-<p><img src="%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用60组数据得到的速度累积频率"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用60组数据得到的速度累积频率"></p>
 <p><strong>使用60组数据得到的速度累积频率</strong></p>
-<p><img src="%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用自由流数据得到的速度累积频率"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用自由流数据得到的速度累积频率"></p>
 <p><strong>使用自由流数据得到的速度累积频率</strong></p>
 <p>可以看到，两组数据形成的累积频率曲线差异还是挺大的，我们在VISSIM中重新绘制期望速度分布曲线，只用<strong>速度误差作为目标函数</strong>重新进行仿真，控制台打印误差为：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">第 0 组参数： CC0= 1.6133525742071577 ,CC1= 2.579484627183955 ,CC2= 3.048217724522928</span><br><span class="line">误差为： 10.736255019064515</span><br><span class="line">第 1 组参数： CC0= 1.630496245956501 ,CC1= 0.939933568656533 ,CC2= 2.119093017543728</span><br><span class="line">误差为： 3.0226755068816686</span><br><span class="line">第 2 组参数： CC0= 1.416860830987368 ,CC1= 2.3135730993770327 ,CC2= 4.0672493706846256</span><br><span class="line">误差为： 8.127507039224755</span><br><span class="line">第 3 组参数： CC0= 1.3607793973691868 ,CC1= 1.8972921210234326 ,CC2= 2.4298498491291585</span><br><span class="line">误差为： 4.043634741465164</span><br><span class="line">第 4 组参数： CC0= 1.6212346529011652 ,CC1= 2.449189064157547 ,CC2= 3.6051459280147946</span><br><span class="line">误差为： 9.11592195513011</span><br><span class="line">第 5 组参数： CC0= 1.4005526732042284 ,CC1= 1.1773221130955975 ,CC2= 6.135465834624824</span><br><span class="line">误差为： 2.988166178479488</span><br><span class="line">第 6 组参数： CC0= 1.5344927280384584 ,CC1= 1.0105229323343183 ,CC2= 6.549979511566051</span><br><span class="line">误差为： 2.983192209746833</span><br><span class="line">第 7 组参数： CC0= 1.5935577666812208 ,CC1= 2.4997559277874197 ,CC2= 3.7182450130484757</span><br><span class="line">误差为： 9.49742740430594</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
@@ -271,7 +271,7 @@
 
 
 <p>从控制台输出可以看出，这一回CC0、CC1、CC2参数的变化对总误差的影响敏感了许多，表明期望速度分布曲线对于<strong>标定结果的准确性具有关键性影响</strong> 消除由于期望速度分布曲线设置不准确造成的速度误差后，使用遗传算法寻找最优的参数效果才比较好，解释得比较清楚。</p>
-<p><img src="result.png" alt="result"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/result.png" alt="result"></p>
 <p>这一回，随着遗传代数增长，目标函数值收敛得比较快，在一个<strong>小区域</strong>内变化仿真参数对目标函数值影响不是特别大。</p>
 <p>最优参数：</p>
 <table>
@@ -338,7 +338,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/" title="">http://runsstudio.github.io/2021/07/18/使用遗传算法标定VISSIM-4.3（续）/</a>
+    <a href="http://runsstudio.github.io/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/" title="使用遗传算法标定VISSIM-4.3（续）">http://runsstudio.github.io/2021/07/18/使用遗传算法标定VISSIM-4.3（续）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -358,8 +358,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/" rel="prev" title="">
-      <i class="fa fa-chevron-left"></i> 
+    <a href="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/" rel="prev" title="使用遗传算法标定VISSIM 4.3">
+      <i class="fa fa-chevron-left"></i> 使用遗传算法标定VISSIM 4.3
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/07/18/ajax%E5%9D%91%E7%88%B9/" rel="next" title="">
@@ -428,7 +428,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4-3%EF%BC%88%E7%BB%AD%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">使用遗传算法标定VISSIM-4.3（续）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">结论：</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">结论：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -444,14 +444,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

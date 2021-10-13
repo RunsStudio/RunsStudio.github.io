@@ -469,15 +469,15 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>使用遗传算法标定VISSIM-4.3（续）</title>
     <url>/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="使用遗传算法标定VISSIM-4-3（续）"><a href="#使用遗传算法标定VISSIM-4-3（续）" class="headerlink" title="使用遗传算法标定VISSIM-4.3（续）"></a>使用遗传算法标定VISSIM-4.3（续）</h1><p>上次尝试了基本款的代码，通过观察我们发现，整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。</p>
+    <content><![CDATA[<p>上一篇通过尝试基本款代码，我们发现整体的优化效果并不如意，优化目标值下降值不大，因此我们猜测，原始数据与实际数据可能存在系统误差。</p>
 <p>观察原始数据与仿真数据，发现使用我们之前设置的期望速度曲线，跑出来的仿真普遍比实际结果偏慢，这是因为实际的结果是前60*15 min的数据，而仿真使用的期望速度曲线是从 270 * 15 min 组数据筛选出自由流速度数据得到的。（为了加快遗传算法效率我决定数据用60组而不是90组）</p>
 <span id="more"></span>
 
-<p><img src="%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用60组数据得到的速度累积频率"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A860%E7%BB%84%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用60组数据得到的速度累积频率"></p>
 <p><strong>使用60组数据得到的速度累积频率</strong></p>
-<p><img src="%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用自由流数据得到的速度累积频率"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/%E4%BD%BF%E7%94%A8%E8%87%AA%E7%94%B1%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BE%97%E5%88%B0%E7%9A%84%E9%80%9F%E5%BA%A6%E7%B4%AF%E7%A7%AF%E9%A2%91%E7%8E%87.jpg" alt="使用自由流数据得到的速度累积频率"></p>
 <p><strong>使用自由流数据得到的速度累积频率</strong></p>
 <p>可以看到，两组数据形成的累积频率曲线差异还是挺大的，我们在VISSIM中重新绘制期望速度分布曲线，只用<strong>速度误差作为目标函数</strong>重新进行仿真，控制台打印误差为：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第 0 组参数： CC0= 1.6133525742071577 ,CC1= 2.579484627183955 ,CC2= 3.048217724522928</span><br><span class="line">误差为： 10.736255019064515</span><br><span class="line">第 1 组参数： CC0= 1.630496245956501 ,CC1= 0.939933568656533 ,CC2= 2.119093017543728</span><br><span class="line">误差为： 3.0226755068816686</span><br><span class="line">第 2 组参数： CC0= 1.416860830987368 ,CC1= 2.3135730993770327 ,CC2= 4.0672493706846256</span><br><span class="line">误差为： 8.127507039224755</span><br><span class="line">第 3 组参数： CC0= 1.3607793973691868 ,CC1= 1.8972921210234326 ,CC2= 2.4298498491291585</span><br><span class="line">误差为： 4.043634741465164</span><br><span class="line">第 4 组参数： CC0= 1.6212346529011652 ,CC1= 2.449189064157547 ,CC2= 3.6051459280147946</span><br><span class="line">误差为： 9.11592195513011</span><br><span class="line">第 5 组参数： CC0= 1.4005526732042284 ,CC1= 1.1773221130955975 ,CC2= 6.135465834624824</span><br><span class="line">误差为： 2.988166178479488</span><br><span class="line">第 6 组参数： CC0= 1.5344927280384584 ,CC1= 1.0105229323343183 ,CC2= 6.549979511566051</span><br><span class="line">误差为： 2.983192209746833</span><br><span class="line">第 7 组参数： CC0= 1.5935577666812208 ,CC1= 2.4997559277874197 ,CC2= 3.7182450130484757</span><br><span class="line">误差为： 9.49742740430594</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
@@ -485,7 +485,7 @@
 
 
 <p>从控制台输出可以看出，这一回CC0、CC1、CC2参数的变化对总误差的影响敏感了许多，表明期望速度分布曲线对于<strong>标定结果的准确性具有关键性影响</strong> 消除由于期望速度分布曲线设置不准确造成的速度误差后，使用遗传算法寻找最优的参数效果才比较好，解释得比较清楚。</p>
-<p><img src="result.png" alt="result"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3%EF%BC%88%E7%BB%AD%EF%BC%89/result.png" alt="result"></p>
 <p>这一回，随着遗传代数增长，目标函数值收敛得比较快，在一个<strong>小区域</strong>内变化仿真参数对目标函数值影响不是特别大。</p>
 <p>最优参数：</p>
 <table>
@@ -1587,16 +1587,16 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
+    <title>使用遗传算法标定VISSIM 4.3</title>
     <url>/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/</url>
-    <content><![CDATA[<h1 id="使用遗传算法标定VISSIM-4-3"><a href="#使用遗传算法标定VISSIM-4-3" class="headerlink" title="使用遗传算法标定VISSIM 4.3"></a>使用遗传算法标定VISSIM 4.3</h1><p>GITHUB真是个好东西，最近在GITHUB的帮助下，我第一次接触了使用Python调用VISSIM 4.3 COM接口的方法，尽管在其官方文档中没有对此进行详细说明，不过还是可以通过AttValue()和SetAttValue()函数调用API里边的函数。</p>
+    <content><![CDATA[<p>GITHUB真是个好东西，最近在GITHUB的帮助下，我第一次接触了使用Python调用VISSIM 4.3 COM接口的方法，尽管在其官方文档中没有对此进行详细说明，不过根据测试，VISSIM API中可以通过AttValue()和SetAttValue()函数调用API里边的函数。</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>首先准备环境</p>
 <ul>
 <li>VISSIM 4.30</li>
 <li>Pycharm 2019.03</li>
 <li>Python 3.5</li>
 </ul>
-<p>需要的包（学到一招，Pycharm里可以在File-&gt;Setting里搜索想要的包并导入）</p>
+<p>需要的包</p>
 <ul>
 <li>geatpy 2.2.3    用来调用遗传算法</li>
 <li>win32com  用来调用com接口</li>
@@ -1611,19 +1611,19 @@
 <h3 id="车道速度处理"><a href="#车道速度处理" class="headerlink" title="车道速度处理"></a>车道速度处理</h3><p>随后对车辆车速分车道进行集合统计，得到分车道的速度频率分布累计曲线，这个曲线还是蛮重要的 ，决定了自由流状态下，车辆运行的期望车速分布。查看原始数据，我们可以发现原始数据不仅包含了自由流状态，还包含了拥堵状态，显然拥堵状态是不能作为期望车速输入的。</p>
 <h4 id="将拥堵状态和自由流状态分开"><a href="#将拥堵状态和自由流状态分开" class="headerlink" title="将拥堵状态和自由流状态分开"></a>将拥堵状态和自由流状态分开</h4><p>首先使用车道流量Q、速度V计算该车道的车辆密度k，利用的是交通流基本关系Q=KV</p>
 <p>在Excel中直接选中所有车道速度，绘制K-V散点图，绘制之后可以用直线拟合趋势线，拟合后我们可以发现用直线拟合程度就比较好，各个车道K-V关系拟合R²都在0.85以上。于是我们可以拍一拍脑袋，认为该路段各车道交通流服从<strong>格林希尔德模型</strong>。拟合出来的直线显示截距，截距就是自由流车速vf（K=0时的速度），vf/2就是拥堵和自由流的临界。</p>
-<p><img src="averageSpd.jpg" alt="averageSpd"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/averageSpd.jpg" alt="averageSpd"></p>
 <h4 id="统计速度在各区间内的频数"><a href="#统计速度在各区间内的频数" class="headerlink" title="统计速度在各区间内的频数"></a>统计速度在各区间内的频数</h4><p>使用vf/2为临界，筛选出大于vf/2的速度数据，放到另一张表中，进行分段统计，分段长度可以采用10，如果你比较细心也可以用5。</p>
 <p>这里有一个小技巧，分段需要用到EXCEL中的FREQUENCY函数，首先选中一列，然后输入函数公式后按ctrl+shift+enter可以填充该列。</p>
 <p>最后计算各个区间内的比例，并进行累加，就可以得到速度频率分布曲线，我们在VISSIM中新建4个期望速度分布曲线，把我们得到的4个数据按图索骥画进去。</p>
-<p><img src="CulSpd.png" alt="CulSpd"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/CulSpd.png" alt="CulSpd"></p>
 <h3 id="VISSIM-设置"><a href="#VISSIM-设置" class="headerlink" title="VISSIM 设置"></a>VISSIM 设置</h3><h4 id="设置不同车道的期望车速曲线"><a href="#设置不同车道的期望车速曲线" class="headerlink" title="设置不同车道的期望车速曲线"></a>设置不同车道的期望车速曲线</h4><p>这里又有需要注意的地方，在VISSIM中，车辆输入的时候是不能输入车道级的期望车速分布，那么问题就来了，我的车辆在一条4车道高速上，怎么样保证他在不同的车道上有不同的期望车速分布呢？我们可以通过设置期望速度决策点来修改不同车道的期望车速。然而，由于路网中的车辆会进行选择性换道，进行选择性变道后，车辆通过上一个期望速度决策点的期望车速会保留到换道后，这就和我们期望的不一样。想要解决也很简单，一个期望速度决策点不够，就来几个。</p>
 <h4 id="设置LINK的类型"><a href="#设置LINK的类型" class="headerlink" title="设置LINK的类型"></a>设置LINK的类型</h4><p>这个要特别拿出来说一下，天坑！！原来通过一番设置之后代码都跑起来了，可是发现程序每次变换随机参数跑出来的结果都一样（不管调成啥都没用），整整想了一个晚上挠掉N多头发才发现是我LINK的类型选成了城市道路！！！也就是说我调了一晚上高速路的模型参数，压根就没在路网中生效，还我头发啊啊啊啊！！！！</p>
-<p><img src="VISSIM%E8%AE%BE%E7%BD%AELINK%E5%B1%9E%E6%80%A7.png" alt="VISSIM设置LINK属性"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E8%AE%BE%E7%BD%AELINK%E5%B1%9E%E6%80%A7.png" alt="VISSIM设置LINK属性"></p>
 <p>就是这个，要选成3 Freeway 才有用</p>
 <h4 id="设置LINK车道限行"><a href="#设置LINK车道限行" class="headerlink" title="设置LINK车道限行"></a>设置LINK车道限行</h4><p>这个还是要和实际相符，国内大部分多车道高速都禁止大货车在最内侧车道通行，如果是4车道高速，一般会只让大货车在最外侧两条车道运行。在VISSIM里上面那个界面点Lane Closure 然后把Lane3 和lane4 对HGV关闭（VISSIM最右边车道是1 所以应该关闭lane3 和lane 4）</p>
-<p><img src="VISSIM%E8%BD%A6%E9%81%93%E9%99%90%E5%88%B6.png" alt="VISSIM车道限制"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E8%BD%A6%E9%81%93%E9%99%90%E5%88%B6.png" alt="VISSIM车道限制"></p>
 <h4 id="设置评价"><a href="#设置评价" class="headerlink" title="设置评价"></a>设置评价</h4><p>评价也是一个大坑，在4.30版本的VISSIM中，如果你不打开评价，仿真他也不会报错，而是会输出0.00这样令人摸不着头脑的数据，掉无数头发后，才能想到 哦是评价没打开。由于需要检测车辆数和速度，这里要点选上两个数据。同时要注意时间是从900s开始统计，集计间隔也是900s。</p>
-<p><img src="VISSIM%E6%A3%80%E6%B5%8B%E5%99%A8%E8%AE%BE%E7%BD%AE.png" alt="VISSIM检测器设置"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/VISSIM%E6%A3%80%E6%B5%8B%E5%99%A8%E8%AE%BE%E7%BD%AE.png" alt="VISSIM检测器设置"></p>
 <p>这里为了演示只搞了1个检测器，实际上检测器个数肯定不止一个，VISSIM里一个检测器只能看一条车道的数据</p>
 <h2 id="遗传算法准备"><a href="#遗传算法准备" class="headerlink" title="遗传算法准备"></a>遗传算法准备</h2><p>首先要介绍下遗传算法，有一段解释特别有趣形象：</p>
 <p><em>从前，有一大群袋鼠，它们被莫名其妙的零散地遗弃于喜马拉雅山脉。于是只好在那里艰苦的生活。海拔低的地方弥漫着一种无色无味的毒气，海拔越高毒气越稀薄。可是可怜的袋鼠们对此全然不觉，还是习惯于活蹦乱跳。于是，不断有袋鼠死于海拔较低的地方，而越是在海拔高的袋鼠越是能活得更久，也越有机会生儿育女。就这样经过许多年，这些袋鼠们竟然都不自觉地聚拢到了一个个的山峰上，可是在所有的袋鼠中，只有聚拢到珠穆朗玛峰的袋鼠被带回了美丽的澳洲。</em></p>
@@ -1645,7 +1645,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">种群信息导出完毕。</span><br><span class="line">最优的目标函数值为：17.6446518217351</span><br><span class="line">最优的控制变量值为：</span><br><span class="line">1.6210104341403664</span><br><span class="line">1.0379648617231827</span><br><span class="line">2.258785180700528</span><br><span class="line">有效进化代数：25</span><br><span class="line">最优的一代是第 17 代</span><br><span class="line">评价次数：1250</span><br><span class="line">时间已过 71968.43456172943 秒</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
 
 <p><strong>CC0=1.6210104341403664 CC1=1.0379648617231827 CC2=2.258785180700528</strong></p>
-<p><img src="result.png" alt="result"></p>
+<p><img src="/2021/07/18/%E4%BD%BF%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E6%A0%87%E5%AE%9AVISSIM-4.3/result.png" alt="result"></p>
 <p>TO DO: </p>
 <ul>
 <li>后续可能会出个6.0+版本，4.3和6的调用还是有很多不一样的地方，很多函数名都变了</li>
@@ -2249,5 +2249,482 @@ a)    执行下面流程
 <p><code>arrowClass.s</code></p>
 <h4 id="PS-hexo-识别图片："><a href="#PS-hexo-识别图片：" class="headerlink" title="PS: hexo 识别图片："></a>PS: hexo 识别图片：</h4><p>需要安装插件，请参考<a href="https://www.jianshu.com/p/f72aaad7b852">https://www.jianshu.com/p/f72aaad7b852</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>JVM课程笔记</title>
+    <url>/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="JVM课程笔记"><a href="#JVM课程笔记" class="headerlink" title="JVM课程笔记"></a>JVM课程笔记</h1><h2 id="【01】-概念介绍"><a href="#【01】-概念介绍" class="headerlink" title="【01】 概念介绍"></a>【01】 概念介绍</h2><p>网址：<a href="https://www.bilibili.com/video/BV1PJ411n7xZ">https://www.bilibili.com/video/BV1PJ411n7xZ</a></p>
+<h3 id="java和C-不一样的地方"><a href="#java和C-不一样的地方" class="headerlink" title="java和C++不一样的地方"></a>java和C++不一样的地方</h3><ul>
+<li>内存动态分配</li>
+<li>垃圾收集技术</li>
+</ul>
+<h3 id="JVM是一种跨语言的平台"><a href="#JVM是一种跨语言的平台" class="headerlink" title="JVM是一种跨语言的平台"></a>JVM是一种跨语言的平台</h3><p>像scala、kotlin、Jython、groovy 等都可以通过编译器编译成字节码文件，在JVM里面运行</p>
+<p>JVM只关心字节码文件，而不关心文件是怎么被编译出来的</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725211333435.png" alt="image-20210725211333435"></p>
+<p>所谓虚拟机，就是一台虚拟的计算机，虚拟机分为系统虚拟机和程序虚拟机</p>
+<ul>
+<li>系统虚拟机：VMWARE、安卓模拟器</li>
+<li>程序虚拟机：JVM</li>
+</ul>
+<p>JVM作用：给二进制字节码提供运行环境，特点：</p>
+<ul>
+<li>一次编译 到处运行</li>
+<li>自动垃圾回收</li>
+<li>自动内存分配</li>
+</ul>
+<p>JVM运行在操作系统上，与硬件系统没有直接交互</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725220317219.png" alt="image-20210725220317219"></p>
+<h3 id="JVM整体结构"><a href="#JVM整体结构" class="headerlink" title="JVM整体结构"></a>JVM整体结构</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725220615188.png" alt="image-20210725220615188"></p>
+<p>在java中多线程共享堆 和方法区，对于栈则是每个线程独占一个</p>
+<p>编译器有两端：前端和后端，前端编译器是把JAVA语言生成字节码文件的，后端的编译器存在于执行引擎里，把字节码文件编译成可执行的形式</p>
+<p>– 0725→ （p13）–</p>
+<ul>
+<li><p>JVM是解释器和即时编辑器并存的架构</p>
+</li>
+<li><p>目前HotSpot VM是市面上高性能虚拟机代表作</p>
+</li>
+<li><p>java栈 又叫虚拟机栈</p>
+</li>
+</ul>
+<h3 id="JVM架构模型"><a href="#JVM架构模型" class="headerlink" title="JVM架构模型"></a>JVM架构模型</h3><ul>
+<li>基于栈的指令架构（指令多，指令集小，性能没有寄存器好，具有<strong>跨平台性</strong>，在资源受限场景中适用型号）</li>
+<li>基于寄存器的架构（指令更少，指令集大，由于要跨平台， CPU架构不同，JVM没有采用这个结构）</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210803223743944.png" alt="image-20210803223743944"></p>
+<p><strong>反编译指令</strong>： 在IDEA 的terminal中可以用javap -v ***.class反编译字节码文件</p>
+<h3 id="JVM生命周期"><a href="#JVM生命周期" class="headerlink" title="JVM生命周期"></a>JVM生命周期</h3><ul>
+<li><p>JVM的启动</p>
+<p>JVM虚拟机的启动是通过引导类加载器（Bootstrap class loader）创建一个初始类来完成的</p>
+</li>
+<li><p>JVM的运行</p>
+<p>执行Java程序</p>
+</li>
+<li><p>JVM的退出</p>
+<p>程序正常执行结束、异常、Error等等（JNI规范了所有退出的方式）</p>
+</li>
+</ul>
+<h3 id="JVM-发展历程"><a href="#JVM-发展历程" class="headerlink" title="JVM 发展历程"></a>JVM 发展历程</h3><ul>
+<li>SUN classic  VM（解释器和JIT分离，每次都得编译所有代码，等待时间有点长 本来可以解释一点 执行一点）</li>
+<li>Exact VM</li>
+<li><strong>Hotspot VM</strong>（重点，SUN公司开发），广泛用于JDK1.8 <ul>
+<li>是Open JDK 默认虚拟机，所以非常广泛</li>
+<li>有方法区，是其他的虚拟机木有</li>
+<li>HotSpot 名称就是 热点代码探测技术<ul>
+<li>通过编译器找到最具备编译价值的代码（热点代码），触发即时编译或栈上替换</li>
+<li>编译器和解释器协同工作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>三大商用虚拟机：<strong>HotSpot 、JRockit、IBM J9</strong><ul>
+<li>其他：和硬件绑定的虚拟机：AZul JVM和BEA Liquid JVM</li>
+</ul>
+</li>
+<li><strong>Graal VM</strong> 多语言虚拟机，支持C C++  java python等 有望在未来替代hotspot</li>
+</ul>
+<h2 id="【02】-类加载子系统"><a href="#【02】-类加载子系统" class="headerlink" title="【02】 类加载子系统"></a>【02】 类加载子系统</h2><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804220537547.png" alt="image-20210804220537547"></p>
+<p>类加载的过程分成三个步骤：<strong>加载→链接→初始化</strong></p>
+<ul>
+<li>Loading</li>
+<li>Linking（验证→准备→解析）</li>
+<li>Initialzation</li>
+</ul>
+<p>堆：堆中存放new出来的对象，是多个线程共享的</p>
+<p>方法区：存放类和方法的信息</p>
+<h4 id="如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？"><a href="#如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？" class="headerlink" title="如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？"></a>如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？</h4><ul>
+<li>类加载子系统（让输入逐条放到内存中）</li>
+<li>执行引擎（执行语句）</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804221521140.png" alt="image-20210804221521140"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804222154747.png" alt="image-20210804222154747"></p>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
+<li>通过一个类的全限定明，获取定义此类的 二进制字节流</li>
+<li>将这个字节流所代表的的静态存储结构转化为方法区运行时的数据结构</li>
+<li>在<strong>内存中生成一个代表这个类的java.lang.Class对象</strong>，作为方法区这个类的各种数据的访问入口（生成类实例是在此环节出现）</li>
+</ol>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804223855774.png" alt="image-20210804223855774"></p>
+<p>编译好的字节码文件，开头具有特殊标识：CAFEBABE 是个magic num</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804224922497.png" alt="image-20210804224922497"></p>
+<ul>
+<li>所有的变量，最开始prepare的时候都赋默认值，到initial赋具体的值。</li>
+<li>常量（final static）：会在这里初始化</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805214443433.png" alt="image-20210805214443433"></p>
+<p>下面这段代码num、number输出什么？</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805215053260.png" alt="image-20210805215053260"></p>
+<p>答案：num输出2，number输出10</p>
+<p>原因：在类加载的时候，prepare阶段，就给num和number赋值0 然后在initialization阶段 分别先给num赋值1、2，给number赋值20、10（从上到下执行） </p>
+<p>但是特别注意一点：在number=20下面不能System.out.println（number）会提示错误的前向引用，这是因为prepare阶段 这个变量还是一个半成品，所以编译器报错不能用这个变量。</p>
+<p>这个代码输出啥？</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805220424307.png" alt="image-20210805220424307"></p>
+<p>答：执行子类的CLinit之前会执行完毕父类的，所以B=2。</p>
+<h3 id="类加载器分类"><a href="#类加载器分类" class="headerlink" title="类加载器分类"></a>类加载器分类</h3><p>JVM支持两种类加载器：<strong>引导类加载器，自定义类加载器</strong></p>
+<p>所有派生于抽象类ClassLoasder的类加载器都划分成了自定义类加载器（和语义不一样）</p>
+<ul>
+<li><p><strong>引导类加载器（启动类加载器，Bootstrap ClassLoader）</strong></p>
+<ul>
+<li>这个类加载使用C/C++实现</li>
+<li>用来加载Java核心库</li>
+<li>并不继承自java.lang.classLoader，没有父加载器</li>
+<li>加载扩展类和应用程序类加载器，并且当他们的爸爸（指定为他们的父类加载器）</li>
+<li>出于安全，只加载包名为java、javax、sun开头的类</li>
+</ul>
+</li>
+<li><p><strong>扩展类加载器</strong></p>
+<ul>
+<li>Java语言编写，由sum.mis.Launcher$ExtClassLoader实现</li>
+<li>派生于ClassLoader</li>
+<li>父类加载器为启动器加载类</li>
+<li>从java.ext.dirs系统属性所制定的目录中加载类库</li>
+</ul>
+</li>
+<li><p><strong>应用程序类加载器（系统类加载器，AppClassLoader）</strong></p>
+<ul>
+<li>Java语言编写，由sum.mis.Launcher$ExtClassLoader实现</li>
+<li>派生于ClassLoader</li>
+<li>父类加载器为扩展类加载类</li>
+<li>负责加载环境变量classpath或系统属性java.class.path制定路径下的类库</li>
+<li>是程序中的<strong>默认类加载器</strong>，</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805225546442.png" alt="image-20210805225546442"></p>
+</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223516282.png" alt="image-20210805223516282"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223207488.png" alt="image-20210805223207488"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223342150.png" alt="image-20210805223342150"></p>
+<ul>
+<li>用户类使用系统类加载器进行加载</li>
+<li>系统类使用引导类加载器进行加载（引导类加载器只加载核心类库）</li>
+<li>有点像平民和贵族2333</li>
+<li>引导类加载器是用C++写的，所以获取他的getClassLoader会提示null</li>
+</ul>
+<p><strong>引导类加载器</strong>和<strong>扩展类加载器</strong>加载：</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805225142997.png" alt="image-20210805225142997"></p>
+<h3 id="用户自定义类加载器"><a href="#用户自定义类加载器" class="headerlink" title="用户自定义类加载器"></a>用户自定义类加载器</h3><p>问：什么时候需要自定义类加载器？</p>
+<ul>
+<li>隔离加载类</li>
+<li>修改类的加载方式</li>
+<li>扩展加载源（比如 从机顶盒获取加载源）</li>
+<li>防止源码泄露</li>
+</ul>
+<p>如果需要自定义，继承java.lang.ClassLoader就行，并且重写findClass方法</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210808163716310.png" alt="image-20210808163716310"></p>
+<p>ClassLoader 类，是一个抽象类，所有的类加载器，除了启动类加载器，都继承自classloader</p>
+<p>获取ClassLoader的方法：</p>
+<ul>
+<li><p><code>clazz.getClassLoader</code> </p>
+</li>
+<li><p>Thread.currentThread().getContextClassLoader</p>
+</li>
+<li><p>ClassLoader.getSystemClassLoader()</p>
+</li>
+<li><p>DriverManager,getCallerClassLoader()  获取调用者的类加载器</p>
+</li>
+</ul>
+<h3 id="双亲委派机制（重点）"><a href="#双亲委派机制（重点）" class="headerlink" title="双亲委派机制（重点）"></a>双亲委派机制（重点）</h3><p>java对class文件使用的是<strong>按需加载</strong>的方式，当收到类加载请求的时候，不会立刻使用当前类加载器加载，而是会向上委托父类的加载器进行类加载，父亲加载失败再让子类自己处理（<strong>甩锅机制</strong>，儿子干不了的都找爸爸，爸爸干不了的才让儿子干，或者有点像孔融让梨）</p>
+<p>这样做的好处：防止自己写一个java.lang.String 等等的类替代掉核心的api，顺便一说 就算是自定义类 放在java.lang包下，比如java.lang.XxxClass 也是无法运行的</p>
+<h4 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h4><p>在加载类的时候如果有核心API ，那么会加载核心API，不会加载自定义同名的类</p>
+<h4 id="判断两个类是否相同的必要条件"><a href="#判断两个类是否相同的必要条件" class="headerlink" title="判断两个类是否相同的必要条件"></a>判断两个类是否相同的必要条件</h4><ul>
+<li>类名、含包名必须完全相同</li>
+<li>类加载器（ClassLoader对象）必须完全相同</li>
+</ul>
+<h4 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h4><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210808173505814.png" alt="image-20210808173505814"></p>
+<h3 id="运行时数据区结构"><a href="#运行时数据区结构" class="headerlink" title="运行时数据区结构"></a>运行时数据区结构</h3><ul>
+<li>堆、方法区（线程之间共享）</li>
+<li>栈、本地栈（每个线程一个）</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811213425195.png" alt="image-20210811213425195"></p>
+<p>红色的是进程共享，灰色是线程间共享</p>
+<p>再来回顾一下线程：</p>
+<ul>
+<li>线程是程序里的运行单元</li>
+<li>每个线程都和操作系统的本地线程直接映射</li>
+<li>当监理一个java线程准备好了之后，操作系统的本地线程也同时创建，线程执行中止后，本地线程也会回收。</li>
+<li>一旦本地线程初始化成功，就会调用java线程中的run()方法</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811213913076.png" alt="image-20210811213913076"></p>
+<p>安全点是在程序执行期间的所有<code>GC Root</code>已知并且<strong>所有堆对象的内容一致</strong>的点</p>
+<h2 id="【04】PC寄存器"><a href="#【04】PC寄存器" class="headerlink" title="【04】PC寄存器"></a>【04】PC寄存器</h2><p>Program Counter Register 程序技术寄存器，和CPU寄存器，数据结构类似</p>
+<p>PC寄存器用来存储指向<strong>下一条指令的地址</strong>，也就是下一条即将要执行指令的代码，由执行引擎读取下一条指令</p>
+<p>有点像程序执行时候的游标，程序的顺序、分支、循环、异常、线程等基础功能都需要以来计数器完成</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811220238190.png" alt="image-20210811220238190"></p>
+<p>唯一没有OutOfMemoryError</p>
+<p>执行引擎会到指令地址，取出对应的操作指令，然后执行操作</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811221424324.png" alt="image-20210811221424324"></p>
+<p><strong>为什么要存储字节码指令地址呢？</strong></p>
+<ul>
+<li><p>因为CPU在不停切换各个线程，切换回来之后就需要从哪里开始继续执行</p>
+</li>
+<li><p>JVM字节码通过寄存器知道下一条应该执行哪一条指令</p>
+</li>
+</ul>
+<p><strong>为什么PC寄存器每个线程私有？</strong></p>
+<ul>
+<li>各个线程是轮流抢CPU资源执行（并发执行）所以每个线程都需要一个寄存器，CPU在线程之间高速切换</li>
+</ul>
+<h2 id="【05】-虚拟机栈"><a href="#【05】-虚拟机栈" class="headerlink" title="【05】 虚拟机栈"></a>【05】 虚拟机栈</h2><p>【复习】使用虚拟机栈的好处：跨平台（基于寄存器的不能跨平台），指令集小，编译器容易实现。缺点是性能下降，同样功能需要更多指令。</p>
+<p>堆和栈的区别：</p>
+<ul>
+<li>栈是运行时的单位</li>
+<li>堆是存储的单位</li>
+</ul>
+<p>局部变量在栈空间存储，仅限于基本数据类型，对于引用数据类型，栈里面仅存放引用地址。</p>
+<p><strong>栈管运行，堆管存储</strong>，用一道菜来表示，有点像佛跳墙，左侧是栈，右侧是堆，真正用来存储。</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210815220205611.png" alt="image-20210815220205611"></p>
+<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>虚拟机栈是什么？早期也叫java栈，每个线程创建的时候都会创建一个虚拟机栈，内部保存一个个栈帧，，对应着一次次的java调用。 </p>
+<p>虚拟机栈是线程私有的。<strong>一个线程对应着一个虚拟机栈</strong>，栈的生命周期和线程一致。一次压栈可以压进好多方法的变量代表一个栈帧。</p>
+<ul>
+<li>局部变量 vs 成员变量</li>
+<li>基本数据变量 vs 引用类型变量（类、数组、接口等）</li>
+</ul>
+<p>栈的生命周期和线程一致</p>
+<p>（虚拟机栈优点）</p>
+<ul>
+<li>栈的访问速度仅次于程序计数器</li>
+<li>JVM直接对java栈的操作只有两个<ul>
+<li>每个方法执行，伴随着入栈、压栈</li>
+<li>执行结束后，出栈</li>
+</ul>
+</li>
+<li>对于栈来说 不存在垃圾回收 但是存在OOM，爆栈会提示stackoverflowerror</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">	main(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个是最简单的爆栈演示。</p>
+<p>-Xss size 可以指定栈大小 例如-Xss1024k -Xss1m -Xss1048576</p>
+<h4 id="栈中有什么？"><a href="#栈中有什么？" class="headerlink" title="栈中有什么？"></a>栈中有什么？</h4><ol>
+<li><p>栈中的数据以栈帧为基本单位存储</p>
+</li>
+<li><p>每个执行方法对应一个栈帧。</p>
+</li>
+<li><p>栈帧是一个数据区块，维护着一个数据集，维系各种数据信息。</p>
+</li>
+</ol>
+<p>栈有先进后出的特性，一个时间点上只有一个活动的栈帧，只有当前活动的栈帧是有效的，称为当前栈帧（current stack frame）</p>
+<ul>
+<li>不同线程不能混用栈帧。</li>
+<li>栈帧遇到return 或异常会被弹出</li>
+</ul>
+<h3 id="每个栈帧中存储着："><a href="#每个栈帧中存储着：" class="headerlink" title="每个栈帧中存储着："></a>每个栈帧中存储着：</h3><ul>
+<li><strong>局部变量表</strong>（local var 局部变量表，局部变量数组或本地变量表）</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816205659257.png" alt="image-20210816205659257"></p>
+<p>long 和 double 8个字节，一个字节有8位 所以一共是64位（下图 index直接从3调到5）</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816214040762.png" alt="image-20210816214040762"></p>
+<p>Slot是可以重复利用的，当一个变量过了作用域之后，局部变量表可以重复利用分配给后面的 变量，达到节约空间的作用、</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816221128782.png" alt="image-20210816221128782"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816213511826.png" alt="image-20210816213511826"></p>
+<p>非静态的方法有this，存在局部变量表index0的位置，静态方法没有this。</p>
+<p><strong>静态类成员变量、实例变量和对象里面的局部变量的区别？</strong></p>
+<ol>
+<li>静态类变量在prepare阶段赋值0，在init阶段，再给类变量显式赋值</li>
+<li>实例变量在对象创建的时候在堆里面分配变量空间，并进行默认赋值</li>
+<li>局部变量在使用前，必须进行显式赋值，否则编译不通过（比如 int a; a++;）</li>
+</ol>
+<p>局部变量表中的变量是重要的垃圾回收根节点，只要是局部变量表中直接或间接引用的对象都不会被垃圾回收</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816210927840.png" alt="image-20210816210927840"></p>
+<ul>
+<li><strong>操作数栈</strong> （表达式栈）</li>
+</ul>
+<p>​    每一个栈帧除了局部变量表外，还包含一个后进先出的操作数栈，用于执行操作数操作（就是逆波兰表达式的方式）</p>
+<p>入 1 入2 add →入3</p>
+<p>需要注意：返回值要压入操作数栈</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817220904575.png" alt="image-20210817220904575"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817221514224.png" alt="image-20210817221514224"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817221824407.png" alt="image-20210817221824407">（bipush占两行字节码指令byte本身只占一行) 就算是int 但是赋值的值没有大于byte的值 也是用的bipush，不是整数的push 整数是大于128才用这个push（当int取值-1<del>5采用iconst指令，取值-128</del>127采用bipush指令，取值-32768<del>32767采用sipush指令，取值-2147483648</del>2147483647采用 ldc 指令。)</p>
+<p>就是这个操作数栈 可以解释 i+++++i</p>
+<ul>
+<li>栈顶缓存</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817225332436.png" alt="image-20210817225332436"></p>
+<ul>
+<li><p>动态链接 （指向运行时常量池的方法引用）</p>
+<ul>
+<li>这一块、包括下面的方法返回地址以及一些附加信息又被叫做帧数据区</li>
+<li>简单来说就是栈帧里 指向了栈帧外的，位于字节码文件里面的运行时常量池的地址</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817230949996.png" alt="image-20210817230949996"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817231357524.png" alt="image-20210817231357524"></p>
+<p>为什么需要常量池呢？常量池提供了一些符号和常量，便于指令的识别。</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817231035826.png" alt="image-20210817231035826"></p>
+</li>
+<li><p>方法返回地址</p>
+</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818212005767.png" alt="image-20210818212005767"></p>
+<p>多态的时候就会出现动态链接，比如狗和猫都实现了动物里面的eat方法，但是调用animal.eat()，具体调用的方法还是需要到调用的时候才能确定。</p>
+<p>java中的方法有虚方法的特征</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818213856091.png" alt="image-20210818213856091"></p>
+<p>（静态 私有 final 实例 父类）</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818214957136.png" alt="image-20210818214957136"></p>
+<p>类加载阶段会创建一个虚方法表，存放着不能确定具体调用对象的虚方法。具体调用的时候还要查找，如果查找不到，或者没有访问权限，会报illegalAccessError</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818223055370.png" alt="image-20210818223055370"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818214034072.png" alt="image-20210818214034072"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818215639943.png" alt="image-20210818215639943"></p>
+<p>java是静态+半动态语言，因为lambda表达式有了一部分动态的特性，像js、python就是纯动态的语言，具体来说就是var name=”xxx”; 而不是必须得String </p>
+<p>异常的处理：</p>
+<ul>
+<li><p>正常栈帧执行完成的时候：通过PC计数器调用下一条指令</p>
+</li>
+<li><p>异常退出的时候，查表（异常处理表）</p>
+</li>
+</ul>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818230234688.png" alt="image-20210818230234688"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818225943612.png" alt="image-20210818225943612"></p>
+<p>表表示在4-16行处理异常，去第19行处理。</p>
+<ul>
+<li>一些附加信息</li>
+</ul>
+<h4 id="五道面试题"><a href="#五道面试题" class="headerlink" title="五道面试题"></a>五道面试题</h4><ul>
+<li>举例栈溢出的情况（StackOverflowError）递归</li>
+<li>通过调整栈大小，就能保证不出现溢出吗？不能</li>
+<li>垃圾回收是否会涉及虚拟机栈？不会</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PC寄存器</th>
+<th>虚拟机栈</th>
+<th>本地方法栈</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Error</td>
+<td>无</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>GC</td>
+<td>无</td>
+<td>无</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<ul>
+<li>分配的栈内存越大越好吗？不是的，整个内存空间有限的，栈空间越大，栈的总数就越少。</li>
+<li>方法中定义的局部变量是否是线程安全的？（线程安全定义：如果只有一个线程可以操作这个数据，那他就是线程安全，反之如果多个线程可以操作数据，那他就是线程不安全的）答：是线程安全的，因为栈帧是每个线程自己有自己的一份。就算是静态的代码，比如:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer bbb=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里 这个i 就是线程安全的，每个调用它的线程都会在自己的栈帧里创建一个i。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">(StringBuiler sb)</span></span>&#123;</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里传入的sb可能是存在线程不安全的，毕竟他不是局部变量</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StringBuiler <span class="title">method3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	StringBuiler sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> sb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个可能是存在线程不安全的问题！因为变量返回出去之后可能被多个线程调用（比如别的线程调用的method2）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">method3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	StringBuiler sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个就是线程安全的，因为返回的不是SB 而是String，String类是线程安全的</p>
+<p>总体来说就是生命周期只在方法内部的就是安全的</p>
+<h2 id="【06】本地方法接口"><a href="#【06】本地方法接口" class="headerlink" title="【06】本地方法接口"></a>【06】本地方法接口</h2><h3 id="什么是本地方法"><a href="#什么是本地方法" class="headerlink" title="什么是本地方法"></a>什么是本地方法</h3><p>简单来说，一个native method 就是一个java调用非java代码的接口，native method由非java方法实现，初衷就是融合C和C++程序。native代码在java类里没实现，就像抽象方法，毕竟不是用java写的</p>
+<p>使用native的目的：</p>
+<ul>
+<li>和外部文件交互</li>
+<li>和操作系统交互</li>
+<li>和Sun交互（java底层解释器用C写的）</li>
+</ul>
+<p>最常见的：Object.getClass();</p>
+<h2 id="【07】本地方法栈"><a href="#【07】本地方法栈" class="headerlink" title="【07】本地方法栈"></a>【07】本地方法栈</h2><p>本地方法栈：管理本地方法的，是线程私有的。</p>
+<p>允许被实现成固定或可动态扩展的内存大小</p>
+<h3 id="虚拟机栈和本地方法栈的区别"><a href="#虚拟机栈和本地方法栈的区别" class="headerlink" title="虚拟机栈和本地方法栈的区别"></a>虚拟机栈和本地方法栈的区别</h3><ul>
+<li>虚拟机栈：管理java方法的调用</li>
+<li>本地方法栈：管理本地方法的调用</li>
+</ul>
+<p>本地方法：用C语言实现</p>
+<p>如果不打算调用C语言，可以不用本地方法栈，在Hotspot中，本地方法栈和虚拟机栈合二为一。</p>
+<h2 id="【08】-堆"><a href="#【08】-堆" class="headerlink" title="【08】 堆"></a>【08】 堆</h2><p>栈管运行，堆管存储。堆是<strong>运行时数据区</strong>最大的一块。堆是<strong>进程</strong>唯一的（一个进程对应一个JVM实例），堆在物理上可以是<strong>不连续的内存空间</strong>，但是在JVM里面视为是<strong>连续的</strong>。堆在JVM启动的时候创建，他的空间大小同时确定，他的内存大小是可以调节的。</p>
+<p>围观jvm运行的工具：jvisualvm.exe</p>
+<ul>
+<li>堆分为年轻代和老年代（分代思想）</li>
+<li>堆有内存大小，会OOM</li>
+<li>Minor GC 、 Major GC 、 Full GC</li>
+<li>内存分配策略</li>
+<li>为对象分配内存（TLAB）</li>
+<li>堆空间的参数设置（需要背）</li>
+</ul>
+<h3 id="堆空间的划分"><a href="#堆空间的划分" class="headerlink" title="堆空间的划分"></a>堆空间的划分</h3><p>JDK7之前分为新生代，养老代和<strong>永久区</strong></p>
+<p>JDK8之后堆内存在逻辑上，新生区，养老区和<strong>元空间</strong></p>
+<p>新生区等价于新生代，这个划分方法是逻辑划分</p>
+<p>永久区 元空间暂时不是堆的内容，暂时不被堆的设置影响到。</p>
+<p>7和8的区别就是永久区→元空间</p>
+<h3 id="堆空间大小设置"><a href="#堆空间大小设置" class="headerlink" title="堆空间大小设置"></a>堆空间大小设置</h3><p>-Xmx 最大内存大小 (默认是物理内存1/4)</p>
+<p>-Xms 表示堆区起始内存 （默认是物理内存1/64）</p>
+<p>查看的：Runtime.getRuntime().maxMemory();</p>
+<p>建<strong>议初始堆内存和最大堆内存</strong>设置成一样的，防止内存波动（开辟内存会浪费时间）</p>
+<p>查看设置的参数：</p>
+<ol>
+<li>jps → jstat -gc 进程id</li>
+<li>-XX: +PrintGCDetails</li>
+</ol>
+<h3 id="年轻代和老年代"><a href="#年轻代和老年代" class="headerlink" title="年轻代和老年代"></a>年轻代和老年代</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825224347401.png" alt="image-20210825224347401"></p>
+<p>Eden：伊甸园。java对象最开始创建的位置</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825224920712.png" alt="image-20210825224920712"></p>
+<p><strong>几乎</strong>所有的java对象都是在Eden区被new出来的 。如果Eden区放不下，会放到老年代</p>
+<p>根据统计，绝大部分的Java对象销毁都在新生代进行</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825225421454.png" alt="image-20210825225421454"></p>
+<h3 id="对象分配过程"><a href="#对象分配过程" class="headerlink" title="对象分配过程"></a>对象分配过程</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210831213920467.png" alt="image-20210831213920467"></p>
+<p>伊甸园区满了：进行Young GC 也叫Minor GC  </p>
+<p>​    → 把伊甸园区放到S0</p>
+<p>​    → 第二次GC： S0放到S1，伊甸园也放到S1，清空S0     S0到S1的时候对象的age会+1</p>
+<p>   → 第三次GC： S1放到S0，伊甸园也放到S0，清空S1     S1到S0的时候对象的age会+1</p>
+<p>。。。</p>
+<p>​    →age达到15之后，对象会promotion（晋升） 也就是说15次GC这个对象还活着，晋升之后这个对象放到老年区</p>
+<p>伊甸园区满了，进行YoungGC ，但是幸存者区满了呢？答：会按照一定规则放到老年代。</p>
+<p>也有可能伊甸园区的对象，进行GC 直接就放到老年代（自带超级赛亚人光环）</p>
+<p>幸存者两个区，轮流使用，第一次用0区，第二次用1区 ，也叫from区和to区，但是from和to和 S0 S1不是一一对应的，下一个就是to（或者说 执行完GC之后，空的就是to区）</p>
+<p>口诀：<strong>S0 S1复制之后有交换，谁空谁是To区</strong></p>
+<p>关于垃圾回收：<strong>频繁动新生代，很少收集养老代，几乎不在永久区/元空间收集</strong></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210831215935168.png" alt="image-20210831215935168"></p>
+<h4 id="常用调优工具"><a href="#常用调优工具" class="headerlink" title="常用调优工具"></a>常用调优工具</h4><p>JVisualVM</p>
+<p>Jconsole</p>
+<p>JDK命令行</p>
+<p>GCViewer</p>
+<p>JProfiler</p>
+<h3 id="【重要】-Minor-GC、Major-GC-和FullGC"><a href="#【重要】-Minor-GC、Major-GC-和FullGC" class="headerlink" title="【重要】 Minor GC、Major GC 和FullGC"></a>【重要】 Minor GC、Major GC 和FullGC</h3><p>并不是每次GC时，都对EDEN区、幸存者区以及老年代区</p>
+<p><strong>JVM调优的目的</strong>：让GC次数少一些</p>
+<p>GC的时候会让用户线程暂停（stop the world）</p>
+<p>Minor GC：只是新生代的垃圾收集</p>
+<p>Major GC：只是老年代的垃圾收集  很多时候Major GC和Full GC混淆使用，需要区分是老年代回收还是整堆回收</p>
+<p>Full GC： 收集整个java堆和方法区的垃圾收集</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901220352307.png" alt="image-20210901220352307"></p>
+<p><strong>年轻代EDEN区满触发MinorGC  Survivor满不会触发GC</strong> 大部分Java对象具有朝生夕死的特性，所以MinorGC 非常频繁，回收速度也比较块 MinorGC会触发STW，暂停其他用户线程，等到垃圾回收结束，用户线程才恢复运行。</p>
+<p><strong>MajorGC触发的时候经常伴随一次Minor GC 但是不一定</strong>，MajorGC 的速度比Minor GC慢十倍以上，STW时间更长。如果MajorGC之后内存还是不足，就OOM 了</p>
+<p><strong>FULL GC一般要避免</strong></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901221256858.png" alt="image-20210901221256858"></p>
+<p><code>Xms9m Xmx9m -XX -PrintGCDetails</code> 跑一个死循环的程序，会报OOM</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901221814725.png" alt="image-20210901221814725"></p>
+<p>打印日志，可以发现OOM之前有一次Full GC</p>
+<h4 id="堆空间分代思想"><a href="#堆空间分代思想" class="headerlink" title="堆空间分代思想"></a>堆空间分代思想</h4><p>为什么要给Java堆分代？不分代就不能工作了吗？</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901222559595.png" alt="image-20210901222559595"></p>
+<p>JDK8里永久代变成元空间</p>
+<p>不分代完全是可以的，分代唯一理由就是优化GC性能</p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901222632013.png" alt="image-20210901222632013"></p>
+<h4 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h4><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901223002837.png" alt="image-20210901223002837"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901223227485.png" alt="image-20210901223227485"></p>
+<p><strong>动态对象年龄判断</strong>：一个age的对象占s区超过一半时，来回在from  to区倒腾对象也是浪费次数，不如直接去老年区，留着占s区地方</p>
+<p>大对象直接进老年代：</p>
+<p>byte [] bytes=new byte[1024 * 1024 * 20]; //20m</p>
+<p>内存分配规则：</p>
+<ul>
+<li>优先分配到Eden</li>
+<li>大对象直接分配到老年代（避免程序中出现过多大对象）</li>
+<li>动态对象年龄判断</li>
+<li>空间分配担保</li>
+</ul>
+<h4 id="为什么会有TLAB？"><a href="#为什么会有TLAB？" class="headerlink" title="为什么会有TLAB？"></a>为什么会有TLAB？</h4><p>堆区是线程共享区域，任何线程都可以访问到堆区中的共享数据</p>
+<p>什么事TLAB？JVM给每个线程分配的一个私有区域，分配内存时，可以避免一系列非线程安全问题</p>
+<p>TLAB只占有EDEN空间1%，但是JVM把TLAB作为内存分配的首选</p>
+<h3 id="9-小结堆空间参数设置"><a href="#9-小结堆空间参数设置" class="headerlink" title="9. 小结堆空间参数设置"></a>9. 小结堆空间参数设置</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222001465.png" alt="image-20211013222001465"></p>
+<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222030565.png" alt="image-20211013222030565"></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
   </entry>
 </search>
