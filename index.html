@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,87 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/" class="post-title-link" itemprop="url">安装和配置Pytorch和cuda</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：22021-10-22 20:36:16" itemprop="dateCreated datePublished" datetime="22021-10-22T20:36:16+08:00">22021-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-22 20:36:18" itemprop="dateModified" datetime="2021-10-22T20:36:18+08:00">2021-10-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>请参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tryhardwy/p/14659131.html">https://www.cnblogs.com/tryhardwy/p/14659131.html</a></p>
+<p>注意：直接粘贴</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.0+cu102 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</code>，会提示找不到torchvision==0.9.0+cu102 导致安装失败！</p>
+<p>正确的安装语句是：</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 -f https://download.pytorch.org/whl/torch_stable.html</code></p>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -375,7 +456,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-13 22:29:47" itemprop="dateModified" datetime="2021-10-13T22:29:47+08:00">2021-10-13</time>
+                <time title="修改时间：2021-10-22 20:31:54" itemprop="dateModified" datetime="2021-10-22T20:31:54+08:00">2021-10-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -403,468 +484,14 @@
 <li>内存动态分配</li>
 <li>垃圾收集技术</li>
 </ul>
-<h3 id="JVM是一种跨语言的平台"><a href="#JVM是一种跨语言的平台" class="headerlink" title="JVM是一种跨语言的平台"></a>JVM是一种跨语言的平台</h3><p>像scala、kotlin、Jython、groovy 等都可以通过编译器编译成字节码文件，在JVM里面运行</p>
-<p>JVM只关心字节码文件，而不关心文件是怎么被编译出来的</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725211333435.png" alt="image-20210725211333435"></p>
-<p>所谓虚拟机，就是一台虚拟的计算机，虚拟机分为系统虚拟机和程序虚拟机</p>
-<ul>
-<li>系统虚拟机：VMWARE、安卓模拟器</li>
-<li>程序虚拟机：JVM</li>
-</ul>
-<p>JVM作用：给二进制字节码提供运行环境，特点：</p>
-<ul>
-<li>一次编译 到处运行</li>
-<li>自动垃圾回收</li>
-<li>自动内存分配</li>
-</ul>
-<p>JVM运行在操作系统上，与硬件系统没有直接交互</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725220317219.png" alt="image-20210725220317219"></p>
-<h3 id="JVM整体结构"><a href="#JVM整体结构" class="headerlink" title="JVM整体结构"></a>JVM整体结构</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725220615188.png" alt="image-20210725220615188"></p>
-<p>在java中多线程共享堆 和方法区，对于栈则是每个线程独占一个</p>
-<p>编译器有两端：前端和后端，前端编译器是把JAVA语言生成字节码文件的，后端的编译器存在于执行引擎里，把字节码文件编译成可执行的形式</p>
-<p>– 0725→ （p13）–</p>
-<ul>
-<li><p>JVM是解释器和即时编辑器并存的架构</p>
-</li>
-<li><p>目前HotSpot VM是市面上高性能虚拟机代表作</p>
-</li>
-<li><p>java栈 又叫虚拟机栈</p>
-</li>
-</ul>
-<h3 id="JVM架构模型"><a href="#JVM架构模型" class="headerlink" title="JVM架构模型"></a>JVM架构模型</h3><ul>
-<li>基于栈的指令架构（指令多，指令集小，性能没有寄存器好，具有<strong>跨平台性</strong>，在资源受限场景中适用型号）</li>
-<li>基于寄存器的架构（指令更少，指令集大，由于要跨平台， CPU架构不同，JVM没有采用这个结构）</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210803223743944.png" alt="image-20210803223743944"></p>
-<p><strong>反编译指令</strong>： 在IDEA 的terminal中可以用javap -v ***.class反编译字节码文件</p>
-<h3 id="JVM生命周期"><a href="#JVM生命周期" class="headerlink" title="JVM生命周期"></a>JVM生命周期</h3><ul>
-<li><p>JVM的启动</p>
-<p>JVM虚拟机的启动是通过引导类加载器（Bootstrap class loader）创建一个初始类来完成的</p>
-</li>
-<li><p>JVM的运行</p>
-<p>执行Java程序</p>
-</li>
-<li><p>JVM的退出</p>
-<p>程序正常执行结束、异常、Error等等（JNI规范了所有退出的方式）</p>
-</li>
-</ul>
-<h3 id="JVM-发展历程"><a href="#JVM-发展历程" class="headerlink" title="JVM 发展历程"></a>JVM 发展历程</h3><ul>
-<li>SUN classic  VM（解释器和JIT分离，每次都得编译所有代码，等待时间有点长 本来可以解释一点 执行一点）</li>
-<li>Exact VM</li>
-<li><strong>Hotspot VM</strong>（重点，SUN公司开发），广泛用于JDK1.8 <ul>
-<li>是Open JDK 默认虚拟机，所以非常广泛</li>
-<li>有方法区，是其他的虚拟机木有</li>
-<li>HotSpot 名称就是 热点代码探测技术<ul>
-<li>通过编译器找到最具备编译价值的代码（热点代码），触发即时编译或栈上替换</li>
-<li>编译器和解释器协同工作</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>三大商用虚拟机：<strong>HotSpot 、JRockit、IBM J9</strong><ul>
-<li>其他：和硬件绑定的虚拟机：AZul JVM和BEA Liquid JVM</li>
-</ul>
-</li>
-<li><strong>Graal VM</strong> 多语言虚拟机，支持C C++  java python等 有望在未来替代hotspot</li>
-</ul>
-<h2 id="【02】-类加载子系统"><a href="#【02】-类加载子系统" class="headerlink" title="【02】 类加载子系统"></a>【02】 类加载子系统</h2><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804220537547.png" alt="image-20210804220537547"></p>
-<p>类加载的过程分成三个步骤：<strong>加载→链接→初始化</strong></p>
-<ul>
-<li>Loading</li>
-<li>Linking（验证→准备→解析）</li>
-<li>Initialzation</li>
-</ul>
-<p>堆：堆中存放new出来的对象，是多个线程共享的</p>
-<p>方法区：存放类和方法的信息</p>
-<h4 id="如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？"><a href="#如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？" class="headerlink" title="如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？"></a>如果想要自己手写一个虚拟机的话，需要考虑哪些结构呢？</h4><ul>
-<li>类加载子系统（让输入逐条放到内存中）</li>
-<li>执行引擎（执行语句）</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804221521140.png" alt="image-20210804221521140"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804222154747.png" alt="image-20210804222154747"></p>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
-<li>通过一个类的全限定明，获取定义此类的 二进制字节流</li>
-<li>将这个字节流所代表的的静态存储结构转化为方法区运行时的数据结构</li>
-<li>在<strong>内存中生成一个代表这个类的java.lang.Class对象</strong>，作为方法区这个类的各种数据的访问入口（生成类实例是在此环节出现）</li>
-</ol>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804223855774.png" alt="image-20210804223855774"></p>
-<p>编译好的字节码文件，开头具有特殊标识：CAFEBABE 是个magic num</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210804224922497.png" alt="image-20210804224922497"></p>
-<ul>
-<li>所有的变量，最开始prepare的时候都赋默认值，到initial赋具体的值。</li>
-<li>常量（final static）：会在这里初始化</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805214443433.png" alt="image-20210805214443433"></p>
-<p>下面这段代码num、number输出什么？</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805215053260.png" alt="image-20210805215053260"></p>
-<p>答案：num输出2，number输出10</p>
-<p>原因：在类加载的时候，prepare阶段，就给num和number赋值0 然后在initialization阶段 分别先给num赋值1、2，给number赋值20、10（从上到下执行） </p>
-<p>但是特别注意一点：在number=20下面不能System.out.println（number）会提示错误的前向引用，这是因为prepare阶段 这个变量还是一个半成品，所以编译器报错不能用这个变量。</p>
-<p>这个代码输出啥？</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805220424307.png" alt="image-20210805220424307"></p>
-<p>答：执行子类的CLinit之前会执行完毕父类的，所以B=2。</p>
-<h3 id="类加载器分类"><a href="#类加载器分类" class="headerlink" title="类加载器分类"></a>类加载器分类</h3><p>JVM支持两种类加载器：<strong>引导类加载器，自定义类加载器</strong></p>
-<p>所有派生于抽象类ClassLoasder的类加载器都划分成了自定义类加载器（和语义不一样）</p>
-<ul>
-<li><p><strong>引导类加载器（启动类加载器，Bootstrap ClassLoader）</strong></p>
-<ul>
-<li>这个类加载使用C/C++实现</li>
-<li>用来加载Java核心库</li>
-<li>并不继承自java.lang.classLoader，没有父加载器</li>
-<li>加载扩展类和应用程序类加载器，并且当他们的爸爸（指定为他们的父类加载器）</li>
-<li>出于安全，只加载包名为java、javax、sun开头的类</li>
-</ul>
-</li>
-<li><p><strong>扩展类加载器</strong></p>
-<ul>
-<li>Java语言编写，由sum.mis.Launcher$ExtClassLoader实现</li>
-<li>派生于ClassLoader</li>
-<li>父类加载器为启动器加载类</li>
-<li>从java.ext.dirs系统属性所制定的目录中加载类库</li>
-</ul>
-</li>
-<li><p><strong>应用程序类加载器（系统类加载器，AppClassLoader）</strong></p>
-<ul>
-<li>Java语言编写，由sum.mis.Launcher$ExtClassLoader实现</li>
-<li>派生于ClassLoader</li>
-<li>父类加载器为扩展类加载类</li>
-<li>负责加载环境变量classpath或系统属性java.class.path制定路径下的类库</li>
-<li>是程序中的<strong>默认类加载器</strong>，</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805225546442.png" alt="image-20210805225546442"></p>
-</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223516282.png" alt="image-20210805223516282"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223207488.png" alt="image-20210805223207488"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805223342150.png" alt="image-20210805223342150"></p>
-<ul>
-<li>用户类使用系统类加载器进行加载</li>
-<li>系统类使用引导类加载器进行加载（引导类加载器只加载核心类库）</li>
-<li>有点像平民和贵族2333</li>
-<li>引导类加载器是用C++写的，所以获取他的getClassLoader会提示null</li>
-</ul>
-<p><strong>引导类加载器</strong>和<strong>扩展类加载器</strong>加载：</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210805225142997.png" alt="image-20210805225142997"></p>
-<h3 id="用户自定义类加载器"><a href="#用户自定义类加载器" class="headerlink" title="用户自定义类加载器"></a>用户自定义类加载器</h3><p>问：什么时候需要自定义类加载器？</p>
-<ul>
-<li>隔离加载类</li>
-<li>修改类的加载方式</li>
-<li>扩展加载源（比如 从机顶盒获取加载源）</li>
-<li>防止源码泄露</li>
-</ul>
-<p>如果需要自定义，继承java.lang.ClassLoader就行，并且重写findClass方法</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210808163716310.png" alt="image-20210808163716310"></p>
-<p>ClassLoader 类，是一个抽象类，所有的类加载器，除了启动类加载器，都继承自classloader</p>
-<p>获取ClassLoader的方法：</p>
-<ul>
-<li><p><code>clazz.getClassLoader</code> </p>
-</li>
-<li><p>Thread.currentThread().getContextClassLoader</p>
-</li>
-<li><p>ClassLoader.getSystemClassLoader()</p>
-</li>
-<li><p>DriverManager,getCallerClassLoader()  获取调用者的类加载器</p>
-</li>
-</ul>
-<h3 id="双亲委派机制（重点）"><a href="#双亲委派机制（重点）" class="headerlink" title="双亲委派机制（重点）"></a>双亲委派机制（重点）</h3><p>java对class文件使用的是<strong>按需加载</strong>的方式，当收到类加载请求的时候，不会立刻使用当前类加载器加载，而是会向上委托父类的加载器进行类加载，父亲加载失败再让子类自己处理（<strong>甩锅机制</strong>，儿子干不了的都找爸爸，爸爸干不了的才让儿子干，或者有点像孔融让梨）</p>
-<p>这样做的好处：防止自己写一个java.lang.String 等等的类替代掉核心的api，顺便一说 就算是自定义类 放在java.lang包下，比如java.lang.XxxClass 也是无法运行的</p>
-<h4 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h4><p>在加载类的时候如果有核心API ，那么会加载核心API，不会加载自定义同名的类</p>
-<h4 id="判断两个类是否相同的必要条件"><a href="#判断两个类是否相同的必要条件" class="headerlink" title="判断两个类是否相同的必要条件"></a>判断两个类是否相同的必要条件</h4><ul>
-<li>类名、含包名必须完全相同</li>
-<li>类加载器（ClassLoader对象）必须完全相同</li>
-</ul>
-<h4 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h4><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210808173505814.png" alt="image-20210808173505814"></p>
-<h3 id="运行时数据区结构"><a href="#运行时数据区结构" class="headerlink" title="运行时数据区结构"></a>运行时数据区结构</h3><ul>
-<li>堆、方法区（线程之间共享）</li>
-<li>栈、本地栈（每个线程一个）</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811213425195.png" alt="image-20210811213425195"></p>
-<p>红色的是进程共享，灰色是线程间共享</p>
-<p>再来回顾一下线程：</p>
-<ul>
-<li>线程是程序里的运行单元</li>
-<li>每个线程都和操作系统的本地线程直接映射</li>
-<li>当监理一个java线程准备好了之后，操作系统的本地线程也同时创建，线程执行中止后，本地线程也会回收。</li>
-<li>一旦本地线程初始化成功，就会调用java线程中的run()方法</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811213913076.png" alt="image-20210811213913076"></p>
-<p>安全点是在程序执行期间的所有<code>GC Root</code>已知并且<strong>所有堆对象的内容一致</strong>的点</p>
-<h2 id="【04】PC寄存器"><a href="#【04】PC寄存器" class="headerlink" title="【04】PC寄存器"></a>【04】PC寄存器</h2><p>Program Counter Register 程序技术寄存器，和CPU寄存器，数据结构类似</p>
-<p>PC寄存器用来存储指向<strong>下一条指令的地址</strong>，也就是下一条即将要执行指令的代码，由执行引擎读取下一条指令</p>
-<p>有点像程序执行时候的游标，程序的顺序、分支、循环、异常、线程等基础功能都需要以来计数器完成</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811220238190.png" alt="image-20210811220238190"></p>
-<p>唯一没有OutOfMemoryError</p>
-<p>执行引擎会到指令地址，取出对应的操作指令，然后执行操作</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210811221424324.png" alt="image-20210811221424324"></p>
-<p><strong>为什么要存储字节码指令地址呢？</strong></p>
-<ul>
-<li><p>因为CPU在不停切换各个线程，切换回来之后就需要从哪里开始继续执行</p>
-</li>
-<li><p>JVM字节码通过寄存器知道下一条应该执行哪一条指令</p>
-</li>
-</ul>
-<p><strong>为什么PC寄存器每个线程私有？</strong></p>
-<ul>
-<li>各个线程是轮流抢CPU资源执行（并发执行）所以每个线程都需要一个寄存器，CPU在线程之间高速切换</li>
-</ul>
-<h2 id="【05】-虚拟机栈"><a href="#【05】-虚拟机栈" class="headerlink" title="【05】 虚拟机栈"></a>【05】 虚拟机栈</h2><p>【复习】使用虚拟机栈的好处：跨平台（基于寄存器的不能跨平台），指令集小，编译器容易实现。缺点是性能下降，同样功能需要更多指令。</p>
-<p>堆和栈的区别：</p>
-<ul>
-<li>栈是运行时的单位</li>
-<li>堆是存储的单位</li>
-</ul>
-<p>局部变量在栈空间存储，仅限于基本数据类型，对于引用数据类型，栈里面仅存放引用地址。</p>
-<p><strong>栈管运行，堆管存储</strong>，用一道菜来表示，有点像佛跳墙，左侧是栈，右侧是堆，真正用来存储。</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210815220205611.png" alt="image-20210815220205611"></p>
-<h3 id="Java虚拟机栈"><a href="#Java虚拟机栈" class="headerlink" title="Java虚拟机栈"></a>Java虚拟机栈</h3><p>虚拟机栈是什么？早期也叫java栈，每个线程创建的时候都会创建一个虚拟机栈，内部保存一个个栈帧，，对应着一次次的java调用。 </p>
-<p>虚拟机栈是线程私有的。<strong>一个线程对应着一个虚拟机栈</strong>，栈的生命周期和线程一致。一次压栈可以压进好多方法的变量代表一个栈帧。</p>
-<ul>
-<li>局部变量 vs 成员变量</li>
-<li>基本数据变量 vs 引用类型变量（类、数组、接口等）</li>
-</ul>
-<p>栈的生命周期和线程一致</p>
-<p>（虚拟机栈优点）</p>
-<ul>
-<li>栈的访问速度仅次于程序计数器</li>
-<li>JVM直接对java栈的操作只有两个<ul>
-<li>每个方法执行，伴随着入栈、压栈</li>
-<li>执行结束后，出栈</li>
-</ul>
-</li>
-<li>对于栈来说 不存在垃圾回收 但是存在OOM，爆栈会提示stackoverflowerror</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span></span>&#123;</span><br><span class="line">	main(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个是最简单的爆栈演示。</p>
-<p>-Xss size 可以指定栈大小 例如-Xss1024k -Xss1m -Xss1048576</p>
-<h4 id="栈中有什么？"><a href="#栈中有什么？" class="headerlink" title="栈中有什么？"></a>栈中有什么？</h4><ol>
-<li><p>栈中的数据以栈帧为基本单位存储</p>
-</li>
-<li><p>每个执行方法对应一个栈帧。</p>
-</li>
-<li><p>栈帧是一个数据区块，维护着一个数据集，维系各种数据信息。</p>
-</li>
-</ol>
-<p>栈有先进后出的特性，一个时间点上只有一个活动的栈帧，只有当前活动的栈帧是有效的，称为当前栈帧（current stack frame）</p>
-<ul>
-<li>不同线程不能混用栈帧。</li>
-<li>栈帧遇到return 或异常会被弹出</li>
-</ul>
-<h3 id="每个栈帧中存储着："><a href="#每个栈帧中存储着：" class="headerlink" title="每个栈帧中存储着："></a>每个栈帧中存储着：</h3><ul>
-<li><strong>局部变量表</strong>（local var 局部变量表，局部变量数组或本地变量表）</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816205659257.png" alt="image-20210816205659257"></p>
-<p>long 和 double 8个字节，一个字节有8位 所以一共是64位（下图 index直接从3调到5）</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816214040762.png" alt="image-20210816214040762"></p>
-<p>Slot是可以重复利用的，当一个变量过了作用域之后，局部变量表可以重复利用分配给后面的 变量，达到节约空间的作用、</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816221128782.png" alt="image-20210816221128782"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816213511826.png" alt="image-20210816213511826"></p>
-<p>非静态的方法有this，存在局部变量表index0的位置，静态方法没有this。</p>
-<p><strong>静态类成员变量、实例变量和对象里面的局部变量的区别？</strong></p>
-<ol>
-<li>静态类变量在prepare阶段赋值0，在init阶段，再给类变量显式赋值</li>
-<li>实例变量在对象创建的时候在堆里面分配变量空间，并进行默认赋值</li>
-<li>局部变量在使用前，必须进行显式赋值，否则编译不通过（比如 int a; a++;）</li>
-</ol>
-<p>局部变量表中的变量是重要的垃圾回收根节点，只要是局部变量表中直接或间接引用的对象都不会被垃圾回收</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210816210927840.png" alt="image-20210816210927840"></p>
-<ul>
-<li><strong>操作数栈</strong> （表达式栈）</li>
-</ul>
-<p>​    每一个栈帧除了局部变量表外，还包含一个后进先出的操作数栈，用于执行操作数操作（就是逆波兰表达式的方式）</p>
-<p>入 1 入2 add →入3</p>
-<p>需要注意：返回值要压入操作数栈</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817220904575.png" alt="image-20210817220904575"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817221514224.png" alt="image-20210817221514224"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817221824407.png" alt="image-20210817221824407">（bipush占两行字节码指令byte本身只占一行) 就算是int 但是赋值的值没有大于byte的值 也是用的bipush，不是整数的push 整数是大于128才用这个push（当int取值-1<del>5采用iconst指令，取值-128</del>127采用bipush指令，取值-32768<del>32767采用sipush指令，取值-2147483648</del>2147483647采用 ldc 指令。)</p>
-<p>就是这个操作数栈 可以解释 i+++++i</p>
-<ul>
-<li>栈顶缓存</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817225332436.png" alt="image-20210817225332436"></p>
-<ul>
-<li><p>动态链接 （指向运行时常量池的方法引用）</p>
-<ul>
-<li>这一块、包括下面的方法返回地址以及一些附加信息又被叫做帧数据区</li>
-<li>简单来说就是栈帧里 指向了栈帧外的，位于字节码文件里面的运行时常量池的地址</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817230949996.png" alt="image-20210817230949996"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817231357524.png" alt="image-20210817231357524"></p>
-<p>为什么需要常量池呢？常量池提供了一些符号和常量，便于指令的识别。</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210817231035826.png" alt="image-20210817231035826"></p>
-</li>
-<li><p>方法返回地址</p>
-</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818212005767.png" alt="image-20210818212005767"></p>
-<p>多态的时候就会出现动态链接，比如狗和猫都实现了动物里面的eat方法，但是调用animal.eat()，具体调用的方法还是需要到调用的时候才能确定。</p>
-<p>java中的方法有虚方法的特征</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818213856091.png" alt="image-20210818213856091"></p>
-<p>（静态 私有 final 实例 父类）</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818214957136.png" alt="image-20210818214957136"></p>
-<p>类加载阶段会创建一个虚方法表，存放着不能确定具体调用对象的虚方法。具体调用的时候还要查找，如果查找不到，或者没有访问权限，会报illegalAccessError</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818223055370.png" alt="image-20210818223055370"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818214034072.png" alt="image-20210818214034072"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818215639943.png" alt="image-20210818215639943"></p>
-<p>java是静态+半动态语言，因为lambda表达式有了一部分动态的特性，像js、python就是纯动态的语言，具体来说就是var name=”xxx”; 而不是必须得String </p>
-<p>异常的处理：</p>
-<ul>
-<li><p>正常栈帧执行完成的时候：通过PC计数器调用下一条指令</p>
-</li>
-<li><p>异常退出的时候，查表（异常处理表）</p>
-</li>
-</ul>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818230234688.png" alt="image-20210818230234688"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210818225943612.png" alt="image-20210818225943612"></p>
-<p>表表示在4-16行处理异常，去第19行处理。</p>
-<ul>
-<li>一些附加信息</li>
-</ul>
-<h4 id="五道面试题"><a href="#五道面试题" class="headerlink" title="五道面试题"></a>五道面试题</h4><ul>
-<li>举例栈溢出的情况（StackOverflowError）递归</li>
-<li>通过调整栈大小，就能保证不出现溢出吗？不能</li>
-<li>垃圾回收是否会涉及虚拟机栈？不会</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>PC寄存器</th>
-<th>虚拟机栈</th>
-<th>本地方法栈</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Error</td>
-<td>无</td>
-<td>有</td>
-<td>有</td>
-</tr>
-<tr>
-<td>GC</td>
-<td>无</td>
-<td>无</td>
-<td>无</td>
-</tr>
-</tbody></table>
-<ul>
-<li>分配的栈内存越大越好吗？不是的，整个内存空间有限的，栈空间越大，栈的总数就越少。</li>
-<li>方法中定义的局部变量是否是线程安全的？（线程安全定义：如果只有一个线程可以操作这个数据，那他就是线程安全，反之如果多个线程可以操作数据，那他就是线程不安全的）答：是线程安全的，因为栈帧是每个线程自己有自己的一份。就算是静态的代码，比如:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Integer bbb=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里 这个i 就是线程安全的，每个调用它的线程都会在自己的栈帧里创建一个i。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">(StringBuiler sb)</span></span>&#123;</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里传入的sb可能是存在线程不安全的，毕竟他不是局部变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StringBuiler <span class="title">method3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	StringBuiler sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> sb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个可能是存在线程不安全的问题！因为变量返回出去之后可能被多个线程调用（比如别的线程调用的method2）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">method3</span><span class="params">()</span></span>&#123;</span><br><span class="line">	StringBuiler sb=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">	sb.append(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个就是线程安全的，因为返回的不是SB 而是String，String类是线程安全的</p>
-<p>总体来说就是生命周期只在方法内部的就是安全的</p>
-<h2 id="【06】本地方法接口"><a href="#【06】本地方法接口" class="headerlink" title="【06】本地方法接口"></a>【06】本地方法接口</h2><h3 id="什么是本地方法"><a href="#什么是本地方法" class="headerlink" title="什么是本地方法"></a>什么是本地方法</h3><p>简单来说，一个native method 就是一个java调用非java代码的接口，native method由非java方法实现，初衷就是融合C和C++程序。native代码在java类里没实现，就像抽象方法，毕竟不是用java写的</p>
-<p>使用native的目的：</p>
-<ul>
-<li>和外部文件交互</li>
-<li>和操作系统交互</li>
-<li>和Sun交互（java底层解释器用C写的）</li>
-</ul>
-<p>最常见的：Object.getClass();</p>
-<h2 id="【07】本地方法栈"><a href="#【07】本地方法栈" class="headerlink" title="【07】本地方法栈"></a>【07】本地方法栈</h2><p>本地方法栈：管理本地方法的，是线程私有的。</p>
-<p>允许被实现成固定或可动态扩展的内存大小</p>
-<h3 id="虚拟机栈和本地方法栈的区别"><a href="#虚拟机栈和本地方法栈的区别" class="headerlink" title="虚拟机栈和本地方法栈的区别"></a>虚拟机栈和本地方法栈的区别</h3><ul>
-<li>虚拟机栈：管理java方法的调用</li>
-<li>本地方法栈：管理本地方法的调用</li>
-</ul>
-<p>本地方法：用C语言实现</p>
-<p>如果不打算调用C语言，可以不用本地方法栈，在Hotspot中，本地方法栈和虚拟机栈合二为一。</p>
-<h2 id="【08】-堆"><a href="#【08】-堆" class="headerlink" title="【08】 堆"></a>【08】 堆</h2><p>栈管运行，堆管存储。堆是<strong>运行时数据区</strong>最大的一块。堆是<strong>进程</strong>唯一的（一个进程对应一个JVM实例），堆在物理上可以是<strong>不连续的内存空间</strong>，但是在JVM里面视为是<strong>连续的</strong>。堆在JVM启动的时候创建，他的空间大小同时确定，他的内存大小是可以调节的。</p>
-<p>围观jvm运行的工具：jvisualvm.exe</p>
-<ul>
-<li>堆分为年轻代和老年代（分代思想）</li>
-<li>堆有内存大小，会OOM</li>
-<li>Minor GC 、 Major GC 、 Full GC</li>
-<li>内存分配策略</li>
-<li>为对象分配内存（TLAB）</li>
-<li>堆空间的参数设置（需要背）</li>
-</ul>
-<h3 id="堆空间的划分"><a href="#堆空间的划分" class="headerlink" title="堆空间的划分"></a>堆空间的划分</h3><p>JDK7之前分为新生代，养老代和<strong>永久区</strong></p>
-<p>JDK8之后堆内存在逻辑上，新生区，养老区和<strong>元空间</strong></p>
-<p>新生区等价于新生代，这个划分方法是逻辑划分</p>
-<p>永久区 元空间暂时不是堆的内容，暂时不被堆的设置影响到。</p>
-<p>7和8的区别就是永久区→元空间</p>
-<h3 id="堆空间大小设置"><a href="#堆空间大小设置" class="headerlink" title="堆空间大小设置"></a>堆空间大小设置</h3><p>-Xmx 最大内存大小 (默认是物理内存1/4)</p>
-<p>-Xms 表示堆区起始内存 （默认是物理内存1/64）</p>
-<p>查看的：Runtime.getRuntime().maxMemory();</p>
-<p>建<strong>议初始堆内存和最大堆内存</strong>设置成一样的，防止内存波动（开辟内存会浪费时间）</p>
-<p>查看设置的参数：</p>
-<ol>
-<li>jps → jstat -gc 进程id</li>
-<li>-XX: +PrintGCDetails</li>
-</ol>
-<h3 id="年轻代和老年代"><a href="#年轻代和老年代" class="headerlink" title="年轻代和老年代"></a>年轻代和老年代</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825224347401.png" alt="image-20210825224347401"></p>
-<p>Eden：伊甸园。java对象最开始创建的位置</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825224920712.png" alt="image-20210825224920712"></p>
-<p><strong>几乎</strong>所有的java对象都是在Eden区被new出来的 。如果Eden区放不下，会放到老年代</p>
-<p>根据统计，绝大部分的Java对象销毁都在新生代进行</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210825225421454.png" alt="image-20210825225421454"></p>
-<h3 id="对象分配过程"><a href="#对象分配过程" class="headerlink" title="对象分配过程"></a>对象分配过程</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210831213920467.png" alt="image-20210831213920467"></p>
-<p>伊甸园区满了：进行Young GC 也叫Minor GC  </p>
-<p>​    → 把伊甸园区放到S0</p>
-<p>​    → 第二次GC： S0放到S1，伊甸园也放到S1，清空S0     S0到S1的时候对象的age会+1</p>
-<p>   → 第三次GC： S1放到S0，伊甸园也放到S0，清空S1     S1到S0的时候对象的age会+1</p>
-<p>。。。</p>
-<p>​    →age达到15之后，对象会promotion（晋升） 也就是说15次GC这个对象还活着，晋升之后这个对象放到老年区</p>
-<p>伊甸园区满了，进行YoungGC ，但是幸存者区满了呢？答：会按照一定规则放到老年代。</p>
-<p>也有可能伊甸园区的对象，进行GC 直接就放到老年代（自带超级赛亚人光环）</p>
-<p>幸存者两个区，轮流使用，第一次用0区，第二次用1区 ，也叫from区和to区，但是from和to和 S0 S1不是一一对应的，下一个就是to（或者说 执行完GC之后，空的就是to区）</p>
-<p>口诀：<strong>S0 S1复制之后有交换，谁空谁是To区</strong></p>
-<p>关于垃圾回收：<strong>频繁动新生代，很少收集养老代，几乎不在永久区/元空间收集</strong></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210831215935168.png" alt="image-20210831215935168"></p>
-<h4 id="常用调优工具"><a href="#常用调优工具" class="headerlink" title="常用调优工具"></a>常用调优工具</h4><p>JVisualVM</p>
-<p>Jconsole</p>
-<p>JDK命令行</p>
-<p>GCViewer</p>
-<p>JProfiler</p>
-<h3 id="【重要】-Minor-GC、Major-GC-和FullGC"><a href="#【重要】-Minor-GC、Major-GC-和FullGC" class="headerlink" title="【重要】 Minor GC、Major GC 和FullGC"></a>【重要】 Minor GC、Major GC 和FullGC</h3><p>并不是每次GC时，都对EDEN区、幸存者区以及老年代区</p>
-<p><strong>JVM调优的目的</strong>：让GC次数少一些</p>
-<p>GC的时候会让用户线程暂停（stop the world）</p>
-<p>Minor GC：只是新生代的垃圾收集</p>
-<p>Major GC：只是老年代的垃圾收集  很多时候Major GC和Full GC混淆使用，需要区分是老年代回收还是整堆回收</p>
-<p>Full GC： 收集整个java堆和方法区的垃圾收集</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901220352307.png" alt="image-20210901220352307"></p>
-<p><strong>年轻代EDEN区满触发MinorGC  Survivor满不会触发GC</strong> 大部分Java对象具有朝生夕死的特性，所以MinorGC 非常频繁，回收速度也比较块 MinorGC会触发STW，暂停其他用户线程，等到垃圾回收结束，用户线程才恢复运行。</p>
-<p><strong>MajorGC触发的时候经常伴随一次Minor GC 但是不一定</strong>，MajorGC 的速度比Minor GC慢十倍以上，STW时间更长。如果MajorGC之后内存还是不足，就OOM 了</p>
-<p><strong>FULL GC一般要避免</strong></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901221256858.png" alt="image-20210901221256858"></p>
-<p><code>Xms9m Xmx9m -XX -PrintGCDetails</code> 跑一个死循环的程序，会报OOM</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901221814725.png" alt="image-20210901221814725"></p>
-<p>打印日志，可以发现OOM之前有一次Full GC</p>
-<h4 id="堆空间分代思想"><a href="#堆空间分代思想" class="headerlink" title="堆空间分代思想"></a>堆空间分代思想</h4><p>为什么要给Java堆分代？不分代就不能工作了吗？</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901222559595.png" alt="image-20210901222559595"></p>
-<p>JDK8里永久代变成元空间</p>
-<p>不分代完全是可以的，分代唯一理由就是优化GC性能</p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901222632013.png" alt="image-20210901222632013"></p>
-<h4 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h4><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901223002837.png" alt="image-20210901223002837"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210901223227485.png" alt="image-20210901223227485"></p>
-<p><strong>动态对象年龄判断</strong>：一个age的对象占s区超过一半时，来回在from  to区倒腾对象也是浪费次数，不如直接去老年区，留着占s区地方</p>
-<p>大对象直接进老年代：</p>
-<p>byte [] bytes=new byte[1024 * 1024 * 20]; //20m</p>
-<p>内存分配规则：</p>
-<ul>
-<li>优先分配到Eden</li>
-<li>大对象直接分配到老年代（避免程序中出现过多大对象）</li>
-<li>动态对象年龄判断</li>
-<li>空间分配担保</li>
-</ul>
-<h4 id="为什么会有TLAB？"><a href="#为什么会有TLAB？" class="headerlink" title="为什么会有TLAB？"></a>为什么会有TLAB？</h4><p>堆区是线程共享区域，任何线程都可以访问到堆区中的共享数据</p>
-<p>什么事TLAB？JVM给每个线程分配的一个私有区域，分配内存时，可以避免一系列非线程安全问题</p>
-<p>TLAB只占有EDEN空间1%，但是JVM把TLAB作为内存分配的首选</p>
-<h3 id="9-小结堆空间参数设置"><a href="#9-小结堆空间参数设置" class="headerlink" title="9. 小结堆空间参数设置"></a>9. 小结堆空间参数设置</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222001465.png" alt="image-20211013222001465"></p>
-<p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222030565.png" alt="image-20211013222030565"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1373,146 +1000,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/SPRINGBOOT%E7%BC%96%E5%86%99%E6%B5%81%E7%A8%8B%E5%92%8CHELLOworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/SPRINGBOOT%E7%BC%96%E5%86%99%E6%B5%81%E7%A8%8B%E5%92%8CHELLOworld/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-06 14:10:11" itemprop="dateModified" datetime="2020-01-06T14:10:11+08:00">2020-01-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SPRING-BOOT编写流程"><a href="#SPRING-BOOT编写流程" class="headerlink" title="SPRING BOOT编写流程"></a>SPRING BOOT编写流程</h1><h2 id="框架编写流程："><a href="#框架编写流程：" class="headerlink" title="框架编写流程："></a>框架编写流程：</h2><ol>
-<li><p>导包</p>
-<ol>
-<li>容器相关的包： beans core context expression</li>
-<li>非WEB项目必须手动导包，并且要右键添加到web项目</li>
-<li>除此之外还要导入一个commons-logging的日志包，没有会报错</li>
-</ol>
-</li>
-<li><p>写配置</p>
-<ol>
-<li><p>spring配置文件中，集合了IOC容器管理的所有组件</p>
-</li>
-<li><p>源码（src）包下，右键创建一个spring configuration文件</p>
-<p><img src="image-20191128161316963.png" alt="image-20191128161316963"></p>
-</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注册一个Person对象，Spring自动创建这个Person对象--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    一个Bean标签可以注册一个组件、类</span></span><br><span class="line"><span class="comment">    class: 要注册的组件的全类名</span></span><br><span class="line"><span class="comment">    id: 这个对象的唯一标识</span></span><br><span class="line"><span class="comment">    property 标签：给属性赋值</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;菜龙&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;220@qq.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1165&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol>
-<li>测试</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.bean.Person;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IOCTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 从容器中拿到组件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIOC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//ApplicationContext 代表IOC容器</span></span><br><span class="line">        <span class="comment">//当前配置的XML配置文件在ClassPath下</span></span><br><span class="line">        <span class="comment">//根据SPRING配置文件得到IOC对象</span></span><br><span class="line"></span><br><span class="line">        ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;IOCTest.xml&quot;</span>);</span><br><span class="line">        Person person01 =(Person) ioc.getBean(<span class="string">&quot;person01&quot;</span>);</span><br><span class="line">        System.out.println(person01);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>结果：Person{name=’菜龙’, email=‘<a href="mailto:&#x32;&#x32;&#x30;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#x32;&#x32;&#x30;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>‘, QQ=1165, gender=’male’}</p>
-<p>我们没有创建对象，但是却获取了对象</p>
-<p>存在的几个问题：</p>
-<ul>
-<li><p>src 源码包开始的路径：称为类路径的开始</p>
-<ul>
-<li>（非WEB项目）所有源码包里的东西都会合并放在类路径里面；</li>
-<li>java：/bin/</li>
-<li>（WEB项目）/WEB-INF/classes 是类路径的开始</li>
-</ul>
-</li>
-<li><p>导入包必须5个一起导</p>
-</li>
-<li><p>先导包在创建配置文件</p>
-</li>
-<li><p>Spring容器接管了xml文件之后，xml文件会有一个小叶子 不然是没有的</p>
-</li>
-<li><p>几个细节：</p>
-<ul>
-<li><p>ApplicationContext(IOC容器的接口) 有两个儿子，一个是ClassPathXmlApplicationContext 表示XML文件配置文件在类路径下，另一个是FileSystemXmlApplicationContext(“f://IOC.xml”)，表示XML文件配置在文件系统下</p>
-</li>
-<li><p>XML文件最好是放在src路径下，不要和bean放一起</p>
-</li>
-<li><p>Bean的对象是什么时候创建好的？<strong>new ClassPathXmlApplicationContext，创建容器的时候创建的</strong>，所以不用等到get的时候再创建对象</p>
-</li>
-<li><p>由于上面的特性，使用同一个组件，获取两次容器的对象，获取的地址是一样的，也就是说，同一个组件在IOC容器中是单实例的</p>
-</li>
-<li><p>如果要获取不存在的对象，比如Person person01 =(Person) ioc.getBean(“person21”); 会报org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named ‘person21’ available</p>
-</li>
-<li><p>最后一个细节，用property赋值一定是调用getter setter来赋值的</p>
-</li>
-<li><p>javaBean的属性名是由什么决定的？getter setter，首字母小写就是属性名</p>
-</li>
-<li></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1584,7 +1071,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

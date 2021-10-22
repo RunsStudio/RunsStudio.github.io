@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,146 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/SPRINGBOOT%E7%BC%96%E5%86%99%E6%B5%81%E7%A8%8B%E5%92%8CHELLOworld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/Spring/SPRINGBOOT%E7%BC%96%E5%86%99%E6%B5%81%E7%A8%8B%E5%92%8CHELLOworld/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 14:10:11" itemprop="dateModified" datetime="2020-01-06T14:10:11+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="SPRING-BOOT编写流程"><a href="#SPRING-BOOT编写流程" class="headerlink" title="SPRING BOOT编写流程"></a>SPRING BOOT编写流程</h1><h2 id="框架编写流程："><a href="#框架编写流程：" class="headerlink" title="框架编写流程："></a>框架编写流程：</h2><ol>
+<li><p>导包</p>
+<ol>
+<li>容器相关的包： beans core context expression</li>
+<li>非WEB项目必须手动导包，并且要右键添加到web项目</li>
+<li>除此之外还要导入一个commons-logging的日志包，没有会报错</li>
+</ol>
+</li>
+<li><p>写配置</p>
+<ol>
+<li><p>spring配置文件中，集合了IOC容器管理的所有组件</p>
+</li>
+<li><p>源码（src）包下，右键创建一个spring configuration文件</p>
+<p><img src="image-20191128161316963.png" alt="image-20191128161316963"></p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--注册一个Person对象，Spring自动创建这个Person对象--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    一个Bean标签可以注册一个组件、类</span></span><br><span class="line"><span class="comment">    class: 要注册的组件的全类名</span></span><br><span class="line"><span class="comment">    id: 这个对象的唯一标识</span></span><br><span class="line"><span class="comment">    property 标签：给属性赋值</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;菜龙&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;220@qq.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1165&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>测试</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.bean.Person;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IOCTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 从容器中拿到组件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIOC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//ApplicationContext 代表IOC容器</span></span><br><span class="line">        <span class="comment">//当前配置的XML配置文件在ClassPath下</span></span><br><span class="line">        <span class="comment">//根据SPRING配置文件得到IOC对象</span></span><br><span class="line"></span><br><span class="line">        ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;IOCTest.xml&quot;</span>);</span><br><span class="line">        Person person01 =(Person) ioc.getBean(<span class="string">&quot;person01&quot;</span>);</span><br><span class="line">        System.out.println(person01);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果：Person{name=’菜龙’, email=‘<a href="mailto:&#x32;&#x32;&#x30;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#x32;&#x32;&#x30;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>‘, QQ=1165, gender=’male’}</p>
+<p>我们没有创建对象，但是却获取了对象</p>
+<p>存在的几个问题：</p>
+<ul>
+<li><p>src 源码包开始的路径：称为类路径的开始</p>
+<ul>
+<li>（非WEB项目）所有源码包里的东西都会合并放在类路径里面；</li>
+<li>java：/bin/</li>
+<li>（WEB项目）/WEB-INF/classes 是类路径的开始</li>
+</ul>
+</li>
+<li><p>导入包必须5个一起导</p>
+</li>
+<li><p>先导包在创建配置文件</p>
+</li>
+<li><p>Spring容器接管了xml文件之后，xml文件会有一个小叶子 不然是没有的</p>
+</li>
+<li><p>几个细节：</p>
+<ul>
+<li><p>ApplicationContext(IOC容器的接口) 有两个儿子，一个是ClassPathXmlApplicationContext 表示XML文件配置文件在类路径下，另一个是FileSystemXmlApplicationContext(“f://IOC.xml”)，表示XML文件配置在文件系统下</p>
+</li>
+<li><p>XML文件最好是放在src路径下，不要和bean放一起</p>
+</li>
+<li><p>Bean的对象是什么时候创建好的？<strong>new ClassPathXmlApplicationContext，创建容器的时候创建的</strong>，所以不用等到get的时候再创建对象</p>
+</li>
+<li><p>由于上面的特性，使用同一个组件，获取两次容器的对象，获取的地址是一样的，也就是说，同一个组件在IOC容器中是单实例的</p>
+</li>
+<li><p>如果要获取不存在的对象，比如Person person01 =(Person) ioc.getBean(“person21”); 会报org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named ‘person21’ available</p>
+</li>
+<li><p>最后一个细节，用property赋值一定是调用getter setter来赋值的</p>
+</li>
+<li><p>javaBean的属性名是由什么决定的？getter setter，首字母小写就是属性名</p>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1004,81 +1144,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/Spring/12.16%20%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/Spring/12.16%20%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-16 15:26:44" itemprop="dateModified" datetime="2019-12-16T15:26:44+08:00">2019-12-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="12-16-中文乱码-字符编码转换"><a href="#12-16-中文乱码-字符编码转换" class="headerlink" title="12.16 中文乱码 字符编码转换"></a>12.16 中文乱码 字符编码转换</h1><h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><p>jsp下web和java前后端交互会产生乱码，需要用CharacterEncodingFilter解决</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--    这个顺序会影响转换结果，放在最后约等于没用！ 所以字符转换必须放在所有servlet等的最前面！--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">async-supported</span>&gt;</span>true<span class="tag">&lt;/<span class="name">async-supported</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>jsp页面上写点东西</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/book&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">    书名&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;bookName&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    作者&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;author&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    价格&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;price&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    库存&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;stock&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    销量&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;sales&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交图书&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><p>在server.xml下找到</p>
-<p>&lt;</p>
-
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1150,7 +1215,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

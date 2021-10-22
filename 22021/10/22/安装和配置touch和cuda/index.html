@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"runsstudio.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Traffic Engineer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Run&#39;s Studio">
-<meta property="og:url" content="http://runsstudio.github.io/archives/2021/page/3/index.html">
+  <meta name="description" content="请参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;tryhardwy&#x2F;p&#x2F;14659131.html 注意：直接粘贴 pip install torch&#x3D;&#x3D;1.8.1+cu102 torchvision&#x3D;&#x3D;0.9.0+cu102 torchaudio&#x3D;&#x3D;0.8.0 -f https:&#x2F;&#x2F;download.pytorch.org&#x2F;whl&#x2F;torch_stable.html，会提示找不到torc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装和配置Pytorch和cuda">
+<meta property="og:url" content="http://runsstudio.github.io/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="Traffic Engineer">
+<meta property="og:description" content="请参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;tryhardwy&#x2F;p&#x2F;14659131.html 注意：直接粘贴 pip install torch&#x3D;&#x3D;1.8.1+cu102 torchvision&#x3D;&#x3D;0.9.0+cu102 torchaudio&#x3D;&#x3D;0.8.0 -f https:&#x2F;&#x2F;download.pytorch.org&#x2F;whl&#x2F;torch_stable.html，会提示找不到torc">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="+022021-10-22T12:36:16.000Z">
+<meta property="article:modified_time" content="2021-10-22T12:36:18.253Z">
 <meta property="article:author" content="藏龙御景">
-<meta property="article:tag" content="交通工程">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://runsstudio.github.io/archives/2021/page/3/">
+<link rel="canonical" href="http://runsstudio.github.io/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/">
 
 
 <script id="page-configurations">
@@ -39,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Run's Studio</title>
+  <title>安装和配置Pytorch和cuda | Run's Studio</title>
   
 
 
@@ -191,240 +193,157 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">不错! 目前共计 57 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安装和配置Pytorch和cuda
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：22021-10-22 20:36:16" itemprop="dateCreated datePublished" datetime="22021-10-22T20:36:16+08:00">22021-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-22 20:36:18" itemprop="dateModified" datetime="2021-10-22T20:36:18+08:00">2021-10-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.16%20sessionAttribute%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E7%94%A8/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.16%20POJO%20%E8%87%AA%E5%8A%A8%E5%B0%81%E8%A3%85%E5%AF%B9%E8%B1%A1/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.16%20MODEL%20MAP%20MODELMAP%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.16%20DispatcherServlet%E6%B5%81%E7%A8%8B/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.16%20@ModelAttribute()%E6%B3%A8%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.13%20REST%E6%80%9D%E6%83%B3/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.13%20@RequestMapping%E7%94%A8%E6%B3%95/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.12%20SPRING%20MVC%E5%85%A5%E9%97%A8%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%9D%91/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.11%20%E5%A3%B0%E6%98%8E%E4%BA%8B%E5%8A%A1/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-07-18T21:12:26+08:00"
-              content="2021-07-18">
-          07-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/07/18/Spring/12.11%20%E5%9F%BA%E4%BA%8E%E9%85%8D%E7%BD%AE%E7%9A%84AOP%E6%AD%A5%E9%AA%A4/" itemprop="url">
-            <span itemprop="name">未命名</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <p>请参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tryhardwy/p/14659131.html">https://www.cnblogs.com/tryhardwy/p/14659131.html</a></p>
+<p>注意：直接粘贴</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.0+cu102 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</code>，会提示找不到torchvision==0.9.0+cu102 导致安装失败！</p>
+<p>正确的安装语句是：</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 -f https://download.pytorch.org/whl/torch_stable.html</code></p>
 
     </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------文章已结束~<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+        <div class="reward-container">
+  <div>穷且益坚，不堕青云之志。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="藏龙御景 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="藏龙御景 支付宝">
+        <p>支付宝</p>
+      </div>
+
   </div>
-  
-  
-  
+</div>
 
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>藏龙御景
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://runsstudio.github.io/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/" title="安装和配置Pytorch和cuda">http://runsstudio.github.io/22021/10/22/安装和配置touch和cuda/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i># 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/28/%E5%AF%BC%E5%87%BAJar%E5%8C%85%E5%B9%B6%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8/" rel="prev" title="导出含第三方依赖的Jar包并在Python中调用">
+      <i class="fa fa-chevron-left"></i> 导出含第三方依赖的Jar包并在Python中调用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2021/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2021/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2021/page/6/">6</a><a class="extend next" rel="next" href="/archives/2021/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80ODE2Ny8yNDY2Mw=="></div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -629,6 +548,21 @@
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 </body>
 </html>

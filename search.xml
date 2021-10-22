@@ -2258,6 +2258,8 @@ a)    执行下面流程
 <li>内存动态分配</li>
 <li>垃圾收集技术</li>
 </ul>
+<span id="more"></span>
+
 <h3 id="JVM是一种跨语言的平台"><a href="#JVM是一种跨语言的平台" class="headerlink" title="JVM是一种跨语言的平台"></a>JVM是一种跨语言的平台</h3><p>像scala、kotlin、Jython、groovy 等都可以通过编译器编译成字节码文件，在JVM里面运行</p>
 <p>JVM只关心字节码文件，而不关心文件是怎么被编译出来的</p>
 <p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20210725211333435.png" alt="image-20210725211333435"></p>
@@ -2719,6 +2721,22 @@ a)    执行下面流程
 <p>TLAB只占有EDEN空间1%，但是JVM把TLAB作为内存分配的首选</p>
 <h3 id="9-小结堆空间参数设置"><a href="#9-小结堆空间参数设置" class="headerlink" title="9. 小结堆空间参数设置"></a>9. 小结堆空间参数设置</h3><p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222001465.png" alt="image-20211013222001465"></p>
 <p><img src="/2021/07/25/JVM%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/image-20211013222030565.png" alt="image-20211013222030565"></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安装和配置Pytorch和cuda</title>
+    <url>/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/</url>
+    <content><![CDATA[<p>请参考：<a href="https://www.cnblogs.com/tryhardwy/p/14659131.html">https://www.cnblogs.com/tryhardwy/p/14659131.html</a></p>
+<p>注意：直接粘贴</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.0+cu102 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</code>，会提示找不到torchvision==0.9.0+cu102 导致安装失败！</p>
+<p>正确的安装语句是：</p>
+<p><code>pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 -f https://download.pytorch.org/whl/torch_stable.html</code></p>
 ]]></content>
       <categories>
         <category>Java</category>

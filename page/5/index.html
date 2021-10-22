@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -193,6 +193,155 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/IOC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/18/IOC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-06 14:08:49" itemprop="dateModified" datetime="2020-01-06T14:08:49+08:00">2020-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type ‘com.runsstudio.bean.Person’ available: expected single</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person bean = ioc.getBean(Person.class);</span><br><span class="line">    System.out.println(bean.toString());</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * NoUniqueBeanDefinitionException:</span></span><br><span class="line"><span class="comment">    * No qualifying bean of type</span></span><br><span class="line"><span class="comment">    * &#x27;com.runsstudio.bean.Person&#x27; available:</span></span><br><span class="line"><span class="comment">    *  expected single*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;菜龙&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;220@qq.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1165&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person02&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;强禹&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;233@qq.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2333&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="0-通过有参构造器赋值"><a href="#0-通过有参构造器赋值" class="headerlink" title="0 通过有参构造器赋值"></a>0 通过有参构造器赋值</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person03&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--调用有参构造器创建对象并赋值--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;张放&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2222&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;fdsk&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;男&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过构造器来给bean赋值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Person person03 = ioc.getBean(<span class="string">&quot;person03&quot;</span>, Person.class);</span><br><span class="line">    System.out.println(person03.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-通过P名称空间为bean赋值：用来防止标签重复"><a href="#1-通过P名称空间为bean赋值：用来防止标签重复" class="headerlink" title="1 通过P名称空间为bean赋值：用来防止标签重复"></a>1 通过P名称空间为bean赋值：用来防止标签重复</h3><p>名称空间：在XML中 名称空间是为了防止重复的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br></pre></td></tr></table></figure>
+
+<p>使用p名称空间，需要导入xmlns:p=”<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/p&quot;">http://www.springframework.org/schema/p&quot;</a></p>
+<h2 id="2-各种复杂的赋值"><a href="#2-各种复杂的赋值" class="headerlink" title="2 各种复杂的赋值"></a>2 各种复杂的赋值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试为各种属性赋值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">()</span></span>&#123;</span><br><span class="line">     ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;IOCTest2.xml&quot;</span>);</span><br><span class="line">    Person person07 = ioc.getBean(<span class="string">&quot;person01&quot;</span>, Person.class);</span><br><span class="line">    Car car=ioc.getBean(<span class="string">&quot;car02&quot;</span>,Car.class);</span><br><span class="line">    System.out.println(person07.toString());</span><br><span class="line">    System.out.println(person07.getName()==<span class="keyword">null</span>);</span><br><span class="line">    System.out.println(car==person07.getCar());<span class="comment">//true 引用的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--复杂标签的赋值都在property里赋值,给name赋值null--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">null</span>&gt;</span><span class="tag">&lt;/<span class="name">null</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;car&quot;</span> &gt;</span></span><br><span class="line">        <span class="comment">&lt;!--第一种方式：直接也可以放在这里面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;car01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Car&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;carName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;宝马&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;price&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1000&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;carList&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;car02&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--第二种方式 引用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;car02&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Car&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;carName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;宏碁&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;price&quot;</span> <span class="attr">value</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-级联属性"><a href="#3-级联属性" class="headerlink" title="3 级联属性"></a>3 级联属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--级联属性赋值:属性的属性--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span> <span class="attr">id</span>=<span class="string">&quot;person04&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--为car赋值的时候改变下价格--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;car&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;car02&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--级联属性可以修改属性的属性，但是1修改都修改--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;car.price&quot;</span> <span class="attr">value</span>=<span class="string">&quot;300&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">        Car car=ioc.getBean(<span class="string">&quot;car02&quot;</span>,Car.class);</span><br><span class="line">        Car car1 = person04.getCar();</span><br><span class="line">        System.out.println(car);</span><br><span class="line">        System.out.println(car1);<span class="comment">//</span></span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//Car&#123;carName=&#x27;宏碁&#x27;, price=300&#125;</span></span><br><span class="line"><span class="comment">//Car&#123;carName=&#x27;宏碁&#x27;, price=300&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-parent-继承关系"><a href="#4-parent-继承关系" class="headerlink" title="4 parent 继承关系"></a>4 parent 继承关系</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--parent：制定当前bean配置信息继承与那个，不是真的有继承关系--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;菜龙&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;220@qq.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;QQ&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1165&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;gender&quot;</span> <span class="attr">value</span>=<span class="string">&quot;male&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;person02&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Person&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;person01&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;强禹&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test07</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationContext ioc=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;IOCTestExtends.xml&quot;</span>);</span><br><span class="line">        Person person01 = ioc.getBean(<span class="string">&quot;person01&quot;</span>, Person.class);</span><br><span class="line">        Person person02 = ioc.getBean(<span class="string">&quot;person02&quot;</span>, Person.class);</span><br><span class="line">        System.out.println(person01);</span><br><span class="line">        System.out.println(person02);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出</span></span><br><span class="line"><span class="comment">Person&#123;name=&#x27;菜龙&#x27;, email=&#x27;220@qq.com&#x27;, QQ=1165, gender=&#x27;male&#x27;, flag=false, car=null, carList=null, maps=null, properties=null&#125;</span></span><br><span class="line"><span class="comment">Person&#123;name=&#x27;强禹&#x27;, email=&#x27;220@qq.com&#x27;, QQ=1165, gender=&#x27;male&#x27;, flag=false, car=null, carList=null, maps=null, properties=null&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-ABSTRACT-抽象"><a href="#5-ABSTRACT-抽象" class="headerlink" title="5 ABSTRACT 抽象"></a>5 ABSTRACT 抽象</h3><p>可以在创建person的时候指定abstract属性 即abstract=true<br>这个时候如果获取实例会抛org.springframework.beans.factory.BeanIsAbstractException</p>
+<h3 id="6-bean之间的依赖"><a href="#6-bean之间的依赖" class="headerlink" title="6 bean之间的依赖"></a>6 bean之间的依赖</h3><p>bean的创建顺序是按照xml中从上到下的</p>
+<p>bean的创建顺序可以改变</p>
+<p>可以在配置xml的时候 指定depends-on属性决定bean的创建顺序</p>
+<h3 id="7-bean-的作用域，分别创建单实例和多实例的bean"><a href="#7-bean-的作用域，分别创建单实例和多实例的bean" class="headerlink" title="7 bean 的作用域，分别创建单实例和多实例的bean"></a>7 bean 的作用域，分别创建单实例和多实例的bean</h3><p>bean默认是单实例的。但是也可以指定多个实例</p>
+<p><code>&lt;bean id=&quot;car&quot; class=&quot;com.runsstudio.bean.Car&quot; scope=&quot;prototype&quot;&gt;&lt;/bean&gt;</code></p>
+<p>prototype：多实例的</p>
+<ul>
+<li>启动的时候不会创建多实例bean</li>
+<li>在get Bean的时候创建Bean</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Car car = ioc.getBean(<span class="string">&quot;car&quot;</span>, Car.class);</span><br><span class="line">Car car2 = ioc.getBean(<span class="string">&quot;car&quot;</span>, Car.class);</span><br><span class="line">System.out.println(car==car2);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>singleton：单实例的</p>
+<ul>
+<li>在容器启动完成之前就已经创建好对象，保存在容器中了</li>
+<li>任何时候获取都是获取之前创建好的那个</li>
+</ul>
+<h3 id="8-利用工厂的方法创建实例"><a href="#8-利用工厂的方法创建实例" class="headerlink" title="8 利用工厂的方法创建实例"></a>8 利用工厂的方法创建实例</h3><p>bean的框架就是利用反射new出来的bean实例</p>
+<ul>
+<li><p>静态工厂：工厂本身不用创建对象；通过静态方法调用 对象=工厂类.工厂方法名()</p>
+</li>
+<li><p>实例工厂：工厂本身需要创建对象 工厂类 工厂对象=new 工厂类()； 工厂对象.getAirPlane(“”)；</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;car01&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.factory.CarStaticFactory&quot;</span> <span class="attr">factory-method</span>=<span class="string">&quot;getCar&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--方法指定参数--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;carName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;红旗&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;price&quot;</span> <span class="attr">value</span>=<span class="string">&quot;20000&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--实例工厂:首先创建工厂，然后指定实例</span></span><br><span class="line"><span class="comment">    1. 创建实例工厂</span></span><br><span class="line"><span class="comment">    2. 配置要创建的bean对象使用工厂中的哪个工厂方法--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;carInstanceFactory&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.factory.CarInstanceFactory&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;car02&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.bean.Car&quot;</span> <span class="attr">factory-bean</span>=<span class="string">&quot;carInstanceFactory&quot;</span> <span class="attr">factory-method</span>=<span class="string">&quot;getCar&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;type&quot;</span> <span class="attr">value</span>=<span class="string">&quot;宝马马&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-Factory工厂类"><a href="#9-Factory工厂类" class="headerlink" title="9 Factory工厂类"></a>9 Factory工厂类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.runsstudio.factory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.runsstudio.bean.Car;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.FactoryBean;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * FactoryBean工厂类</span></span><br><span class="line"><span class="comment"> * 1. 编写FactoryBean的实现类</span></span><br><span class="line"><span class="comment"> * 2. 在Spring配置文件中注册才有的功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarFactoryBeanImpl</span> <span class="keyword">implements</span> <span class="title">FactoryBean</span>&lt;<span class="title">Car</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 工厂方法：返回创建的对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Car <span class="title">getObject</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Car car = <span class="keyword">new</span> Car(<span class="string">&quot;工厂造车&quot;</span>, <span class="number">200</span>);</span><br><span class="line">        <span class="keyword">return</span> car;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回创建的对象的类型</span></span><br><span class="line"><span class="comment">     * Spring会自动调用这个方法来确认创建的对象的类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">        <span class="keyword">return</span> Car.class;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 是单例吗？</span></span><br><span class="line"><span class="comment">     * false 不是单例</span></span><br><span class="line"><span class="comment">     * true 是单例</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSingleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置一个工厂方法--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;carFactoryBeanImpl&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">class</span>=<span class="string">&quot;com.runsstudio.factory.CarFactoryBeanImpl&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实现控制反转：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object carFactoryBeanImpl = ioc.getBean(<span class="string">&quot;carFactoryBeanImpl&quot;</span>);</span><br><span class="line">System.out.println(carFactoryBeanImpl);</span><br></pre></td></tr></table></figure>
+
+<p>输出：<code>Car&#123;carName=&#39;工厂造车&#39;, price=200&#125;</code></p>
+<h3 id="10-创建带有生命周期的Bean"><a href="#10-创建带有生命周期的Bean" class="headerlink" title="10 创建带有生命周期的Bean"></a>10 创建带有生命周期的Bean</h3><ul>
+<li>单实例Bean 容器启动的时候创建好，容器关闭的时候销毁</li>
+<li>多实例bean，获取的时候才创建</li>
+</ul>
+<p>spring 可以为bean自定义一些声明周期方法，spring在创建和销毁的时候会调用指定的方法在XML中用</p>
+<p>destroy-method</p>
+<p>init-method 来指定</p>
+<p>Bean生命周期：</p>
+<p>构造器——》构造方法——》销毁</p>
+<h3 id="11-测试bean的后置处理器"><a href="#11-测试bean的后置处理器" class="headerlink" title="11 测试bean的后置处理器"></a>11 测试bean的后置处理器</h3><p>Spring有一个接口：后置处理器，可以在Bean初始化前后处理方法</p>
+<p>BeanPostProcessor</p>
+<h3 id="12-引用外部属性文件，管理数据库连接池"><a href="#12-引用外部属性文件，管理数据库连接池" class="headerlink" title="12 引用外部属性文件，管理数据库连接池"></a>12 引用外部属性文件，管理数据库连接池</h3><p>数据库连接池作为单实例是最好的，一个项目就一个连接池，连接池里管理很多链接</p>
+
+      
+    </div>
+
+    
+    
+    
+<div>
+  
+</div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -966,87 +1115,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/07/18/AOP%E5%A4%8D%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="藏龙御景">
-      <meta itemprop="description" content="Traffic Engineer">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Run's Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/18/AOP%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-18 21:12:26" itemprop="dateCreated datePublished" datetime="2021-07-18T21:12:26+08:00">2021-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-11 17:44:50" itemprop="dateModified" datetime="2021-03-11T17:44:50+08:00">2021-03-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="AOP复习"><a href="#AOP复习" class="headerlink" title="AOP复习"></a>AOP复习</h1><p>aop含义：面向切面编程，具体实现：动态代理<br>就是说在方法运行的前后 都要运行方法<br>具体来说就是在</p>
-<ul>
-<li>方法开始</li>
-<li>方法返回</li>
-<li>方法异常</li>
-<li>方法结束<br>在这些地方调用方法的话叫做横切关注点</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/18/AOP%E5%A4%8D%E4%B9%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-<div>
-  
-</div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1118,7 +1186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
