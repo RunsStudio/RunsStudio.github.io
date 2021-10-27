@@ -2731,7 +2731,7 @@ a)    执行下面流程
   </entry>
   <entry>
     <title>安装和配置Pytorch和cuda</title>
-    <url>/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/</url>
+    <url>/2021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/</url>
     <content><![CDATA[<p>请参考：<a href="https://www.cnblogs.com/tryhardwy/p/14659131.html">https://www.cnblogs.com/tryhardwy/p/14659131.html</a></p>
 <p>注意：直接粘贴</p>
 <p><code>pip install torch==1.8.1+cu102 torchvision==0.9.0+cu102 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</code>，会提示找不到torchvision==0.9.0+cu102 导致安装失败！</p>
@@ -2741,6 +2741,49 @@ a)    执行下面流程
       <categories>
         <category>Java</category>
       </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>贝叶斯神经网络笔记</title>
+    <url>/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>   贝叶斯理论：</p>
+<ul>
+<li>衡量可信度belief（概率是对可信度的度量）</li>
+<li>有先验概率</li>
+<li>有后验概率，先验后验都是概率分布</li>
+<li>先验概率会影响后验概率</li>
+<li>后验概率由于是一个分布，由此可以得到可信度</li>
+</ul>
+<span id="more"></span>
+
+<p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027204809785.png" alt="image-20211027204809785"></p>
+<p>简单来说就是：</p>
+<ul>
+<li>打麻将算剩下的牌的概率</li>
+</ul>
+<h3 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h3><p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205032511.png" alt="image-20211027205032511"></p>
+<p>在神经网络里，我们的任务就是要求一个P(H|D),这里D 是data，或者叫evidence，H是假设，通常也就是我们待求的参数。也就是说在观测到D的前提下，算H的概率</p>
+<p>普通神经网络可以当做BNN的特例。</p>
+<h3 id="怎么设计BNN？"><a href="#怎么设计BNN？" class="headerlink" title="怎么设计BNN？"></a>怎么设计BNN？</h3><p>一个神经网络+一个统计模型+先验概率和似然概率</p>
+<p>后验概率怎么算？</p>
+<p>方法1：MCMC</p>
+<p>基本思想：随机采样，然后再采样一个点，如果更好就接受，不然就以一定概率接受。</p>
+<p>metropolis-hasting</p>
+<p>方法2：变分推断</p>
+<p>P(H|D)不好计算，我们用一个参数化的分布（变分分布）去近似得到p（H|D）</p>
+<p>他通过一系列推导，把算P（H|D），用一个近似分布拟合P（H|D），目标是让两个分布的KL散度最小（KL散度衡量不同分布之间的距离），通过推导可以得到最小化KL散度等价于最大化ELBO</p>
+<p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205904933.png" alt="image-20211027205904933"></p>
+<p>最大化ELBO经过一系列变量变化可以推导出一个类似反向传播的方法，又叫BBB</p>
+<h3 id="模型评价"><a href="#模型评价" class="headerlink" title="模型评价"></a>模型评价</h3><p>MAP </p>
+<p>Kurtosis</p>
+<p>自卑自信</p>
+<h3 id="模型缺点"><a href="#模型缺点" class="headerlink" title="模型缺点"></a>模型缺点</h3><ul>
+<li>模型更加复杂，收敛慢</li>
+<li>参数太多</li>
+</ul>
+]]></content>
       <tags>
         <tag>学习</tag>
       </tags>

@@ -20,18 +20,24 @@
     var CONFIG = {"hostname":"runsstudio.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Traffic Engineer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Run&#39;s Studio">
-<meta property="og:url" content="http://runsstudio.github.io/archives/22021/10/index.html">
+  <meta name="description" content="贝叶斯理论：  衡量可信度belief（概率是对可信度的度量） 有先验概率 有后验概率，先验后验都是概率分布 先验概率会影响后验概率 后验概率由于是一个分布，由此可以得到可信度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝叶斯神经网络笔记">
+<meta property="og:url" content="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="Traffic Engineer">
+<meta property="og:description" content="贝叶斯理论：  衡量可信度belief（概率是对可信度的度量） 有先验概率 有后验概率，先验后验都是概率分布 先验概率会影响后验概率 后验概率由于是一个分布，由此可以得到可信度">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027204809785.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205032511.png">
+<meta property="og:image" content="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205904933.png">
+<meta property="article:published_time" content="2021-10-27T12:44:25.000Z">
+<meta property="article:modified_time" content="2021-10-27T14:34:54.450Z">
 <meta property="article:author" content="藏龙御景">
-<meta property="article:tag" content="交通工程">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027204809785.png">
 
-<link rel="canonical" href="http://runsstudio.github.io/archives/22021/10/">
+<link rel="canonical" href="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -39,12 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Run's Studio</title>
+  <title>贝叶斯神经网络笔记 | Run's Studio</title>
   
 
 
@@ -135,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">57</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-胖虎">
@@ -191,57 +197,172 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">不错! 目前共计 57 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="藏龙御景">
+      <meta itemprop="description" content="Traffic Engineer">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Run's Studio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          贝叶斯神经网络笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-27 20:44:25 / 修改时间：22:34:54" itemprop="dateCreated datePublished" datetime="2021-10-27T20:44:25+08:00">2021-10-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">22021</span>
+        <p>   贝叶斯理论：</p>
+<ul>
+<li>衡量可信度belief（概率是对可信度的度量）</li>
+<li>有先验概率</li>
+<li>有后验概率，先验后验都是概率分布</li>
+<li>先验概率会影响后验概率</li>
+<li>后验概率由于是一个分布，由此可以得到可信度</li>
+</ul>
+<span id="more"></span>
+
+<p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027204809785.png" alt="image-20211027204809785"></p>
+<p>简单来说就是：</p>
+<ul>
+<li>打麻将算剩下的牌的概率</li>
+</ul>
+<h3 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h3><p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205032511.png" alt="image-20211027205032511"></p>
+<p>在神经网络里，我们的任务就是要求一个P(H|D),这里D 是data，或者叫evidence，H是假设，通常也就是我们待求的参数。也就是说在观测到D的前提下，算H的概率</p>
+<p>普通神经网络可以当做BNN的特例。</p>
+<h3 id="怎么设计BNN？"><a href="#怎么设计BNN？" class="headerlink" title="怎么设计BNN？"></a>怎么设计BNN？</h3><p>一个神经网络+一个统计模型+先验概率和似然概率</p>
+<p>后验概率怎么算？</p>
+<p>方法1：MCMC</p>
+<p>基本思想：随机采样，然后再采样一个点，如果更好就接受，不然就以一定概率接受。</p>
+<p>metropolis-hasting</p>
+<p>方法2：变分推断</p>
+<p>P(H|D)不好计算，我们用一个参数化的分布（变分分布）去近似得到p（H|D）</p>
+<p>他通过一系列推导，把算P（H|D），用一个近似分布拟合P（H|D），目标是让两个分布的KL散度最小（KL散度衡量不同分布之间的距离），通过推导可以得到最小化KL散度等价于最大化ELBO</p>
+<p><img src="/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/image-20211027205904933.png" alt="image-20211027205904933"></p>
+<p>最大化ELBO经过一系列变量变化可以推导出一个类似反向传播的方法，又叫BBB</p>
+<h3 id="模型评价"><a href="#模型评价" class="headerlink" title="模型评价"></a>模型评价</h3><p>MAP </p>
+<p>Kurtosis</p>
+<p>自卑自信</p>
+<h3 id="模型缺点"><a href="#模型缺点" class="headerlink" title="模型缺点"></a>模型缺点</h3><ul>
+<li>模型更加复杂，收敛慢</li>
+<li>参数太多</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------文章已结束~<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="22021-10-22T20:36:16+08:00"
-              content="22021-10-22">
-          10-22
-        </time>
+  
+</div>
+        <div class="reward-container">
+  <div>穷且益坚，不堕青云之志。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="藏龙御景 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="藏龙御景 支付宝">
+        <p>支付宝</p>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/22021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/" itemprop="url">
-            <span itemprop="name">安装和配置Pytorch和cuda</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
+</div>
 
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>藏龙御景
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://runsstudio.github.io/2021/10/27/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" title="贝叶斯神经网络笔记">http://runsstudio.github.io/2021/10/27/贝叶斯神经网络笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i># 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/22/%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEtouch%E5%92%8Ccuda/" rel="prev" title="安装和配置Pytorch和cuda">
+      <i class="fa fa-chevron-left"></i> 安装和配置Pytorch和cuda
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80ODE2Ny8yNDY2Mw=="></div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -288,6 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">贝叶斯定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1BNN%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">怎么设计BNN？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7"><span class="nav-number">3.</span> <span class="nav-text">模型评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BC%BA%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">模型缺点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -303,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -446,6 +568,21 @@
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 </body>
 </html>
