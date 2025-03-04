@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Hexo新建博客并上传Github全流程</title>
+    <link href="/2025/03/04/hexo%E6%96%B0%E5%BB%BA%E6%93%8D%E4%BD%9C%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%B5%81%E7%A8%8B/"/>
+    <url>/2025/03/04/hexo%E6%96%B0%E5%BB%BA%E6%93%8D%E4%BD%9C%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%B5%81%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h1 id="step-1-安装node-js和git环境"><a href="#step-1-安装node-js和git环境" class="headerlink" title="step 1. 安装node.js和git环境"></a>step 1. 安装node.js和git环境</h1><p>可参考网上教程</p><h1 id="step-2-安装hexo"><a href="#step-2-安装hexo" class="headerlink" title="step 2. 安装hexo"></a>step 2. 安装hexo</h1><p>此时已经安装好了node.js和git，下面开始hexo的安装<br>首先在某一磁盘目录下创建文件夹，例如F盘，创建文件夹名为 Blog<br>进入Blog文件夹，右键鼠标-&gt;选择<code>Git Bash Here</code><br>输入 <code>npm install -g hexo-cli</code> ，并耐心等待一段时间<br>输入 <code>npm install hexo -save</code>，也耐心等待一段时间<br>此时我们可以发现，在Blog文件夹中多了许多内容<br>在Blog文件夹中新建文件夹，命名为hexo<br>关闭当前Git Bash，进入hexo文件夹，右键鼠标-&gt;选择Git Bash Here，或者直接在当前的Git Bash中输入 cd hexo<br>输入hexo init，初始化hexo环境，耐心等待一段时间<br>输入npm install，安装npm依赖包，耐心等待一段时间<br>输入hexo generate或者是hexo g，生成静态页面，耐心等待一段时间<br>输入hexo server或者是hexo s，生成本地服务。我们每次写完博客后，可以先在本地预览一下看看有没有什么问题，然后再发布到网上。<br>接着，我们在浏览器中访问<a href="http://localhost:4000/%EF%BC%8C%E8%BF%99%E5%B0%B1%E6%98%AF%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%94%9F%E6%88%90%E7%9A%84%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E3%80%82">http://localhost:4000/，这就是在本地生成的一个博客。</a><br>在Git Bash中按下Ctrl+C，可以关闭当前端口服务。</p><p>到这里，我们的本地博客就已经搭建完成了。下面将介绍如何与Github连接，将博客上传Internet</p><h1 id="step-3-新建Github仓库"><a href="#step-3-新建Github仓库" class="headerlink" title="step 3. 新建Github仓库"></a>step 3. 新建Github仓库</h1><p>登录到自己的Github中，新建一个仓库，命名为username.github.io，其中的username是你的用户名，勾选Initialiaze this repository with a README，创建仓库<br>我们可以访问自己的<code>username.github.io</code><br>返回<code>username.github.io</code>的仓库中，复制Git地址</p><h1 id="step-4-本地操作"><a href="#step-4-本地操作" class="headerlink" title="step 4.本地操作"></a>step 4.本地操作</h1><p>我们在<code>/Blog/hexo/</code>文件夹中，找到<code>_config.yml</code>文件，用文本编辑器打开它<br>将最下面的deploy改为下图所示的内容，其中repo的地址就是刚才我们复制的Git地址，修改好后保存退出 【注】修改内容中的:和后面的字母之间要有一个空格，否则后续内容会报错<br>接下来，我们暂且不考虑新建文章，在<code>Git Bash</code>中执行<code>npm install hexo-deployer-git </code>–save命令，耐心等待一段时间<br>最后执行 <code>hexo deploy</code>或者<code>hexo d</code>【注】这一步需要保证Github上拥有本机的公钥，可以自行查找解决办法<br>最后，成功部署</p><h1 id="step-5-上传博客"><a href="#step-5-上传博客" class="headerlink" title="step 5.上传博客"></a>step 5.上传博客</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>在Git Bash中输入<code>hexo new title</code>，其中，title就是我们这篇文章的名字。我们可以看到，在\Blog\hexo\source_posts\ 文件夹中新建了一个名称为<code>Test1.md</code>的文件<br>我们去编辑一下这个文件，此处需要Linux的部分知识，可以自行上网查找<br>编辑结束后，保存退出</p><h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><p>使用hexo g，生成静态文件<br>使用hexo d来将文档部署到Github上<br>最后我们访问username.github.io，发现刚才编辑的文档已经成功发布到了Internet上面<br>————————————————</p><p>版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。</p><p>原文链接：<a href="https://blog.csdn.net/qq_43669381/article/details/107823432">https://blog.csdn.net/qq_43669381/article/details/107823432</a></p><p>部署流程（带图版）：<a href="https://blog.csdn.net/clearloe/article/details/139879493">https://blog.csdn.net/clearloe/article/details/139879493</a></p><h2 id="乱码问题解决方法"><a href="#乱码问题解决方法" class="headerlink" title="乱码问题解决方法"></a>乱码问题解决方法</h2><p>需要注意：如果本地部署没有出现乱码，但是主题上传到github上可能出现乱码，排版不正常的情况，此时要修改 <code>__config.yaml</code> 文件,修改：<br>url: <a href="https://yourpage.github.io/">https://yourpage.github.io</a> （自己的主页的网址，最后不要有&#x2F;）<br>root: &#x2F;   （增加这一行）<br>保存后重新生成并部署即可正常显示。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Run&#39;s Studio 重新出发</title>
     <link href="/2025/03/04/hello-world/"/>
     <url>/2025/03/04/hello-world/</url>
