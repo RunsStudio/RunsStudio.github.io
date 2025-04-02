@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="交通">
+  
+    <meta name="description" content="从小土堆Pytorch教程中记录一些实用的Pytorch相关操作. 加载数据PILPIL类可以用于加载图像、保存图像等操作 12from PIL import Imageimg &#x3D; Image.open(&#x27;data&#x2F;hymenoptera_data&#x2F;train&#x2F;ants&#x2F;342438950_a3da61deab.jpg&#x27;) DataSetDataSet是一个抽象类，需要实现其中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch快速入门笔记">
+<meta property="og:url" content="https://runsstudio.github.io/2025/04/02/Pytorch%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/index.html">
+<meta property="og:site_name" content="Run&#39;s Studio">
+<meta property="og:description" content="从小土堆Pytorch教程中记录一些实用的Pytorch相关操作. 加载数据PILPIL类可以用于加载图像、保存图像等操作 12from PIL import Imageimg &#x3D; Image.open(&#x27;data&#x2F;hymenoptera_data&#x2F;train&#x2F;ants&#x2F;342438950_a3da61deab.jpg&#x27;) DataSetDataSet是一个抽象类，需要实现其中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-02T12:32:28.000Z">
+<meta property="article:modified_time" content="2025-04-02T13:53:26.621Z">
+<meta property="article:tag" content="交通">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Pytorch快速入门笔记 - Run&#39;s Studio</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"runsstudio.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Run&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Pytorch快速入门笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-02 20:32" pubdate>
+          2025年4月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Pytorch快速入门笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>从<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hE411t7RN/">小土堆Pytorch教程</a>中记录一些实用的Pytorch相关操作.</p>
+<h1 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h1><h2 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h2><p>PIL类可以用于加载图像、保存图像等操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br>img = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data/hymenoptera_data/train/ants/342438950_a3da61deab.jpg&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="DataSet"><a href="#DataSet" class="headerlink" title="DataSet"></a>DataSet</h2><p>DataSet是一个抽象类，需要实现其中的<code>__getitem__</code>方法，以及最好是实现<code>__len__</code>方法，不然不能用迭代器，用for循环的方式取数据,<br>以下是一个自定义数据集的设置方式，可以看到需要重写<code>__getitem__</code>方法取数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyDataSet</span>(<span class="hljs-title class_ inherited__">Dataset</span>):<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, data_dir, transforms=<span class="hljs-literal">None</span></span>):<br>        <span class="hljs-built_in">super</span>().__init__()<br>        <span class="hljs-variable language_">self</span>.data_dir = data_dir<br>        <span class="hljs-variable language_">self</span>.image_paths = os.listdir(data_dir)<br>        <span class="hljs-variable language_">self</span>.transforms = transforms<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>) -&gt; T_co:<br>        img_file_name = <span class="hljs-variable language_">self</span>.image_paths[index]<br>        img = Image.<span class="hljs-built_in">open</span>(<span class="hljs-variable language_">self</span>.data_dir + img_file_name)<br>        img_trans = <span class="hljs-variable language_">self</span>.transforms(img)<br>        <span class="hljs-keyword">return</span> img_trans<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(<span class="hljs-variable language_">self</span>.image_paths)<br></code></pre></td></tr></table></figure>
+
+<h2 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h2><p>如果把DataSet看做一副牌，那么DataLoader就是用于定义如何发牌，或者对牌进行一些操作（洗牌、转换格式等），如果已经有一个数据集，那么可以通过这种方式定义data_loader</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">my_ds = MyDataSet(data_dir=<span class="hljs-string">&#x27;data/hymenoptera_data/val/ants/&#x27;</span>, transforms=trans)<br><span class="hljs-comment"># drop_last: 总长度除bs 除不尽的时候是否去掉最后一个</span><br><span class="hljs-comment"># batch_size: 批的量</span><br>data_loader = DataLoader(dataset=my_ds, batch_size=<span class="hljs-number">2</span>, shuffle=<span class="hljs-literal">True</span>, drop_last=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p>定义好的数据集，可以通过DataLoader加载，并通过for循环取数据，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">step = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> images <span class="hljs-keyword">in</span> data_loader:<br>    <span class="hljs-built_in">print</span>(images.shape)<br>    writer.add_images(<span class="hljs-string">&#x27;image_batch&#x27;</span>, images, step)  <span class="hljs-comment"># (tag,Image,step(不添加这个参数 tensorboard里面的step始终为零))</span><br>    step += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h2 id="torchvision数据集的下载和使用"><a href="#torchvision数据集的下载和使用" class="headerlink" title="torchvision数据集的下载和使用"></a>torchvision数据集的下载和使用</h2><p>如果是一些成熟的数据集，比如CIFAR10，可以用封装好的方式获取数据集，这些数据集也是重写了DataSet类，可以传入transform</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">train_data = torchvision.datasets.CIFAR10(root=<span class="hljs-string">&#x27;../data&#x27;</span>, train=<span class="hljs-literal">True</span>, transform=torchvision.transforms.ToTensor(),<br>                                          download=<span class="hljs-literal">True</span>)<br>test_data = torchvision.datasets.CIFAR10(root=<span class="hljs-string">&#x27;../data&#x27;</span>, train=<span class="hljs-literal">False</span>, transform=torchvision.transforms.ToTensor(),<br>                                         download=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<h1 id="Tensorboard-的使用"><a href="#Tensorboard-的使用" class="headerlink" title="Tensorboard 的使用"></a>Tensorboard 的使用</h1><p>首先定义一个SummaryWriter()，然后就可以用writer里面的方法往tensorboard里面写数据，不仅可以添加过程量还可以添加单张图像。默认的路径保存到本地runs目录下，可以用SummaryWriter()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">writer = SummaryWriter()<br><span class="hljs-comment"># 添加过程量（标量）</span><br><span class="hljs-keyword">for</span> n_iter <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):<br>    writer.add_scalar(<span class="hljs-string">&#x27;Loss/train&#x27;</span>, np.random.random(), n_iter)<br>    writer.add_scalar(<span class="hljs-string">&#x27;Loss/test&#x27;</span>, np.random.random(), n_iter)<br>    writer.add_scalar(<span class="hljs-string">&#x27;Accuracy/train&#x27;</span>, np.random.random(), n_iter)<br>    writer.add_scalar(<span class="hljs-string">&#x27;Accuracy/test&#x27;</span>, np.random.random(), n_iter)<br>writer.add_image(tag=<span class="hljs-string">&#x27;test&#x27;</span>, img_tensor=img_tensor)<br></code></pre></td></tr></table></figure>
+<p>查看数据：cd到保存文件的文件夹下，输入<code>tensorboard --logdir runs</code> runs对应文件保存的目录，然后就可以通过访问<code>http://localhost:6006/#timeseries</code>查看记录的结果</p>
+<h1 id="Transforms-的使用"><a href="#Transforms-的使用" class="headerlink" title="Transforms 的使用"></a>Transforms 的使用</h1><p>Transforms用来对一张图片进行一系列的转换，可以用Compose定义需要转换的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">trans = transforms.Compose([<br>    transforms.ToTensor(),<br>    <span class="hljs-comment"># transforms.RandomCrop(size=(50,50)) 随机裁剪</span><br>    transforms.Resize((<span class="hljs-number">100</span>, <span class="hljs-number">100</span>))<br>])<br><br></code></pre></td></tr></table></figure>
+<p>定义好转换之后，可以对单张图片进行转换，把图像传入就可以，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 添加图像</span><br>img = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;data/hymenoptera_data/train/ants/342438950_a3da61deab.jpg&#x27;</span>)<br><span class="hljs-comment"># 图像转换</span><br>trans = transforms.Compose([<br>    transforms.ToTensor(),<br>    <span class="hljs-comment"># transforms.RandomCrop(size=(50,50)) # 随机裁剪</span><br>])<br>img_tensor = trans(img)<br></code></pre></td></tr></table></figure>
+
+<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><h2 id="卷积函数"><a href="#卷积函数" class="headerlink" title="卷积函数"></a>卷积函数</h2><p>卷积函数的定义网上有很多了就不再赘述了，定义一个卷积核，然后和现在的矩阵进行卷积操作，可得到一个结果。</p>
+<p>借用知乎<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161660908">2D卷积,nn.Conv2d和F.conv2d</a>一段话：卷积操作：卷积核和扫过的小区域对应位置相乘再求和的操作，卷积完成后一般要加个偏置bias。一种Kernel如果分成多个通道上的子Kernel做卷积运算，最后运算结果还要加在一起后，再加偏置。</p>
+<p>使用卷积运算的时候需要注意输入输出的尺寸，需要对齐，比如Conv2D 如果是函数就要求B ,C 两个维度要对齐。<br>需要注意的点是输入输出维度会根据stride、padding的设置改变，比如64×64的图像进去，不设置padding出来的图像可能就变成62×62了，如果还要保持图像尺寸一致（特别是复现论文的场景），需要反算一下stride和padding的值，这里公式在<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html#torch.nn.Conv2d">Pytorch Conv2d文档</a>，需要的时候直接查阅就好。</p>
+<p>关于可视化展示卷积函数中的stride、padding、dilation参数的含义，可参考文档：<a target="_blank" rel="noopener" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">Convolution arithmetic</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br><br>w = torch.rand(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 对应 B C ×卷积核的 H W，前2个维度对应上（在H W两个维度上进行卷积）</span><br>res = F.conv2d(<span class="hljs-built_in">input</span>=a, weight=w, stride=<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(res)<br><br>tensor([[[[-<span class="hljs-number">0.9163</span>, -<span class="hljs-number">1.4657</span>, -<span class="hljs-number">3.6013</span>,  ...,  <span class="hljs-number">0.1913</span>, -<span class="hljs-number">1.4308</span>, -<span class="hljs-number">1.1725</span>],<br>          [-<span class="hljs-number">1.7863</span>, -<span class="hljs-number">1.1487</span>, -<span class="hljs-number">3.5197</span>,  ..., -<span class="hljs-number">0.5010</span>, -<span class="hljs-number">2.3962</span>, -<span class="hljs-number">3.8177</span>],<br>          [-<span class="hljs-number">0.0863</span>, -<span class="hljs-number">0.3723</span>, -<span class="hljs-number">1.7177</span>,  ..., -<span class="hljs-number">1.9196</span>, -<span class="hljs-number">1.4938</span>, -<span class="hljs-number">2.6761</span>],<br>          ...,<br>          [ <span class="hljs-number">0.8136</span>, -<span class="hljs-number">4.5267</span>, -<span class="hljs-number">0.6807</span>,  ..., -<span class="hljs-number">2.2519</span>,  <span class="hljs-number">1.4239</span>, -<span class="hljs-number">0.9793</span>],<br>          [ <span class="hljs-number">1.8353</span>, -<span class="hljs-number">1.8440</span>, -<span class="hljs-number">3.9382</span>,  ..., -<span class="hljs-number">1.8193</span>,  <span class="hljs-number">2.7279</span>,  <span class="hljs-number">4.4726</span>],<br>          [ <span class="hljs-number">0.5444</span>,  <span class="hljs-number">1.2673</span>, -<span class="hljs-number">3.4205</span>,  ..., -<span class="hljs-number">2.3179</span>, -<span class="hljs-number">2.5870</span>, -<span class="hljs-number">1.7544</span>]]]])<br></code></pre></td></tr></table></figure>
+<h2 id="池化函数"><a href="#池化函数" class="headerlink" title="池化函数"></a>池化函数</h2><p>池化函数是深度学习中常用的技术，主要用于降低数据的维度和减少计算量。常见的池化函数包括：</p>
+<ol>
+<li>最大池化（Max Pooling）：在池化窗口内选取最大值作为输出，能够提取图像中的主要特征。</li>
+<li>平均池化（Average Pooling）：在池化窗口内取平均值作为输出，可以平滑输入数据，减少噪声的影响。</li>
+<li>自适应池化（Adaptive Pooling）：根据输入的大小自动调整池化窗口的大小，以适应不同的输入尺寸。</li>
+</ol>
+<p>池化操作可以分为一维池化、二维池化和三维池化，具体取决于被池化的张量维数。池化不仅可以减小数据大小，还可以增加数据大小，具体取决于应用场景。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">a = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">64</span>, <span class="hljs-number">64</span>)<br>res = F.max_pool2d(a,kernel_size=<span class="hljs-number">2</span>) <span class="hljs-comment"># kernel_size指定2的话是默认2×2的2d（正方形）。而且池化默认区域不重叠的，默认步长就是kernel_size=2，这一点和卷积运算不一样</span><br><span class="hljs-built_in">print</span>(res.shape) <span class="hljs-comment"># torch.Size([1, 3, 32, 32])</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="神经网络的搭建"><a href="#神经网络的搭建" class="headerlink" title="神经网络的搭建"></a>神经网络的搭建</h1><h2 id="卷积层、池化层、非线性激活层"><a href="#卷积层、池化层、非线性激活层" class="headerlink" title="卷积层、池化层、非线性激活层"></a>卷积层、池化层、非线性激活层</h2><p>通过引入<code>torch.nn</code>引入常见神经网络的层，包括卷积层、池化层等.以及非线性激活层，RELU SOFTMAX之类的，具体就不再展开了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNeuralNetwork</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args, **kwargs</span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)<br>        <span class="hljs-variable language_">self</span>.conv1 = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)<br>        <span class="hljs-variable language_">self</span>.conv2 = nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">64</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)<br>        <span class="hljs-variable language_">self</span>.max_pool = nn.MaxPool2d(<span class="hljs-number">4</span>)<br>        <span class="hljs-variable language_">self</span>.relu = nn.ReLU()<br>        <span class="hljs-variable language_">self</span>.softmax = nn.Softmax()<br>        <span class="hljs-comment"># in_channels: int,</span><br>        <span class="hljs-comment"># out_channels: int,</span><br>        <span class="hljs-comment"># kernel_size: _size_2_t,</span><br>        <span class="hljs-comment"># stride: _size_2_t = 1,</span><br>        <span class="hljs-comment"># padding: Union[str, _size_2_t] = 0,</span><br>        <span class="hljs-comment"># dilation: _size_2_t = 1,</span><br><br>a = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">64</span>, <span class="hljs-number">64</span>)<br><br>mnn = MyNeuralNetwork()<br><br>res_conv1 = mnn.conv1(a)<br><span class="hljs-built_in">print</span>(res_conv1.shape)  <span class="hljs-comment"># torch.Size([1, 64, 64, 64])</span><br><br>res_conv2 = mnn.conv2(a)<br><span class="hljs-built_in">print</span>(res_conv2.shape)  <span class="hljs-comment"># torch.Size([1, 64, 62, 62])</span><br><br>res_max_pool = mnn.max_pool(a)<br><span class="hljs-built_in">print</span>(res_max_pool.shape)  <span class="hljs-comment"># torch.Size([1, 3, 16, 16])</span><br><br><br></code></pre></td></tr></table></figure>
+<h2 id="线性层及其他层"><a href="#线性层及其他层" class="headerlink" title="线性层及其他层"></a>线性层及其他层</h2><p>未完待续</p>
+<h2 id="Sequential的使用"><a href="#Sequential的使用" class="headerlink" title="Sequential的使用"></a>Sequential的使用</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Pytorch快速入门笔记</div>
+      <div>https://runsstudio.github.io/2025/04/02/Pytorch快速上手/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/31/hello-world/" title="Run&#39;s Studio 重新出发">
+                        <span class="hidden-mobile">Run&#39;s Studio 重新出发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
