@@ -27,7 +27,7 @@
 <meta property="og:description" content="本笔记从小土堆Pytorch教程中记录一些实用的Pytorch相关操作. 1. 加载数据1.1 PILPIL类可以用于加载图像、保存图像等操作 12from PIL import Imageimg &#x3D; Image.open(&#x27;data&#x2F;hymenoptera_data&#x2F;train&#x2F;ants&#x2F;342438950_a3da61deab.jpg&#x27;) 1.2 DataSetDataSe">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-02T12:32:28.000Z">
-<meta property="article:modified_time" content="2025-04-08T14:17:51.083Z">
+<meta property="article:modified_time" content="2025-04-09T14:21:52.979Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          2.9k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          21 分钟
+          25 分钟
         
       </span>
     
@@ -334,13 +334,43 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNeuralNetwork</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args, **kwargs</span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)<br>        <span class="hljs-variable language_">self</span>.model = nn.Sequential(<br>            nn.Conv2d(<span class="hljs-number">3</span>,<span class="hljs-number">64</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),  <span class="hljs-comment"># 【1,64,64,64】 备注：ks=3，stride=1，padding = 1</span><br>            <span class="hljs-comment"># Hout(64) = (Hin(64) + 2×padding - dilation×[ks - 1] × 1 )/stride + 1</span><br>            nn.ReLU(),<br>            nn.Conv2d(<span class="hljs-number">64</span>,<span class="hljs-number">32</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),  <span class="hljs-comment"># 1,32,64,64</span><br>            nn.ReLU(),<br>            nn.Conv2d(<span class="hljs-number">32</span>, <span class="hljs-number">16</span>, <span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>), <span class="hljs-comment"># 1,16,64,64</span><br>            nn.ReLU(),<br>            nn.MaxPool2d(<span class="hljs-number">2</span>), <span class="hljs-comment"># 1,16,32,32</span><br>            nn.ReLU(),<br>            nn.Linear(<span class="hljs-number">32</span>,<span class="hljs-number">1024</span>), <span class="hljs-comment"># 1,16,32,1024</span><br>            nn.ReLU(),<br>            nn.Linear(<span class="hljs-number">1024</span>, <span class="hljs-number">1024</span>),  <span class="hljs-comment"># 1,16,1024,1024</span><br>            nn.ReLU(),<br>            nn.Flatten(), <span class="hljs-comment"># 1,524288</span><br>            nn.Linear(<span class="hljs-number">524288</span>,<span class="hljs-number">10</span>),  <span class="hljs-comment"># 1,10</span><br>            nn.Softmax(dim= -<span class="hljs-number">1</span>)<br>        )<br><br>mnn = MyNeuralNetwork()<br><br>a = torch.randn(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">64</span>,<span class="hljs-number">64</span>)<br><br>res = mnn.model(a)<br><br><span class="hljs-built_in">print</span>(res.shape) <span class="hljs-comment"># torch.Size([1, 10])</span><br><span class="hljs-built_in">print</span>(res) <span class="hljs-comment">#tensor([[0.0991, 0.0982, 0.0997, 0.0996, 0.1009, 0.1030, 0.0988, 0.1027, 0.0991,0.0988]], grad_fn=&lt;SoftmaxBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
 
 <p>通过使用Sequential()的方式可以便捷的完成网络的定义，快速实现网络。</p>
-<h2 id="5-4-搭建模型小实战（以vgg16模型为例）"><a href="#5-4-搭建模型小实战（以vgg16模型为例）" class="headerlink" title="5.4 搭建模型小实战（以vgg16模型为例）"></a>5.4 搭建模型小实战（以vgg16模型为例）</h2><h1 id="6-损失函数与反向传播"><a href="#6-损失函数与反向传播" class="headerlink" title="6 损失函数与反向传播"></a>6 损失函数与反向传播</h1><h2 id="6-1-损失函数"><a href="#6-1-损失函数" class="headerlink" title="6.1 损失函数"></a>6.1 损失函数</h2><h2 id="6-2-反向传播"><a href="#6-2-反向传播" class="headerlink" title="6.2 反向传播"></a>6.2 反向传播</h2><h2 id="6-3-优化器"><a href="#6-3-优化器" class="headerlink" title="6.3 优化器"></a>6.3 优化器</h2>
+<h2 id="5-4-小网络搭建实战"><a href="#5-4-小网络搭建实战" class="headerlink" title="5.4 小网络搭建实战"></a>5.4 小网络搭建实战</h2><p>以vgg16这个网络（图待补充）为例，搭建模型如下（暂未添加Relu层），其实和我们之前写的模型很像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyNeuralNetwork</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, *args, **kwargs</span>) -&gt; <span class="hljs-literal">None</span>:<br>        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)<br>        <span class="hljs-variable language_">self</span>.model= nn.Sequential(<br>            nn.Conv2d(<span class="hljs-number">3</span>,<span class="hljs-number">32</span>,<span class="hljs-number">5</span>,padding=<span class="hljs-number">2</span>),<br>            nn.MaxPool2d(<span class="hljs-number">2</span>),<br>            nn.Conv2d(<span class="hljs-number">32</span>,<span class="hljs-number">32</span>,<span class="hljs-number">5</span>,padding=<span class="hljs-number">2</span>),<br>            nn.MaxPool2d(<span class="hljs-number">2</span>),<br>            nn.Conv2d(<span class="hljs-number">32</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>, padding=<span class="hljs-number">2</span>),<br>            nn.MaxPool2d(<span class="hljs-number">2</span>),<br>            nn.Flatten(),<br>            nn.Linear(<span class="hljs-number">4096</span>,<span class="hljs-number">64</span>),<br>            nn.Linear(<span class="hljs-number">64</span>, <span class="hljs-number">10</span>),<br>        )<br><br>a = torch.randn(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">64</span>, <span class="hljs-number">64</span>)<br>mnn = MyNeuralNetwork()<br>res = mnn.model(a)<br><span class="hljs-built_in">print</span>(res.shape) <span class="hljs-comment">#torch.Size([1, 10])</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="6-损失函数与反向传播"><a href="#6-损失函数与反向传播" class="headerlink" title="6 损失函数与反向传播"></a>6 损失函数与反向传播</h1><h2 id="6-1-损失函数"><a href="#6-1-损失函数" class="headerlink" title="6.1 损失函数"></a>6.1 损失函数</h2><p>损失函数（Loss Function）是一个衡量预测结果与真实结果之间差异的函数 ，也称为误差函数。它通过计算模型的预测值与真实值之间的不一致程度，来评估模型的性能.<br>根据任务不同，选择的损失函数也不同，对于回归任务，常见的损失函数有<code>MSELoss</code>,对于分类任务常见的损失函数有交叉熵损失<code>CrossEntropyLoss</code><br>交叉熵的损失函数可以描述为 $$loss(x,class) &#x3D; -log(exp(x[class]&#x2F;sum_j(exp(x[j])))&#x3D;-x[class]+ln(sum_j(exp(x[j])]))$$<br>举例说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br>x = torch.tensor([[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>]]) <span class="hljs-comment"># 预测三个类别概率分别是0.1,0.2,0.3</span><br>y = torch.tensor([<span class="hljs-number">1</span>]) <span class="hljs-comment"># 答案是1</span><br>loss = F.cross_entropy(x, y) <span class="hljs-comment"># 计算交叉熵 loss = -0.2 + ln(e^0.1+e^0.2+e^0.3) = 1.10194284823</span><br><span class="hljs-built_in">print</span>(loss) <span class="hljs-comment"># tensor(1.1019)</span><br></code></pre></td></tr></table></figure>
+<p>其他的案例也差不多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">x = torch.tensor([[<span class="hljs-number">0.55</span>, <span class="hljs-number">0.88</span>]]) <span class="hljs-comment"># 预测值</span><br>y = torch.tensor([[<span class="hljs-number">0.5</span>, <span class="hljs-number">0.8</span>]]) <span class="hljs-comment"># 真实值</span><br>loss_l1 = F.l1_loss(x, y) <span class="hljs-comment"># L1Loss 一阶距</span><br>loss_mse = F.mse_loss(x, y) <span class="hljs-comment"># MSE_LOSS</span><br><span class="hljs-built_in">print</span>(loss_l1) <span class="hljs-comment"># tensor(0.0650)</span><br><span class="hljs-built_in">print</span>(loss_mse) <span class="hljs-comment"># tensor(0.0044)</span><br><br>loss_layer = nn.L1Loss(reduction=<span class="hljs-string">&#x27;sum&#x27;</span>)  <span class="hljs-comment"># 备注：reduction默认是mean，用mean的话结果是0.065</span><br>loss_l1_by_layer = loss_layer(x, y)<br><span class="hljs-built_in">print</span>(loss_l1_by_layer)  <span class="hljs-comment"># tensor(0.1300)</span><br></code></pre></td></tr></table></figure>
+<h2 id="6-2-反向传播"><a href="#6-2-反向传播" class="headerlink" title="6.2 反向传播"></a>6.2 反向传播</h2><h2 id="6-3-优化器"><a href="#6-3-优化器" class="headerlink" title="6.3 优化器"></a>6.3 优化器</h2><h1 id="7-使用常用模型"><a href="#7-使用常用模型" class="headerlink" title="7 使用常用模型"></a>7 使用常用模型</h1><h2 id="7-1-使用库的方式调用常用模型"><a href="#7-1-使用库的方式调用常用模型" class="headerlink" title="7.1 使用库的方式调用常用模型"></a>7.1 使用库的方式调用常用模型</h2><h2 id="7-2-对常用模型进行增加或修改"><a href="#7-2-对常用模型进行增加或修改" class="headerlink" title="7.2 对常用模型进行增加或修改"></a>7.2 对常用模型进行增加或修改</h2>
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">深度学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
