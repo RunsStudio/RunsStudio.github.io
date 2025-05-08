@@ -19,34 +19,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="STIDGCN - 学习笔记1. 文章摘要准确的交通预测对于城市交通管理、路线规划和流量检测至关重要。时空模型的最新进展显着改进了交通预测中复杂的时空相关性的建模。不幸的是，之前的大多数研究在跨不同感知视角有效建模时空相关性方面遇到了挑战，并且忽略了时空相关性之间的交互学习。此外，受空间异质性的限制，大多数研究未能考虑每个节点不同的时空模式。为了克服这些限制，我们提出了一种用于流量预测的时空交互式">
+    <meta name="description" content="【论文地址】：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1906.00121.pdf【代码地址】：github.com&#x2F;nnzhan&#x2F;Graph-WaveNet 论文摘要动机：时空图建模是分析时间关系和空间关系的重要任务，过去的方法大多数都是从固定的图结构上提取空间依赖性，假设实体之间的基本关系是预先确定的。但是，显式的图结构不一定反应真实的以来关系，而且由于数据中连接不完整">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STIDGCN - 学习笔记">
-<meta property="og:url" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Graph WaveNet - 学习笔记">
+<meta property="og:url" content="https://runsstudio.github.io/2025/05/06/Graph%20WaveNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="STIDGCN - 学习笔记1. 文章摘要准确的交通预测对于城市交通管理、路线规划和流量检测至关重要。时空模型的最新进展显着改进了交通预测中复杂的时空相关性的建模。不幸的是，之前的大多数研究在跨不同感知视角有效建模时空相关性方面遇到了挑战，并且忽略了时空相关性之间的交互学习。此外，受空间异质性的限制，大多数研究未能考虑每个节点不同的时空模式。为了克服这些限制，我们提出了一种用于流量预测的时空交互式">
+<meta property="og:description" content="【论文地址】：https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;1906.00121.pdf【代码地址】：github.com&#x2F;nnzhan&#x2F;Graph-WaveNet 论文摘要动机：时空图建模是分析时间关系和空间关系的重要任务，过去的方法大多数都是从固定的图结构上提取空间依赖性，假设实体之间的基本关系是预先确定的。但是，显式的图结构不一定反应真实的以来关系，而且由于数据中连接不完整">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image0.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-1.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-3.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-4.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-5.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-6.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-7.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-8.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-9.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-10.png">
-<meta property="article:published_time" content="2025-04-28T13:30:52.000Z">
-<meta property="article:modified_time" content="2025-05-08T13:39:21.024Z">
+<meta property="article:published_time" content="2025-05-06T13:04:52.000Z">
+<meta property="article:modified_time" content="2025-05-06T13:05:06.455Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image0.png">
   
   
   
-  <title>STIDGCN - 学习笔记 - Run&#39;s Studio</title>
+  <title>Graph WaveNet - 学习笔记 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="STIDGCN - 学习笔记"></span>
+            <span id="subtitle" data-typed-text="Graph WaveNet - 学习笔记"></span>
           
         </div>
 
@@ -223,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-28 21:30" pubdate>
-          2025年4月28日 晚上
+        <time datetime="2025-05-06 21:04" pubdate>
+          2025年5月6日 晚上
         </time>
       </span>
     
@@ -235,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.2k 字
         
       </span>
     
@@ -246,7 +233,7 @@
         
         
         
-          15 分钟
+          11 分钟
         
       </span>
     
@@ -283,28 +270,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">STIDGCN - 学习笔记</h1>
+            <h1 id="seo-header">Graph WaveNet - 学习笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="STIDGCN-学习笔记"><a href="#STIDGCN-学习笔记" class="headerlink" title="STIDGCN - 学习笔记"></a>STIDGCN - 学习笔记</h1><h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1. 文章摘要"></a>1. 文章摘要</h2><p>准确的交通预测对于城市交通管理、路线规划和流量检测至关重要。时空模型的最新进展显着改进了交通预测中复杂的时空相关性的建模。不幸的是，之前的大多数研究在跨不同感知视角有效建模时空相关性方面遇到了挑战，并且忽略了时空相关性之间的交互学习。此外，受空间异质性的限制，大多数研究未能考虑每个节点不同的时空模式。为了克服这些限制，我们提出了一种用于流量预测的时空交互式动态图卷积网络（STIDGCN）。具体来说，文章提出了一个由空间和时间模块组成的交互式学习框架，用于对流量数据进行下采样。该框架旨在通过采用从全局到局部的感知视角来捕捉空间和时间的相关性，并通过积极的反馈促进它们的相互利用。在空间模块中，我们基于图构造方法设计了动态图卷积网络。该网络旨在利用考虑时空异质性的流量模式库作为查询来重建数据驱动的动态图结构。重构的图结构可以揭示交通网络中节点之间的动态关联。对八个真实世界流量数据集的大量实验表明，STIDGCN  在平衡计算成本的同时优于最先进的基线。</p>
-<p>源代码：<br><a target="_blank" rel="noopener" href="https://github.com/LiuAoyu1998/STIDGCN/blob/main/model.py">源代码</a></p>
-<p>论文：<br><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/10440184">论文</a></p>
-<h2 id="2-模型核心结构"><a href="#2-模型核心结构" class="headerlink" title="2. 模型核心结构"></a>2. 模型核心结构</h2><p><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image0.png" srcset="/img/loading.gif" lazyload alt="核心结构"></p>
+                <p>【论文地址】：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00121.pdf">https://arxiv.org/pdf/1906.00121.pdf</a><br>【代码地址】：github.com&#x2F;nnzhan&#x2F;Graph-WaveNet</p>
+<p>论文摘要<br>动机：时空图建模是分析时间关系和空间关系的重要任务，过去的方法大多数都是从固定的图结构上提取空间依赖性，假设实体之间的基本关系是预先确定的。但是，显式的图结构不一定反应真实的以来关系，而且由于数据中连接不完整，可能缺少真正的关系。RNN和CNN又有各自的缺陷，无法捕捉长时间的序列，因此，该文章提出一种新的图神经网络架构Graph WaveNet用于时空图建模，通过开发一种新的自适应依赖关系矩阵，并通过节点嵌入的方式来进行学习。该模型可以捕捉数据中隐藏的空间以来关系，借助堆叠的膨胀1-D卷积，能够随着层数增加感受到宽广的感受野，从而处理非常长的序列。<br>该论文主要用于解决时空建模问题上图结构不确定性问题，通过自适应的可学习的邻接矩阵从数据中自动学习图结构，该论文是基于wavenet网络改进的。<br>论文主要思路：<br>时空图建模背后的一个基本假设是：一个节点的未来信息取决于它的历史信息以及它邻居节点的历史信息。但是这种模型存在两个主要的缺点：</p>
 <ul>
-<li>STI结构把输入分成多个序列，并且向下游不断分裂，形成类似二叉树的结构。这样做的目的：类似时序卷积，例如原始序列id：12345，分裂后序列A就是135，B就是246，这样序列A就能侧重分析到索引1和3之间的关系，如果原始数据是五分钟级别的，做一次STI可以认为变成关注十分钟级别的，两次就是关注二十分钟级别的。</li>
-<li>创新点：创新了一个DGCN模块，把原始序列分成奇序列（<img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image.png" srcset="/img/loading.gif" lazyload alt="奇数序列">）和偶序列<img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-1.png" srcset="/img/loading.gif" lazyload alt="偶数序列">，送入时序卷积块中提取卷积信息，然后送到DGCN块中提取空间信息。最重要的一点是是<strong>交互学习</strong>，也就是看图中的红线，奇序列经过图模块提取完空间信息后的隐向量将会与偶序列进行哈德马积（红线、绿线），反过来偶数序列时序卷积、DGCN后也和奇序列进行哈德玛积。这个过程会进行两次，因此形成一个时空交互的结构，这个过程是本文最大的创新点。</li>
+<li><p>显式的图结构不能充分的反应真实的依赖关系（空间）：</p>
+<ul>
+<li>连接不需要两个节点之间的相互依赖关系</li>
+<li>两个节点之间的相互依赖关系存在但连接缺失</li>
 </ul>
-<h2 id="3-各模块介绍"><a href="#3-各模块介绍" class="headerlink" title="3. 各模块介绍"></a>3. 各模块介绍</h2><h3 id="3-1-Encoder"><a href="#3-1-Encoder" class="headerlink" title="3.1 Encoder"></a>3.1 Encoder</h3><p><strong>TSConv模块</strong> 用来捕捉时间的序列相关性<br>是二维的CNN，使用kernel（1，s1,）、（1，s2），s1、s2是预先定义好的核尺寸。TSConv可与定义为如下公式：<br><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png" srcset="/img/loading.gif" lazyload alt="卷积公式"></p>
-<p>其中H_t 和 H_t’ 代表了TSConv的隐状态，这里省略了激活函数。<br>通过两层的卷积，能够提取到单个序列上的时序的动态性</p>
-<p><strong>DGCN模块</strong> 用来捕捉空间动态相关性<br>因为文章处理的是动态图，预先不知道图的邻接矩阵，得通过DGCN结构提取空间状态表征<br>分成两个步骤：<br>①动态图重构：模拟动态的邻接矩阵<br>②对于构建的动态图，聚合周边节点的信息<br>输入是TSConv模块学习后的嵌入表示，这里输入的维度是Hg∈R（C×N×t’），C表示隐藏层的维度，channel，N是节点的个数，t’是时序的长度。<br>这里由于输入的 尺寸不一样，因此先经过一个全连接层，得到聚合输入Hf ∈R（C×N），随后和模式库（φ，Pattern Bank）进行交叉注意力（Hf和φ，得到Ap）和自注意力（Hf和Hf，得到Ah）计算。这里Pattern Bank是一个可训练的矩阵，φ∈R（C×N），可以认为是一种节点嵌入。，进行 交叉注意力和自注意力计算公式如下：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-3.png" srcset="/img/loading.gif" lazyload alt="注意力计算公式"><br>如此操作后，会得到两个邻接矩阵，Ap和Ah，这是两个矩阵，大小都是N×N<br>然后把两个邻接矩阵拼起来（Concat）操作，得到一个2N×N的操作，为了和下游的尺度对齐，又经过一个全连接层，这一步的目的是把矩阵的尺度从N×2N变成N×N<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-4.png" srcset="/img/loading.gif" lazyload alt="全连接层公式"><br>得到了Af之后，可以认为Af中包含了节点和节点之间的关系，这是一个N×N的矩阵，可以认为是包含了图注意力的邻接矩阵，实际上图里节点之间不是所有节点都连接在一起的。还需要屏蔽掉不相关的节点。文章是对Af与矩阵M进行哈德玛积，矩阵M可以认为是注意力里面的Mask，取得是一个节点与他最相邻的K个邻居，通过Top-K的方式选取。（更通俗来说，一个节点i分别和各个节点计算相关性，最相关的K个节点标记1，否则标记0.）<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-5.png" srcset="/img/loading.gif" lazyload alt="节点相关性的定义"><br>得到邻接矩阵就可以进行图卷积操作了，文章采用扩散GCN进行动态图卷积，扩散图卷积把节点的动态变化描述成一个“扩散”过程，扩散图卷积聚合了图中节点之间的信息。扩散信号院子目标节点和当前最近的节点。扩散GCN可以描述为：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-6.png" srcset="/img/loading.gif" lazyload alt="扩散GCN"><br>这里的Hg就是最开始的TSConv表征后的隐向量，尺寸是C×N×t’，W 是自学习权重的矩阵，尺寸是N×N，Af是刚刚得到的邻接矩阵，大小N×N。这个地方矩阵乘的维度没有写的很清楚，纳闷了很久维度不一样怎么乘，看代码，我们可以看到矩阵相乘是在N维度上相乘，最终输出还是B×C×N×T（TODO，这里可以单独实验一下DGCN模块的输入、输出）。<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-7.png" srcset="/img/loading.gif" lazyload alt="截图来自：https:&#x2F;&#x2F;github.com&#x2F;LiuAoyu1998&#x2F;STIDGCN&#x2F;blob&#x2F;main&#x2F;model.py"></p>
-<p><strong>时空交互学习</strong><br>最终整个交互学习的过程，用公式的话可以描述成，和首图是对得上的：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-8.png" srcset="/img/loading.gif" lazyload alt="交互学习过程"></p>
-<h3 id="3-2-Decoder"><a href="#3-2-Decoder" class="headerlink" title="3.2 Decoder"></a>3.2 Decoder</h3><p>解码器的作用是输入编码器的编码后的特征He，对应表征学习后的是隐向量，经过两层FC和门控单元（可以理解就是控制信息的流入量），通过解码后得到最终的预测结果<br><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-9.png" srcset="/img/loading.gif" lazyload alt="解码器结构"></p>
-<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4. 实验"></a>4. 实验</h2><h3 id="4-1-对比实验"><a href="#4-1-对比实验" class="headerlink" title="4.1 对比实验"></a>4.1 对比实验</h3><p>模型采用了PEMS多个数据集，在多个数据集上进行测试，取得了SOTA的效果。</p>
-<p><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-10.png" srcset="/img/loading.gif" lazyload alt="评测结果"></p>
-<p>评价指标选的是MAE,MAPE,RMSE</p>
-<h3 id="4-2-消融实验"><a href="#4-2-消融实验" class="headerlink" title="4.2 消融实验"></a>4.2 消融实验</h3><p>（待补充）</p>
+</li>
+<li><p>时空图不能有效地学习时间依赖关系（时间）：</p>
+<ul>
+<li>基于RNN的方法在捕获长序列时存在耗时的迭代传播和梯度爆炸&#x2F;消失现象；</li>
+<li>基于CNN的方法具有并行计算、稳定梯度和低内存需求等优点。 然而，由于采用标准的一维卷积，其感受野大小随隐藏层数的增加而线性增长，因此需要使用许多层才能捕获很长的序列。<br>问题定义<br>交通预测问题，可以认为是给定一张图<br>[图片]<br>其中V是节点，E是边，交通预测问题可以描述为：<br>[图片]<br>式中：<br>[图片]<br>分别表示X个特征在过去T个时刻的值（流量变化情况），这里N是节点数，D是数据维数，T是时间步，简单来说就是用过去的S步预测未来的T步。<br> 空间卷积<br>GCN时代：<br>[图片]<br>其中要求邻接矩阵A已知，实际上很多情况下，A可能是变化的，或者存在未能被挖掘到的节点，对当前节点存在影响。文章不用传统的GCN，而是用了扩散的卷积层，形式如下：<br>[图片]<br>式中：Pk代表是转移矩阵的k次乘方，K的次数是可以改变的，X是原来的特征，对于无向图，P&#x3D;A&#x2F;rowsum(A)，对于有向图，区分正反向，正向是Pf&#x3D;A&#x2F;rowsum（A），反向是Pb&#x3D;At &#x2F;rowsum(A_T)<br>从而扩散图卷积层款可以写成式4的形式。</li>
+</ul>
+</li>
+</ul>
+<p>文章同时提出一种自适应邻接矩阵的概念，这种矩阵不需要任何先验知识，而且是可以从端到端的方式进行梯度下降训练。可以表示成：<br>[图片]<br>这里面，E1 E2是两个科学系的Embedding矩阵，案例来说应该就是原始输入X乘了一个Embedding矩阵之后得到的。。那么这个公式，岂不就是自注意力嘛<br>[图片]<br>（自注意力的计算公式，Q Kt分别对应这里的E1 E2）区别在于文章这里加了个Relu （这是GAT的做法）只关注对当前节点正向的内容。<br>所以，在图已知的情况下，可以用式6的方式计算 图卷积，如果是图未知的情况下，就用图7计算<br>[图片]<br>文章提到：值得注意的是，我们的图卷积属于基于空间的方法。尽管为了保持一致性，我们将图信号与节点特征矩阵互换使用，但我们在方程 7 中的图卷积确实被解释为聚合来自不同邻域顺序的转换特征信息。<br>时间卷积层<br>时间卷积文章采用了 空洞因果卷积 作为时间卷积层（TCN），空洞卷积神经网络能够以非递归的方式处理长距离序列。公式可以描述成：<br>[图片]<br>[图片]</p>
+<p>参考文献：<br><a target="_blank" rel="noopener" href="http://zhuanlan.zhihu.com/p/594429261">http://zhuanlan.zhihu.com/p/594429261</a></p>
 
                 
               </div>
@@ -343,15 +331,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>STIDGCN - 学习笔记</div>
-      <div>https://runsstudio.github.io/2025/04/28/STIDGCN学习笔记/</div>
+      <div>Graph WaveNet - 学习笔记</div>
+      <div>https://runsstudio.github.io/2025/05/06/Graph WaveNet学习笔记/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月28日</div>
+          <div>2025年5月6日</div>
         </div>
       
       
@@ -383,18 +371,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/06/Graph%20WaveNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Graph WaveNet - 学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Graph WaveNet - 学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/23/%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0/" title="多模态表征学习 - 学习笔记">
-                        <span class="hidden-mobile">多模态表征学习 - 学习笔记</span>
+                      <a href="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="STIDGCN - 学习笔记">
+                        <span class="hidden-mobile">STIDGCN - 学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
