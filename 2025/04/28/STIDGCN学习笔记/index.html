@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-9.png">
 <meta property="og:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-10.png">
 <meta property="article:published_time" content="2025-04-28T13:30:52.000Z">
-<meta property="article:modified_time" content="2025-05-09T12:24:08.987Z">
+<meta property="article:modified_time" content="2025-05-12T12:20:09.313Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://runsstudio.github.io/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image0.png">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -296,7 +296,8 @@
 <li>STI结构把输入分成多个序列，并且向下游不断分裂，形成类似二叉树的结构。这样做的目的：类似时序卷积，例如原始序列id：12345，分裂后序列A就是135，B就是246，这样序列A就能侧重分析到索引1和3之间的关系，如果原始数据是五分钟级别的，做一次STI可以认为变成关注十分钟级别的，两次就是关注二十分钟级别的。</li>
 <li>创新点：创新了一个DGCN模块，把原始序列分成奇序列（<img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image.png" srcset="/img/loading.gif" lazyload alt="奇数序列">）和偶序列<img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-1.png" srcset="/img/loading.gif" lazyload alt="偶数序列">，送入时序卷积块中提取卷积信息，然后送到DGCN块中提取空间信息。最重要的一点是是<strong>交互学习</strong>，也就是看图中的红线，奇序列经过图模块提取完空间信息后的隐向量将会与偶序列进行哈德马积（红线、绿线），反过来偶数序列时序卷积、DGCN后也和奇序列进行哈德玛积。这个过程会进行两次，因此形成一个时空交互的结构，这个过程是本文最大的创新点。</li>
 </ul>
-<h2 id="3-各模块介绍"><a href="#3-各模块介绍" class="headerlink" title="3. 各模块介绍"></a>3. 各模块介绍</h2><h3 id="3-1-Encoder"><a href="#3-1-Encoder" class="headerlink" title="3.1 Encoder"></a>3.1 Encoder</h3><p><strong>TSConv模块</strong><br>文章提出使用TSConv模块作为时间模块，捕捉时间关联性。<br>是二维的CNN，使用kernel（1，s1,）、（1，s2），s1、s2是预先定义好的核尺寸。TSConv可与定义为如下公式：<br><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png" srcset="/img/loading.gif" lazyload alt="卷积公式"></p>
+<h2 id="3-各模块介绍"><a href="#3-各模块介绍" class="headerlink" title="3. 各模块介绍"></a>3. 各模块介绍</h2><h3 id="3-1-Encoder"><a href="#3-1-Encoder" class="headerlink" title="3.1 Encoder"></a>3.1 Encoder</h3><p><strong>STI模块</strong><br>STI模块里面包含时间卷积TSConv模块和图卷积DGCN模块，两个模块在STI模块中进行交互学习。</p>
+<p><strong>TSConv模块</strong><br>文章提出使用TSConv模块作为时间模块，捕捉时间关联性。<br>时序卷积模块使用二维的CNN对padding后的序列进行卷积，两层卷积分别使用（stride &#x3D; 1，padding &#x3D; s1,）、（1，s2）作为卷积核，s1、s2是预先定义好的核尺寸，文章后续对该参数进行了敏感性分析。TSConv可与定义为如下公式：<br><img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png" srcset="/img/loading.gif" lazyload alt="卷积公式"></p>
 <p>其中H_t 和 H_t’ 代表了TSConv的隐状态，这里省略了激活函数。<br>通过两层的卷积，能够提取到单个序列上的时序的动态性</p>
 <p><strong>DGCN模块</strong><br>文章设计了一个权重共享的DGCN模块，作为空间模块，捕捉空间动态相关性。<br>因为文章处理的是动态图，预先不知道图的邻接矩阵，得通过DGCN结构提取空间状态表征<br>分成两个步骤：<br>①动态图重构：模拟动态的邻接矩阵<br>②对于构建的动态图，聚合周边节点的信息<br>输入是TSConv模块学习后的嵌入表示，这里输入的维度是Hg∈R（C×N×t’），C表示隐藏层的维度，channel，N是节点的个数，t’是时序的长度。<br>这里由于输入的 尺寸不一样，因此先经过一个全连接层，得到聚合输入Hf ∈R（C×N），随后和模式库（φ，Pattern Bank）进行交叉注意力（Hf和φ，得到Ap）和自注意力（Hf和Hf，得到Ah）计算。这里Pattern Bank是一个可训练的矩阵，φ∈R（C×N），可以认为是一种节点嵌入。得到嵌入矩阵后，进行交叉注意力【公式（6）】和自注意力【公式（7）】计算。：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-3.png" srcset="/img/loading.gif" lazyload alt="注意力计算公式"><br>如此操作后，会得到两个邻接矩阵，Ap和Ah，这是两个矩阵，大小都是N×N<br>然后把得到的两个空间注意力邻接矩阵使用Concat操作拼接，得到一个2N×N的矩阵，为了和下游的尺度对齐，又经过一个全连接层，这一步的目的是把矩阵的尺度从N×2N变成N×N<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-4.png" srcset="/img/loading.gif" lazyload alt="全连接层公式"><br>经过全连接层输出Af矩阵，可以认为Af矩阵中包含了节点和节点之间的空间关联关系，这是一个N×N的动态邻接矩阵。用这种方式计算的邻接矩阵会计算所有节点的空间关联性，然而实际上在图中不是所有节点都连接在一起的。因此还需要屏蔽掉不相关的节点。文章是对Af与矩阵M进行哈德玛积，矩阵M可以认为是注意力里面的Mask，取得是一个节点与他最相邻的K个邻居，通过Top-K的方式选取。（更通俗来说，一个节点i分别和各个节点计算相关性，最相关的K个节点标记1，否则标记0.）<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-5.png" srcset="/img/loading.gif" lazyload alt="节点相关性的定义"><br>得到邻接矩阵就可以进行图卷积操作了，文章采用扩散GCN进行动态图卷积，扩散图卷积把节点的动态变化描述成一个“扩散”过程，扩散图卷积聚合了图中节点之间的信息。扩散信号院子目标节点和当前最近的节点。扩散GCN可以描述为：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-6.png" srcset="/img/loading.gif" lazyload alt="扩散GCN"><br>这里的Hg就是最开始的TSConv表征后的隐向量，尺寸是C×N×t’，W 是自学习权重的矩阵，尺寸是N×N，Af是刚刚得到的邻接矩阵，大小N×N。这个地方矩阵乘的维度没有写的很清楚，纳闷了很久维度不一样怎么乘，看代码，我们可以看到矩阵相乘是在N维度上相乘，最终输出还是B×C×N×T（TODO 单独实验一下DGCN模块的输入、输出，验证）。<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-7.png" srcset="/img/loading.gif" lazyload alt="截图来自：https:&#x2F;&#x2F;github.com&#x2F;LiuAoyu1998&#x2F;STIDGCN&#x2F;blob&#x2F;main&#x2F;model.py"></p>
 <p><strong>时空交互学习</strong><br>最终整个交互学习的过程，用公式的话可以描述成，和首图是对得上的：<br> <img src="/2025/04/28/STIDGCN%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-8.png" srcset="/img/loading.gif" lazyload alt="交互学习过程"></p>
