@@ -19,36 +19,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="STD-MAE - 学习笔记1. 文章摘要与典型的多变量时间序列相比，时空数据和时序数据的关键区别在于时空异质性。简单来说就是不同地点（市中心和郊区）和日期（比如工作日和周末）的时间序列规律可能有所不同，但他们在相似环境中表现出一致且可预测的模式。因此，准确预测时空数据的关键在于有效捕捉这种时空异质性。之前的研究者们提出了许多关于时空预测的尝试，比如把图卷积网络（GCN）嵌入到时序卷积网络（TCN">
+    <meta name="description" content="一种简单且实用的单点自适应信号控制模型：OPAC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STD-MAE - 学习笔记">
-<meta property="og:url" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="一种简单且实用的单点自适应信号控制模型：OPAC">
+<meta property="og:url" content="https://runsstudio.github.io/2025/05/28/%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E4%B8%94%E5%AE%9E%E7%94%A8%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E2%80%94%E2%80%94OPAC/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="STD-MAE - 学习笔记1. 文章摘要与典型的多变量时间序列相比，时空数据和时序数据的关键区别在于时空异质性。简单来说就是不同地点（市中心和郊区）和日期（比如工作日和周末）的时间序列规律可能有所不同，但他们在相似环境中表现出一致且可预测的模式。因此，准确预测时空数据的关键在于有效捕捉这种时空异质性。之前的研究者们提出了许多关于时空预测的尝试，比如把图卷积网络（GCN）嵌入到时序卷积网络（TCN">
+<meta property="og:description" content="一种简单且实用的单点自适应信号控制模型：OPAC">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-1.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-2.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-2.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-3.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-3.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-4.PNG">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-2.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1-1.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-3.png">
-<meta property="og:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1-2.png">
-<meta property="article:published_time" content="2025-05-22T13:01:45.560Z">
-<meta property="article:modified_time" content="2025-05-22T13:11:03.542Z">
+<meta property="article:published_time" content="2025-05-28T12:30:45.000Z">
+<meta property="article:modified_time" content="2025-05-28T12:33:24.185Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://runsstudio.github.io/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280.PNG">
   
   
   
-  <title>STD-MAE - 学习笔记 - Run&#39;s Studio</title>
+  <title>一种简单且实用的单点自适应信号控制模型：OPAC - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="STD-MAE - 学习笔记"></span>
+            <span id="subtitle" data-typed-text="一种简单且实用的单点自适应信号控制模型：OPAC"></span>
           
         </div>
 
@@ -225,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-22 21:01" pubdate>
-          2025年5月22日 晚上
+        <time datetime="2025-05-28 20:30" pubdate>
+          2025年5月28日 晚上
         </time>
       </span>
     
@@ -237,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          20 字
         
       </span>
     
@@ -248,7 +233,7 @@
         
         
         
-          14 分钟
+          1 分钟
         
       </span>
     
@@ -285,46 +270,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">STD-MAE - 学习笔记</h1>
+            <h1 id="seo-header">一种简单且实用的单点自适应信号控制模型：OPAC</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="STD-MAE-学习笔记"><a href="#STD-MAE-学习笔记" class="headerlink" title="STD-MAE - 学习笔记"></a>STD-MAE - 学习笔记</h1><h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1. 文章摘要"></a>1. 文章摘要</h2><p>与典型的多变量时间序列相比，时空数据和时序数据的关键区别在于时空异质性。简单来说就是不同地点（市中心和郊区）和日期（比如工作日和周末）的时间序列规律可能有所不同，但他们在相似环境中表现出一致且可预测的模式。因此，准确预测时空数据的关键在于有效捕捉这种时空异质性。之前的研究者们提出了许多关于时空预测的尝试，比如把图卷积网络（GCN）嵌入到时序卷积网络（TCN）或递归神经网络（RNN）中，或者沿着时空轴应用Transformer架构模型。然而这些模型在区分时空异质性方面存在困难。如何学习清晰的时空异质性仍然是时空预测的主要挑战。<br>基于此，Gao等人提出一种新的时空解耦掩码预训练框架（STD-MAE）。它为学习清晰且完整的时空异质性提供高效且有效解决方案，且预训练与下游任务解耦，使得学习到的时空异质性可以无缝集成到下游任务中。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280.PNG" srcset="/img/loading.gif" lazyload alt="时空异质性"></p>
-<p>文章举例说明：不同检测器在时空规律上相差很大，导致同一时间点，不同流量检测的时间序列相近的情况下，未来流量的变化趋势差距可能非常大，导致预测不准。文章把这种现象称为“时空幻觉”。</p>
-<p>论文原文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.00516">https://arxiv.org/abs/2312.00516</a></p>
-<p>代码地址：<a target="_blank" rel="noopener" href="https://github.com/Jimmy-7664/STD-MAE">https://github.com/Jimmy-7664/STD-MAE</a></p>
-<h2 id="2-模型结构"><a href="#2-模型结构" class="headerlink" title="2. 模型结构"></a>2. 模型结构</h2><p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1.PNG" srcset="/img/loading.gif" lazyload alt="模型结构"></p>
-<p>时空解耦掩码自编码器由时间自编码器（T-MAE）和空间自编码器（S-MAE）组成，他们具有相似的结构。S-MAE在空间维度上应用自注意力机制，而T-MAE则在时间维度上应用自注意力机制。<br>从模型结构上看，时间Encoder和空间Encoder的作用是分别对时空状态进行表征。所以整个模型的训练分成两阶段：预训练阶段和下游任务的训练阶段。</p>
-<h2 id="2-1-预训练阶段"><a href="#2-1-预训练阶段" class="headerlink" title="2.1 预训练阶段"></a>2.1 预训练阶段</h2><p>在预训练阶段以以掩码重构的方式进行预训练，此时模型的结构是Encoder-Decoder，采用自监督的方式进行训练：掩码一定比例的序列并尝试还原。预训练结束后，只使用Encoder即可表征时空。Decoder不再使用。<br>预训练阶段，首先对预测的输入进行分块，采用分块的方式进行输入。每条长序列分割成Tp个Patch。其中</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-1.PNG" srcset="/img/loading.gif" lazyload></p>
-<p>每个patch包含L条数据，每个数据里面又有C个channel，所以时空Encoder的输入尺寸是 </p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-2.PNG" srcset="/img/loading.gif" lazyload></p>
-<p>随后，输入Xp经过全连接层，进行维度嵌入，嵌入后维度变成</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-2.PNG" srcset="/img/loading.gif" lazyload></p>
-<p>随后对于嵌入后的矩阵，进行二维时空位置编码。传统的Transformer是位置编码，是一维的编码，本文面向有时空两个维度，因此要进行时空二维编码，掩码的生成方式依然是使用正弦和余弦函数进行修改。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-3.PNG" srcset="/img/loading.gif" lazyload alt="时空二维编码"></p>
-<p>获得位置编码矩阵Epos后，和嵌入矩阵Ep相加，得到最终输入嵌入E：</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-1-3.PNG" srcset="/img/loading.gif" lazyload></p>
-<p>输入嵌入E随后分别进行时空掩码，获得 可见的掩码嵌入。其中，时间维度上是对时间进行掩码，假设掩码比例是r，那么时间掩码（T-MAE）后的张量尺寸就是Tp(1-r)×N×D，空间掩码（S-MAE）后的张量尺寸就是Tp×N（1-r）×D。<br>文章对掩码的比例r进行了敏感性分析，虽然在图像上，更高的掩码比例可以获得更好的效果，但是在时空领域，25%的掩码率效果是最好的。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1280X1280-4.PNG" srcset="/img/loading.gif" lazyload alt="掩码超参实验"></p>
-<p>掩码后的矩阵随后输入到Transformer Layers， 输出的隐向量即为时序和空间的状态表达。但是只得到状态表达空间是没法训练的，还需要通过下游decoder恢复原始的序列。那么整个的过程和Encoder是相反的：首先，对于掩码掉的部分进行恢复，填充Padding，填充后对填充的部分进行位置编码，随后输出被掩码掉部分的序列，尝试对掩码的序列进行还原。并使用还原后掩码部分的序列与原序列掩码的部分进行Loss计算，可表示为：</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt="损失函数"></p>
-<h2 id="2-2-下游任务训练阶段"><a href="#2-2-下游任务训练阶段" class="headerlink" title="2.2 下游任务训练阶段"></a>2.2 下游任务训练阶段</h2><p>STD-MAE可以无缝与现有的预测框架整合。该操作是添加时空状态表达，把STD-MAE训练好的Representation直接添加到预测器的隐藏状态层中。</p>
-<p>比如，预测期经过某层，可以得到包含隐信息的张量Hf，这里Hf相当于是经过下游预测器的表征层之后的输出。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1.png" srcset="/img/loading.gif" lazyload></p>
-<p>随后，对下游任务的表征层应用ST-Encoder，具体应用方法很简单：把得到的ST-Encoder在时间维度上截取最后的一个时间戳，形成N×T’×D的张量，T’&#x3D;1，然后经过全连接层和原状态表征直接加起来，得到新的状态表征，即：</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-2.png" srcset="/img/loading.gif" lazyload></p>
-<p>对应模型结构图中彩色方块。最终，经过FC层，输出最终的预测结果Y。</p>
-<p>文章指出，下游任务可以是接标准预测任务的PipeLine，可以等效替换任意的模型。文章害测试了DCRNN、MTGNN、STID、STAE、GWNet作为下游的预测期，没改下游的代码，发现GWNet是效果最好的。<br>这里有一个细节，就是时空编码器和原始状态表征 接入的位置，看起来是接入在模型的中间层，偏后的位置，相当于原模型也对数据进行了一部分表征。</p>
-<h1 id="3-实验部分"><a href="#3-实验部分" class="headerlink" title="3 实验部分"></a>3 实验部分</h1><p>模型在多个数据集上和多个历史模型进行了测试，评测指标MAE、 RMSE、MAPE，用过去的12个时间步预测未来的12个时间步，取得了SOTA的效果。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1-1.png" srcset="/img/loading.gif" lazyload></p>
-<p>MASK的消融实验部分，对比了只使用时间维度Mask、空间维度Mask，时空融合MAE，以及不用MASK，最终结果显示是时空解耦的方式的MAE效果最好</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-3.png" srcset="/img/loading.gif" lazyload alt="消融实验"></p>
-<p>对于不同的预测器，只要是用了STD-MAE进行增强，模型的指标性能都有所提升，GWNet增强效果最好。</p>
-<p><img src="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1-2.png" srcset="/img/loading.gif" lazyload alt="不同预测器的增强结果"></p>
-
+                <h1 id="一种简单且实用的单点自适应信号控制模型：OPAC"><a href="#一种简单且实用的单点自适应信号控制模型：OPAC" class="headerlink" title="一种简单且实用的单点自适应信号控制模型：OPAC"></a>一种简单且实用的单点自适应信号控制模型：OPAC</h1>
                 
               </div>
             
@@ -342,7 +293,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%97%B6%E7%A9%BA%E5%9B%BE/" class="category-chain-item">时空图</a>
+  <a href="/categories/%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6/" class="category-chain-item">信号控制</a>
   
   
 
@@ -362,15 +313,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>STD-MAE - 学习笔记</div>
-      <div>https://runsstudio.github.io/2025/05/22/STD-MAE学习笔记/</div>
+      <div>一种简单且实用的单点自适应信号控制模型：OPAC</div>
+      <div>https://runsstudio.github.io/2025/05/28/一种简单且实用的信号控制模型——OPAC/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年5月22日</div>
+          <div>2025年5月28日</div>
         </div>
       
       
@@ -402,18 +353,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/28/Decision%20Transformer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Decision Transformer - 学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Decision Transformer - 学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/06/Graph%20WaveNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Graph WaveNet - 学习笔记">
-                        <span class="hidden-mobile">Graph WaveNet - 学习笔记</span>
+                      <a href="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="TransformerLight - 学习笔记">
+                        <span class="hidden-mobile">TransformerLight - 学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

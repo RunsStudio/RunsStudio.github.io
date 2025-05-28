@@ -4,6 +4,63 @@
   
   
   <entry>
+    <title>一种简单且实用的单点自适应信号控制模型：OPAC</title>
+    <link href="/2025/05/28/%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E4%B8%94%E5%AE%9E%E7%94%A8%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E2%80%94%E2%80%94OPAC/"/>
+    <url>/2025/05/28/%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E4%B8%94%E5%AE%9E%E7%94%A8%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E2%80%94%E2%80%94OPAC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一种简单且实用的单点自适应信号控制模型：OPAC"><a href="#一种简单且实用的单点自适应信号控制模型：OPAC" class="headerlink" title="一种简单且实用的单点自适应信号控制模型：OPAC"></a>一种简单且实用的单点自适应信号控制模型：OPAC</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>信号控制</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>TransformerLight - 学习笔记</title>
+    <link href="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="TransformerLight-学习笔记"><a href="#TransformerLight-学习笔记" class="headerlink" title="TransformerLight - 学习笔记"></a>TransformerLight - 学习笔记</h1><h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1. 文章摘要"></a>1. 文章摘要</h2><p>交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交通控制表述为一个序列建模问题，其中包含由交通环境中的<strong>状态、动作和奖励</strong>描述的马尔可夫决策过程序列。从而引入了一种新的框架，即 TransformerLight，它的目的不是通过平均所有可能的回报来拟合值函数（过往的模型常用方法，神经网络用于拟合RL中的V值或Q值），而是使用门控 Transformer 产生最佳动作。此外，TransformerLight 的学习过程通过用动态的引起的门控Transformer（Gated Transformer）块替换残差连接而更加稳定。通过对离线数据集的数值实验，证明了TransformerLight模型（1）无需动态规划即可构建高性能自适应的信号控制模型（2）与BCQ、CQL等离线强化学习模型相比展现了更好的性能（3）相比传统的离线强化学习，性能更加稳定。</p><p>论文：<a href="https://dl.acm.org/doi/10.1145/3580305.3599530">https://dl.acm.org/doi/10.1145/3580305.3599530</a></p><p>代码：<a href="https://github.com/Smart-Trafficlab/TransformerLight">https://github.com/Smart-Trafficlab/TransformerLight</a></p><h2 id="2-模型结构"><a href="#2-模型结构" class="headerlink" title="2. 模型结构"></a>2. 模型结构</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>信号控制</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Decision Transformer - 学习笔记</title>
+    <link href="/2025/05/28/Decision%20Transformer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2025/05/28/Decision%20Transformer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Decision-Transformer-学习笔记"><a href="#Decision-Transformer-学习笔记" class="headerlink" title="Decision Transformer 学习笔记"></a>Decision Transformer 学习笔记</h1><h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1. 文章摘要"></a>1. 文章摘要</h2><p>Transformer模型是一种seq2seq的模型，它的独特之处在于，给定一个输入序列，由模型自己决定输出序列的内容与长度。最开始很自然地应用在NLP类似的序列问题的解决上，不过很多问题都可以建模为seq2seq问题，从而这个模型也可以解决许许多多不同的问题，如：语音识别，词性标注，图像物体识别等。该文章将Transformer尝试使用在强化学习领域，提出一种将强化学习建模为序列决策任务的框架，称为Decision Tranformer 。模型的思想很简单：基于期望回报（Return To Go）、历史状态以及历史动作输出下一刻的最优动作。与传统的拟合值函数或者计算策略梯度的强化学习方法不同，Decision Tranformer是一种“离线强化学习（Offline Reinforcement Learning）”模型，更具体的说就是在模型训练的过程中<strong>完全不与真实环境进行交互</strong>，通过监督学习的方式，从历史样本中学习专家经验。</p><p>模型通过利用casually masked Transformer来输出最优动作。通过自回归（autoregressive 意思就是把自己当前和之前的所有输出作为下一次的输入，迭代产生一个输出序列）的方式运行，历史序列+当前的序列不断运行，让本文的Transformer模型可以生成相应的动作去达成期望回报。</p><p>论文：<a href="https://arxiv.org/abs/2106.01345">https://arxiv.org/abs/2106.01345</a></p><p>代码：<a href="https://github.com/kzl/decision-transformer">https://github.com/kzl/decision-transformer</a></p><h2 id="2-模型结构"><a href="#2-模型结构" class="headerlink" title="2. 模型结构"></a>2. 模型结构</h2><h2 id="5-参考文献"><a href="#5-参考文献" class="headerlink" title="5. 参考文献"></a>5. 参考文献</h2><p><a href="https://zhuanlan.zhihu.com/p/501117104">https://zhuanlan.zhihu.com/p/501117104</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>强化学习</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>STD-MAE - 学习笔记</title>
     <link href="/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2025/05/22/STD-MAE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
