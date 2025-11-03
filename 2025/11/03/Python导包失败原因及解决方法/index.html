@@ -19,21 +19,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="Linux常用命令及操作备忘脚本书写方法12345678910#!&#x2F;bin&#x2F;bashecho &quot;current working dir $(pwd)&quot;cd &quot;&#x2F;data1&#x2F;project-main&quot;echo &quot;current working dir $(pwd)&quot;python &quot;script&#x2F;run.py&quot; --cfg">
+    <meta name="description" content="问题描述Python在调试的时候提示：ImportError: attempted relative import with no known parent package 分析与解决方案这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案：①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux常用命令及操作备忘">
-<meta property="og:url" content="https://runsstudio.github.io/2025/07/28/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%A4%87%E5%BF%98/index.html">
+<meta property="og:title" content="Python导包失败原因及解决方法">
+<meta property="og:url" content="https://runsstudio.github.io/2025/11/03/Python%E5%AF%BC%E5%8C%85%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="Linux常用命令及操作备忘脚本书写方法12345678910#!&#x2F;bin&#x2F;bashecho &quot;current working dir $(pwd)&quot;cd &quot;&#x2F;data1&#x2F;project-main&quot;echo &quot;current working dir $(pwd)&quot;python &quot;script&#x2F;run.py&quot; --cfg">
+<meta property="og:description" content="问题描述Python在调试的时候提示：ImportError: attempted relative import with no known parent package 分析与解决方案这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案：①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-07-28T13:17:31.000Z">
-<meta property="article:modified_time" content="2025-07-28T13:28:06.597Z">
+<meta property="article:published_time" content="2025-11-03T12:59:17.000Z">
+<meta property="article:modified_time" content="2025-11-03T13:05:54.525Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Linux常用命令及操作备忘 - Run&#39;s Studio</title>
+  <title>Python导包失败原因及解决方法 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux常用命令及操作备忘"></span>
+            <span id="subtitle" data-typed-text="Python导包失败原因及解决方法"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-07-28 21:17" pubdate>
-          2025年7月28日 晚上
+        <time datetime="2025-11-03 20:59" pubdate>
+          2025年11月3日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          447 字
+          170 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          4 分钟
+          2 分钟
         
       </span>
     
@@ -270,38 +270,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Linux常用命令及操作备忘</h1>
+            <h1 id="seo-header">Python导包失败原因及解决方法</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Linux常用命令及操作备忘"><a href="#Linux常用命令及操作备忘" class="headerlink" title="Linux常用命令及操作备忘"></a>Linux常用命令及操作备忘</h1><h2 id="脚本书写方法"><a href="#脚本书写方法" class="headerlink" title="脚本书写方法"></a>脚本书写方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;current working dir <span class="hljs-subst">$(pwd)</span>&quot;</span><br><br><span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;/data1/project-main&quot;</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;current working dir <span class="hljs-subst">$(pwd)</span>&quot;</span><br><br>python <span class="hljs-string">&quot;script/run.py&quot;</span> --cfg=<span class="hljs-string">&#x27;script/aaa.py&#x27;</span> --gpus=<span class="hljs-string">&#x27;0&#x27;</span><br><br></code></pre></td></tr></table></figure>
-
-<p><code>#!/bin/bash</code> —— 用于指定默认情况下运行指定脚本的解释器<br><code>echo</code>——在屏幕上输出<br><code>Pwd</code> ——当前工作目录<br><code>cd</code>- 进入路径，从&#x2F;开始表示绝对路径，不带&#x2F;开头表示相对路径<br><code>python</code>——具体执行代码，需配置好环境<br>需要注意的是，<code>windows</code>环境下的文本编辑器会默认在换行时添加<code>\r\n</code>，导致上述代码在<code>linux</code>环境下执行时，会提示类似：<code>cd \r 没有那个文件或目录</code> 这样的报错。解决方案是在linux环境下编辑脚本（用vscode连接到服务器，或者用vim等编辑器）<br>脚本熟悉完成后，保存为<code>.sh</code>文件，在终端执行（如果没有权限可用chmod 命令加权限）。<br>例如，在终端键入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">chmod +x helloworld.sh<br>/helloworld.sh<br></code></pre></td></tr></table></figure>
-<p>给文件加权限并运行<code>helloworld.sh</code>文件。</p>
-<h2 id="其他常见操作"><a href="#其他常见操作" class="headerlink" title="其他常见操作"></a>其他常见操作</h2><ol>
-<li><p>给脚本加权限 <code>chmod -x abc.sh</code></p>
-</li>
-<li><p>查看文件列表 <code>ls</code> 、<code>ls -l</code></p>
-</li>
-<li><p>查看显存占用情况 <code>nvidia-smi</code></p>
-</li>
-<li><p>查看cuda版本： <code>nvcc -V</code></p>
-</li>
-<li><p>查看进程运行情况 <code>top</code>，按M可以给进程占用排序</p>
-</li>
-<li><p>压缩文件的命令： <code>tar -czvf archive.tar.gz directory</code>      </p>
-<p> -c 或 –create 表示创建新的备份文件。</p>
-<p> -z 或 –gzip 表示通过gzip指令处理备份文件。</p>
-<p> -v 或 –verbose 表示显示指令执行过程。</p>
-<p> -f 表示指定备份文件。</p>
-</li>
-<li><p>解压文件的命令 <code>tar -xzvf archive.tar.gz -C /home/user/</code> 这个命令会将名为archive.tar.gz的压缩文件解压到指定的&#x2F;home&#x2F;user&#x2F;目录中。 </p>
-</li>
-<li><p>也可以用<code>unzip archive.zip -d /path/to/directory</code>命令解压</p>
-</li>
-</ol>
+                <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>Python在调试的时候提示：<br><code>ImportError: attempted relative import with no known parent package</code></p>
+<h1 id="分析与解决方案"><a href="#分析与解决方案" class="headerlink" title="分析与解决方案"></a>分析与解决方案</h1><p>这种情况一般是使用了相对路径来引入包，例如</p>
+<p><code>From .stdmae_arch import MaskedAutoencoderViT</code></p>
+<p>修改方案：<br>①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子文件夹目录。<br>例如目录结构是：</p>
+<p>Basicts<br>  → stdmae<br>      →stdmae_arch<br>            xxx.py （里面包含要导入的类）</p>
+<p>那么绝对路径就是<br><code>from stdmae.stdmae_arch import MaskedAutoencoderViT</code><br>②在运行文件的编辑配置中，配置文件的工作目录为整个项目的根目录。然后再执行<code>run</code>或<code>debug</code>操作。<br>上述两个步骤建议都完成，以避免导包失败。</p>
 
                 
               </div>
@@ -340,15 +319,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Linux常用命令及操作备忘</div>
-      <div>https://runsstudio.github.io/2025/07/28/Linux常用命令及操作备忘/</div>
+      <div>Python导包失败原因及解决方法</div>
+      <div>https://runsstudio.github.io/2025/11/03/Python导包失败原因及解决方法/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年7月28日</div>
+          <div>2025年11月3日</div>
         </div>
       
       
@@ -380,18 +359,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/28/sora%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Sora底层学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Sora底层学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="TransformerLight - 学习笔记">
-                        <span class="hidden-mobile">TransformerLight - 学习笔记</span>
+                      <a href="/2025/10/28/sora%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Sora底层学习笔记">
+                        <span class="hidden-mobile">Sora底层学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

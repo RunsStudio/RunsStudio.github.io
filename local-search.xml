@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>Python导包失败原因及解决方法</title>
+    <link href="/2025/11/03/Python%E5%AF%BC%E5%8C%85%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <url>/2025/11/03/Python%E5%AF%BC%E5%8C%85%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>Python在调试的时候提示：<br><code>ImportError: attempted relative import with no known parent package</code></p><h1 id="分析与解决方案"><a href="#分析与解决方案" class="headerlink" title="分析与解决方案"></a>分析与解决方案</h1><p>这种情况一般是使用了相对路径来引入包，例如</p><p><code>From .stdmae_arch import MaskedAutoencoderViT</code></p><p>修改方案：<br>①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子文件夹目录。<br>例如目录结构是：</p><p>Basicts<br>  → stdmae<br>      →stdmae_arch<br>            xxx.py （里面包含要导入的类）</p><p>那么绝对路径就是<br><code>from stdmae.stdmae_arch import MaskedAutoencoderViT</code><br>②在运行文件的编辑配置中，配置文件的工作目录为整个项目的根目录。然后再执行<code>run</code>或<code>debug</code>操作。<br>上述两个步骤建议都完成，以避免导包失败。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>杂谈</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Sora底层学习笔记</title>
+    <link href="/2025/10/28/sora%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/2025/10/28/sora%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-原始视频"><a href="#1-原始视频" class="headerlink" title="1. 原始视频"></a>1. 原始视频</h1><p>【视频生成·上【论文精读·55】】 <a href="https://www.bilibili.com/video/BV1VdcxesEAt">https://www.bilibili.com/video/BV1VdcxesEAt</a><br>【视频生成·下：模型和训练【论文精读·55】】 <a href="https://www.bilibili.com/video/BV1U65SzuE4p">https://www.bilibili.com/video/BV1U65SzuE4p</a></p><h1 id="2-Sora动机"><a href="#2-Sora动机" class="headerlink" title="2. Sora动机"></a>2. Sora动机</h1><p>由OpenAi</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Linux常用命令及操作备忘</title>
     <link href="/2025/07/28/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%A4%87%E5%BF%98/"/>
     <url>/2025/07/28/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%A4%87%E5%BF%98/</url>
