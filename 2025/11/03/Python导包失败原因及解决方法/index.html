@@ -19,12 +19,12 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="问题描述Python在调试的时候提示：ImportError: attempted relative import with no known parent package 分析与解决方案这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案：①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子">
+    <meta name="description" content="问题描述 Python在调试的时候提示： ImportError: attempted relative import with no known parent package 分析与解决方案 这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案： ①使用完整路径来引入包。这里的完整路径指的是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python导包失败原因及解决方法">
 <meta property="og:url" content="https://runsstudio.github.io/2025/11/03/Python%E5%AF%BC%E5%8C%85%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="问题描述Python在调试的时候提示：ImportError: attempted relative import with no known parent package 分析与解决方案这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案：①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子">
+<meta property="og:description" content="问题描述 Python在调试的时候提示： ImportError: attempted relative import with no known parent package 分析与解决方案 这种情况一般是使用了相对路径来引入包，例如 From .stdmae_arch import MaskedAutoencoderViT 修改方案： ①使用完整路径来引入包。这里的完整路径指的是">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-03T12:59:17.000Z">
 <meta property="article:modified_time" content="2025-11-03T13:05:54.525Z">
@@ -275,12 +275,20 @@
             
               <div class="markdown-body">
                 
-                <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>Python在调试的时候提示：<br><code>ImportError: attempted relative import with no known parent package</code></p>
-<h1 id="分析与解决方案"><a href="#分析与解决方案" class="headerlink" title="分析与解决方案"></a>分析与解决方案</h1><p>这种情况一般是使用了相对路径来引入包，例如</p>
+                <h1 id="问题描述">问题描述</h1>
+<p>Python在调试的时候提示：
+<code>ImportError: attempted relative import with no known parent package</code></p>
+<h1 id="分析与解决方案">分析与解决方案</h1>
+<p>这种情况一般是使用了相对路径来引入包，例如</p>
 <p><code>From .stdmae_arch import MaskedAutoencoderViT</code></p>
-<p>修改方案：<br>①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子文件夹目录。<br>例如目录结构是：</p>
-<p>Basicts<br>  → stdmae<br>      →stdmae_arch<br>            xxx.py （里面包含要导入的类）</p>
-<p>那么绝对路径就是<br><code>from stdmae.stdmae_arch import MaskedAutoencoderViT</code><br>②在运行文件的编辑配置中，配置文件的工作目录为整个项目的根目录。然后再执行<code>run</code>或<code>debug</code>操作。<br>上述两个步骤建议都完成，以避免导包失败。</p>
+<p>修改方案：
+①使用完整路径来引入包。这里的完整路径指的是从项目的根目录开始的子文件夹目录。
+例如目录结构是：</p>
+<p>Basicts → stdmae →stdmae_arch xxx.py （里面包含要导入的类）</p>
+<p>那么绝对路径就是
+<code>from stdmae.stdmae_arch import MaskedAutoencoderViT</code>
+②在运行文件的编辑配置中，配置文件的工作目录为整个项目的根目录。然后再执行<code>run</code>或<code>debug</code>操作。
+上述两个步骤建议都完成，以避免导包失败。</p>
 
                 
               </div>
@@ -359,12 +367,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2026/01/04/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B/" title="强化学习学习笔记（二）贝尔曼方程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">强化学习学习笔记（二）贝尔曼方程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/28/sora%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Sora底层学习笔记">
-                        <span class="hidden-mobile">Sora底层学习笔记</span>
+                      <a href="/2025/07/28/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%A4%87%E5%BF%98/" title="Linux常用命令及操作备忘">
+                        <span class="hidden-mobile">Linux常用命令及操作备忘</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

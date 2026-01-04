@@ -19,12 +19,12 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="TransformerLight - 学习笔记1. 文章摘要交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交通控制表述为一个序">
+    <meta name="description" content="TransformerLight - 学习笔记 1. 文章摘要 交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TransformerLight - 学习笔记">
 <meta property="og:url" content="https://runsstudio.github.io/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="TransformerLight - 学习笔记1. 文章摘要交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交通控制表述为一个序">
+<meta property="og:description" content="TransformerLight - 学习笔记 1. 文章摘要 交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://runsstudio.github.io/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98.png">
 <meta property="og:image" content="https://runsstudio.github.io/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1.png">
@@ -285,38 +285,109 @@
             
               <div class="markdown-body">
                 
-                <h1 id="TransformerLight-学习笔记"><a href="#TransformerLight-学习笔记" class="headerlink" title="TransformerLight - 学习笔记"></a>TransformerLight - 学习笔记</h1><h2 id="1-文章摘要"><a href="#1-文章摘要" class="headerlink" title="1. 文章摘要"></a>1. 文章摘要</h2><p>交通信号控制 （TSC） 仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在 TSC 中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线 RL 是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交通控制表述为一个序列建模问题，其中包含由交通环境中的<strong>状态、动作和奖励</strong>描述的马尔可夫决策过程序列。从而引入了一种新的框架，即 TransformerLight，它的目的不是通过平均所有可能的回报来拟合值函数（过往的模型常用方法，神经网络用于拟合RL中的V值或Q值），而是使用门控 Transformer 产生最佳动作。此外，TransformerLight 的学习过程通过用动态的引起的门控Transformer（Gated Transformer）块替换残差连接而更加稳定。通过对离线数据集的数值实验，证明了TransformerLight模型（1）无需动态规划即可构建高性能自适应的信号控制模型（2）与BCQ、CQL等离线强化学习模型相比展现了更好的性能（3）相比传统的离线强化学习，性能更加稳定。</p>
-<p>论文：<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3580305.3599530">https://dl.acm.org/doi/10.1145/3580305.3599530</a></p>
-<p>代码：<a target="_blank" rel="noopener" href="https://github.com/Smart-Trafficlab/TransformerLight">https://github.com/Smart-Trafficlab/TransformerLight</a></p>
-<h2 id="2-模型结构"><a href="#2-模型结构" class="headerlink" title="2. 模型结构"></a>2. 模型结构</h2><p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt="模型结构"></p>
-<ol>
-<li>模型状态动作奖励的定义<br>由于和DT一样都是离线强化学习模型，这里输入都是（s,a,r）一样的轨迹，区别在于输入的状态变成了由多个特征组成的交通状态。这些状态的特征包括：车辆数 (NV), 排队长度 (QL), 有效流向压力 (一般就是进出口道的车辆数相减EP), 行驶中的车辆数 (ERV), 交通流向压力 (TMP), 以及更多指标.同时，奖励𝑟𝑡 包括了排队长度、交通流向压力和平均行程时间（ATT）三个指标。动作则是在给定的相位集中{ABCD}中选择一个相位。<br>需要指出的是原始的Decision Transformer模型中使用的是return-to-go，也就是未来剩余的回报，作为奖励的指引。但是在交通信号控制任务上，奖励是无穷无尽的，奖励的获取不会像玩游戏一样具有终止条件。基于此，文章将模型输入的奖励改为直接优化算法的指标，也就是最小化平均行程时间。</li>
+                <h1 id="transformerlight---学习笔记">TransformerLight - 学习笔记</h1>
+<h2 id="文章摘要">1. 文章摘要</h2>
+<p>交通信号控制 （TSC）
+仍然是交通领域最重要和最具挑战性的研究问题之一。在线强化学习 （RL） 在
+TSC
+中取得了巨大成功，但由于过多的试错学习过程，在实际应用中的学习成本非常高。离线
+RL
+是一种很有前途的降低学习成本的方法，然而，离线强化学习主要面对数据分布偏移问题，这些问题仍然悬而未决。为此，在本文中，我们将交通控制表述为一个序列建模问题，其中包含由交通环境中的<strong>状态、动作和奖励</strong>描述的马尔可夫决策过程序列。从而引入了一种新的框架，即
+TransformerLight，它的目的不是通过平均所有可能的回报来拟合值函数（过往的模型常用方法，神经网络用于拟合RL中的V值或Q值），而是使用门控
+Transformer 产生最佳动作。此外，TransformerLight
+的学习过程通过用动态的引起的门控Transformer（Gated
+Transformer）块替换残差连接而更加稳定。通过对离线数据集的数值实验，证明了TransformerLight模型（1）无需动态规划即可构建高性能自适应的信号控制模型（2）与BCQ、CQL等离线强化学习模型相比展现了更好的性能（3）相比传统的离线强化学习，性能更加稳定。</p>
+<p>论文：https://dl.acm.org/doi/10.1145/3580305.3599530</p>
+<p>代码：https://github.com/Smart-Trafficlab/TransformerLight</p>
+<h2 id="模型结构">2. 模型结构</h2>
+<figure>
+<img src="无标题.png" srcset="/img/loading.gif" lazyload alt="模型结构" />
+<figcaption aria-hidden="true">模型结构</figcaption>
+</figure>
+<ol type="1">
+<li>模型状态动作奖励的定义
+由于和DT一样都是离线强化学习模型，这里输入都是（s,a,r）一样的轨迹，区别在于输入的状态变成了由多个特征组成的交通状态。这些状态的特征包括：车辆数
+(NV), 排队长度 (QL), 有效流向压力 (一般就是进出口道的车辆数相减EP),
+行驶中的车辆数 (ERV), 交通流向压力 (TMP), 以及更多指标.同时，奖励𝑟𝑡
+包括了排队长度、交通流向压力和平均行程时间（ATT）三个指标。动作则是在给定的相位集中{ABCD}中选择一个相位。
+需要指出的是原始的Decision
+Transformer模型中使用的是return-to-go，也就是未来剩余的回报，作为奖励的指引。但是在交通信号控制任务上，奖励是无穷无尽的，奖励的获取不会像玩游戏一样具有终止条件。基于此，文章将模型输入的奖励改为直接优化算法的指标，也就是最小化平均行程时间。</li>
 </ol>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-1.png" srcset="/img/loading.gif" lazyload alt="优化目标"></p>
-<ol start="2">
+<figure>
+<img src="无标题-1.png" srcset="/img/loading.gif" lazyload alt="优化目标" />
+<figcaption aria-hidden="true">优化目标</figcaption>
+</figure>
+<ol start="2" type="1">
 <li>网络结构</li>
 </ol>
-<p>TransformerLight的模型网络结构如图所示，可以看到和Decision Transformer的模型结构是非常相似的，其唯一的区别在于将DT中的Transformer模型替换成了门控Transformer模块（Gated Transformer Module）。</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-2.png" srcset="/img/loading.gif" lazyload alt="网络结构"></p>
+<p>TransformerLight的模型网络结构如图所示，可以看到和Decision
+Transformer的模型结构是非常相似的，其唯一的区别在于将DT中的Transformer模型替换成了门控Transformer模块（Gated
+Transformer Module）。</p>
+<figure>
+<img src="无标题-2.png" srcset="/img/loading.gif" lazyload alt="网络结构" />
+<figcaption aria-hidden="true">网络结构</figcaption>
+</figure>
 <p>文章对于Transformer模块的改进如图所示</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-3.png" srcset="/img/loading.gif" lazyload alt="改进部分"></p>
-<p>将原Transformer中的add操作 替换成了gated操作。<br>其中，多头注意力层替换后公式是：</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-4.png" srcset="/img/loading.gif" lazyload alt="门控多头注意力公式"></p>
-<p>X是输入的embedding，根据状态、动作、奖励token序列进行嵌入和位置编码后的矩阵<br>FFN层替换后的公式是：</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-5.png" srcset="/img/loading.gif" lazyload alt="门控FFN层公式"></p>
+<figure>
+<img src="无标题-3.png" srcset="/img/loading.gif" lazyload alt="改进部分" />
+<figcaption aria-hidden="true">改进部分</figcaption>
+</figure>
+<p>将原Transformer中的add操作 替换成了gated操作。
+其中，多头注意力层替换后公式是：</p>
+<figure>
+<img src="无标题-4.png" srcset="/img/loading.gif" lazyload alt="门控多头注意力公式" />
+<figcaption aria-hidden="true">门控多头注意力公式</figcaption>
+</figure>
+<p>X是输入的embedding，根据状态、动作、奖励token序列进行嵌入和位置编码后的矩阵
+FFN层替换后的公式是：</p>
+<figure>
+<img src="无标题-5.png" srcset="/img/loading.gif" lazyload alt="门控FFN层公式" />
+<figcaption aria-hidden="true">门控FFN层公式</figcaption>
+</figure>
 <p>这里对应的是模型中的FFN层，把多头注意力的输出隐向量Z经过FFN，再来和原来的张量进行门控运算。</p>
 <p>门控运算可以用下面的公式表示，这个公式是一种门控融合函数，常见于神经网络中用于动态融合两种信息（如向量、特征等）。核心思想是通过门控机制自适应调节两个输入的权重，从而实现控制信息的保留与融合。</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-6.png" srcset="/img/loading.gif" lazyload alt="门控运算"></p>
-<p>其中o和r表示两个待融合的输入向量，σ通常是sigmoid函数（输出范围是0,1），用于生成门信号。<br>通过σ的值，可以决定两个信号o和r之间的信息保留程度。</p>
-<ol start="3">
-<li>伪代码<br>模型伪代码如下图所示，伪代码用红框标记的两行的位置就是代码改进的地方，其实也就是把原来应该 X+attn(X)的地方替换成了门控的计算方式。</li>
+<figure>
+<img src="无标题-6.png" srcset="/img/loading.gif" lazyload alt="门控运算" />
+<figcaption aria-hidden="true">门控运算</figcaption>
+</figure>
+<p>其中o和r表示两个待融合的输入向量，σ通常是sigmoid函数（输出范围是0,1），用于生成门信号。
+通过σ的值，可以决定两个信号o和r之间的信息保留程度。</p>
+<ol start="3" type="1">
+<li>伪代码
+模型伪代码如下图所示，伪代码用红框标记的两行的位置就是代码改进的地方，其实也就是把原来应该
+X+attn(X)的地方替换成了门控的计算方式。</li>
 </ol>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-7.png" srcset="/img/loading.gif" lazyload alt="伪代码"></p>
-<p>文章指出，这么做的好处是：<br>（1） 改进的梯度流向：我们的 GT 中的门控机制可在反向传播期间实现更好的梯度流。<br>（2） 增强的表现力：门控机制为 GT 提供了额外的表现力，使其能够学习更丰富、更复杂的表示。<br>（3） 更好的噪声处理：我们的 GT 可以通过选择性地抑制不相关的信息来更好地处理嘈杂的输入数据</p>
-<p>文章还指出，使用序列决策对信号控制算法进行建模的方式，好处在于：<br>（1） 获得更好的决策结果：序列建模模型已经证明它们能够做出可能与当前离线 RL 方法相匹配或优于的决策。我们的 TransformerLight 还可以在 TSC 中实现 SOTA 结果。<br>（2） 为了稳定的训练过程：研究表明，在高方差 RL 设置中，transformers 的训练更稳定。此外，大量成熟的研究对 transformer 模型的稳定训练技术进行了研究。<br>（3） 避免 OOD 问题：离线 RL 的 OOD 问题仍然悬而未决，而 TransformerLight 避免了目标的正则化或保守性需求，因为没有必要使用复杂的目标函数进行优化。</p>
-<h1 id="3-实验部分"><a href="#3-实验部分" class="headerlink" title="3.实验部分"></a>3.实验部分</h1><p>对比模型：<br>BC（Behavior Cloning (BC): We employ Behavior Cloning (BC) to provide the performance of a pure imitative method.）纯模仿学习的方法<br>Offline RL Methods: We apply the latest offline RL method CQL [16], TD3+BC [8] , and BEAR [15] for comparison.<br>Transformer-based Methods: We use Decision Transformer [4] , Trajectory Transformer [14], and Algorithm Distillation [17] to train on our historical trajectory dataset for final results of ATT.</p>
+<figure>
+<img src="无标题-7.png" srcset="/img/loading.gif" lazyload alt="伪代码" />
+<figcaption aria-hidden="true">伪代码</figcaption>
+</figure>
+<p>文章指出，这么做的好处是： （1） 改进的梯度流向：我们的 GT
+中的门控机制可在反向传播期间实现更好的梯度流。 （2）
+增强的表现力：门控机制为 GT
+提供了额外的表现力，使其能够学习更丰富、更复杂的表示。 （3）
+更好的噪声处理：我们的 GT
+可以通过选择性地抑制不相关的信息来更好地处理嘈杂的输入数据</p>
+<p>文章还指出，使用序列决策对信号控制算法进行建模的方式，好处在于：
+（1） 获得更好的决策结果：序列建模模型已经证明它们能够做出可能与当前离线
+RL 方法相匹配或优于的决策。我们的 TransformerLight 还可以在 TSC 中实现
+SOTA 结果。 （2） 为了稳定的训练过程：研究表明，在高方差 RL
+设置中，transformers 的训练更稳定。此外，大量成熟的研究对 transformer
+模型的稳定训练技术进行了研究。 （3） 避免 OOD 问题：离线 RL 的 OOD
+问题仍然悬而未决，而 TransformerLight
+避免了目标的正则化或保守性需求，因为没有必要使用复杂的目标函数进行优化。</p>
+<h1 id="实验部分">3.实验部分</h1>
+<p>对比模型： BC（Behavior Cloning (BC): We employ Behavior Cloning (BC)
+to provide the performance of a pure imitative method.）纯模仿学习的方法
+Offline RL Methods: We apply the latest offline RL method CQL [16],
+TD3+BC [8] , and BEAR [15] for comparison. Transformer-based Methods: We
+use Decision Transformer [4] , Trajectory Transformer [14], and
+Algorithm Distillation [17] to train on our historical trajectory
+dataset for final results of ATT.</p>
 <p>实验评测的数据集：济南3×4路网、杭州4×4路网，纽约路网，对比在线和离线等多个模型。</p>
-<p><img src="/2025/05/28/TransformerLight%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%97%A0%E6%A0%87%E9%A2%98-8.png" srcset="/img/loading.gif" lazyload alt="对比实验"></p>
+<figure>
+<img src="无标题-8.png" srcset="/img/loading.gif" lazyload alt="对比实验" />
+<figcaption aria-hidden="true">对比实验</figcaption>
+</figure>
 
                 
               </div>
