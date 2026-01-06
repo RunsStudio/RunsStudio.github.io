@@ -19,21 +19,30 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="强化学习学习笔记（一）基础概念 本笔记是b站的 西湖大学强化学习课程 的笔记。并附带一些个人的思考。 # 一、基础概念 强化学习各章节  基础概念 贝尔曼方程 贝尔曼最优方程 值迭代&amp;策略迭代 蒙特卡洛学习 随机估计 时序差分学习 值函数估计 策略梯度方法 Actor-Critic 方法  章节关系 章节1-3 强化学习的基础工具 章节4-10 强化学习的">
+    <meta name="description" content="轻松在Windows上配置并运行LLMLight项目 1. Introduction 近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强化学习学习笔记（一）基础概念">
-<meta property="og:url" content="https://runsstudio.github.io/2026/01/04/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="轻松在Windows上配置并运行LLMLight项目">
+<meta property="og:url" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="强化学习学习笔记（一）基础概念 本笔记是b站的 西湖大学强化学习课程 的笔记。并附带一些个人的思考。 # 一、基础概念 强化学习各章节  基础概念 贝尔曼方程 贝尔曼最优方程 值迭代&amp;策略迭代 蒙特卡洛学习 随机估计 时序差分学习 值函数估计 策略梯度方法 Actor-Critic 方法  章节关系 章节1-3 强化学习的基础工具 章节4-10 强化学习的">
+<meta property="og:description" content="轻松在Windows上配置并运行LLMLight项目 1. Introduction 近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-01-04T12:10:57.000Z">
-<meta property="article:modified_time" content="2026-01-04T12:30:32.574Z">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-10.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-11.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-9.png">
+<meta property="article:published_time" content="2026-01-05T13:09:55.000Z">
+<meta property="article:modified_time" content="2026-01-06T14:05:05.758Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-6.png">
   
   
   
-  <title>强化学习学习笔记（一）基础概念 - Run&#39;s Studio</title>
+  <title>轻松在Windows上配置并运行LLMLight项目 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +53,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -199,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="强化学习学习笔记（一）基础概念"></span>
+            <span id="subtitle" data-typed-text="轻松在Windows上配置并运行LLMLight项目"></span>
           
         </div>
 
@@ -210,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-04 20:10" pubdate>
-          2026年1月4日 晚上
+        <time datetime="2026-01-05 21:09" pubdate>
+          2026年1月5日 晚上
         </time>
       </span>
     
@@ -222,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          721 字
+          1.6k 字
         
       </span>
     
@@ -233,7 +244,7 @@
         
         
         
-          7 分钟
+          14 分钟
         
       </span>
     
@@ -270,51 +281,100 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">强化学习学习笔记（一）基础概念</h1>
+            <h1 id="seo-header">轻松在Windows上配置并运行LLMLight项目</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="强化学习学习笔记一基础概念">强化学习学习笔记（一）基础概念</h1>
-<p>本笔记是b站的 <a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sd4y167NS">西湖大学强化学习课程</a>
-的笔记。并附带一些个人的思考。 # 一、基础概念</p>
-<h2 id="强化学习各章节">强化学习各章节</h2>
-<ol type="1">
-<li>基础概念</li>
-<li>贝尔曼方程</li>
-<li>贝尔曼最优方程</li>
-<li>值迭代&amp;策略迭代</li>
-<li>蒙特卡洛学习</li>
-<li>随机估计</li>
-<li>时序差分学习</li>
-<li>值函数估计</li>
-<li>策略梯度方法</li>
-<li>Actor-Critic 方法</li>
+                <h1
+id="轻松在windows上配置并运行llmlight项目">轻松在Windows上配置并运行LLMLight项目</h1>
+<h1 id="introduction">1. Introduction</h1>
+<p>近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提示来指导LLM。利用LLM强大的泛化能力，LLMLight进行类似人类直觉的推理和决策过程，以实现有效的交通控制。此外，该文章构建了LightGPT，一种专门为TSC任务定制的核心LLM。通过学习细微的交通模式和控制策略，LightGPT在成本效益方面增强了LLMLight框架。</p>
+<p>LLMLight项目基于大语言模型进行信号控制，依赖cityflow仿真环境进行训练和测试，而cityflow又必须安装在linux操作系统下，交通工程专业的工程师或从业人员较难在短时间内从0开始配置完成整个项目。为此撰写一篇文章，希望教给读者从0开始在Windows上配置并运行LLMLight项目。</p>
+<h1 id="准备工作">2. 准备工作</h1>
+<p>LLMLight项目依赖Linux环境，过往我们想要工作中使用Windows系统，并且还要临时跑Linux项目还是比较费劲的，需要使用虚拟机或安装双系统，两种方式都有痛点。但随着时代的进步，在Windows上配置并运行Linux项目成为可能。WSL（Windows
+Subsystem for Linux，适用于 Linux 的 Windows 子系统）是微软为 Windows
+系统（如 Windows 10 和 Windows 11）引入的一项功能，允许用户在 Windows
+上运行 Linux
+操作系统及其相关命令和应用程序，而无需安装虚拟机或双系统。这就为我们的部署提供了便利。</p>
+<p>系统要求：Windows 11 ，具备良好的网络环境</p>
+<h1 id="系统篇">3. 系统篇</h1>
+<h1 id="安装wsl-和-ubuntu-24.04">3.1 安装wsl 和 ubuntu 24.04</h1>
+<p>安装wsl并在该环境下配置ubuntu 24.04，可以参考这篇文章：<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1903903315080774656">Windows安装和配置Linux子系统（WSL2）</a></p>
+<h1 id="环境篇">4 环境篇</h1>
+<h2 id="安装python3.10环境">4.1 安装python3.10环境</h2>
+<p>Ubuntu默认的python版本是3.12.3，经过实验，在这个版本下安装cityflow将会编译不成功，部分依赖（例如tensorflow-cpu）也会无法安装2.8.0版本。为了保持版本一致，我们首先应该安装python3.10环境，替换掉系统自带的python3.12
+环境。在这一步，我们需要用到pyenv。</p>
+<p>以下命令在ubuntu命令行中运行，建议直接复制粘贴命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 安装 pyenv</span><br>curl https://pyenv.run | bash<br><br><span class="hljs-comment"># 2. 将以下内容添加到 ~/.bashrc</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(pyenv init -)&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 3. 安装编译依赖</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install -y make build-essential libssl-dev zlib1g-dev \<br>libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \<br>libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev<br><span class="hljs-built_in">sudo</span> apt install -y libffi-dev libssl-dev <br><span class="hljs-built_in">sudo</span> apt install -y libssl-dev openssl<br><br><span class="hljs-comment"># 4. 安装python 3.10.2</span><br>pyenv install 3.10.2<br><br></code></pre></td></tr></table></figure>
+<p>到这一步，我们就已经安装好了python
+3.10.2。需要指出的是，其中第三步安装编译依赖必须在安装python之前完成，特别是<code>openssl</code>、<code>libssl-dev</code>这些依赖，在后期编译cityflow时会使用到。</p>
+<p>安装环境有了，我们接下来给项目创建一个venv环境。这一步可以在pycharm中完成。我使用的是pycharm
+2023完整版，在windows环境下，打开LLMLight项目根目录，选择<code>左上角的选项→Setting→Python Interpreter → Add Interpreter → on WSL...</code>系统会自动检测WSL环境下安装的python，路径就按照默认给出的路径，这里我默认创建的路径是<code>/root/.virtualenvs/LLMTSCS-main/</code></p>
+<p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
+<figure>
+<img src="image-5.png" srcset="/img/loading.gif" lazyload alt="虚拟环境创建完成" />
+<figcaption aria-hidden="true">虚拟环境创建完成</figcaption>
+</figure>
+<p>虚拟环境创建完成！</p>
+<p>进入venv安装的目录下，默认情况下，创建的venv解释器位于
+<code>root/.virtualenvs/LLMTSCS-main/bin</code></p>
+<p>输入命令<code>source activate</code>运行venv</p>
+<figure>
+<img src="image-2.png" srcset="/img/loading.gif" lazyload alt="venv界面命令的最前方有虚拟环境的名称" />
+<figcaption
+aria-hidden="true">venv界面命令的最前方有虚拟环境的名称</figcaption>
+</figure>
+<h2 id="安装项目所需的依赖">4.2 安装项目所需的依赖</h2>
+<h3 id="安装cityflow">4.2.1 安装CityFlow</h3>
+<p>由于cityflow比较难安装，我们首先安装cityflow。</p>
+<p>cityflow有两种方式进行安装：通过Docker安装和通过源码安装，这里我选择通过git安装。</p>
+<p>首先在ubuntu上，安装所需的依赖：</p>
+<p><code>sudo apt update &amp;&amp; sudo apt install -y build-essential cmake</code></p>
+<p>随后，在windows本地新建一个文件夹，从github上克隆代码到本地：</p>
+<p><code>git clone https://github.com/cityflow-project/CityFlow.git</code></p>
+<p>在Ubuntu中，进入CityFlow目录，通过pip方式安装：</p>
+<p><code>cd CityFlow &amp;&amp; pip install .</code></p>
+<p>需要注意的是，安装依赖的时候，请确定自己是正所处于创建的虚拟环境venv中，而不是系统自带的python环境中。</p>
+<p>当出现这个画面的时候，就意味着cityflow安装成功了！ <img
+src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="安装其他所需的依赖">4.2.2 安装其他所需的依赖</h3>
+<p>LLMLight文档中提到，项目的主要依赖有：
+<code>python&gt;=3.9,tensorflow-cpu==2.8.0, cityflow, pandas==1.5.0, numpy==1.26.2, wandb, transformers==4.45.0, peft==0.7.1, accelerate==0.27.2, datasets==2.16.1, fire, vllm==0.6.2</code></p>
+<p>除了上面所需要的依赖，经过实测，还需要安装依赖：<code>protobuf==3.20.3</code></p>
+<p>如果安装包下载太慢，可以先设置全局镜像源：
+<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code>
+<img src="image-3.png" srcset="/img/loading.gif" lazyload alt="设置全局镜像源" /></p>
+<h1 id="运行代码">4.3 运行代码</h1>
+<p>经过配置完成，我们就可以运行代码了~</p>
+<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
+<p>不仅可以在ubuntu中以命令行的方式运行代码，还可以在pycharm中配置运行的文件以运行代码。
+<img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="相关问题">5 相关问题</h1>
+<h2 id="安装依赖时报错">5.1 安装依赖时报错</h2>
+<p>在安装<code>pandas==1.5.0</code>依赖的时候，会报错： 解决“Could not
+build wheels for pandas”错误，大模型提供的解决方案有两个： 1.
+安装必要的编译工具</p>
+<p>在Linux上，你需要安装gcc和make。 sudo apt-get install
+build-essential</p>
+<ol start="2" type="1">
+<li>或者尝试 pip install pyproject</li>
 </ol>
-<h2 id="章节关系">章节关系</h2>
-<p>章节1-3 强化学习的基础工具 章节4-10 强化学习的算法 章节4→章节5
-model-based 到 model-free 章节5→章节7 非增量学习到增量学习 章节7→章节8
-表格化的表征到基于函数的表征 章节8→章节9 value-based到policy-based
-章节9→章节10 policy-based 和value-based结合</p>
-<h1 id="二核心笔记">二、核心笔记</h1>
-<ol type="1">
-<li>强化学习要做的是：不断进行策略评估（policy
-evaluation），然后迭代优化策略</li>
-<li>由于第一条，可以知道state
-value的计算是强化学习的核心，可以用以下几种方法计算：基于model、基于MC，以及基于时序差分</li>
-<li>强化学习基于的是状态的概率转移过程，他的核心就是条件概率公式，包括p(r|s,a),p(a|s),p(s’|s,a)本质都是状态转移的概率</li>
-<li>强化学习的一大假设是马尔科夫性，描述的是一个马尔科夫过程。马尔科夫决策过程，这个名词可以用马尔科夫、决策、过程来描述。马尔科夫性就是无后效性</li>
-<li>强化学习要想学好，没数据就得有模型，没模型就得有数据，啥都没有学不好。这里的model指的是world
-model。没有模型的情况下，对应的model-free方法。</li>
-<li>Off-policy和on-policy对应的是强化学习的两种范式，后面会介绍，不过一句话讲就是off-policy允许模型的target
-policy和behavior policy不一样</li>
-<li>Return的定义。强化学习里面，return
-是相比reward更重要的，return的定义是智能体在一个回合过程中获得的奖励或折扣奖励。也就是说return
-评估的是一个序列的价值（能够获得多少总奖励）</li>
-<li>周期性任务和连续性任务：在强化学习里面，目标是折扣总奖励最大，也就是<span
-class="math display"><em>G</em> = 1 + <em>γ</em><em>r</em><sub>1</sub> + <em>γ</em>²<em>r</em><sub>2</sub> + ...</span>最大。如果任务是有结局的，比如智能体到了终点，在评估折扣总奖励的时候，会把他转换成连续任务去考虑。转换的方式有两种。一种是智能体到达结局后，中断智能体的动作，让他不再移动，奖励一直给0.第二种是智能体可以离开target，然后再回到target，这对应了更一般化的情况。在课程中默认采取的是第二种情况的方式进行讲解</li>
-</ol>
+<p>但是经过我尝试，两个方案都没有解决问题。
+问题根源还是在于python的版本，不能太高，3.12就不行，甚至3.11都高了。
+即使是python3.10，也装不上tensorflow==2.8.0，最后我安装的是TensorFlow==2.9.0</p>
+<h2 id="安装cityflow时报错">5.2 安装CityFlow时报错</h2>
+<p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这类报错大概率是前面的编译依赖环境没装好，建议重装python，并把编译依赖环境装上</p>
+<h2 id="wandb未配置">5.3 wandb未配置</h2>
+<p>运行代码时报错： <img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
+<p>问题分析：这个错误表明 wandb（Weights &amp; Biases）没有配置 API
+key。wandb 是一个机器学习实验跟踪工具，需要登录才能使用。
+解决方案：注册并登录wandb 1. 如果没有 wandb
+账户，先注册：https://wandb.ai 2. 然后登录 <code>wandb login</code> 3.
+运行后会提示你输入 API key，你可以在
+<code>wandb.ai/authorize</code>获取。</p>
 
                 
               </div>
@@ -333,7 +393,7 @@ class="math display"><em>G</em> = 1 + <em>γ</em><em>r</em><sub>1</sub>�
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="category-chain-item">强化学习</a>
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
   
   
 
@@ -353,15 +413,15 @@ class="math display"><em>G</em> = 1 + <em>γ</em><em>r</em><sub>1</sub>�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>强化学习学习笔记（一）基础概念</div>
-      <div>https://runsstudio.github.io/2026/01/04/强化学习学习笔记（一）基础概念/</div>
+      <div>轻松在Windows上配置并运行LLMLight项目</div>
+      <div>https://runsstudio.github.io/2026/01/05/在Windows上快速运行并调试LLMLight/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月4日</div>
+          <div>2026年1月5日</div>
         </div>
       
       
@@ -393,18 +453,12 @@ class="math display"><em>G</em> = 1 + <em>γ</em><em>r</em><sub>1</sub>�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/" title="轻松在Windows上配置并运行LLMLight项目">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">轻松在Windows上配置并运行LLMLight项目</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/04/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B/" title="强化学习学习笔记（二）贝尔曼方程">
-                        <span class="hidden-mobile">强化学习学习笔记（二）贝尔曼方程</span>
+                      <a href="/2026/01/04/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="强化学习学习笔记（一）基础概念">
+                        <span class="hidden-mobile">强化学习学习笔记（一）基础概念</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -461,6 +515,11 @@ class="math display"><em>G</em> = 1 + <em>γ</em><em>r</em><sub>1</sub>�
 
 
   
+
+
+  
+  
+
 
 
 
