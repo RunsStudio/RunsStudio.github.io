@@ -19,30 +19,30 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="轻松在Windows上配置并运行LLMLight项目 1. Introduction 近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提">
+    <meta name="description" content="1. 动机 动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid model案例中可以得到：qπ(s, a) &#x3D; r + γv(s′)，当前的动作是好与坏可以通过当前的动作的价值Q得到。 那么很明显，当前最好的动作就是q值最大的动作，也就是a* &#x3D; argmaxaqπ(s, a)。 如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估">
 <meta property="og:type" content="article">
-<meta property="og:title" content="轻松在Windows上配置并运行LLMLight项目">
-<meta property="og:url" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/index.html">
+<meta property="og:title" content="强化学习学习笔记（三）贝尔曼最优方程">
+<meta property="og:url" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="轻松在Windows上配置并运行LLMLight项目 1. Introduction 近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提">
+<meta property="og:description" content="1. 动机 动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid model案例中可以得到：qπ(s, a) &#x3D; r + γv(s′)，当前的动作是好与坏可以通过当前的动作的价值Q得到。 那么很明显，当前最好的动作就是q值最大的动作，也就是a* &#x3D; argmaxaqπ(s, a)。 如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-6.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-5.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-2.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-3.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-10.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-11.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-4.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-9.png">
-<meta property="article:published_time" content="2026-01-05T13:09:55.000Z">
-<meta property="article:modified_time" content="2026-01-06T14:05:05.758Z">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-1.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-7.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-8.png">
+<meta property="article:published_time" content="2026-01-19T13:02:08.000Z">
+<meta property="article:modified_time" content="2026-01-19T13:25:43.501Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/image-6.png">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-1.png">
   
   
   
-  <title>轻松在Windows上配置并运行LLMLight项目 - Run&#39;s Studio</title>
+  <title>强化学习学习笔记（三）贝尔曼最优方程 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="轻松在Windows上配置并运行LLMLight项目"></span>
+            <span id="subtitle" data-typed-text="强化学习学习笔记（三）贝尔曼最优方程"></span>
           
         </div>
 
@@ -221,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-05 21:09" pubdate>
-          2026年1月5日 晚上
+        <time datetime="2026-01-19 21:02" pubdate>
+          2026年1月19日 晚上
         </time>
       </span>
     
@@ -233,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.5k 字
         
       </span>
     
@@ -244,7 +244,7 @@
         
         
         
-          14 分钟
+          13 分钟
         
       </span>
     
@@ -281,100 +281,99 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">轻松在Windows上配置并运行LLMLight项目</h1>
+            <h1 id="seo-header">强化学习学习笔记（三）贝尔曼最优方程</h1>
             
             
               <div class="markdown-body">
                 
-                <h1
-id="轻松在windows上配置并运行llmlight项目">轻松在Windows上配置并运行LLMLight项目</h1>
-<h1 id="introduction">1. Introduction</h1>
-<p>近年来，基于强化学习的信号控制逐步迭代，已经发展出了基于大语言模型的LLMLight。LLMLight是一种将大型语言模型（LLM）作为TSC决策代理的新框架。传统的TSC方法主要基于交通工程和强化学习（RL），在不同交通场景下的泛化能力通常有限，并且缺乏可解释性。该框架首先通过提供包含实时交通状况的知识性提示来指导LLM。利用LLM强大的泛化能力，LLMLight进行类似人类直觉的推理和决策过程，以实现有效的交通控制。此外，该文章构建了LightGPT，一种专门为TSC任务定制的核心LLM。通过学习细微的交通模式和控制策略，LightGPT在成本效益方面增强了LLMLight框架。</p>
-<p>LLMLight项目基于大语言模型进行信号控制，依赖cityflow仿真环境进行训练和测试，而cityflow又必须安装在linux操作系统下，交通工程专业的工程师或从业人员较难在短时间内从0开始配置完成整个项目。为此撰写一篇文章，希望教给读者从0开始在Windows上配置并运行LLMLight项目。</p>
-<h1 id="准备工作">2. 准备工作</h1>
-<p>LLMLight项目依赖Linux环境，过往我们想要工作中使用Windows系统，并且还要临时跑Linux项目还是比较费劲的，需要使用虚拟机或安装双系统，两种方式都有痛点。但随着时代的进步，在Windows上配置并运行Linux项目成为可能。WSL（Windows
-Subsystem for Linux，适用于 Linux 的 Windows 子系统）是微软为 Windows
-系统（如 Windows 10 和 Windows 11）引入的一项功能，允许用户在 Windows
-上运行 Linux
-操作系统及其相关命令和应用程序，而无需安装虚拟机或双系统。这就为我们的部署提供了便利。</p>
-<p>系统要求：Windows 11 ，具备良好的网络环境</p>
-<h1 id="系统篇">3. 系统篇</h1>
-<h1 id="安装wsl-和-ubuntu-24.04">3.1 安装wsl 和 ubuntu 24.04</h1>
-<p>安装wsl并在该环境下配置ubuntu 24.04，可以参考这篇文章：<a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1903903315080774656">Windows安装和配置Linux子系统（WSL2）</a></p>
-<h1 id="环境篇">4 环境篇</h1>
-<h2 id="安装python3.10环境">4.1 安装python3.10环境</h2>
-<p>Ubuntu默认的python版本是3.12.3，经过实验，在这个版本下安装cityflow将会编译不成功，部分依赖（例如tensorflow-cpu）也会无法安装2.8.0版本。为了保持版本一致，我们首先应该安装python3.10环境，替换掉系统自带的python3.12
-环境。在这一步，我们需要用到pyenv。</p>
-<p>以下命令在ubuntu命令行中运行，建议直接复制粘贴命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 安装 pyenv</span><br>curl https://pyenv.run | bash<br><br><span class="hljs-comment"># 2. 将以下内容添加到 ~/.bashrc</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;command -v pyenv &gt;/dev/null || export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(pyenv init -)&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 3. 安装编译依赖</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install -y make build-essential libssl-dev zlib1g-dev \<br>libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \<br>libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev<br><span class="hljs-built_in">sudo</span> apt install -y libffi-dev libssl-dev <br><span class="hljs-built_in">sudo</span> apt install -y libssl-dev openssl<br><br><span class="hljs-comment"># 4. 安装python 3.10.2</span><br>pyenv install 3.10.2<br><br></code></pre></td></tr></table></figure>
-<p>到这一步，我们就已经安装好了python
-3.10.2。需要指出的是，其中第三步安装编译依赖必须在安装python之前完成，特别是<code>openssl</code>、<code>libssl-dev</code>这些依赖，在后期编译cityflow时会使用到。</p>
-<p>安装环境有了，我们接下来给项目创建一个venv环境。这一步可以在pycharm中完成。我使用的是pycharm
-2023完整版，在windows环境下，打开LLMLight项目根目录，选择<code>左上角的选项→Setting→Python Interpreter → Add Interpreter → on WSL...</code>系统会自动检测WSL环境下安装的python，路径就按照默认给出的路径，这里我默认创建的路径是<code>/root/.virtualenvs/LLMTSCS-main/</code></p>
-<p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
-<figure>
-<img src="image-5.png" srcset="/img/loading.gif" lazyload alt="虚拟环境创建完成" />
-<figcaption aria-hidden="true">虚拟环境创建完成</figcaption>
-</figure>
-<p>虚拟环境创建完成！</p>
-<p>进入venv安装的目录下，默认情况下，创建的venv解释器位于
-<code>root/.virtualenvs/LLMTSCS-main/bin</code></p>
-<p>输入命令<code>source activate</code>运行venv</p>
-<figure>
-<img src="image-2.png" srcset="/img/loading.gif" lazyload alt="venv界面命令的最前方有虚拟环境的名称" />
-<figcaption
-aria-hidden="true">venv界面命令的最前方有虚拟环境的名称</figcaption>
-</figure>
-<h2 id="安装项目所需的依赖">4.2 安装项目所需的依赖</h2>
-<h3 id="安装cityflow">4.2.1 安装CityFlow</h3>
-<p>由于cityflow比较难安装，我们首先安装cityflow。</p>
-<p>cityflow有两种方式进行安装：通过Docker安装和通过源码安装，这里我选择通过git安装。</p>
-<p>首先在ubuntu上，安装所需的依赖：</p>
-<p><code>sudo apt update &amp;&amp; sudo apt install -y build-essential cmake</code></p>
-<p>随后，在windows本地新建一个文件夹，从github上克隆代码到本地：</p>
-<p><code>git clone https://github.com/cityflow-project/CityFlow.git</code></p>
-<p>在Ubuntu中，进入CityFlow目录，通过pip方式安装：</p>
-<p><code>cd CityFlow &amp;&amp; pip install .</code></p>
-<p>需要注意的是，安装依赖的时候，请确定自己是正所处于创建的虚拟环境venv中，而不是系统自带的python环境中。</p>
-<p>当出现这个画面的时候，就意味着cityflow安装成功了！ <img
-src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
-<h3 id="安装其他所需的依赖">4.2.2 安装其他所需的依赖</h3>
-<p>LLMLight文档中提到，项目的主要依赖有：
-<code>python&gt;=3.9,tensorflow-cpu==2.8.0, cityflow, pandas==1.5.0, numpy==1.26.2, wandb, transformers==4.45.0, peft==0.7.1, accelerate==0.27.2, datasets==2.16.1, fire, vllm==0.6.2</code></p>
-<p>除了上面所需要的依赖，经过实测，还需要安装依赖：<code>protobuf==3.20.3</code></p>
-<p>如果安装包下载太慢，可以先设置全局镜像源：
-<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code>
-<img src="image-3.png" srcset="/img/loading.gif" lazyload alt="设置全局镜像源" /></p>
-<h1 id="运行代码">4.3 运行代码</h1>
-<p>经过配置完成，我们就可以运行代码了~</p>
-<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
-<p>不仅可以在ubuntu中以命令行的方式运行代码，还可以在pycharm中配置运行的文件以运行代码。
-<img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
-<h1 id="相关问题">5 相关问题</h1>
-<h2 id="安装依赖时报错">5.1 安装依赖时报错</h2>
-<p>在安装<code>pandas==1.5.0</code>依赖的时候，会报错： 解决“Could not
-build wheels for pandas”错误，大模型提供的解决方案有两个： 1.
-安装必要的编译工具</p>
-<p>在Linux上，你需要安装gcc和make。 sudo apt-get install
-build-essential</p>
-<ol start="2" type="1">
-<li>或者尝试 pip install pyproject</li>
+                <h1 id="动机">1. 动机</h1>
+<p>动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid
+model案例中可以得到：<span
+class="math display"><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>) = <em>r</em> + <em>γ</em><em>v</em>(<em>s</em><sup>′</sup>)</span>，当前的动作是好与坏可以通过当前的动作的价值Q得到。</p>
+<p>那么很明显，当前最好的动作就是q值最大的动作，也就是<span
+class="math display"><em>a</em><sup>*</sup> = <em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>a</em></sub><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>)</span>。</p>
+<p>如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估动作的价值，因为<span
+class="math display"><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>) = <em>r</em> + <em>γ</em><em>v</em>(<em>s</em><sup>′</sup>)</span>公式中，<code>v(s')</code>不一定能够准确衡量状态的价值,其他状态下模型可能乱做动作，导致估值失准。但是通过迭代优化的方式（<code>iteration loop</code>），能够通过不断学习，准确评估每个状态的价值，进而给每个动作估值，最后能够实现根据贝尔曼最优方程选动作。</p>
+<h1 id="贝尔曼最优公式---定义与问题">2. 贝尔曼最优公式 - 定义与问题</h1>
+<p>如何评估两个价值函数的好或者不好？通过价值函数。</p>
+<p>于是，我们可以定义价值函数的评价标准： <span
+class="math display"><em>v</em><sub><em>π</em>1</sub>(<em>s</em>) &gt;  = <em>v</em><sub><em>π</em>2</sub>(<em>s</em>), <em>对</em><em>于</em><em>任</em><em>意</em><em>s</em> ∈ <em>S</em></span>
+那么就说明策略 <span
+class="math display"><em>π</em>1</span>优于策略<span
+class="math display"><em>π</em>2</span></p>
+<p>如果一个策略<span
+class="math display"><em>π</em><sup>*</sup></span>的所以状态值都比其他策略要好，那么就说这个策略是最优的。</p>
+<hr />
+<p>存在的问题：</p>
+<ol type="1">
+<li>最优策略是否存在？</li>
+<li>最优策略是否唯一？</li>
+<li>最优策略是随机的还是确定的？</li>
+<li>最优策略如何得到</li>
 </ol>
-<p>但是经过我尝试，两个方案都没有解决问题。
-问题根源还是在于python的版本，不能太高，3.12就不行，甚至3.11都高了。
-即使是python3.10，也装不上tensorflow==2.8.0，最后我安装的是TensorFlow==2.9.0</p>
-<h2 id="安装cityflow时报错">5.2 安装CityFlow时报错</h2>
+<p>这些是研究贝尔曼最优公式要解决的问题。</p>
+<h2 id="贝尔曼最优公式boe">2.1 贝尔曼最优公式（BOE）</h2>
+<p>根据上述张杰的定义，此处直接给出贝尔曼公式的形式：</p>
+<p><span
+class="math display"><em>v</em>(<em>s</em>) = <em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>∑<sub><em>a</em></sub><em>π</em>(<em>a</em>|<em>s</em>)[∑<sub><em>r</em></sub>(<em>p</em>(<em>r</em>|<em>s</em>, <em>a</em>)<em>r</em>) + ∑<sub><em>s</em><sup>′</sup></sub>(<em>p</em>(<em>s</em><sup>′</sup>|<em>s</em>, <em>a</em>)<em>v</em>(<em>s</em><sup>′</sup>))]</span></p>
+<p>对于任意<code>s∈S</code> 和贝尔曼公式的
+最大区别在于公式的最前面多了一个<code>max</code></p>
+<p>需要指出的是，公式里面的<code>p(r|s,a)</code>，
+<code>p(s'|s,a)</code>是已知的而且是由外部系统决定的（<code>world</code>），<code>v(s)</code>和<code>v(s')</code>是未知的，<code>π(s)</code>实际上也是未知的，需要通过迭代的方式求解，求解的目标是最大化<code>π</code></p>
+<p>贝尔曼最优公式中如何求解是一个问题，我们需要找出一个a，使得整个v值能够最大化。现在的情况是有很多个动作：<code>a1，a2，...a5</code>.
+，每个都能够算出一个<code>q</code>值，即<code>q1,q2，...q5</code>
+我们希望求解最优的π，可以知道，用贪心策略选q最大的动作，可以让这个值最大，也就是让最优的q的π为1的时候，整体的<code>v(s)</code>是最优的。</p>
+<p>具体证明是这样说的：我们现在希望最大化<code>c1q1+c2q2+c3q3</code>，其中<code>c1+c2+c3=1</code>
+且<code>c</code>非负（对应着概率），可以知道，如果有一个<code>q3</code>是比其他<code>q</code>更大的，那么，直接令<code>c3=1，c1=c2=0</code>，就是<code>c1q1+c2q2+c3q3</code>的最优解。其他情况下的
+结果不会比这个更好。</p>
+<p>这样的思路可以用在求解贝尔曼最优公式之中。</p>
+<p>最后的结果表示，贝尔曼公式的最优结果也就是 <span
+class="math display"><em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>∑<sub><em>a</em></sub><em>π</em>(<em>a</em>|<em>s</em>)<em>q</em>(<em>s</em>, <em>a</em>) = <em>m</em><em>a</em><em>x</em><sub><em>a</em> ∈ <em>A</em>(<em>s</em>)</sub><em>q</em>(<em>s</em>, <em>a</em>)</span></p>
+<p>在取最优的情况下，应该能够得出： <span
+class="math display"><em>π</em>(<em>a</em>|<em>s</em>) = 1, <em>i</em><em>f</em> : <em>a</em> = <em>a</em><sup>*</sup>, <em>e</em><em>l</em><em>s</em><em>e</em> : 0</span>
+这里的<span
+class="math display"><em>a</em><sup>*</sup> = <em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>a</em></sub><em>q</em>(<em>s</em>, <em>a</em>)</span></p>
+<p>直观的解释，就是最优的动作，给确定的概率1，其他动作都给0</p>
+<h2 id="贝尔曼最优公式的求解">2.2 贝尔曼最优公式的求解</h2>
+<p>为了求解贝尔曼最优公式（本质是<code>v＝f（v）</code>求不动点，为了求解，可引入<code>constraction property Theorem</code>，并且证明可以通过迭代的方式获得<code>v＝f（v）</code>最优解。
+这里补充<code>constration mapping</code> 定理，可以用于求解不动点。 <img
+src="image.png" srcset="/img/loading.gif" lazyload alt="constraction property Theorem" /></p>
+<p><img src="image-1.png" srcset="/img/loading.gif" lazyload /></p>
+<figure>
+<img src="image-2.png" srcset="/img/loading.gif" lazyload alt="分析最优策略" />
+<figcaption aria-hidden="true">分析最优策略</figcaption>
+</figure>
+<p>满足<code>constraction property</code>的式子（<code>‖f（x2）-f（x1）‖＜γ‖x2-x1‖</code>具有以下三个特性：
+1. 解是唯一的、 2. 解是可以迭代出来的 3.
+通过迭代的时候速率是指数级的</p>
+<p>满足贝尔曼最优公式的式子的时候，策略Pai就是让这个价值函数最大的策略，这时候把他称作π*
+从而就有了贝尔曼最优公式： <span
+class="math display"><em>v</em><sup>*</sup>＝<em>r</em><sub><em>π</em></sub><sup>*</sup> + <em>γ</em><em>P</em><sub><em>π</em></sub><sup>*</sup><em>v</em><sup>*</sup></span></p>
+<p>也就是贝尔曼最优公式是一个特殊的贝尔曼公式。</p>
+<p>最优策略：是确定性的，而且是贪心的</p>
+<h2 id="贝尔曼公式的参数γ">2.3 贝尔曼公式的参数：γ</h2>
+<p><img src="image-3.png" srcset="/img/loading.gif" lazyload /></p>
+<p>gamma＝0.9的时候，智能体会长远考虑，认为穿过禁止进入区域虽然暂时有害于智能体，但是长远来看是有价值的，因此还是穿过forbidden
+area gamma＝0.5的时候，智能体会短视，因此会避开forbidden area
+绕一个大圈进入最后的终点。</p>
 <p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
-<p>这类报错大概率是前面的编译依赖环境没装好，建议重装python，并把编译依赖环境装上</p>
-<h2 id="wandb未配置">5.3 wandb未配置</h2>
-<p>运行代码时报错： <img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
-<p>问题分析：这个错误表明 wandb（Weights &amp; Biases）没有配置 API
-key。wandb 是一个机器学习实验跟踪工具，需要登录才能使用。
-解决方案：注册并登录wandb 1. 如果没有 wandb
-账户，先注册：https://wandb.ai 2. 然后登录 <code>wandb login</code> 3.
-运行后会提示你输入 API key，你可以在
-<code>wandb.ai/authorize</code>获取。</p>
+<p><img src="image-5.png" srcset="/img/loading.gif" lazyload />
+gamma降低到0的时候，最优策略变成非常短视，无视未来的奖励。</p>
+<p>最优策略的不变性： <img src="image-6.png" srcset="/img/loading.gif" lazyload />
+如果放大奖励的倍数，最后获得的最优策略是不变的</p>
+<p>如果智能体绕路，为什么策略不是最好的？
+因为折扣率存在，决定了智能体获得的总的回报。所以两个不同情况下，获得的总return是不一样的。</p>
+<h1 id="小结">3.小结：</h1>
+<h2 id="贝尔曼方案最优解的性质">3.1 贝尔曼方案最优解的性质：</h2>
+<p>解一定存在且唯一（根据<code>contraction mapping</code>定理），这个定理是用于求解
+f(v)=v的方法 算法是使用迭代的过程求解，而且迭代的速度很快
+为什么我们要学习这个等式？ 因为求解它对应
+最优的状态价值，并且可以得到最优的策略。 <img src="image-7.png" srcset="/img/loading.gif" lazyload
+alt="小结" /></p>
+<h2 id="复杂例子">3.2 复杂例子</h2>
+<p>假设进入forbidden区域奖励是-10，进入边界奖励是-1，到达目标奖励是+1。
+<img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这个例子是比较复杂的值迭代和策略迭代的求解方式，最开始的时候所有策略都是原地不动，但是随着值迭代和策略迭代，可以看到首先是距离目标近的地方的值和策略被改成最优的，然后是距离目标远的他的策略变成最优。</p>
 
                 
               </div>
@@ -393,7 +392,7 @@ key。wandb 是一个机器学习实验跟踪工具，需要登录才能使用�
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="category-chain-item">强化学习</a>
   
   
 
@@ -413,15 +412,15 @@ key。wandb 是一个机器学习实验跟踪工具，需要登录才能使用�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>轻松在Windows上配置并运行LLMLight项目</div>
-      <div>https://runsstudio.github.io/2026/01/05/在Windows上快速运行并调试LLMLight/</div>
+      <div>强化学习学习笔记（三）贝尔曼最优方程</div>
+      <div>https://runsstudio.github.io/2026/01/19/强化学习学习笔记（三）贝尔曼最优方程/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月5日</div>
+          <div>2026年1月19日</div>
         </div>
       
       
@@ -453,18 +452,12 @@ key。wandb 是一个机器学习实验跟踪工具，需要登录才能使用�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/" title="强化学习学习笔记（三）贝尔曼最优方程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">强化学习学习笔记（三）贝尔曼最优方程</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/04/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" title="强化学习学习笔记（一）基础概念">
-                        <span class="hidden-mobile">强化学习学习笔记（一）基础概念</span>
+                      <a href="/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/" title="轻松在Windows上配置并运行LLMLight项目">
+                        <span class="hidden-mobile">轻松在Windows上配置并运行LLMLight项目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
