@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>强化学习学习笔记（四）值迭代和策略迭代</title>
+    <link href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/"/>
+    <url>/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一值迭代算法">一、值迭代算法</h1><p>如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个<code>f(v)=v</code>的不动点问题，通过<code>contraction mapping</code>定理可知，可以使用迭代的方式求解。</p><p><img src="image.png" /></p><p>贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。</p><p><strong>第一步【优化策略（policyupdate）】</strong>:是在给定vk的情况下求解πk+1</p><p><strong>第二步【优化值（valueupdate）】</strong>:是把πk+1带入值的公式，得到rπk+1和pπk+1（这俩是世界模型决定，和π相关），从而去更新v</p><p><img src="image-1.png" /></p><p>因为现在是<code>vk</code>迭代<code>vk+1</code>的方式得到最后的v，所以还要补充收敛性证明：<code>||vk+1-vk||＜delta</code>的时候视为收敛，迭代结束。</p><p>理论上分析常用矩阵形式，但是实际实现上会用元素形式去实现（迭代的方式）</p><p><strong>第一步</strong>是更新策略，目的是求解最优的π，最优的π可以通过贪婪算法得到：在每一步都选取使得<code>q</code>值最大的<code>a</code>，这个动作的概率赋值为1，其他动作的概率赋值为0。这个策略是确定性的策略</p><p><img src="image-2.png" /></p><p><strong>第二步</strong>是值迭代，对于每个s都可以求解出q，把π还可以代进来，对应的q最大的值概率是1，其他的概率是0。</p><p><img src="image-3.png" /></p><p>上面的过程可以写成伪代码：</p><p><img src="image-4.png" /></p><p>首先我们有一个<code>vk</code>，在<code>vk</code>还没收敛的时候，就通过不断的迭代，遍历所有的状态<code>s</code>，遍历所有状态的<code>a</code>，计算所有状态的<code>qk</code>，看哪个<code>action</code>对应的是最大的<code>qk</code>，选这个<code>action</code>。并且根据这种方式去更新<code>value</code>（已知π的情况下就可以知道r，可以迭代。）</p><p>举例说明：在这个案例中，一开始<code>vk</code>是一个随机的策略（图b），然后知道了每个状态的。然后从<code>v</code>得到每个<code>q</code></p><p><img src="image-5.png" /></p><p>假设初始状态，令<code>v0＝0</code>，然后得到状态，就可以得到每个policy的权重</p><p>第一步迭代完，已经可以知道<code>s2</code>，<code>s3</code>，<code>s4</code>的策略是最优的，但是s1的策略还没更新。</p><p>然后进行下一步迭代，把当前的<code>v</code>作为最新的<code>v</code>，得到新的值。</p><p><img src="image-6.png" /></p><p>这一步之后，把<code>s1</code>的最优值也更新了。</p><p><img src="image-7.png" /></p><h1 id="二策略迭代算法">二、策略迭代算法</h1><p>算法描述：给定一个<code>π0</code></p><p><strong>第一步</strong>，进行策略估计获得更好的值。</p><p><strong>第二步</strong>，用这个值去更新更新策略。</p><p><img src="image-8.png" /></p><p><img src="image-9.png" /></p><p><img src="image-10.png" /></p><p>和策略迭代相关的问题<strong>问题1</strong>，如何求解：和之前一样的两种方法，求逆和迭代。用迭代的方式去求解这个贝尔曼公式</p><p><strong>问题2</strong>，为什么得到的<code>πk+1</code>一定比<code>πk</code>好？因为<code>πk+1</code>具有更高的值（可以证明<code>vπk+1≥vπk</code>）</p><p><strong>问题3</strong>为什么迭代可以得到最优策略？在迭代过程中，策略会改进，一步又一步收敛到最优的值，这时候模型就可以收敛到最优策略。</p><p><strong>问题4</strong> 策略迭代和值迭代算法有什么关系？</p><p>①证明策略是收敛的需要用到值迭代是收敛的的定理</p><p>②策略迭代和值迭代实际上是两个极端，值迭代是相同的v下找最优策略，策略迭代是在一个给定的策略下找最优的v</p><p><strong>算法的实施</strong></p><p>还是通过迭代的方法</p><p><img src="image-11.png" /></p><p>值迭代和策略迭代的关系：</p><p>策略迭代先从策略开始，先给策略估值，再算价值更新策略</p><p>值迭代先从值开始，更新策略，得到策略，再更新值，再循环</p><p>两个步骤其实就是翻一下</p><p><img src="image-12.png" /></p><p>这张图展示了两个算法的差异：</p><p><img src="image-13.png" /></p><p>最重要的区别就在于在迭代的第四步，值迭代算法用的是<code>v1</code>，策略迭代算法：用的是<code>vπ1</code>，而<code>vπ1</code>又需要在<code>π1</code>下基于v0进行无穷多次迭代才能得到，收敛时才退出。作为对比，值迭代算法就迭代一次，直接得到下一时刻的v。说明值迭代算法只迭代1次，策略迭代算法要迭代很多次，我们由此可以想到，有没有一种迭代方法能在这两者之间进行一个折中的，所以就提出了截断策略迭代算法。</p><p><img src="image-14.png" /></p><h1 id="三截断策略迭代算法">三、截断策略迭代算法：</h1><p>截断策略迭代算法是值迭代算法和策略迭代算法的一般化的推广，值迭代只进行1步迭代，值迭代进行有限步的迭代就是截断策略迭代，如果进行很多步，直到算法收敛（价值准确估计出来），这个就是策略迭代算法。</p><p><strong>算法的实施</strong>一样，还是通过迭代的方法，只是中间迭代一定的步数。</p><p><img src="image-15.png" /></p><p>收敛性上来看，迭代k步，策略迭代算法最先收敛到最优策略，因为他的价值函数每次都要迭代很多次，以达到当前的最优。值迭代最慢，因为他每次只迭代1次策略。截断策略迭代介于二者之间。</p><p><img src="image-16.png" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>强化学习</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>强化学习学习笔记（四）值迭代和策略迭代</title>
+    <link href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/"/>
+    <url>/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一值迭代算法">一、值迭代算法</h1><p>如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个<code>f(v)=v</code>的不动点问题，通过<code>contraction mapping</code>定理可知，可以使用迭代的方式求解。</p><p><img src="image.png" /></p><p>贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。</p><p>第一步【优化策略（policy update）】:是在给定vk的情况下求解πk+1</p><p>第二步【优化值（valueupdate）】:是把πk+1带入值的公式，得到rπk+1和pπk+1（这俩是世界模型决定，和π相关），从而去更新v</p><p><img src="image-1.png" /></p><p>因为现在是<code>vk</code>迭代<code>vk+1</code>的方式得到最后的v，所以还要补充收敛性证明：<code>||vk+1-vk||＜delta</code>的时候视为收敛，迭代结束。</p><p>理论上分析常用矩阵形式，但是实际实现上会用元素形式去实现（迭代的方式）</p><p>第一步是更新策略，目的是求解最优的π，最优的π可以通过贪婪算法得到：在每一步都选取使得<code>q</code>值最大的<code>a</code>，这个动作的概率赋值为1，其他动作的概率赋值为0。这个策略是确定性的策略</p><p><img src="image-2.png" /></p><p>第二步是值迭代，对于每个s都可以求解出q，把π还可以代进来，对应的q最大的值概率是1，其他的概率是0。</p><p><img src="image-3.png" /></p><p>上面的过程可以写成伪代码：</p><p><img src="image-4.png" /></p><p>首先我们有一个<code>vk</code>，在<code>vk</code>还没收敛的时候，就通过不断的迭代，遍历所有的状态<code>s</code>，遍历所有状态的<code>a</code>，计算所有状态的<code>qk</code>，看哪个<code>action</code>对应的是最大的<code>qk</code>，选这个<code>action</code>。并且根据这种方式去更新<code>value</code>（已知π的情况下就可以知道r，可以迭代。）</p><p>举例说明：在这个案例中，一开始<code>vk</code>是一个随机的策略（图b），然后知道了每个状态的。然后从<code>v</code>得到每个<code>q</code></p><p><img src="image-5.png" /></p><p>假设初始状态，令<code>v0＝0</code>，然后得到状态，就可以得到每个policy的权重</p><p>第一步迭代完，已经可以知道<code>s2</code>，<code>s3</code>，<code>s4</code>的策略是最优的，但是s1的策略还没更新。</p><p>然后进行下一步迭代，把当前的<code>v</code>作为最新的<code>v</code>，得到新的值。</p><p><img src="image-6.png" /></p><p>这一步之后，把<code>s1</code>的最优值也更新了。</p><p><img src="image-7.png" /></p><h1 id="二策略迭代算法">二、策略迭代算法</h1><p>算法描述：给定一个<code>π0</code></p><p>第一步，进行策略估计获得更好的值。</p><p>第二步，用这个值去更新更新策略。</p><p><img src="image-8.png" /></p><p><img src="image-9.png" /></p><p><img src="image-10.png" /></p><p>和策略迭代相关的问题问题1，如何求解：和之前一样的两种方法，求逆和迭代。用迭代的方式去求解这个贝尔曼公式</p><p>问题2，为什么得到的<code>πk+1</code>一定比<code>πk</code>好？因为<code>πk+1</code>具有更高的值（可以证明<code>vπk+1≥vπk</code>）</p><p>问题3为什么迭代可以得到最优策略？在迭代过程中，策略会改进，一步又一步收敛到最优的值，这时候模型就可以收敛到最优策略。</p><p>问题4：策略迭代和值迭代算法有什么关系？</p><p>①证明策略是收敛的需要用到值迭代是收敛的的定理</p><p>②策略迭代和值迭代实际上是两个极端，值迭代是相同的v下找最优策略，策略迭代是在一个给定的策略下找最优的v</p><p>算法的实施：</p><p>还是通过迭代的方法</p><p><img src="image-11.png" /></p><p>值迭代和策略迭代的关系：</p><p>策略迭代先从策略开始，先给策略估值，再算价值更新策略</p><p>值迭代先从值开始，更新策略，得到策略，再更新值，再循环</p><p>两个步骤其实就是翻一下</p><p><img src="image-12.png" /></p><p>这张图展示了两个算法的差异：</p><p><img src="image-13.png" /></p><p>最重要的区别就在于在迭代的第四步，值迭代算法用的是<code>v1</code>，策略迭代算法：用的是<code>vπ1</code>，而<code>vπ1</code>又需要在<code>π1</code>下基于v0进行无穷多次迭代才能得到，收敛时才退出。作为对比，值迭代算法就迭代一次，直接得到下一时刻的v。说明值迭代算法只迭代1次，策略迭代算法要迭代很多次，我们由此可以想到，有没有一种迭代方法能在这两者之间进行一个折中的，所以就提出了截断策略迭代算法。</p><p><img src="image-14.png" /></p><h1 id="三截断策略迭代算法">三、截断策略迭代算法：</h1><p>截断策略迭代算法是值迭代算法和策略迭代算法的一般化的推广，值迭代只进行1步迭代，值迭代进行有限步的迭代就是截断策略迭代，如果进行很多步，直到算法收敛（价值准确估计出来），这个就是策略迭代算法。</p><p>算法的实施： 一样，还是通过迭代的方法，只是中间迭代一定的步数。</p><p><img src="image-15.png" /></p><p>收敛性上来看，迭代k步，策略迭代算法最先收敛到最优策略，因为他的价值函数每次都要迭代很多次，以达到当前的最优。值迭代最慢，因为他每次只迭代1次策略。截断策略迭代介于二者之间。</p><p><img src="image-16.png" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>强化学习</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>强化学习学习笔记（三）贝尔曼最优方程</title>
     <link href="/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/"/>
     <url>/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/</url>

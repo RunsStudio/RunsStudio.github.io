@@ -19,30 +19,39 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="1. 动机 动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid model案例中可以得到：qπ(s, a) &#x3D; r + γv(s′)，当前的动作是好与坏可以通过当前的动作的价值Q得到。 那么很明显，当前最好的动作就是q值最大的动作，也就是a* &#x3D; argmaxaqπ(s, a)。 如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估">
+    <meta name="description" content="一、值迭代算法 如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个f(v)&#x3D;v的不动点问题，通过contraction mapping 定理可知，可以使用迭代的方式求解。  贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。 第一步【优化策略（policy update）】:是在给定vk的情况下求解πk+1 第二步【优化值（value upda">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强化学习学习笔记（三）贝尔曼最优方程">
-<meta property="og:url" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/index.html">
+<meta property="og:title" content="强化学习学习笔记（四）值迭代和策略迭代">
+<meta property="og:url" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="1. 动机 动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid model案例中可以得到：qπ(s, a) &#x3D; r + γv(s′)，当前的动作是好与坏可以通过当前的动作的价值Q得到。 那么很明显，当前最好的动作就是q值最大的动作，也就是a* &#x3D; argmaxaqπ(s, a)。 如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估">
+<meta property="og:description" content="一、值迭代算法 如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个f(v)&#x3D;v的不动点问题，通过contraction mapping 定理可知，可以使用迭代的方式求解。  贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。 第一步【优化策略（policy update）】:是在给定vk的情况下求解πk+1 第二步【优化值（value upda">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-1.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-2.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-3.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-4.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-5.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-6.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-7.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-8.png">
-<meta property="article:published_time" content="2026-01-19T13:02:08.000Z">
-<meta property="article:modified_time" content="2026-01-19T13:25:43.501Z">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-1.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-7.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-8.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-9.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-10.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-11.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-12.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-13.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-14.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-15.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-16.png">
+<meta property="article:published_time" content="2026-01-21T12:25:46.000Z">
+<meta property="article:modified_time" content="2026-01-21T12:47:18.307Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/19/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%9C%80%E4%BC%98%E6%96%B9%E7%A8%8B/image-1.png">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image.png">
   
   
   
-  <title>强化学习学习笔记（三）贝尔曼最优方程 - Run&#39;s Studio</title>
+  <title>强化学习学习笔记（四）值迭代和策略迭代 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -210,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="强化学习学习笔记（三）贝尔曼最优方程"></span>
+            <span id="subtitle" data-typed-text="强化学习学习笔记（四）值迭代和策略迭代"></span>
           
         </div>
 
@@ -221,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-19 21:02" pubdate>
-          2026年1月19日 晚上
+        <time datetime="2026-01-21 20:25" pubdate>
+          2026年1月21日 晚上
         </time>
       </span>
     
@@ -233,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.3k 字
         
       </span>
     
@@ -244,7 +253,7 @@
         
         
         
-          13 分钟
+          11 分钟
         
       </span>
     
@@ -281,99 +290,73 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">强化学习学习笔记（三）贝尔曼最优方程</h1>
+            <h1 id="seo-header">强化学习学习笔记（四）值迭代和策略迭代</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="动机">1. 动机</h1>
-<p>动作的价值对我们来说很重要，动作的价值是与当前自己要执行的动作的概率无关的，我们从grid
-model案例中可以得到：<span
-class="math display"><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>) = <em>r</em> + <em>γ</em><em>v</em>(<em>s</em><sup>′</sup>)</span>，当前的动作是好与坏可以通过当前的动作的价值Q得到。</p>
-<p>那么很明显，当前最好的动作就是q值最大的动作，也就是<span
-class="math display"><em>a</em><sup>*</sup> = <em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>a</em></sub><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>)</span>。</p>
-<p>如果强化学习模型没有训练，策略是随机的，那么价值Q就不一定能够合理评估动作的价值，因为<span
-class="math display"><em>q</em><sub><em>π</em></sub>(<em>s</em>, <em>a</em>) = <em>r</em> + <em>γ</em><em>v</em>(<em>s</em><sup>′</sup>)</span>公式中，<code>v(s')</code>不一定能够准确衡量状态的价值,其他状态下模型可能乱做动作，导致估值失准。但是通过迭代优化的方式（<code>iteration loop</code>），能够通过不断学习，准确评估每个状态的价值，进而给每个动作估值，最后能够实现根据贝尔曼最优方程选动作。</p>
-<h1 id="贝尔曼最优公式---定义与问题">2. 贝尔曼最优公式 - 定义与问题</h1>
-<p>如何评估两个价值函数的好或者不好？通过价值函数。</p>
-<p>于是，我们可以定义价值函数的评价标准： <span
-class="math display"><em>v</em><sub><em>π</em>1</sub>(<em>s</em>) &gt;  = <em>v</em><sub><em>π</em>2</sub>(<em>s</em>), <em>对</em><em>于</em><em>任</em><em>意</em><em>s</em> ∈ <em>S</em></span>
-那么就说明策略 <span
-class="math display"><em>π</em>1</span>优于策略<span
-class="math display"><em>π</em>2</span></p>
-<p>如果一个策略<span
-class="math display"><em>π</em><sup>*</sup></span>的所以状态值都比其他策略要好，那么就说这个策略是最优的。</p>
-<hr />
-<p>存在的问题：</p>
-<ol type="1">
-<li>最优策略是否存在？</li>
-<li>最优策略是否唯一？</li>
-<li>最优策略是随机的还是确定的？</li>
-<li>最优策略如何得到</li>
-</ol>
-<p>这些是研究贝尔曼最优公式要解决的问题。</p>
-<h2 id="贝尔曼最优公式boe">2.1 贝尔曼最优公式（BOE）</h2>
-<p>根据上述张杰的定义，此处直接给出贝尔曼公式的形式：</p>
-<p><span
-class="math display"><em>v</em>(<em>s</em>) = <em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>∑<sub><em>a</em></sub><em>π</em>(<em>a</em>|<em>s</em>)[∑<sub><em>r</em></sub>(<em>p</em>(<em>r</em>|<em>s</em>, <em>a</em>)<em>r</em>) + ∑<sub><em>s</em><sup>′</sup></sub>(<em>p</em>(<em>s</em><sup>′</sup>|<em>s</em>, <em>a</em>)<em>v</em>(<em>s</em><sup>′</sup>))]</span></p>
-<p>对于任意<code>s∈S</code> 和贝尔曼公式的
-最大区别在于公式的最前面多了一个<code>max</code></p>
-<p>需要指出的是，公式里面的<code>p(r|s,a)</code>，
-<code>p(s'|s,a)</code>是已知的而且是由外部系统决定的（<code>world</code>），<code>v(s)</code>和<code>v(s')</code>是未知的，<code>π(s)</code>实际上也是未知的，需要通过迭代的方式求解，求解的目标是最大化<code>π</code></p>
-<p>贝尔曼最优公式中如何求解是一个问题，我们需要找出一个a，使得整个v值能够最大化。现在的情况是有很多个动作：<code>a1，a2，...a5</code>.
-，每个都能够算出一个<code>q</code>值，即<code>q1,q2，...q5</code>
-我们希望求解最优的π，可以知道，用贪心策略选q最大的动作，可以让这个值最大，也就是让最优的q的π为1的时候，整体的<code>v(s)</code>是最优的。</p>
-<p>具体证明是这样说的：我们现在希望最大化<code>c1q1+c2q2+c3q3</code>，其中<code>c1+c2+c3=1</code>
-且<code>c</code>非负（对应着概率），可以知道，如果有一个<code>q3</code>是比其他<code>q</code>更大的，那么，直接令<code>c3=1，c1=c2=0</code>，就是<code>c1q1+c2q2+c3q3</code>的最优解。其他情况下的
-结果不会比这个更好。</p>
-<p>这样的思路可以用在求解贝尔曼最优公式之中。</p>
-<p>最后的结果表示，贝尔曼公式的最优结果也就是 <span
-class="math display"><em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>∑<sub><em>a</em></sub><em>π</em>(<em>a</em>|<em>s</em>)<em>q</em>(<em>s</em>, <em>a</em>) = <em>m</em><em>a</em><em>x</em><sub><em>a</em> ∈ <em>A</em>(<em>s</em>)</sub><em>q</em>(<em>s</em>, <em>a</em>)</span></p>
-<p>在取最优的情况下，应该能够得出： <span
-class="math display"><em>π</em>(<em>a</em>|<em>s</em>) = 1, <em>i</em><em>f</em> : <em>a</em> = <em>a</em><sup>*</sup>, <em>e</em><em>l</em><em>s</em><em>e</em> : 0</span>
-这里的<span
-class="math display"><em>a</em><sup>*</sup> = <em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>a</em></sub><em>q</em>(<em>s</em>, <em>a</em>)</span></p>
-<p>直观的解释，就是最优的动作，给确定的概率1，其他动作都给0</p>
-<h2 id="贝尔曼最优公式的求解">2.2 贝尔曼最优公式的求解</h2>
-<p>为了求解贝尔曼最优公式（本质是<code>v＝f（v）</code>求不动点，为了求解，可引入<code>constraction property Theorem</code>，并且证明可以通过迭代的方式获得<code>v＝f（v）</code>最优解。
-这里补充<code>constration mapping</code> 定理，可以用于求解不动点。 <img
-src="image.png" srcset="/img/loading.gif" lazyload alt="constraction property Theorem" /></p>
+                <h1 id="一值迭代算法">一、值迭代算法</h1>
+<p>如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个<code>f(v)=v</code>的不动点问题，通过<code>contraction mapping</code>
+定理可知，可以使用迭代的方式求解。</p>
+<p><img src="image.png" srcset="/img/loading.gif" lazyload /></p>
+<p>贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。</p>
+<p><strong>第一步【优化策略（policy
+update）】</strong>:是在给定vk的情况下求解πk+1</p>
+<p><strong>第二步【优化值（value
+update）】</strong>:是把πk+1带入值的公式，得到rπk+1和pπk+1（这俩是世界模型决定，和π相关），从而去更新v</p>
 <p><img src="image-1.png" srcset="/img/loading.gif" lazyload /></p>
-<figure>
-<img src="image-2.png" srcset="/img/loading.gif" lazyload alt="分析最优策略" />
-<figcaption aria-hidden="true">分析最优策略</figcaption>
-</figure>
-<p>满足<code>constraction property</code>的式子（<code>‖f（x2）-f（x1）‖＜γ‖x2-x1‖</code>具有以下三个特性：
-1. 解是唯一的、 2. 解是可以迭代出来的 3.
-通过迭代的时候速率是指数级的</p>
-<p>满足贝尔曼最优公式的式子的时候，策略Pai就是让这个价值函数最大的策略，这时候把他称作π*
-从而就有了贝尔曼最优公式： <span
-class="math display"><em>v</em><sup>*</sup>＝<em>r</em><sub><em>π</em></sub><sup>*</sup> + <em>γ</em><em>P</em><sub><em>π</em></sub><sup>*</sup><em>v</em><sup>*</sup></span></p>
-<p>也就是贝尔曼最优公式是一个特殊的贝尔曼公式。</p>
-<p>最优策略：是确定性的，而且是贪心的</p>
-<h2 id="贝尔曼公式的参数γ">2.3 贝尔曼公式的参数：γ</h2>
+<p>因为现在是<code>vk</code>迭代<code>vk+1</code>的方式得到最后的v，所以还要补充收敛性证明：
+<code>||vk+1-vk||＜delta</code>的时候视为收敛，迭代结束。</p>
+<p>理论上分析常用矩阵形式，但是实际实现上会用元素形式去实现（迭代的方式）</p>
+<p><strong>第一步</strong>是更新策略，目的是求解最优的π，最优的π可以通过贪婪算法得到：在每一步都选取使得<code>q</code>值最大的<code>a</code>，这个动作的概率赋值为1，其他动作的概率赋值为0。这个策略是确定性的策略</p>
+<p><img src="image-2.png" srcset="/img/loading.gif" lazyload /></p>
+<p><strong>第二步</strong>是值迭代，对于每个s都可以求解出q，把π还可以代进来，对应的q最大的值概率是1，其他的概率是0。</p>
 <p><img src="image-3.png" srcset="/img/loading.gif" lazyload /></p>
-<p>gamma＝0.9的时候，智能体会长远考虑，认为穿过禁止进入区域虽然暂时有害于智能体，但是长远来看是有价值的，因此还是穿过forbidden
-area gamma＝0.5的时候，智能体会短视，因此会避开forbidden area
-绕一个大圈进入最后的终点。</p>
+<p>上面的过程可以写成伪代码：</p>
 <p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
-<p><img src="image-5.png" srcset="/img/loading.gif" lazyload />
-gamma降低到0的时候，最优策略变成非常短视，无视未来的奖励。</p>
-<p>最优策略的不变性： <img src="image-6.png" srcset="/img/loading.gif" lazyload />
-如果放大奖励的倍数，最后获得的最优策略是不变的</p>
-<p>如果智能体绕路，为什么策略不是最好的？
-因为折扣率存在，决定了智能体获得的总的回报。所以两个不同情况下，获得的总return是不一样的。</p>
-<h1 id="小结">3.小结：</h1>
-<h2 id="贝尔曼方案最优解的性质">3.1 贝尔曼方案最优解的性质：</h2>
-<p>解一定存在且唯一（根据<code>contraction mapping</code>定理），这个定理是用于求解
-f(v)=v的方法 算法是使用迭代的过程求解，而且迭代的速度很快
-为什么我们要学习这个等式？ 因为求解它对应
-最优的状态价值，并且可以得到最优的策略。 <img src="image-7.png" srcset="/img/loading.gif" lazyload
-alt="小结" /></p>
-<h2 id="复杂例子">3.2 复杂例子</h2>
-<p>假设进入forbidden区域奖励是-10，进入边界奖励是-1，到达目标奖励是+1。
-<img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
-<p>这个例子是比较复杂的值迭代和策略迭代的求解方式，最开始的时候所有策略都是原地不动，但是随着值迭代和策略迭代，可以看到首先是距离目标近的地方的值和策略被改成最优的，然后是距离目标远的他的策略变成最优。</p>
+<p>首先我们有一个<code>vk</code>，在<code>vk</code>还没收敛的时候，就通过不断的迭代，遍历所有的状态<code>s</code>，遍历所有状态的<code>a</code>，计算所有状态的<code>qk</code>，看哪个<code>action</code>对应的是最大的<code>qk</code>，选这个<code>action</code>。并且根据这种方式去更新<code>value</code>（已知π的情况下就可以知道r，可以迭代。）</p>
+<p>举例说明：在这个案例中，一开始<code>vk</code>是一个随机的策略（图b），然后知道了每个状态的。然后从<code>v</code>得到每个<code>q</code></p>
+<p><img src="image-5.png" srcset="/img/loading.gif" lazyload /></p>
+<p>假设初始状态，令<code>v0＝0</code>，然后得到状态，就可以得到每个policy的权重</p>
+<p>第一步迭代完，已经可以知道<code>s2</code>，<code>s3</code>，<code>s4</code>的策略是最优的，但是s1的策略还没更新。</p>
+<p>然后进行下一步迭代，把当前的<code>v</code>作为最新的<code>v</code>，得到新的值。</p>
+<p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这一步之后，把<code>s1</code>的最优值也更新了。</p>
+<p><img src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="二策略迭代算法">二、策略迭代算法</h1>
+<p>算法描述：给定一个<code>π0</code></p>
+<p><strong>第一步</strong>，进行策略估计获得更好的值。</p>
+<p><strong>第二步</strong>，用这个值去更新更新策略。</p>
+<p><img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
+<p>和策略迭代相关的问题
+<strong>问题1</strong>，如何求解：和之前一样的两种方法，求逆和迭代。用迭代的方式去求解这个贝尔曼公式</p>
+<p><strong>问题2</strong>，为什么得到的<code>πk+1</code>一定比<code>πk</code>好？因为<code>πk+1</code>具有更高的值（可以证明<code>vπk+1≥vπk</code>）</p>
+<p><strong>问题3</strong>
+为什么迭代可以得到最优策略？在迭代过程中，策略会改进，一步又一步收敛到最优的值，这时候模型就可以收敛到最优策略。</p>
+<p><strong>问题4</strong> 策略迭代和值迭代算法有什么关系？</p>
+<p>①证明策略是收敛的需要用到值迭代是收敛的的定理</p>
+<p>②策略迭代和值迭代实际上是两个极端，值迭代是相同的v下找最优策略，策略迭代是在一个给定的策略下找最优的v</p>
+<p><strong>算法的实施</strong></p>
+<p>还是通过迭代的方法</p>
+<p><img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
+<p>值迭代和策略迭代的关系：</p>
+<p>策略迭代先从策略开始，先给策略估值，再算价值更新策略</p>
+<p>值迭代先从值开始，更新策略，得到策略，再更新值，再循环</p>
+<p>两个步骤其实就是翻一下</p>
+<p><img src="image-12.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这张图展示了两个算法的差异：</p>
+<p><img src="image-13.png" srcset="/img/loading.gif" lazyload /></p>
+<p>最重要的区别就在于在迭代的第四步，值迭代算法用的是<code>v1</code>，策略迭代算法：用的是<code>vπ1</code>，而<code>vπ1</code>又需要在<code>π1</code>下基于v0进行无穷多次迭代才能得到，收敛时才退出。作为对比，值迭代算法就迭代一次，直接得到下一时刻的v。说明值迭代算法只迭代1次，策略迭代算法要迭代很多次，我们由此可以想到，有没有一种迭代方法能在这两者之间进行一个折中的，所以就提出了截断策略迭代算法。</p>
+<p><img src="image-14.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="三截断策略迭代算法">三、截断策略迭代算法：</h1>
+<p>截断策略迭代算法是值迭代算法和策略迭代算法的一般化的推广，值迭代只进行1步迭代，值迭代进行有限步的迭代就是截断策略迭代，如果进行很多步，直到算法收敛（价值准确估计出来），这个就是策略迭代算法。</p>
+<p><strong>算法的实施</strong>
+一样，还是通过迭代的方法，只是中间迭代一定的步数。</p>
+<p><img src="image-15.png" srcset="/img/loading.gif" lazyload /></p>
+<p>收敛性上来看，迭代k步，策略迭代算法最先收敛到最优策略，因为他的价值函数每次都要迭代很多次，以达到当前的最优。值迭代最慢，因为他每次只迭代1次策略。截断策略迭代介于二者之间。</p>
+<p><img src="image-16.png" srcset="/img/loading.gif" lazyload /></p>
 
                 
               </div>
@@ -412,15 +395,15 @@ alt="小结" /></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>强化学习学习笔记（三）贝尔曼最优方程</div>
-      <div>https://runsstudio.github.io/2026/01/19/强化学习学习笔记（三）贝尔曼最优方程/</div>
+      <div>强化学习学习笔记（四）值迭代和策略迭代</div>
+      <div>https://runsstudio.github.io/2026/01/21/强化学习学习笔记（四）值迭代和策略迭代/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年1月19日</div>
+          <div>2026年1月21日</div>
         </div>
       
       
@@ -452,18 +435,12 @@ alt="小结" /></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/" title="强化学习学习笔记（四）值迭代和策略迭代">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">强化学习学习笔记（四）值迭代和策略迭代</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/05/%E5%9C%A8Windows%E4%B8%8A%E5%BF%AB%E9%80%9F%E8%BF%90%E8%A1%8C%E5%B9%B6%E8%B0%83%E8%AF%95LLMLight/" title="轻松在Windows上配置并运行LLMLight项目">
-                        <span class="hidden-mobile">轻松在Windows上配置并运行LLMLight项目</span>
+                      <a href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/" title="强化学习学习笔记（四）值迭代和策略迭代">
+                        <span class="hidden-mobile">强化学习学习笔记（四）值迭代和策略迭代</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
