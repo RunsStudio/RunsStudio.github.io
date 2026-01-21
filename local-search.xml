@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>强化学习学习笔记（五）蒙特卡洛算法</title>
+    <link href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/"/>
+    <url>/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1id="强化学习学习笔记五蒙特卡洛算法">强化学习学习笔记（五）蒙特卡洛算法</h1><p>第四章描述的值迭代算法和策略迭代算法都是model-based的算法。</p><p>从这一章开始，我们引入蒙特卡洛学习，这是一种不需要模型的算法。也正是对应了强化学习的话：没有模型就得有数据，没有数据就得有模型。</p><p>蒙特卡洛方法来源于数学中的统计方法，比如说抛硬币问题，算抛硬币中正面的概率，用<code>model based</code>的方法就是直接算期望，直接知道<code>p正＝0.5</code>，<code>p反＝0.5</code>。<code>model free</code>的方法就是估计很多次，重复丢这个硬币很多次，然后从结果中算概率</p><p><img src="image.png" /></p><p>蒙特卡洛定理不仅可以用到强化中，其他需要大量采数据估计期望的方法都可以使用</p><p>强化学习能够用<code>mc</code>方法的原因：<code>v</code>值和<code>q</code>值本质都是期望，既然是期望，对应着就是求平均的策略。</p><p>mc算法是用在策略迭代算法中的，策略迭代只要是以下两步：</p><p><strong>第一步</strong>更新v值：<spanclass="math display"><em>v</em>＝<em>r</em> + <em>γ</em><em>P</em><sub><em>π</em></sub><em>v</em></span></p><p><strong>第二步</strong>更新π值：<spanclass="math display"><em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>（<em>r</em><sub><em>π</em></sub> + <em>γ</em><em>P</em><sub><em>π</em></sub><em>v</em><sub><em>π</em></sub>）</span></p><p>但是策略迭代的过程中需要知道两个东西，一个是<code>p(r|s,a)</code>，另一个是<code>p(s'|s,a)</code>，这两个是<code>world model</code>中的内容。</p><p>如果我们想要进行策略迭代，又不知道<code>model</code>，那我们还有另一种方式，就是去估计这个q值。</p><p><img src="image-1.png" /></p><p>其中，核心是<code>q（s，a）</code>要得到动作的价值<code>q</code>，有两种方式，一种是用q值的定义，在有模型的情况下，给出<code>p（r）</code>和<code>p（s）</code></p><p><img src="image-2.png" /></p><p>在没有<code>model</code>的情况下，我们可以根据强化学习对于<code>q</code>值的定义去估计<code>q</code>值：在当前的<code>s,a</code>下用采样的方式，估计平均期望回报和<code>G</code>。这就是对应的<code>model-free RL</code>的过程。</p><p>蒙特卡洛估计动作价值的方法如下：</p><p><strong>第一步</strong>，从<code>(s,a)</code>开始，根据策略<code>πk</code>，生成一个回合</p><p><strong>第二步</strong>，这个回合的回报是<code>g(s,a)</code>，他是<code>Gt</code>的一个采样。</p><p>假如我们有一个g的集合，里面有很多条轨迹，那么 <spanclass="math display"><em>q</em><sub><em>π</em><sub><em>k</em></sub></sub>(<em>s</em>, <em>a</em>) = <em>E</em>[<em>G</em><sub><em>t</em></sub>|<em>S</em><sub><em>t</em></sub> = <em>s</em>, <em>A</em><sub><em>t</em></sub> = <em>a</em>]</span>≈ <span class="math display">$$\frac{1}{N}\sum_{i=1}^{N}g^{(i)}(s,a)$$</span></p><p><img src="image-3.png" /></p><p>每次采样一条完整的轨迹g，这个轨迹是<code>G</code>的一个子集，采集到足够多的g之后取均值，就估计了整体的回报的期望。</p><p>蒙特卡洛算法和<code>policy evaluation</code>的算法是非常相似的。</p><p>这是它的伪代码：在每个状态下，采样每个动作，并且采样后续的<code>(s,a)</code>对；然后基于这些轨迹，去估计所有回合下，从当前状态开始的平均回报，这个平均回报就作为q值。</p><p><img src="image-4.png" /></p><p>策略改进的部分和<code>policy iteration</code>是一样的。<code>greedy</code>的方式选取当前q最大的a。</p><p><strong>注意点</strong><code>mc Basic</code>算法是把基于<code>model</code>的模块拿掉，是一种<code>model free</code>的算法，只是实际上，这种方法实际上不会采用，因为它的效率非常低。<code>mc</code>算法直接估计动作的价值，而非状态的价值，这是因为动作价值能够直接用于改进策略，状态价值还得转成动作价值才能改进策略由于策略迭代是保证收敛的，mc算法也是保证收敛的，之后给够充分的回合进行采样</p><p><img src="image-5.png" /></p><p><strong>epislon-greedy算法</strong></p><p><img src="image-6.png" /></p><p><code>mc exploring star</code>算法需要探索的状态动作对太多，为了提高其他动作的概率，可以采用<strong>epislon-greedy</strong>方法进行探索，这种方法的策略是：大概率贪心的策略选动作，小概率随机探索</p><p><img src="image-7.png" /></p><p><code>epislon greedy</code>算法，就是在选动作的时候，把选动作的逻辑从选qmax变成随机探索。</p><p><img src="image-8.png" /></p><p><code>greedy</code>策略，<code>epislon</code>不能开太大，比如<code>epislon＝0.1</code>的时候，还能和最优策略保持一致（一致：最优策略和随机最优策略对应的最大概率动作保持一致），取0.20.5的时候，epislon就和原先最优策略不能用了。这个故事告诉我们，如果要是想用<code>epislon greedy</code>策略，<code>epislon</code>不能开太大。</p><p><img src="image-9.png" /></p><hr /><p><strong>为什么MC算法在强化学习训练中难以应用？</strong></p><p>MC方法是一种基于完整回合（episode）的学习方式。也就是说，它必须等到一个episode 完全结束后，才能计算该 episode的回报（return），并用这个回报来更新价值函数或策略。</p><p>❗问题：如果任务具有很长的episode（比如围棋、某些控制任务），或者环境是连续型的（没有明确的终止状态），那么MC 方法就无法有效更新，学习效率极低。</p><p>MC 方法要求任务必须是分幕式（episodic）的，即每个 episode有明确的开始和结束。</p><p>❌ 对于持续性任务（continuingtasks），如机器人持续导航、股票交易等没有明确终止点的任务，MC方法无法直接应用，因为回报无法定义。</p><p>✅ TD 方法可以通过引入折扣因子 γ &lt; 1 来处理持续性任务。</p><p>MC 方法使用实际的回报 <spanclass="math display"><em>G</em><sub><em>t</em></sub></span> ​</p><p>作为目标，而回报是多个随机动作和状态转移的累积结果，因此：</p><p>📈 方差很大：每次采样得到的回报可能差异很大，导致学习不稳定。</p><p>🐢 需要大量样本：为了获得可靠的估计，MC通常需要更多的训练数据，样本效率低。</p><p>蒙特卡洛方法并不是“无法使用”，而是由于其固有的局限性（如必须等待episode结束、高方差、不适用于持续性任务等），在许多实际强化学习任务中不如 TD方法高效和实用。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>强化学习</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>强化学习学习笔记（四）值迭代和策略迭代</title>
     <link href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/"/>
     <url>/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/</url>

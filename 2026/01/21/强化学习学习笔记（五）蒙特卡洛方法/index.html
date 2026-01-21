@@ -19,39 +19,32 @@
   <meta name="author" content="">
   <meta name="keywords" content="交通">
   
-    <meta name="description" content="一、值迭代算法 如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个f(v)&#x3D;v的不动点问题，通过contraction mapping 定理可知，可以使用迭代的方式求解。  贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。 第一步【优化策略（policy update）】:是在给定vk的情况下求解πk+1 第二步【优化值（value upda">
+    <meta name="description" content="强化学习学习笔记（五）蒙特卡洛算法 第四章描述的值迭代算法和策略迭代算法都是model-based的算法。 从这一章开始，我们引入蒙特卡洛学习，这是一种不需要模型的算法。也正是对应了强化学习的话：没有模型就得有数据，没有数据就得有模型。 蒙特卡洛方法来源于数学中的统计方法，比如说抛硬币问题，算抛硬币中正面的概率，用model based的方法就是直接算期望，直接知道p正＝0.5，p反＝0.5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="强化学习学习笔记（四）值迭代和策略迭代">
-<meta property="og:url" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/index.html">
+<meta property="og:title" content="强化学习学习笔记（五）蒙特卡洛算法">
+<meta property="og:url" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Run&#39;s Studio">
-<meta property="og:description" content="一、值迭代算法 如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个f(v)&#x3D;v的不动点问题，通过contraction mapping 定理可知，可以使用迭代的方式求解。  贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。 第一步【优化策略（policy update）】:是在给定vk的情况下求解πk+1 第二步【优化值（value upda">
+<meta property="og:description" content="强化学习学习笔记（五）蒙特卡洛算法 第四章描述的值迭代算法和策略迭代算法都是model-based的算法。 从这一章开始，我们引入蒙特卡洛学习，这是一种不需要模型的算法。也正是对应了强化学习的话：没有模型就得有数据，没有数据就得有模型。 蒙特卡洛方法来源于数学中的统计方法，比如说抛硬币问题，算抛硬币中正面的概率，用model based的方法就是直接算期望，直接知道p正＝0.5，p反＝0.5">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-1.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-2.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-3.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-4.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-5.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-6.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-7.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-8.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-9.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-10.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-11.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-12.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-13.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-14.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-15.png">
-<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image-16.png">
-<meta property="article:published_time" content="2026-01-21T12:25:46.000Z">
-<meta property="article:modified_time" content="2026-01-21T12:47:18.307Z">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-1.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-7.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-8.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image-9.png">
+<meta property="article:published_time" content="2026-01-21T13:06:08.000Z">
+<meta property="article:modified_time" content="2026-01-21T13:22:23.877Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/image.png">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/image.png">
   
   
   
-  <title>强化学习学习笔记（四）值迭代和策略迭代 - Run&#39;s Studio</title>
+  <title>强化学习学习笔记（五）蒙特卡洛算法 - Run&#39;s Studio</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="强化学习学习笔记（四）值迭代和策略迭代"></span>
+            <span id="subtitle" data-typed-text="强化学习学习笔记（五）蒙特卡洛算法"></span>
           
         </div>
 
@@ -230,7 +223,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-21 20:25" pubdate>
+        <time datetime="2026-01-21 21:06" pubdate>
           2026年1月21日 晚上
         </time>
       </span>
@@ -242,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.5k 字
         
       </span>
     
@@ -253,7 +246,7 @@
         
         
         
-          11 分钟
+          13 分钟
         
       </span>
     
@@ -290,73 +283,86 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">强化学习学习笔记（四）值迭代和策略迭代</h1>
+            <h1 id="seo-header">强化学习学习笔记（五）蒙特卡洛算法</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一值迭代算法">一、值迭代算法</h1>
-<p>如何求解贝尔曼等式？在上一章中，已经知道了求解贝尔曼公式核心是求解一个<code>f(v)=v</code>的不动点问题，通过<code>contraction mapping</code>
-定理可知，可以使用迭代的方式求解。</p>
+                <h1
+id="强化学习学习笔记五蒙特卡洛算法">强化学习学习笔记（五）蒙特卡洛算法</h1>
+<p>第四章描述的值迭代算法和策略迭代算法都是model-based的算法。</p>
+<p>从这一章开始，我们引入蒙特卡洛学习，这是一种不需要模型的算法。也正是对应了强化学习的话：没有模型就得有数据，没有数据就得有模型。</p>
+<p>蒙特卡洛方法来源于数学中的统计方法，比如说抛硬币问题，算抛硬币中正面的概率，用<code>model based</code>的方法就是直接算期望，直接知道<code>p正＝0.5</code>，<code>p反＝0.5</code>。
+<code>model free</code>的方法就是估计很多次，重复丢这个硬币很多次，然后从结果中算概率</p>
 <p><img src="image.png" srcset="/img/loading.gif" lazyload /></p>
-<p>贝尔曼公式中蕴含着π，π和v是绑定的。因此，需要通过两个步骤去求解。</p>
-<p><strong>第一步【优化策略（policy
-update）】</strong>:是在给定vk的情况下求解πk+1</p>
-<p><strong>第二步【优化值（value
-update）】</strong>:是把πk+1带入值的公式，得到rπk+1和pπk+1（这俩是世界模型决定，和π相关），从而去更新v</p>
+<p>蒙特卡洛定理不仅可以用到强化中，其他需要大量采数据估计期望的方法都可以使用</p>
+<p>强化学习能够用<code>mc</code>方法的原因：<code>v</code>值和<code>q</code>值本质都是期望，既然是期望，对应着就是求平均的策略。</p>
+<p>mc算法是用在策略迭代算法中的，策略迭代只要是以下两步：</p>
+<p><strong>第一步</strong>更新v值：<span
+class="math display"><em>v</em>＝<em>r</em> + <em>γ</em><em>P</em><sub><em>π</em></sub><em>v</em></span></p>
+<p><strong>第二步</strong>更新π值：<span
+class="math display"><em>a</em><em>r</em><em>g</em><em>m</em><em>a</em><em>x</em><sub><em>π</em></sub>（<em>r</em><sub><em>π</em></sub> + <em>γ</em><em>P</em><sub><em>π</em></sub><em>v</em><sub><em>π</em></sub>）</span></p>
+<p>但是策略迭代的过程中需要知道两个东西，一个是<code>p(r|s,a)</code>，另一个是<code>p(s'|s,a)</code>，这两个是<code>world model</code>中的内容。</p>
+<p>如果我们想要进行策略迭代，又不知道<code>model</code>，那我们还有另一种方式，就是去估计这个q值。</p>
 <p><img src="image-1.png" srcset="/img/loading.gif" lazyload /></p>
-<p>因为现在是<code>vk</code>迭代<code>vk+1</code>的方式得到最后的v，所以还要补充收敛性证明：
-<code>||vk+1-vk||＜delta</code>的时候视为收敛，迭代结束。</p>
-<p>理论上分析常用矩阵形式，但是实际实现上会用元素形式去实现（迭代的方式）</p>
-<p><strong>第一步</strong>是更新策略，目的是求解最优的π，最优的π可以通过贪婪算法得到：在每一步都选取使得<code>q</code>值最大的<code>a</code>，这个动作的概率赋值为1，其他动作的概率赋值为0。这个策略是确定性的策略</p>
+<p>其中，核心是<code>q（s，a）</code>
+要得到动作的价值<code>q</code>，有两种方式，一种是用q值的定义，在有模型的情况下，给出<code>p（r）</code>和<code>p（s）</code></p>
 <p><img src="image-2.png" srcset="/img/loading.gif" lazyload /></p>
-<p><strong>第二步</strong>是值迭代，对于每个s都可以求解出q，把π还可以代进来，对应的q最大的值概率是1，其他的概率是0。</p>
+<p>在没有<code>model</code>的情况下，我们可以根据强化学习对于<code>q</code>值的定义去估计<code>q</code>值：在当前的<code>s,a</code>下用采样的方式，估计平均期望回报和<code>G</code>。
+这就是对应的<code>model-free RL</code>的过程。</p>
+<p>蒙特卡洛估计动作价值的方法如下：</p>
+<p><strong>第一步</strong>，从<code>(s,a)</code>开始，根据策略<code>πk</code>，生成一个回合</p>
+<p><strong>第二步</strong>，这个回合的回报是<code>g(s,a)</code>，他是<code>Gt</code>的一个采样。</p>
+<p>假如我们有一个g的集合，里面有很多条轨迹，那么 <span
+class="math display"><em>q</em><sub><em>π</em><sub><em>k</em></sub></sub>(<em>s</em>, <em>a</em>) = <em>E</em>[<em>G</em><sub><em>t</em></sub>|<em>S</em><sub><em>t</em></sub> = <em>s</em>, <em>A</em><sub><em>t</em></sub> = <em>a</em>]</span>
+≈ <span class="math display">$$\frac{1}{N}
+\sum_{i=1}^{N}g^{(i)}(s,a)$$</span></p>
 <p><img src="image-3.png" srcset="/img/loading.gif" lazyload /></p>
-<p>上面的过程可以写成伪代码：</p>
+<p>每次采样一条完整的轨迹g，这个轨迹是<code>G</code>的一个子集，采集到足够多的g之后取均值，就估计了整体的回报的期望。</p>
+<p>蒙特卡洛算法和<code>policy evaluation</code>的算法是非常相似的。</p>
+<p>这是它的伪代码：在每个状态下，采样每个动作，并且采样后续的<code>(s,a)</code>对；然后基于这些轨迹，去估计所有回合下，从当前状态开始的平均回报，这个平均回报就作为q值。</p>
 <p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
-<p>首先我们有一个<code>vk</code>，在<code>vk</code>还没收敛的时候，就通过不断的迭代，遍历所有的状态<code>s</code>，遍历所有状态的<code>a</code>，计算所有状态的<code>qk</code>，看哪个<code>action</code>对应的是最大的<code>qk</code>，选这个<code>action</code>。并且根据这种方式去更新<code>value</code>（已知π的情况下就可以知道r，可以迭代。）</p>
-<p>举例说明：在这个案例中，一开始<code>vk</code>是一个随机的策略（图b），然后知道了每个状态的。然后从<code>v</code>得到每个<code>q</code></p>
+<p>策略改进的部分和<code>policy iteration</code>是一样的。<code>greedy</code>的方式选取当前q最大的a。</p>
+<p><strong>注意点</strong>
+<code>mc Basic</code>算法是把基于<code>model</code>
+的模块拿掉，是一种<code>model free</code>的算法，只是实际上，这种方法实际上不会采用，因为它的效率非常低。
+<code>mc</code>算法直接估计动作的价值，而非状态的价值，这是因为动作价值能够直接用于改进策略，状态价值还得转成动作价值才能改进策略
+由于策略迭代是保证收敛的，mc算法也是保证收敛的，之后给够充分的回合进行采样</p>
 <p><img src="image-5.png" srcset="/img/loading.gif" lazyload /></p>
-<p>假设初始状态，令<code>v0＝0</code>，然后得到状态，就可以得到每个policy的权重</p>
-<p>第一步迭代完，已经可以知道<code>s2</code>，<code>s3</code>，<code>s4</code>的策略是最优的，但是s1的策略还没更新。</p>
-<p>然后进行下一步迭代，把当前的<code>v</code>作为最新的<code>v</code>，得到新的值。</p>
+<p><strong>epislon-greedy算法</strong></p>
 <p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
-<p>这一步之后，把<code>s1</code>的最优值也更新了。</p>
+<p><code>mc exploring star</code>算法需要探索的状态动作对太多，为了提高其他动作的概率，可以采用<strong>epislon-greedy</strong>方法进行探索，这种方法的策略是：大概率贪心的策略选动作，小概率随机探索</p>
 <p><img src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
-<h1 id="二策略迭代算法">二、策略迭代算法</h1>
-<p>算法描述：给定一个<code>π0</code></p>
-<p><strong>第一步</strong>，进行策略估计获得更好的值。</p>
-<p><strong>第二步</strong>，用这个值去更新更新策略。</p>
+<p><code>epislon greedy</code>算法，就是在选动作的时候，把选动作的逻辑从选qmax变成随机探索。</p>
 <p><img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
+<p><code>greedy</code>策略，<code>epislon</code>不能开太大，比如<code>epislon＝0.1</code>的时候，还能和最优策略保持一致（一致：最优策略和随机最优策略对应的最大概率动作保持一致），取0.2
+0.5的时候，epislon就和原先最优策略不能用了。这个故事告诉我们，如果要是想用<code>epislon greedy</code>策略，<code>epislon</code>不能开太大。</p>
 <p><img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
-<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
-<p>和策略迭代相关的问题
-<strong>问题1</strong>，如何求解：和之前一样的两种方法，求逆和迭代。用迭代的方式去求解这个贝尔曼公式</p>
-<p><strong>问题2</strong>，为什么得到的<code>πk+1</code>一定比<code>πk</code>好？因为<code>πk+1</code>具有更高的值（可以证明<code>vπk+1≥vπk</code>）</p>
-<p><strong>问题3</strong>
-为什么迭代可以得到最优策略？在迭代过程中，策略会改进，一步又一步收敛到最优的值，这时候模型就可以收敛到最优策略。</p>
-<p><strong>问题4</strong> 策略迭代和值迭代算法有什么关系？</p>
-<p>①证明策略是收敛的需要用到值迭代是收敛的的定理</p>
-<p>②策略迭代和值迭代实际上是两个极端，值迭代是相同的v下找最优策略，策略迭代是在一个给定的策略下找最优的v</p>
-<p><strong>算法的实施</strong></p>
-<p>还是通过迭代的方法</p>
-<p><img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
-<p>值迭代和策略迭代的关系：</p>
-<p>策略迭代先从策略开始，先给策略估值，再算价值更新策略</p>
-<p>值迭代先从值开始，更新策略，得到策略，再更新值，再循环</p>
-<p>两个步骤其实就是翻一下</p>
-<p><img src="image-12.png" srcset="/img/loading.gif" lazyload /></p>
-<p>这张图展示了两个算法的差异：</p>
-<p><img src="image-13.png" srcset="/img/loading.gif" lazyload /></p>
-<p>最重要的区别就在于在迭代的第四步，值迭代算法用的是<code>v1</code>，策略迭代算法：用的是<code>vπ1</code>，而<code>vπ1</code>又需要在<code>π1</code>下基于v0进行无穷多次迭代才能得到，收敛时才退出。作为对比，值迭代算法就迭代一次，直接得到下一时刻的v。说明值迭代算法只迭代1次，策略迭代算法要迭代很多次，我们由此可以想到，有没有一种迭代方法能在这两者之间进行一个折中的，所以就提出了截断策略迭代算法。</p>
-<p><img src="image-14.png" srcset="/img/loading.gif" lazyload /></p>
-<h1 id="三截断策略迭代算法">三、截断策略迭代算法：</h1>
-<p>截断策略迭代算法是值迭代算法和策略迭代算法的一般化的推广，值迭代只进行1步迭代，值迭代进行有限步的迭代就是截断策略迭代，如果进行很多步，直到算法收敛（价值准确估计出来），这个就是策略迭代算法。</p>
-<p><strong>算法的实施</strong>
-一样，还是通过迭代的方法，只是中间迭代一定的步数。</p>
-<p><img src="image-15.png" srcset="/img/loading.gif" lazyload /></p>
-<p>收敛性上来看，迭代k步，策略迭代算法最先收敛到最优策略，因为他的价值函数每次都要迭代很多次，以达到当前的最优。值迭代最慢，因为他每次只迭代1次策略。截断策略迭代介于二者之间。</p>
-<p><img src="image-16.png" srcset="/img/loading.gif" lazyload /></p>
+<hr />
+<p><strong>为什么MC算法在强化学习训练中难以应用？</strong></p>
+<p>MC
+方法是一种基于完整回合（episode）的学习方式。也就是说，它必须等到一个
+episode 完全结束后，才能计算该 episode
+的回报（return），并用这个回报来更新价值函数或策略。</p>
+<p>❗问题：如果任务具有很长的
+episode（比如围棋、某些控制任务），或者环境是连续型的（没有明确的终止状态），那么
+MC 方法就无法有效更新，学习效率极低。</p>
+<p>MC 方法要求任务必须是分幕式（episodic）的，即每个 episode
+有明确的开始和结束。</p>
+<p>❌ 对于持续性任务（continuing
+tasks），如机器人持续导航、股票交易等没有明确终止点的任务，MC
+方法无法直接应用，因为回报无法定义。</p>
+<p>✅ TD 方法可以通过引入折扣因子 γ &lt; 1 来处理持续性任务。</p>
+<p>MC 方法使用实际的回报 <span
+class="math display"><em>G</em><sub><em>t</em></sub></span> ​</p>
+<p>作为目标，而回报是多个随机动作和状态转移的累积结果，因此：</p>
+<p>📈 方差很大：每次采样得到的回报可能差异很大，导致学习不稳定。</p>
+<p>🐢 需要大量样本：为了获得可靠的估计，MC
+通常需要更多的训练数据，样本效率低。</p>
+<p>蒙特卡洛方法并不是“无法使用”，而是由于其固有的局限性（如必须等待
+episode
+结束、高方差、不适用于持续性任务等），在许多实际强化学习任务中不如 TD
+方法高效和实用。</p>
 
                 
               </div>
@@ -395,8 +401,8 @@ update）】</strong>:是把πk+1带入值的公式，得到rπk+1和pπk+1（�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>强化学习学习笔记（四）值迭代和策略迭代</div>
-      <div>https://runsstudio.github.io/2026/01/21/强化学习学习笔记（四）值迭代和策略迭代/</div>
+      <div>强化学习学习笔记（五）蒙特卡洛算法</div>
+      <div>https://runsstudio.github.io/2026/01/21/强化学习学习笔记（五）蒙特卡洛方法/</div>
     </div>
     <div class="license-meta">
       
@@ -435,17 +441,11 @@ update）】</strong>:是把πk+1带入值的公式，得到rπk+1和pπk+1（�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%96%B9%E6%B3%95/" title="强化学习学习笔记（五）蒙特卡洛算法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">强化学习学习笔记（五）蒙特卡洛算法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/" title="强化学习学习笔记（四）值迭代和策略迭代">
+                      <a href="/2026/01/21/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%92%8C%E7%AD%96%E7%95%A5%E8%BF%AD%E4%BB%A3/" title="强化学习学习笔记（四）值迭代和策略迭代">
                         <span class="hidden-mobile">强化学习学习笔记（四）值迭代和策略迭代</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
