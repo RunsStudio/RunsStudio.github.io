@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="交通">
+  
+    <meta name="description" content="强化学习笔记（八）：值函数近似 在实际场景中，我们的状态空间是非常大的，如果我们使用之前的建立一个个表格的方法，他的数据规模也会非常大，这显然不是一个很现实的解决方案。我们希望提出一种新的value function，他可以近似等于真正的value function，但是我们不再需要为每一个state建立一个映射，也就是一种和函数拟合思路类似的方法。在这一章，也是首次将神经网络引入强化学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强化学习笔记（八）值函数近似">
+<meta property="og:url" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/index.html">
+<meta property="og:site_name" content="Run&#39;s Studio">
+<meta property="og:description" content="强化学习笔记（八）：值函数近似 在实际场景中，我们的状态空间是非常大的，如果我们使用之前的建立一个个表格的方法，他的数据规模也会非常大，这显然不是一个很现实的解决方案。我们希望提出一种新的value function，他可以近似等于真正的value function，但是我们不再需要为每一个state建立一个映射，也就是一种和函数拟合思路类似的方法。在这一章，也是首次将神经网络引入强化学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-1.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-7.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-8.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-9.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-11.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-10.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-12.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-13.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-14.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-15.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-16.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-18.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-19.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-20.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-21.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-22.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-24.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-23.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-25.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-26.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-28.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-27.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-29.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-31.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-30.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-32.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-33.png">
+<meta property="article:published_time" content="2026-02-25T03:16:19.000Z">
+<meta property="article:modified_time" content="2026-02-25T04:55:52.503Z">
+<meta property="article:tag" content="交通">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image.png">
+  
+  
+  
+  <title>强化学习笔记（八）值函数近似 - Run&#39;s Studio</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"runsstudio.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 65vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Run&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="强化学习笔记（八）值函数近似"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-25 11:16" pubdate>
+          2026年2月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">强化学习笔记（八）值函数近似</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="强化学习笔记八值函数近似">强化学习笔记（八）：值函数近似</h1>
+<p>在实际场景中，我们的状态空间是非常大的，如果我们使用之前的建立一个个表格的方法，他的数据规模也会非常大，这显然不是一个很现实的解决方案。我们希望提出一种新的value
+function，他可以近似等于真正的value
+function，但是我们不再需要为每一个state建立一个映射，也就是一种和函数拟合思路类似的方法。在这一章，也是首次将神经网络引入强化学习。</p>
+<p><img src="image.png" srcset="/img/loading.gif" lazyload /></p>
+<p>前面7章中我们所有的算法都是基于表格的</p>
+<p>表格的优点是分析起来容易，但是缺点是没法离散，为此来引入神经网络来估计值</p>
+<p>首先先看一个经典的问题：神经网络拟合</p>
+<p><img src="image-1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>我们可以用直线来进行拟合，这里w就是待拟合曲线的参数。</p>
+<p><img src="image-2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这样我们不用存储很多的值，用简单的参数w来表达就可以。</p>
+<p>当然，也可以用很多的其他的曲线来拟合。</p>
+<p><img src="image-3.png" srcset="/img/loading.gif" lazyload /></p>
+<p>总结：用曲线拟合的优势有两个：存储和泛化，泛化这一点可以看课件的解释，更新一个值其他相近的值也会改变。</p>
+<p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="二值函数估计算法">二、值函数估计算法</h1>
+<h2 id="目标函数选择">2.1 目标函数选择</h2>
+<p><img src="image-5.png" srcset="/img/loading.gif" lazyload /></p>
+<p>目的：找到最优的目标函数，使得它能给每个状态估值</p>
+<p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这是我们的目标函数，目标是找到最优权重让<span
+class="math inline"><em>J</em>(<em>w</em>)</span>最小。这里面还涉及到一个随机变量：<span
+class="math inline"><em>S</em></span></p>
+<p>这里我们采用的是随机变量<span
+class="math inline"><em>s</em></span>，怎么去估计它的概率分布呢？
+第一种方法是使用同一分布，认为每个状态出现概率是一样的，去估计状态的概率</p>
+<p><img src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第二种方法是用稳态分布，其实就是把里面的状态的权重变成了可变的。可以认为这个时候状态是平稳的，跑了很多次之后才出现的状态</p>
+<p><img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
+<p>举个例子，<span class="math inline"><em>d</em></span>
+认为是多个状态的加权，在跑算法很多步之后，最后算出来的状态值都是平稳的。</p>
+<p><img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="优化的算法">2.2 优化的算法</h2>
+<p><img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
+<p>优化的式子也是用迭代的方式去计算。但是这种计算方式需要依赖真实梯度，我们不知道真实的梯度怎么求，很自然的想到用随机梯度代替真实梯度</p>
+<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里面需要依赖真实梯度，没法获取就得想办法替代</p>
+<p>一种方式是用蒙特卡洛的方式，依赖整个的<code>return</code>
+另一种是用<code>td learning</code>的方式去获取，这里就是把<span
+class="math inline"><em>v</em></span>换成了
+<code>td target</code>，也就是$ r + γ $</p>
+<p><img src="image-12.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这个方法就可以用于更新算法。这里还有一步就是<span
+class="math inline"><em>v̂</em></span>的选择:它可以是不同的函数，可以是线性的或非线性的。</p>
+<p><img src="image-13.png" srcset="/img/loading.gif" lazyload /></p>
+<p><span class="math inline"><em>v̂</em></span>
+的选择：过往会选择线性或者多项式或者傅里叶的组合，现在更常用的是基于神经网络，引入非线性</p>
+<p><img src="image-14.png" srcset="/img/loading.gif" lazyload /></p>
+<p>线性<span class="math inline"><em>v̂</em></span>的例子</p>
+<p><img src="image-15.png" srcset="/img/loading.gif" lazyload /></p>
+<p>使用线性<span class="math inline"><em>v̂</em></span>的优势和劣势：
+<img src="image-16.png" srcset="/img/loading.gif" lazyload /></p>
+<p>线性函数还是有比较强的表征能力。而且比较便于理解。
+需要指出的是q表的方式其实是线性的方式的一种特殊形式 <img
+src="image-17.png" srcset="/img/loading.gif" lazyload /></p>
+<p>例子：</p>
+<p><img src="image-18.png" srcset="/img/loading.gif" lazyload /></p>
+<p>用平面作为待预测的vhat的函数去拟合真实v，，并且进行三维可视化。发现平面趋势差不多，但细节上还是有区别</p>
+<p><img src="image-19.png" srcset="/img/loading.gif" lazyload /></p>
+<p><span class="math inline"><em>v̂</em></span>
+换用二次、三次函数之后，效果立竿见影</p>
+<p>通过值函数的td学习主要就是做这件事：用近似的 <span
+class="math inline"><em>v̂</em></span> 去替换真实的，不知道的这个<span
+class="math inline"><em>v</em></span>，尽管这俩可能并不相等，甚至由于
+<span class="math inline"><em>v̂</em></span>
+的选取，可能永远无法拟合<span
+class="math inline"><em>v</em></span>（例如 <span
+class="math inline"><em>v̂</em></span> 选平面，就永远无法拟合）</p>
+<p><img src="image-20.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="三sarsa和值函数近似的结合">三、sarsa和值函数近似的结合</h1>
+<p>如图所示，算法这里的值函数都用<span
+class="math inline"><em>q̂</em></span>去进行替代了原来的时序差分学习。（之前介绍的部分是针对<span
+class="math inline"><em>v̂</em></span>，这里是<span
+class="math inline"><em>q̂</em></span>）</p>
+<p><img src="image-21.png" srcset="/img/loading.gif" lazyload /></p>
+<p>伪代码如图所示，基本上，步骤就是将<span
+class="math inline"><em>w</em></span>的更新用<span
+class="math inline"><em>q</em></span>函数替换掉</p>
+<p><img src="image-22.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="四q-learning和值近似的结合">四、q-learning和值近似的结合</h1>
+<p>直接给出迭代的公式</p>
+<p><img src="image-24.png" srcset="/img/loading.gif" lazyload /></p>
+<p>其实就是sarsa把td target 替换一下
+伪代码如下：需要指出的是这里给出的是on-policy版本的ql，当然他也可以是off-policy的。</p>
+<p><img src="image-23.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="五dqn">五、dqn</h1>
+<p>dqn引入了两个机制：<code>经验回放</code>和<code>目标网络</code>，目标是打破样本的相关性。</p>
+<p><strong>dqn的目标</strong>：最小化<code>td target</code>，这里的<code>td target</code>就是贝尔曼最优误差。所以这两个值做差，它的期望应该是0。
+dqn通过调整网络参数θ，缩小预测值和目标值之间的差距。</p>
+<p><img src="image-25.png" srcset="/img/loading.gif" lazyload /></p>
+<p>优化的方法：梯度下降 直接用梯度下降方法是比较困难的，因为参数<span
+class="math inline"><em>w</em></span>不仅仅位于<span
+class="math inline"><em>q̂</em></span>中，也位于<span
+class="math inline"><em>y</em></span>中。
+为了简化运算，我们在计算的过程中先固定住<span
+class="math inline"><em>y</em></span>中的<span
+class="math inline"><em>w</em></span>，来进行运算。</p>
+<p><img src="image-26.png" srcset="/img/loading.gif" lazyload /></p>
+<p>为了处理不一致性，这里还应用了一个技巧：两个神经网络：<strong>main
+network</strong> 和<strong>target network</strong>
+，固定一个网络去更新另一个</p>
+<p><img src="image-28.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="image-27.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="经验回放">经验回放</h2>
+<p>为什么经验回放是必须的？</p>
+<p><img src="image-29.png" srcset="/img/loading.gif" lazyload /></p>
+<p>答案在更新的式子中，s，a是从分布中采样的，s，a被认为是一个随机变量</p>
+<p><img src="image-31.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="image-30.png" srcset="/img/loading.gif" lazyload /></p>
+<p>为什么ql里面没有涉及到shared replay？
+因为QL都没有涉及到分布，纯回放。</p>
+<p><img src="image-32.png" srcset="/img/loading.gif" lazyload /></p>
+<p>dqn涉及到分布，求的是s，a的平均，ql里面没有分布的概念，纯粹是求贝尔曼公式。当然ql也可以使用经验回放</p>
+<h2 id="dqn的伪代码off-policy">dqn的伪代码（off-policy）</h2>
+<p><img src="image-33.png" srcset="/img/loading.gif" lazyload /></p>
+<p>①没有策略更新的原因：这个是off-policy</p>
+<p>②为什么不用policy update
+evaluation？其实是可以可以直接用$w_{t+1}＝w_t +a_t（r+γ
+max-），但是现在都有神经网络了，可以直接用神经网络里面的黑盒性质来优化算法。</p>
+<p>③这个算法实现和dqn论文原文不一样，dqn原文是输入s输出5个动作的q，这个是输入s
+a输出q，内涵是一样的</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="category-chain-item">强化学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>强化学习笔记（八）值函数近似</div>
+      <div>https://runsstudio.github.io/2026/02/25/强化学习笔记（八）值函数近似/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/09/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E6%97%B6%E5%BA%8F%E5%B7%AE%E5%88%86%E6%96%B9%E6%B3%95/" title="强化学习笔记（七）时序差分方法">
+                        <span class="hidden-mobile">强化学习笔记（七）时序差分方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://runsstudio.github.io" target="_blank" rel="nofollow noopener"><span>Run's studio © 2025</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
