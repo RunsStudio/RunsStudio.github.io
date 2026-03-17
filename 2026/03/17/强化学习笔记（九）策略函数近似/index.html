@@ -63,7 +63,7 @@
 <meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-36.png">
 <meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-37.png">
 <meta property="article:published_time" content="2026-03-17T13:14:34.000Z">
-<meta property="article:modified_time" content="2026-03-17T13:59:53.832Z">
+<meta property="article:modified_time" content="2026-03-17T14:03:08.962Z">
 <meta property="article:tag" content="交通">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image.png">
@@ -321,17 +321,17 @@ Network），记为 <span
 class="math inline"><em>π</em>(<em>a</em>|<em>s</em>; <em>θ</em>)</span>，其中
 <span class="math inline"><em>θ</em></span> 是神经网络的参数。</p>
 <p>【摘要】（来自元宝） 一、策略梯度方法的基本思想：</p>
-<p>将策略参数化</p>
+<p>1.将策略参数化</p>
 <p>在策略梯度方法中，我们不是去估计值函数（如Q值），而是直接用一个可微函数（如神经网络）来表示策略
 π(a|s; θ)，其中θ是策略的参数。也就是说，策略本身是可以被优化的对象。</p>
-<p>定义目标函数</p>
+<p>2.定义目标函数</p>
 <p>策略优化的目标是最大化某个性能指标，通常是期望回报（expected
 return）：</p>
 <p><span
 class="math inline"><em>J</em>(<em>θ</em>) = <em>𝔼</em><em>π</em><em>θ</em>[<em>R</em>] = ∑<em>τ</em><em>P</em>(<em>τ</em>; <em>θ</em>)<em>R</em>(<em>τ</em>)</span></p>
 <p>其中τ表示一个轨迹（state-action序列），P(τ;
 θ)是该轨迹在策略πθ下的概率，R(τ)是该轨迹的总回报。</p>
-<p>梯度上升更新策略参数</p>
+<p>3.梯度上升更新策略参数</p>
 <p>为了最大化J(θ)，我们使用梯度上升方法更新θ：</p>
 <p><span
 class="math inline"><em>θ</em> ← <em>θ</em> + <em>α</em>∇<em>θ</em><em>J</em>(<em>θ</em>)</span></p>
@@ -343,7 +343,8 @@ class="math inline"><em>θ</em> ← <em>θ</em> + <em>α</em>∇<em>θ</
 <p>因此，实际中我们会引入一些技巧来改善这个问题，比如：</p>
 <p>使用折扣因子γ来控制远期回报的重要性；</p>
 <p>使用基线（baseline）来减少方差，如减去状态值V(s)；</p>
-<p>使用优势函数A(s,a)替代原始回报R(τ)，如：A(s,a) = Q(s,a) - V(s)；</p>
+<p>使用优势函数A(s,a)替代原始回报R(τ)，如：<span
+class="math inline"><em>A</em>(<em>s</em>, <em>a</em>) = <em>Q</em>(<em>s</em>, <em>a</em>) − <em>V</em>(<em>s</em>)</span>；</p>
 <p>使用REINFORCE with baseline 或 Actor-Critic 方法。</p>
 <p>问题二：如何计算该标量的梯度</p>
 <p>由于J(θ)通常是一个期望，直接计算梯度很困难，因此我们需要用采样的方法来估计梯度。</p>
@@ -351,7 +352,8 @@ class="math inline"><em>θ</em> ← <em>θ</em> + <em>α</em>∇<em>θ</
 Theorem）告诉我们，可以直接通过采样轨迹来估计梯度，而不需要显式地求P(τ;
 θ)的导数。</p>
 <p>一个常见的梯度估计形式是：</p>
-<p>∇θ J(θ) ≈ (1/N) ∑i=1N ∑t=1T ∇θ log πθ(ai,t | si,t) · Gt</p>
+<p><span
+class="math inline">∇<em>θ</em><em>J</em>(<em>θ</em>) ≈ (1/<em>N</em>)∑<em>i</em> = 1<em>N</em>∑<em>t</em> = 1<em>T</em>∇<em>θ</em><em>l</em><em>o</em><em>g</em><em>π</em><em>θ</em>(<em>a</em><em>i</em>, <em>t</em>|<em>s</em><em>i</em>, <em>t</em>) · <em>G</em><sub><em>t</em></sub></span></p>
 <p>其中Gt是从时间t开始的总回报，N是采样的轨迹数，T是轨迹长度。</p>
 <p>这个形式说明，策略梯度依赖于log概率的梯度乘以回报，这称为“得分函数估计器”（score
 function estimator）。</p>
