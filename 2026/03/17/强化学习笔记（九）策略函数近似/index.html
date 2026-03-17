@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="交通">
+  
+    <meta name="description" content="强化学习笔记（九）策略函数近似 策略函数近似是强化学习中一种重要的方法，用于解决状态空间和动作空间过大或连续的问题。通过函数近似，我们可以用参数化模型来表示策略，从而避免直接存储所有状态和动作的概率分布。 策略函数的输入是状态，输出是动作的概率分布。常见的近似方法包括线性函数近似、神经网络近似和核方法。其中，神经网络近似最为常用，称为策略网络（Policy Network），记为 π(a|s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强化学习笔记（九）策略函数近似">
+<meta property="og:url" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/index.html">
+<meta property="og:site_name" content="Run&#39;s Studio">
+<meta property="og:description" content="强化学习笔记（九）策略函数近似 策略函数近似是强化学习中一种重要的方法，用于解决状态空间和动作空间过大或连续的问题。通过函数近似，我们可以用参数化模型来表示策略，从而避免直接存储所有状态和动作的概率分布。 策略函数的输入是状态，输出是动作的概率分布。常见的近似方法包括线性函数近似、神经网络近似和核方法。其中，神经网络近似最为常用，称为策略网络（Policy Network），记为 π(a|s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-1.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-2.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-3.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-4.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-5.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-6.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-7.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-8.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-9.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-11.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-10.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-12.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-13.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-14.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-15.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-16.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-17.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-18.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-19.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-20.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-21.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-25.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-26.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-27.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-28.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-29.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/dfdd3b9b9b9996d36c0194a2fd66d483.jpeg">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-30.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-31.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-32.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-33.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-34.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-35.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-36.png">
+<meta property="og:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image-37.png">
+<meta property="article:published_time" content="2026-03-17T13:14:34.000Z">
+<meta property="article:modified_time" content="2026-03-17T13:59:53.832Z">
+<meta property="article:tag" content="交通">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://runsstudio.github.io/2026/03/17/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E7%AD%96%E7%95%A5%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/image.png">
+  
+  
+  
+  <title>强化学习笔记（九）策略函数近似 - Run&#39;s Studio</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"runsstudio.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 65vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Run&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="强化学习笔记（九）策略函数近似"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-17 21:14" pubdate>
+          2026年3月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">强化学习笔记（九）策略函数近似</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="强化学习笔记九策略函数近似">强化学习笔记（九）策略函数近似</h1>
+<p>策略函数近似是强化学习中一种重要的方法，用于解决状态空间和动作空间过大或连续的问题。通过函数近似，我们可以用参数化模型来表示策略，从而避免直接存储所有状态和动作的概率分布。</p>
+<p>策略函数的输入是状态，输出是动作的概率分布。常见的近似方法包括线性函数近似、神经网络近似和核方法。其中，神经网络近似最为常用，称为策略网络（Policy
+Network），记为 <span
+class="math inline"><em>π</em>(<em>a</em>|<em>s</em>; <em>θ</em>)</span>，其中
+<span class="math inline"><em>θ</em></span> 是神经网络的参数。</p>
+<p>【摘要】（来自元宝） 一、策略梯度方法的基本思想：</p>
+<p>将策略参数化</p>
+<p>在策略梯度方法中，我们不是去估计值函数（如Q值），而是直接用一个可微函数（如神经网络）来表示策略
+π(a|s; θ)，其中θ是策略的参数。也就是说，策略本身是可以被优化的对象。</p>
+<p>定义目标函数</p>
+<p>策略优化的目标是最大化某个性能指标，通常是期望回报（expected
+return）：</p>
+<p><span
+class="math inline"><em>J</em>(<em>θ</em>) = <em>𝔼</em><em>π</em><em>θ</em>[<em>R</em>] = ∑<em>τ</em><em>P</em>(<em>τ</em>; <em>θ</em>)<em>R</em>(<em>τ</em>)</span></p>
+<p>其中τ表示一个轨迹（state-action序列），P(τ;
+θ)是该轨迹在策略πθ下的概率，R(τ)是该轨迹的总回报。</p>
+<p>梯度上升更新策略参数</p>
+<p>为了最大化J(θ)，我们使用梯度上升方法更新θ：</p>
+<p><span
+class="math inline"><em>θ</em> ← <em>θ</em> + <em>α</em>∇<em>θ</em><em>J</em>(<em>θ</em>)</span></p>
+<p>这里的∇θ J(θ)就是所谓的策略梯度（policy gradient）。</p>
+<p>二、存在的问题与挑战：</p>
+<p>尽管策略梯度方法的想法很简单，但在实现中会遇到一些问题，主要包括：</p>
+<p>问题一：如何选择合适的标量指标（scalar metric）</p>
+<p>这个标量指标就是我们想要最大化的目标函数J(θ)。理论上我们可以直接用期望回报，但实际操作中，回报的方差可能非常大，导致梯度估计不稳定。</p>
+<p>因此，实际中我们会引入一些技巧来改善这个问题，比如：</p>
+<p>使用折扣因子γ来控制远期回报的重要性；</p>
+<p>使用基线（baseline）来减少方差，如减去状态值V(s)；</p>
+<p>使用优势函数A(s,a)替代原始回报R(τ)，如：A(s,a) = Q(s,a) - V(s)；</p>
+<p>使用REINFORCE with baseline 或 Actor-Critic 方法。</p>
+<p>问题二：如何计算该标量的梯度</p>
+<p>由于J(θ)通常是一个期望，直接计算梯度很困难，因此我们需要用采样的方法来估计梯度。</p>
+<p>策略梯度定理（Policy Gradient
+Theorem）告诉我们，可以直接通过采样轨迹来估计梯度，而不需要显式地求P(τ;
+θ)的导数。</p>
+<p>一个常见的梯度估计形式是：</p>
+<p>∇θ J(θ) ≈ (1/N) ∑i=1N ∑t=1T ∇θ log πθ(ai,t | si,t) · Gt</p>
+<p>其中Gt是从时间t开始的总回报，N是采样的轨迹数，T是轨迹长度。</p>
+<p>这个形式说明，策略梯度依赖于log概率的梯度乘以回报，这称为“得分函数估计器”（score
+function estimator）。</p>
+<h2 id="一策略梯度的思路">一、策略梯度的思路</h2>
+<p>从 <code>value based</code> 到
+<code>policy based</code>，区别：方法是基于值还是基于策略。基于策略的方法会建立策略的目标函数，并用于优化策略。
+目录：</p>
+<p><img src="image.png" srcset="/img/loading.gif" lazyload /></p>
+<p>基于策略梯度，是用的是梯度上升的方法。</p>
+<p>一、策略梯度的基础
+在这节课之前，都是用的表格形式的方式去存储状态和动作，以表格的形式储存</p>
+<p><img src="image-1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>对于连续状态，表格形式很难泛化
+为此，考虑引入策略网络，这里的π，多了一个参数θ</p>
+<p><img src="image-2.png" srcset="/img/loading.gif" lazyload /></p>
+<p>表格和函数形式的最优策略不同之处
+第一点：最优函数的定义不一样，在表格行事历，如果一个policy的状态值比其他状态都好，那他是最优的。在函数形式的优化里面，如果一个策略π能最优化（最大化）一个具体的标量指标，那他是最优的。</p>
+<p><img src="image-3.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第二点：就是获取最优动作的时候，用函数的话得先跑一遍这个函数，到函数里运算得到</p>
+<p><img src="image-4.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第三点：就是更新策略的时候，不能像表格一样直接更新表格里的数，而是更新参数θ去优化。</p>
+<p><img src="image-5.png" srcset="/img/loading.gif" lazyload /></p>
+<p><strong>策略梯度方法的思想</strong>
+首先梯度的目标函数可以用于优化策略
+然后，基于梯度的更新方法可以用于搜索最优策略
+虽然思想是简单的，但是还存在几个问题：
+第一个是我们如何选取合适的标量（metric）
+第二个是我们如何去计算这个标量的梯度？——需要通过策略梯度方法</p>
+<p><img src="image-6.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="二定义优化策略的指标">二、定义优化策略的指标</h2>
+<p>衡量策略的指标，先介绍一种：平均价值
+①平均价值的定义，其实就是对这个状态值进行加权平均。
+这里vπbar的定义是在一个给定的策略π下，不同状态值的平均值</p>
+<p><img src="image-7.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里d（s）的求和是＝1而且各个权重都是大于0</p>
+<p><img src="image-8.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这样定义 ，在后面他就可以对他的梯度起到作用。</p>
+<p>d（s）是什么呢？
+d（s）是一个分布系数，d（s）可以和π有关系，也可以没有关系。如果和π没关系，那么求梯度的时候就可以不考虑d（把他当做常数），否则就得考虑求导带上d。这里为了简化运算
+把他当做梯度。</p>
+<p><img src="image-9.png" srcset="/img/loading.gif" lazyload /></p>
+<p>如果d和π没有关系
+一种简单的方式是都取平均去选取d，另一种方式是按照具体的状态值去选取。
+如果d和π有关系，或者说d依赖于π，那么一种基础的选取方式是用状态转移概率p去选取。另一种是对不同的状态，给不同的权重，这样有一些经常访问到的状态，他的权重就更大，没访问到的状态他的权重就小。</p>
+<p><img src="image-11.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第二种方式是平均奖励，用平均单步奖励作为标量</p>
+<p><img src="image-10.png" srcset="/img/loading.gif" lazyload /></p>
+<p>平均单步奖励的定义如图所示，由两步的加权平均求得。
+第一步加权是由于不同的动作有不同的概率 要对动作加权平均
+第二步是不同的状态动作采取了之后获得不同奖励的概率不同，又得加权平均一下。</p>
+<p>dπ是稳态分布 状态的另一种表达方式：
+n趋于无穷的时候，跑无穷多步reward的平均，</p>
+<p><img src="image-12.png" srcset="/img/loading.gif" lazyload /></p>
+<p>另一种表达方式是省略了s0，因为当奖励是无穷多步的时候，从哪里开始就不再重要了。这个无穷多步的</p>
+<p><img src="image-13.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="三metrics-的作用和性质">三、metrics 的作用和性质</h2>
+<p>metrics可以用于优化策略梯度。metrics都是和策略π相关的，优化metrics就优化了策略。</p>
+<p><img src="image-14.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第二点是所有metrics都有一个折扣率，在这个书里面都考虑的是有折扣率的情形</p>
+<p><img src="image-15.png" srcset="/img/loading.gif" lazyload /></p>
+<p>第三点是直觉上看，<span
+class="math inline"><em>r̄</em></span>是一个即时量，应该是短视的，<span
+class="math inline">$\bar{v_π}$</span>是考虑到所有的<code>reward</code>，应该比<span
+class="math inline"><em>r</em></span>更加长远，但是实际上优化这两，其实是等价的。等价不是说这两个相等，而是说其中一个达到极值的时候另一个也达到极值。</p>
+<p><img src="image-16.png" srcset="/img/loading.gif" lazyload /></p>
+<p><strong>这就是为什么强化里面优化即时奖励就可以优化价值。</strong></p>
+<p>在文献里面，经常会见到如下的表述，他是什么呢，其实他就是<span
+class="math inline">$\bar{v_π}$</span>这个metric的另一种表述。即优化未来的折扣期望回报和。</p>
+<p><img src="image-17.png" srcset="/img/loading.gif" lazyload /></p>
+<p>文献中，要么是<span
+class="math inline"><em>v</em></span>，要么是<span
+class="math inline"><em>r</em></span>，一定会见到二者其一。</p>
+<p>证明如下，其实大<span
+class="math inline"><em>R</em></span>就是从轨迹里采样的，是在不同的状态下连续获得的奖励，这个加起来就是return，也就是<span
+class="math inline"><em>G</em><sub><em>t</em></sub></span>，对这个求和就得到了<span
+class="math inline">$\bar{v_π}$</span></p>
+<p><img src="image-18.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="四-metric的梯度">四 metric的梯度</h2>
+<p>metrics的梯度计算是策略梯度方法中最重要的一部分。也是最复杂的一部分。</p>
+<p>原因在于可能有不同的metrics，而且要考虑折扣率的情况。</p>
+<p><img src="image-19.png" srcset="/img/loading.gif" lazyload /></p>
+<p>先给出梯度的结果的求和。 其中<span
+class="math inline"><em>J</em>(<em>θ</em>)</span>可以是我们要优化的metric，
+这里等号不一定是严格相等，可以是≈或近似 <span
+class="math inline"><em>η</em></span>是状态的分布或权重</p>
+<p><img src="image-20.png" srcset="/img/loading.gif" lazyload /></p>
+<p>所有的情况下，求出的式子都和这个类似。</p>
+<p><img src="image-21.png" srcset="/img/loading.gif" lazyload /></p>
+<p>metric是<span
+class="math inline">$\bar{r_π}$</span>的时候，如果折扣率是＝1，那么是严格等于，不然就是约等于
+如果是<span class="math inline">$\bar{v_π}$</span>，那么他是成比例的</p>
+<p><img src="image-25.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这个梯度的式子也就e有用期望和对数的形式给出，为什么用这个形式比较好？因为这种形式上，梯度的近似可以写成下边的式子</p>
+<p><img src="image-26.png" srcset="/img/loading.gif" lazyload /></p>
+<p>为什么这俩是等价的，因为<span
+class="math inline"><em>l</em><em>n</em><em>π</em></span>求导等于<span
+class="math inline"><em>π</em><sup>′</sup>/<em>π</em></span>
+所以对于<span class="math inline"><em>π</em></span>求梯度就等于<span
+class="math inline"><em>π</em></span>乘以<span
+class="math inline">▽<em>l</em><em>n</em><em>π</em></span></p>
+<p><img src="image-27.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这样做了之后，我们就可以做出如下推导，其中<span
+class="math inline"><em>s</em></span>服从<span
+class="math inline"><em>d</em></span>，就可以写成期望的形式<span
+class="math inline"><em>a</em></span>服从<span
+class="math inline"><em>π</em></span>，对他求和也可以把这个期望的式子变成<span
+class="math inline"><em>E</em>[<em>S</em> <em>d</em>, <em>A</em> <em>π</em>]</span>，这样整个式子就相当于是在S,A上进行采样，并求和的方式，能够近似计算出梯度。
+注意这里边s，a和S,A的含义区别</p>
+<p>需要指出的是，为了要从上面式子中得到<span
+class="math inline"><em>l</em><em>n</em><em>π</em></span>，我们必须有约束：<span
+class="math inline"><em>π</em>＞0</span>。 而为了引入<span
+class="math inline"><em>π</em>＞0</span>，我们可以用到<span
+class="math inline"><em>s</em><em>o</em><em>f</em><em>t</em><em>m</em><em>a</em><em>x</em></span>函数，这个函数可以进行归一化。我们就直接令这个<span
+class="math inline"><em>π</em></span>的函数长成<span
+class="math inline"><em>s</em><em>o</em><em>f</em><em>t</em><em>m</em><em>a</em><em>x</em></span>函数的形式（反正π是个函数，可以任意指定），从而保证他的范围。这里的<span
+class="math inline"><em>h</em></span>函数是<code>feature function</code>，现在都是神经网络里面提取</p>
+<p><img src="image-28.png" srcset="/img/loading.gif" lazyload /></p>
+<p>在神经网络里面提取的方式是输入特征，经过隐藏层，再用softmax激活，就可以得到不同层的概率。</p>
+<p><img src="image-29.png" srcset="/img/loading.gif" lazyload /></p>
+<p>由于每个动作的概率是大于0而且小于1，这里的π就具有随机性和探索性</p>
+<p><img src="dfdd3b9b9b9996d36c0194a2fd66d483.jpeg" srcset="/img/loading.gif" lazyload /></p>
+<p>需要说的是，上面的方法只适合离散动作，像连续动作的话适合用dpg类的方法来处理。</p>
+<h2
+id="五梯度上升方法和reinforce算法">五、梯度上升方法和REINFORCE算法</h2>
+<p>上面的文章里介绍了策略梯度。可以用梯度上升的方式进行求解。</p>
+<p><img src="image-30.png" srcset="/img/loading.gif" lazyload /></p>
+<p>把上面的梯度公式代进来，就得到了梯度上升的计算公式。但是公式1是没法用的
+因为里面有一个期望的形式。
+为了计算可以把梯度换成公式2的随机形式，但是公式2也是没法用的，因为里面依赖<span
+class="math inline"><em>q</em><sub><em>π</em></sub>（<em>s</em>，<em>a</em>）</span>，也就是真实的动作值(如果我们知道q_π的真实值那就不用迭代了)。</p>
+<p><img src="image-31.png" srcset="/img/loading.gif" lazyload /></p>
+<p>我们想到既然<span
+class="math inline"><em>q</em><sub><em>π</em></sub></span>未知，那么就可以用一个近似量<span
+class="math inline"><em>q</em><sub><em>t</em></sub></span>去替代，，这个方法就是<code>reinforce</code>方法。他计算<span
+class="math inline"><em>q</em><sub><em>t</em></sub></span>的方法是用蒙特卡洛，从一个<span
+class="math inline"><em>s</em></span>，<span
+class="math inline"><em>a</em></span>出发，历经一个完整的回合，计算得到完整的轨迹，用轨迹的<span
+class="math inline"><em>g</em></span>去计算<span
+class="math inline"><em>q</em><sub><em>t</em></sub></span>。</p>
+<p>同时还有一些td方法可以介绍，这些是属于a2c方法的范畴。</p>
+<p>如何采样s和a？ 对于s，我们可以从长期运行的稳定的策略里面得到
+对于a，我们可以从给定的π里面采集。这里面π依赖于s和θ。
+因此他的行为策略和目标策略是一致的，属于是on-policy。</p>
+<p><img src="image-32.png" srcset="/img/loading.gif" lazyload /></p>
+<p>接下来再来审视一下这个式子，对这个式子进行变形，然后把梯度<span
+class="math inline">▽<em>π</em></span>放到右边，公式就变成了中间的公式的形状。，令中间的<span
+class="math inline"><em>q</em>/<em>π</em>＝<em>β</em><sub><em>t</em></sub></span>，所以梯度上升的式子就变成了在优化<span
+class="math inline"><em>π</em>(<em>a</em><sub><em>t</em></sub>|<em>s</em><sub><em>t</em></sub>)</span></p>
+<p><img src="image-33.png" srcset="/img/loading.gif" lazyload /></p>
+<p>上面的梯度迭代公式变形后，我们发现，如果<span
+class="math inline"><em>β</em><em>t</em>＞0</span>，那么在<span
+class="math inline"><em>s</em><sub><em>t</em></sub></span>下选择<span
+class="math inline"><em>a</em><sub><em>t</em></sub></span>的概率就增加了。
+如果<span
+class="math inline"><em>β</em><sub><em>t</em></sub>＜0</span>，那么概率减小。</p>
+<p><img src="image-34.png" srcset="/img/loading.gif" lazyload /></p>
+<p>从数学上说，当<span
+class="math inline"><em>θ</em><sub><em>t</em> + 1</sub> − <em>θ</em><sub><em>t</em></sub></span>足够小的时候，就有π和后面的梯度是约等的。这个是源于微分。从微分上把第一行的公式代入
+就得到了 <span
+class="math inline"><em>π</em><em>θ</em><sub><em>t</em> + 1</sub>＝<em>π</em><sub><em>θ</em><sub><em>t</em></sub></sub> + <em>a</em><em>β</em><sub><em>t</em></sub> ▽ <em>π</em><em>t</em>²</span>，也就是说βt决定了优化的方向
+当<span
+class="math inline"><em>β</em><sub><em>t</em></sub>＞0</span>，概率增大
+<span
+class="math inline"><em>β</em><sub><em>t</em></sub>＜0</span>,概率减小</p>
+<p><img src="image-35.png" srcset="/img/loading.gif" lazyload /></p>
+<p><span
+class="math inline"><em>β</em><sub><em>t</em></sub></span>系数的特性是平衡探索与利用。
+<span class="math inline"><em>β</em><sub><em>t</em></sub></span>和<span
+class="math inline"><em>q</em><sub><em>t</em></sub></span>成正比，如果<span
+class="math inline"><em>q</em><sub><em>t</em></sub></span>比较大，那么<span
+class="math inline"><em>β</em><sub><em>t</em></sub></span>也比较大，从而倾向于选，让<span
+class="math inline"><em>q</em></span>比较大的动作。 <span
+class="math inline"><em>β</em></span>和<span
+class="math inline"><em>π</em></span>成反比，如果<span
+class="math inline"><em>π</em></span>是比较小的，那么<span
+class="math inline"><em>β</em><sub><em>t</em></sub></span>算出来会比较大，从而增加模型的探索性</p>
+<p>六、reinforce算法</p>
+<p><img src="image-36.png" srcset="/img/loading.gif" lazyload /></p>
+<p>如果里面的<span
+class="math inline"><em>q</em><sub><em>π</em></sub></span>是从蒙特卡洛得到的，那他就是reinforce算法。
+reinforce是最早的策略梯度算法 伪代码如下</p>
+<p><img src="image-37.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里<span
+class="math inline"><em>θ</em></span>更新了之后，并不是立刻用于模型的动作选取。这是因为蒙特卡洛的方法是off-policy的，要等所有的回合都遍历结束了之后才能选取。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" class="category-chain-item">强化学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>强化学习笔记（九）策略函数近似</div>
+      <div>https://runsstudio.github.io/2026/03/17/强化学习笔记（九）策略函数近似/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/25/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%80%BC%E5%87%BD%E6%95%B0%E8%BF%91%E4%BC%BC/" title="强化学习笔记（八）值函数近似">
+                        <span class="hidden-mobile">强化学习笔记（八）值函数近似</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://runsstudio.github.io" target="_blank" rel="nofollow noopener"><span>Run's studio © 2025</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
